@@ -6,7 +6,7 @@ A mobile-first youth coaching app for parent-led backyard sessions. Open `index.
 
 ## What the app does
 
-Pocket Coach gives a parent everything needed to run a structured 15–25 minute backyard practice without any coaching experience. On load it generates a session for the selected age group: a curated sequence of drills, each with a setup diagram (SVG pictogram), step-by-step instructions, a one-line verbal cue for the parent, and a success indicator so you know the rep worked. A countdown timer tracks the session; individual drills can be swapped or shuffled on the fly. Completing all drills records the session in-memory and updates the Progress tab with cumulative stats.
+Jukit gives a parent everything needed to run a structured 15–25 minute backyard practice without any coaching experience. On load it generates a session for the selected age group: a curated sequence of drills, each with a setup diagram (SVG pictogram), step-by-step instructions, a one-line verbal cue for the parent, and a success indicator so you know the rep worked. A countdown timer tracks the session; individual drills can be swapped or shuffled on the fly. Completing all drills records the session in-memory and updates the Progress tab with cumulative stats.
 
 ---
 
@@ -57,19 +57,16 @@ Every drill includes: setup instructions, step-by-step execution, a parent verba
 - **Google Fonts** — Bebas Neue (display headings), DM Sans (body), DM Mono (labels/badges)
 - **Inline SVG pictograms** — 18 hand-authored drill icons stored as template literals; rendered at any size without raster assets
 - **Vanilla JS** — three views (Today, Drills, Progress) rendered via `innerHTML`; no virtual DOM
-- **In-memory state** — session history, streak, and cumulative stats live in a `state` object; lost on page refresh
+- **localStorage persistence** — session history, streak, and cumulative stats survive page refresh via `jukit_v1` key
 
 ---
 
 ## Roadmap
 
-### 1 — localStorage persistence
-Serialize the `state` object to `localStorage` on every session save so progress survives page refresh. Requires ~10 lines of JSON read/write around the existing `state` object. Unlocks the Progress tab as a real coaching log.
-
-### 2 — React Native / Expo conversion
+### 1 — React Native / Expo conversion
 Port the data layer (`AGE_GROUPS`, `ALL_DRILLS`, session logic, timer) to TypeScript modules. Rebuild the UI in React Native with Expo, targeting iOS and Android from a single codebase. SVG pictograms migrate to `react-native-svg`. Navigation via Expo Router (tab bar maps directly to the existing three-view layout).
 
-### 3 — App Store release
+### 2 — App Store release
 - Add offline support (Expo's bare workflow or EAS Build)
 - Persist data with AsyncStorage or SQLite via Expo
 - Add push notifications for session reminders
