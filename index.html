@@ -354,15 +354,15 @@ const AGE_GROUPS = [
 // priority: 1 = key drill (always prioritize), 2 = high value, 3 = variety/fun
 const ALL_DRILLS = {
   hitcoach:{id:'hitcoach',name:'Hit the Coach',duration:4,
-    setup:'Every player has their own ball. Dad stands in the middle of a 15ft circle.',
-    how:'Players try to kick their ball and hit Dad\'s feet or shins. Dad shuffles and makes it a challenge. Reset and go again.',
+    setup:'Every player has their own ball. Coach stands in the middle of a 15ft circle.',
+    how:'Players try to kick their ball and hit Coach\'s feet or shins. Coach shuffles and makes it a challenge. Reset and go again.',
     cue:'"Kick it at me — try to get me!"',
-    success:'Eyes up scanning for Dad, not looking down at ball',
+    success:'Eyes up scanning for Coach, not looking down at ball',
     tags:['control','movement','shooting'],fun:true,ages:[0,1],priority:1,
     insights:[
       'Directional kicking with a moving target — more purposeful foot contacts per minute than almost any unstructured free play',
       'Forces eyes-up scanning while dribbling; the habit of seeing your target before striking is the single clearest differentiator between skilled players and ball-watchers',
-      'High-fun format keeps full engagement across every rep — kids trying to "get" Dad are learning faster than kids simply following instructions'
+      'High-fun format keeps full engagement across every rep — kids trying to "get" Coach are learning faster than kids simply following instructions'
     ]
   },
   shapes:{id:'shapes',name:'Shape Dribble',duration:3,
@@ -414,15 +414,15 @@ const ALL_DRILLS = {
     ]
   },
   passshoot:{id:'passshoot',name:'Pass and Shoot',duration:5,
-    setup:'Dad rolls from goal area. Player receives at top of shooting zone.',
-    how:'Dad passes, player controls and shoots back. First touch goes forward.',
+    setup:'Coach rolls from goal area. Player receives at top of shooting zone.',
+    how:'Coach passes, player controls and shoots back. First touch goes forward.',
     cue:'"First touch goes forward"',
     success:'Receives with inside of foot (not toe), shoots in one motion',
     tags:['shooting','control','passing'],fun:true,ages:[1,2,3],priority:2,
     insights:[
       'Receiving and shooting in one motion is the most game-realistic skill combination — it replicates the most common goal-scoring sequence in youth soccer',
       'First touch going forward rather than sideways or backward is the single most-lost habit on video review of U6–U10 games',
-      'Dad-as-passer creates varied, unpredictable service — a better training stimulus than a wall or a stationary ball for developing first-touch adaptability'
+      'Coach-as-passer creates varied, unpredictable service — a better training stimulus than a wall or a stationary ball for developing first-touch adaptability'
     ]
   },
   gate:{id:'gate',name:'Gate Dribbling',duration:4,
@@ -438,8 +438,8 @@ const ALL_DRILLS = {
     ]
   },
   nightmare:{id:'nightmare',name:"Goalkeeper's Nightmare",duration:4,
-    setup:'Dad stands behind player with several balls.',
-    how:'Dad rolls balls to different spots — left, right, far. Chase each one and shoot without stopping.',
+    setup:'Coach stands behind player with several balls.',
+    how:'Coach rolls balls to different spots — left, right, far. Chase each one and shoot without stopping.',
     cue:'"Get around it, then shoot"',
     success:'Adjusting body position before striking, not toe-poking',
     tags:['shooting','movement'],fun:true,ages:[1,2,3],priority:2,
@@ -451,7 +451,7 @@ const ALL_DRILLS = {
   },
   freeze:{id:'freeze',name:'Freeze Tag Dribble',duration:3,
     setup:'Mark a 15×15 ft zone. Player dribbles freely inside.',
-    how:'Dad calls "Freeze!" unpredictably. Ball must stop within one step.',
+    how:'Coach calls "Freeze!" unpredictably. Ball must stop within one step.',
     cue:'"The ball stops when you stop"',
     success:'Ball stops within a step, stays under control',
     tags:['control','movement'],fun:true,ages:[0,1,2],priority:2,
@@ -474,7 +474,7 @@ const ALL_DRILLS = {
     ]
   },
   target:{id:'target',name:'1v1 Target Practice',duration:4,
-    setup:'Dad in goal. Name a specific target before each shot.',
+    setup:'Coach in goal. Name a specific target before each shot.',
     how:'"Hit my left hand." "Low shot." "Right post." Player picks a spot before kicking.',
     cue:'"Pick your spot before you swing"',
     success:'Thinking about placement over raw power',
@@ -482,7 +482,7 @@ const ALL_DRILLS = {
     insights:[
       'Naming a target before kicking activates the cognitive planning pathway that skilled strikers use automatically — it is a trainable habit, not an innate ability',
       'Deliberate placement before power is the correct developmental sequence; players who learn aim first develop faster long-term than those who prioritize striking force',
-      'Dad-in-goal creates game-realistic pressure with immediate visual feedback on shot quality — better than any cone or board target for building confidence'
+      'Coach-in-goal creates game-realistic pressure with immediate visual feedback on shot quality — better than any cone or board target for building confidence'
     ]
   },
   freestyle:{id:'freestyle',name:'Free Shoot — Finish Strong',duration:3,
@@ -522,8 +522,8 @@ const ALL_DRILLS = {
     ]
   },
   shielding:{id:'shielding',name:'Shield and Turn',duration:4,
-    setup:'Dad as defender. Player with ball on back.',
-    how:'Player receives ball, uses body to shield Dad away, then turns and finds space. Swap sides each turn.',
+    setup:'Coach as defender. Player with ball on back.',
+    how:'Player receives ball, uses body to shield Coach away, then turns and finds space. Swap sides each turn.',
     cue:'"Body between me and the ball — feel where I am"',
     success:'Player maintains possession through contact for 3 seconds',
     tags:['control','movement'],fun:true,ages:[2,3],priority:2,
@@ -535,7 +535,7 @@ const ALL_DRILLS = {
   },
   passweave:{id:'passweave',name:'Triangle Passing',duration:5,
     setup:'3 cones in a triangle ~10 ft apart. Player at each cone (use a cone for the third).',
-    how:'1-2-touch passing around the triangle. Switch direction on Dad\'s call. Add movement: after passing, follow your pass.',
+    how:'1-2-touch passing around the triangle. Switch direction on Coach\'s call. Add movement: after passing, follow your pass.',
     cue:'"Pass and move — don\'t stand still after the ball leaves your foot"',
     success:'Ball moves around the triangle without stopping',
     tags:['passing','movement'],fun:false,ages:[3],priority:1,
@@ -547,7 +547,7 @@ const ALL_DRILLS = {
   },
   rondo:{id:'rondo',name:'Keep Away (Rondo)',duration:5,
     setup:'15×15 ft grid. 2 players keep away from 1 defender.',
-    how:'Passer + receiver maintain possession while Dad (defender) tries to win it. Switch defender when ball is won.',
+    how:'Passer + receiver maintain possession while Coach (defender) tries to win it. Switch defender when ball is won.',
     cue:'"Move before the ball arrives — create an angle"',
     success:'5+ consecutive passes without losing possession',
     tags:['passing','control'],fun:true,ages:[3],priority:2,
@@ -559,7 +559,7 @@ const ALL_DRILLS = {
   },
   crossing:{id:'crossing',name:'Cross and Finish',duration:5,
     setup:'Ball on the side of goal area. Small target near far post.',
-    how:'Dad crosses ball from the side. Player runs to meet it and shoots first time. Alternate sides.',
+    how:'Coach crosses ball from the side. Player runs to meet it and shoots first time. Alternate sides.',
     cue:'"Attack the ball — don\'t wait for it"',
     success:'Shoots on first touch (even if off-target)',
     tags:['shooting','passing','movement'],fun:true,ages:[3],priority:2,
@@ -892,7 +892,7 @@ function renderSession() {
       <div class="drill-body">
         <div class="info-lbl">Setup</div><div class="info-txt">${d.setup}</div>
         <div class="info-lbl">How to Play</div><div class="info-txt">${d.how}</div>
-        <div class="cue-box"><div class="cue-lbl">Dad's Cue</div><div class="cue-txt">"${d.cue}"</div></div>
+        <div class="cue-box"><div class="cue-lbl">Coach's Cue</div><div class="cue-txt">"${d.cue}"</div></div>
         <div class="success-row"><div class="success-icon">✓</div><div class="success-txt">${d.success}</div></div>
         ${d.insights ? `
         <div class="insights-box">
@@ -1001,7 +1001,7 @@ function renderLib() {
       </div>
       <div class="info-lbl">How to Play</div>
       <div class="info-txt" style="margin-bottom:8px">${d.how}</div>
-      <div class="cue-box"><div class="cue-lbl">Dad's Cue</div><div class="cue-txt">"${d.cue}"</div></div>
+      <div class="cue-box"><div class="cue-lbl">Coach's Cue</div><div class="cue-txt">"${d.cue}"</div></div>
       ${d.insights ? `<div class="insights-box" style="margin-top:8px"><div class="insights-lbl">Why This Drill</div><ul class="insights-list">${d.insights.map(b => `<li>${b}</li>`).join('')}</ul></div>` : ''}
       <div style="margin-top:8px">${d.tags.map(t => `<span class="tag">${t}</span> `).join('')}${d.fun ? '<span class="tag" style="color:var(--amber);border-color:var(--amber)80">⭐ high fun</span>' : ''}</div>
     </div>`;
