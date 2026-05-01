@@ -22,7 +22,6 @@
   .logo{display:flex;align-items:center;gap:12px;}
   .logo-icon{width:42px;height:42px;flex-shrink:0;}
   .logo-text{font-family:var(--bebas);font-size:28px;letter-spacing:1.5px;line-height:1;}
-  .session-badge{background:var(--elevated);border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:11px;color:var(--amber);font-family:var(--mono);white-space:nowrap;}
 
   /* AGE SELECTOR */
   .age-bar{display:flex;align-items:center;gap:8px;padding:0 0 10px;margin-top:2px;}
@@ -195,7 +194,6 @@
       </svg>
       <div class="logo-text">Pocket Coach</div>
     </div>
-    <div class="session-badge" id="badge">20 MIN</div>
   </div>
 
   <div class="sport-row" id="sportRow"></div>
@@ -870,8 +868,6 @@ function renderSession() {
     return;
   }
 
-  const mins = session.reduce((a, d) => a + d.duration, 0);
-  document.getElementById('badge').textContent = `${mins} MIN`;
   tip.style.display = 'block';
 
   el.innerHTML = session.map((d, i) => `
