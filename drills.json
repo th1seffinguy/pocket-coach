@@ -12,6 +12,7 @@
     "fun": true,
     "ages": [0, 1],
     "priority": 1,
+    "hasVideo": false,
     "insights": [
       "Directional kicking with a moving target — more purposeful foot contacts per minute than almost any unstructured free play",
       "Forces eyes-up scanning while dribbling; the habit of seeing your target before striking is the single clearest differentiator between skilled players and ball-watchers",
@@ -31,6 +32,7 @@
     "fun": false,
     "ages": [0, 1],
     "priority": 2,
+    "hasVideo": false,
     "insights": [
       "Stopping precisely at a fixed marker builds sole-of-foot awareness — the same physical skill used in every direction change, defensive trap, and receiving moment",
       "Spatial planning while moving (where is the next cone?) is a cognitive habit this drill develops before players are ready for more complex decisions",
@@ -50,6 +52,7 @@
     "fun": true,
     "ages": [0, 1, 2],
     "priority": 1,
+    "hasVideo": false,
     "insights": [
       "Emergency ball control is the single most undercoached skill at young ages — players who can stop the ball on command have a decisive advantage in every real-game situation",
       "Sole-of-foot braking develops weight transfer and body position over the ball — the same mechanics used in shielding, trapping, and sharp direction changes",
@@ -69,6 +72,7 @@
     "fun": true,
     "ages": [0, 1],
     "priority": 1,
+    "hasVideo": false,
     "insights": [
       "Produces 8–12 shots per 60-second round — higher shooting reps per minute than almost any other drill in the catalog",
       "Scanning ahead to find the next ball (eyes up, not staring at feet) is the exact habit this drill builds; most young players never develop it without direct prompting",
@@ -88,6 +92,7 @@
     "fun": false,
     "ages": [0, 1, 2, 3],
     "priority": 1,
+    "hasVideo": false,
     "insights": [
       "Highest foot-to-ball contacts per minute of any drill — no other exercise builds alternating-foot coordination faster for any age group",
       "The rhythmic alternating pattern directly trains the motor pathway used in every dribbling move, direction change, and step-over",
@@ -107,6 +112,7 @@
     "fun": true,
     "ages": [1, 2, 3],
     "priority": 2,
+    "hasVideo": false,
     "insights": [
       "Receiving and shooting in one motion is the most game-realistic skill combination — it replicates the most common goal-scoring sequence in youth soccer",
       "First touch going forward rather than sideways or backward is the single most-lost habit on video review of U6–U10 games",
@@ -126,6 +132,7 @@
     "fun": true,
     "ages": [1, 2, 3],
     "priority": 2,
+    "hasVideo": false,
     "insights": [
       "Dribble-then-shoot sequences are the most common goal-scoring pattern in youth soccer — this drill trains exactly that combination at high repetition",
       "The head-up habit after the gate directly transfers to goalkeeper awareness before shooting — one of the most trainable game-intelligence habits at this age",
@@ -145,6 +152,7 @@
     "fun": true,
     "ages": [1, 2, 3],
     "priority": 2,
+    "hasVideo": false,
     "insights": [
       "Reacting to a loose ball and shooting is the most common scoring opportunity in youth games — this drill replicates it at higher volume than any match can provide",
       "Body adjustment before striking rather than toe-poking is the critical technical habit built here, and the one most visible and impactful on actual game day",
@@ -164,6 +172,7 @@
     "fun": true,
     "ages": [0, 1, 2],
     "priority": 2,
+    "hasVideo": false,
     "insights": [
       "Sudden-stop training builds the emergency ball control that prevents turnovers — possession loss on a first touch is the most common mistake at U6–U10",
       "Unpredictable timing from a parent is more effective than self-paced drills; the reactive element is where the actual adaptation happens in the brain",
@@ -183,6 +192,7 @@
     "fun": true,
     "ages": [0, 1, 2],
     "priority": 3,
+    "hasVideo": false,
     "insights": [
       "Balloons force soft-touch calibration that a regular ball cannot — overhitting is immediately visible and the consequence is obvious, accelerating self-correction",
       "Develops the delicate \"feel\" for ball contact that speeds up juggling and first-touch skill faster than heavy-ball repetitions alone at young ages",
@@ -202,6 +212,7 @@
     "fun": true,
     "ages": [1, 2, 3],
     "priority": 2,
+    "hasVideo": false,
     "insights": [
       "Naming a target before kicking activates the cognitive planning pathway that skilled strikers use automatically — it is a trainable habit, not an innate ability",
       "Deliberate placement before power is the correct developmental sequence; players who learn aim first develop faster long-term than those who prioritize striking force",
@@ -221,6 +232,7 @@
     "fun": true,
     "ages": [0, 1, 2, 3],
     "priority": 3,
+    "hasVideo": false,
     "insights": [
       "Open exploration lets players consolidate drilled skills through self-directed play — unstructured time after structured reps measurably accelerates retention",
       "Creativity and shot confidence compound when there is no right or wrong answer; this is critical for building the intrinsic love of practice that drives long-term development",
@@ -240,6 +252,7 @@
     "fun": false,
     "ages": [2, 3],
     "priority": 1,
+    "hasVideo": false,
     "insights": [
       "Cone-weave patterns are among the strongest predictors of dribbling improvement in U8–U12 players — the alternating-foot demand forces habits that free dribbling never creates",
       "Natural weight shifting through a weave transfers directly to beating a defender in a match; the movement pattern is identical, only the defender's position changes",
@@ -259,6 +272,7 @@
     "fun": false,
     "ages": [2, 3],
     "priority": 1,
+    "hasVideo": false,
     "insights": [
       "The inside-outside foot pattern is the foundation of 80% of advanced dribbling moves — learning it at ages 7–9 is dramatically faster than at any later developmental stage",
       "Isolates the two most important contact surfaces of the foot in a single drill: inside for control and direction changes, outside for acceleration and width",
@@ -278,6 +292,7 @@
     "fun": true,
     "ages": [2, 3],
     "priority": 2,
+    "hasVideo": false,
     "insights": [
       "Body shielding is the most neglected skill at U8–U10 and among the highest-impact when learned — players who can hold the ball under pressure rarely lose 1v1 battles",
       "Develops spatial awareness of the defender's position — a cognitive skill, not merely physical, that transfers to receiving under pressure across every position",
@@ -297,6 +312,7 @@
     "fun": false,
     "ages": [3],
     "priority": 1,
+    "hasVideo": false,
     "insights": [
       "Pass-and-move is the single most important habit to establish before U12 — standing still after passing is the primary differentiator between recreational and competitive players at this age",
       "Triangle geometry teaches angle-creation intuitively; players internalize the concept of creating passing lanes without needing to understand it abstractly",
@@ -316,6 +332,7 @@
     "fun": true,
     "ages": [3],
     "priority": 2,
+    "hasVideo": false,
     "insights": [
       "Possession under pressure is the defining skill of elite youth players — no drill develops it more directly or efficiently than keep-away",
       "Decision speed under a closing defender is more trainable at ages 9–11 than at any later developmental stage; the window is genuinely time-sensitive",
@@ -335,6 +352,7 @@
     "fun": true,
     "ages": [3],
     "priority": 2,
+    "hasVideo": false,
     "insights": [
       "First-time finishing from a cross replicates the most common advanced goal-scoring sequence in youth and adult soccer — all elite forwards train this pattern at high volume",
       "Attacking the ball rather than waiting for it is a cognitive habit; once established, it transfers automatically to headers, volleys, and rebounds",
