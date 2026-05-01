@@ -35,6 +35,12 @@
   .age-select-arrow{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--blue);font-size:12px;pointer-events:none;}
   .age-badge{background:var(--blue);border-radius:6px;padding:3px 8px;font-size:10px;font-family:var(--mono);color:white;white-space:nowrap;flex-shrink:0;}
 
+  /* SPORT SELECTOR */
+  .sport-row{display:flex;gap:8px;padding:0 0 10px;margin-top:2px;}
+  .sport-chip{padding:5px 12px;background:var(--surface);border:1px solid var(--border);border-radius:20px;color:var(--muted);font-size:11px;font-family:var(--mono);font-weight:700;white-space:nowrap;cursor:pointer;transition:all 0.15s cubic-bezier(0.34,1.56,0.64,1);}
+  .sport-chip.active{background:var(--blue);border-color:var(--blue);color:white;}
+  .sport-chip:active{transform:scale(0.92);}
+
   /* TABS */
   .tabs{display:flex;background:var(--elevated);border-radius:10px;padding:3px;gap:2px;}
   .tab{flex:1;padding:8px 4px;border:none;background:transparent;color:var(--muted);font-family:var(--sans);font-size:12px;font-weight:600;border-radius:7px;cursor:pointer;transition:all 0.2s cubic-bezier(0.34,1.56,0.64,1);}
@@ -193,7 +199,9 @@
     <div class="session-badge" id="badge">20 MIN</div>
   </div>
 
-  <div class="age-bar">
+  <div class="sport-row" id="sportRow"></div>
+
+  <div class="age-bar" id="ageBar">
     <div class="age-arrow" id="ageLeft" onclick="shiftAge(-1)">‹</div>
     <div class="age-selector-wrap">
       <select class="age-select" id="ageSelect" onchange="onAgeChange()">
@@ -583,14 +591,38 @@ function persistState() {
 
 // ─── APP STATE ────────────────────────────────────────────────────────────────
 const DURATION_OPTIONS = [10, 15, 20, 25, 30, 40, 45, 60];
-const DAD_JOKES = [
-  { pct:1.00, text:"Look who's practicing now! ⚽" },
-  { pct:0.75, text:"Still going? My back hurts just watching. Keep it up!" },
-  { pct:0.50, text:"Halfway through already? Time flies when you're having fun!" },
-  { pct:0.25, text:"Almost done! Or as the ref says — 'soccer close to full time.'" },
-  { pct:0.10, text:"Last few minutes! Champions are made right here in the backyard." },
-  { pct:0.00, text:"Full time! You out-coached yourself today. 🏆" },
+const SPORTS = [
+  { id:'soccer',     label:'Soccer',     emoji:'⚽' },
+  { id:'basketball', label:'Basketball', emoji:'🏀' },
+  { id:'baseball',   label:'Baseball',   emoji:'⚾' },
 ];
+const DAD_JOKES = {
+  soccer: [
+    { pct:1.00, text:"Look who's practicing now! ⚽" },
+    { pct:0.75, text:"Still going? My back hurts just watching. Keep it up!" },
+    { pct:0.50, text:"Halfway through already? Time flies when you're having fun!" },
+    { pct:0.25, text:"Almost done! Or as the ref says — 'soccer close to full time.'" },
+    { pct:0.10, text:"Last few minutes! Champions are made right here in the backyard." },
+    { pct:0.00, text:"Full time! You out-coached yourself today. 🏆" },
+  ],
+  basketball: [
+    { pct:1.00, text:"Look who's practicing now! 🏀" },
+    { pct:0.75, text:"Still going? My back hurts just watching. Keep it up!" },
+    { pct:0.50, text:"Halfway through already? Time flies when you're having fun!" },
+    { pct:0.25, text:"Almost done! Nothing but net — you're in the home stretch!" },
+    { pct:0.10, text:"Last few minutes! Champions are made right here in the driveway." },
+    { pct:0.00, text:"Buzzer beater! You out-coached yourself today. 🏆" },
+  ],
+  baseball: [
+    { pct:1.00, text:"Look who's practicing now! ⚾" },
+    { pct:0.75, text:"Still going? My back hurts just watching. Keep it up!" },
+    { pct:0.50, text:"Halfway through already? Time flies when you're having fun!" },
+    { pct:0.25, text:"Bottom of the ninth — three outs and you're done!" },
+    { pct:0.10, text:"Last few minutes! Champions are made right here in the backyard." },
+    { pct:0.00, text:"Ball game! You out-coached yourself today. 🏆" },
+  ],
+};
+let activeSport = 'soccer';
 let ageIdx = 1;
 let sessionMins = AGE_GROUPS[1].defaultMins;
 let session = [], done = new Set(), swapIdx = null;
@@ -642,6 +674,23 @@ function selectDuration(mins) {
   generateSession();
 }
 
+// ─── SPORT SELECTOR ───────────────────────────────────────────────────────────
+function renderSportChips() {
+  document.getElementById('sportRow').innerHTML = SPORTS.map(s =>
+    `<div class="sport-chip ${s.id === activeSport ? 'active' : ''}"
+          onclick="selectSport('${s.id}')">${s.emoji} ${s.label}</div>`
+  ).join('');
+}
+function selectSport(id) {
+  activeSport = id;
+  renderSportChips();
+  const isSoccer = id === 'soccer';
+  document.getElementById('ageBar').style.display = isSoccer ? '' : 'none';
+  const fb = document.getElementById('focusBanner');
+  if (fb) fb.style.display = isSoccer ? '' : 'none';
+  generateSession();
+}
+
 // ─── AGE SELECTOR ─────────────────────────────────────────────────────────────
 function updateAgeUI() {
   const g = curGroup();
@@ -678,6 +727,7 @@ function generateSession() {
   clearQuip();
   stopTimer();
   resetSaveBtn();
+  if (activeSport !== 'soccer') { session = []; renderSession(); return; }
   const g = curGroup();
   timerSec = totalSec = sessionMins * 60;
   updateTimer();
@@ -814,7 +864,9 @@ function renderSession() {
   const el = document.getElementById('drillList');
   const tip = document.getElementById('sessionTip');
   if (!session.length) {
-    el.innerHTML = `<div class="empty"><div class="empty-ico">⚽</div><div class="empty-ttl">No Session Yet</div><div class="empty-txt">Tap New to load today's drills.</div></div>`;
+    const sp = SPORTS.find(s => s.id === activeSport) || SPORTS[0];
+    const emptyMsg = activeSport === 'soccer' ? "Tap New to load today's drills." : `${sp.label} drills coming soon!`;
+    el.innerHTML = `<div class="empty"><div class="empty-ico">${sp.emoji}</div><div class="empty-ttl">${activeSport === 'soccer' ? 'No Session Yet' : 'Coming Soon'}</div><div class="empty-txt">${emptyMsg}</div></div>`;
     tip.style.display = 'none';
     return;
   }
@@ -866,7 +918,7 @@ function toggleTimer() { ticking ? stopTimer() : startTimer(); }
 function startTimer() {
   ticking = true;
   document.getElementById('timerBtn').textContent = '⏸';
-  if (!shownQuips.has(1.00)) { showQuip(DAD_JOKES.find(j => j.pct === 1.00).text); shownQuips.add(1.00); }
+  if (!shownQuips.has(1.00)) { showQuip(DAD_JOKES[activeSport].find(j => j.pct === 1.00).text); shownQuips.add(1.00); }
   interval = setInterval(() => {
     timerSec--;
     if (timerSec <= 0) { timerSec = 0; stopTimer(); document.getElementById('timerBtn').textContent = '✓'; }
@@ -886,7 +938,7 @@ function updateTimer() {
   const col = pct > .5 ? 'var(--green)' : pct > .25 ? 'var(--amber)' : 'var(--coral)';
   document.getElementById('timerDisplay').style.color = col;
   document.getElementById('timerFill').style.background = col;
-  for (const j of DAD_JOKES) {
+  for (const j of DAD_JOKES[activeSport]) {
     if (j.pct < 1.00 && !shownQuips.has(j.pct) && pct <= j.pct) {
       showQuip(j.text);
       shownQuips.add(j.pct);
@@ -930,6 +982,11 @@ function confirmEndDiscard() {
 
 // ─── LIBRARY ──────────────────────────────────────────────────────────────────
 function renderLib() {
+  if (activeSport !== 'soccer') {
+    const sp = SPORTS.find(s => s.id === activeSport) || {};
+    document.getElementById('libList').innerHTML = `<div class="empty"><div class="empty-ico">${sp.emoji || '🏅'}</div><div class="empty-ttl">Coming Soon</div><div class="empty-txt">Drill library for ${sp.label || 'this sport'} is coming soon.</div></div>`;
+    return;
+  }
   const search = document.getElementById('libSearch')?.value.toLowerCase() || '';
   let drills = Object.values(ALL_DRILLS);
   if (activeFilter === 'age') drills = drills.filter(d => d.ages.includes(ageIdx));
@@ -1012,6 +1069,7 @@ function switchView(name, el) {
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 updateAgeUI();
+renderSportChips();
 generateSession();
 </script>
 </body>
