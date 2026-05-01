@@ -53,6 +53,13 @@
   .timer-btn{background:var(--green);border:none;border-radius:10px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;flex-shrink:0;transition:transform 0.15s;}
   .timer-btn:active{transform:scale(0.9);}
 
+  /* DURATION SELECTOR */
+  .dur-row{display:flex;gap:6px;overflow-x:auto;padding:0 0 10px;scrollbar-width:none;}
+  .dur-row::-webkit-scrollbar{display:none;}
+  .dur-chip{padding:5px 11px;background:var(--surface);border:1px solid var(--border);border-radius:20px;color:var(--muted);font-size:11px;font-family:var(--mono);font-weight:700;white-space:nowrap;cursor:pointer;transition:all 0.15s;flex-shrink:0;}
+  .dur-chip.active{background:var(--blue);border-color:var(--blue);color:white;}
+  .dur-chip:active{transform:scale(0.92);}
+
   /* ACTIONS */
   .action-row{display:flex;gap:8px;margin-bottom:10px;}
   .btn{flex:1;padding:11px 6px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);font-family:var(--sans);font-size:12px;font-weight:700;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;justify-content:center;gap:4px;}
@@ -208,6 +215,7 @@
       <div class="focus-dot"></div>
       <div class="focus-text" id="focusText"></div>
     </div>
+    <div class="dur-row" id="durRow"></div>
     <div class="timer-bar">
       <div class="timer-main">
         <div class="timer-label">Session Timer</div>
@@ -295,25 +303,25 @@ const AGE_GROUPS = [
   {
     id:0, label:'U4/U6', sub:'Ages 3–5', badge:'U4/U6', ball:'Size 2–3',
     focus:'<strong>Discovery & Fun.</strong> Motor skills first — dribbling in open space, learning the ball is a friend. No passing expectations. Chaos is OK. Every kid with their own ball.',
-    sessionMins:15,
+    defaultMins:15,
     drills:['hitcoach','redlight','shapes','cleanroom','toetaps','balloon','freeze','freestyle']
   },
   {
     id:1, label:'U6/U8', sub:'Ages 5–7', badge:'U6/U8', ball:'Size 3',
     focus:'<strong>Ball Mastery & First Shooting.</strong> High touches, dribbling with both feet, stopping the ball on command, kicking at goal. Introduce simple passing only as a reward drill.',
-    sessionMins:20,
+    defaultMins:20,
     drills:['redlight','cleanroom','toetaps','passshoot','gate','nightmare','freeze','balloon','target','freestyle']
   },
   {
     id:2, label:'U8/U10', sub:'Ages 7–9', badge:'U8/U10', ball:'Size 3–4',
     focus:'<strong>Technical Foundation.</strong> Inside/outside of foot dribbling, receiving ground balls, shooting with the instep, basic 1v1 defending. Introduce small-sided games.',
-    sessionMins:20,
+    defaultMins:25,
     drills:['dribbleweave','insideoutside','passshoot','shielding','target','gate','nightmare','toetaps','freeze','freestyle']
   },
   {
     id:3, label:'U10/U12', sub:'Ages 9–11', badge:'U10/U12', ball:'Size 4',
     focus:'<strong>Skill Under Pressure.</strong> Passing combinations, ball mastery at speed, 1v1 attacking/defending, introduction to crossing and finishing. Position awareness begins.',
-    sessionMins:25,
+    defaultMins:30,
     drills:['passweave','rondo','dribbleweave','crossing','insideoutside','shielding','target','gate','nightmare','freeze','freestyle']
   }
 ];
@@ -555,9 +563,11 @@ function persistState() {
 }
 
 // ─── APP STATE ────────────────────────────────────────────────────────────────
+const DURATION_OPTIONS = [10, 15, 20, 25, 30, 40, 45, 60];
 let ageIdx = 1;
+let sessionMins = AGE_GROUPS[1].defaultMins;
 let session = [], done = new Set(), swapIdx = null;
-let timerSec = 1200, totalSec = 1200, ticking = false, interval = null;
+let timerSec = sessionMins * 60, totalSec = sessionMins * 60, ticking = false, interval = null;
 let activeFilter = 'age';
 let state = loadState();
 
@@ -575,6 +585,25 @@ function showToast(msg) {
   toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
 }
 
+// ─── DURATION SELECTOR ────────────────────────────────────────────────────────
+function renderDurChips() {
+  document.getElementById('durRow').innerHTML = DURATION_OPTIONS.map(m =>
+    `<button class="dur-chip ${m === sessionMins ? 'active' : ''}" onclick="selectDuration(${m})">${m}m</button>`
+  ).join('');
+}
+
+function selectDuration(mins) {
+  sessionMins = mins;
+  renderDurChips();
+  if (ticking) {
+    showToast('Tap ↺ Reset to apply');
+    return;
+  }
+  totalSec = timerSec = mins * 60;
+  updateTimer();
+  document.getElementById('timerFill').style.width = '100%';
+}
+
 // ─── AGE SELECTOR ─────────────────────────────────────────────────────────────
 function updateAgeUI() {
   const g = curGroup();
@@ -583,7 +612,9 @@ function updateAgeUI() {
   document.getElementById('ageLeft').classList.toggle('disabled', ageIdx === 0);
   document.getElementById('ageRight').classList.toggle('disabled', ageIdx === AGE_GROUPS.length - 1);
   document.getElementById('focusText').innerHTML = g.focus;
-  totalSec = timerSec = g.sessionMins * 60;
+  sessionMins = g.defaultMins;
+  renderDurChips();
+  totalSec = timerSec = sessionMins * 60;
   updateTimer();
   document.getElementById('timerFill').style.width = '100%';
 }
@@ -608,7 +639,7 @@ function generateSession() {
   stopTimer();
   resetSaveBtn();
   const g = curGroup();
-  timerSec = totalSec = g.sessionMins * 60;
+  timerSec = totalSec = sessionMins * 60;
   updateTimer();
   document.getElementById('timerFill').style.width = '100%';
 
@@ -639,7 +670,7 @@ function generateSession() {
   scored.sort((a, b) => b.score - a.score);
 
   // Fill time budget (reserve freestyle duration)
-  const budget = g.sessionMins - getDrill('freestyle').duration;
+  const budget = sessionMins - getDrill('freestyle').duration;
   const picked = [];
   let time = 0;
   for (const d of scored) {
@@ -663,7 +694,7 @@ function randomizeAll() {
   stopTimer();
   resetSaveBtn();
   const g = curGroup();
-  timerSec = totalSec = g.sessionMins * 60;
+  timerSec = totalSec = sessionMins * 60;
   updateTimer();
   const pool = g.drills.filter(id => id !== 'freestyle').map(getDrill).filter(Boolean)
     .sort(() => Math.random() - 0.5).slice(0, 4);
@@ -675,8 +706,7 @@ function resetTimer() {
   done.clear();
   stopTimer();
   resetSaveBtn();
-  const g = curGroup();
-  timerSec = totalSec = g.sessionMins * 60;
+  timerSec = totalSec = sessionMins * 60;
   updateTimer();
   document.getElementById('timerFill').style.width = '100%';
   renderSession();
