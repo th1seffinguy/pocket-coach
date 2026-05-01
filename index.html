@@ -599,9 +599,7 @@ function selectDuration(mins) {
     showToast('Tap ↺ Reset to apply');
     return;
   }
-  totalSec = timerSec = mins * 60;
-  updateTimer();
-  document.getElementById('timerFill').style.width = '100%';
+  generateSession();
 }
 
 // ─── AGE SELECTOR ─────────────────────────────────────────────────────────────
@@ -674,7 +672,6 @@ function generateSession() {
   const picked = [];
   let time = 0;
   for (const d of scored) {
-    if (picked.length >= 5) break;
     if (time + d.duration <= budget + 1) {
       picked.push(d);
       time += d.duration;
@@ -696,20 +693,30 @@ function randomizeAll() {
   const g = curGroup();
   timerSec = totalSec = sessionMins * 60;
   updateTimer();
-  const pool = g.drills.filter(id => id !== 'freestyle').map(getDrill).filter(Boolean)
-    .sort(() => Math.random() - 0.5).slice(0, 4);
-  session = [...pool, getDrill('freestyle')];
+  document.getElementById('timerFill').style.width = '100%';
+
+  const shuffled = g.drills
+    .filter(id => id !== 'freestyle')
+    .map(getDrill)
+    .filter(Boolean)
+    .sort(() => Math.random() - 0.5);
+
+  const budget = sessionMins - getDrill('freestyle').duration;
+  const picked = [];
+  let time = 0;
+  for (const d of shuffled) {
+    if (time + d.duration <= budget + 1) {
+      picked.push(d);
+      time += d.duration;
+      if (time >= budget) break;
+    }
+  }
+  session = [...picked, getDrill('freestyle')];
   renderSession();
 }
 
 function resetTimer() {
-  done.clear();
-  stopTimer();
-  resetSaveBtn();
-  timerSec = totalSec = sessionMins * 60;
-  updateTimer();
-  document.getElementById('timerFill').style.width = '100%';
-  renderSession();
+  generateSession();
 }
 
 // ─── RECORD SESSION ───────────────────────────────────────────────────────────
