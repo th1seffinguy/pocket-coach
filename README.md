@@ -1,6 +1,6 @@
 # Pocket Coach
 
-A mobile-first youth soccer coaching app for parent-led backyard sessions. Open `index.html` in any browser — no install, no build step, no server required.
+A mobile-first youth coaching app for parent-led backyard sessions. Open `index.html` in any browser — no install, no build step, no server required.
 
 ---
 
