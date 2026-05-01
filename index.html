@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Cole's Soccer Coach</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0F1115; --surface:#161920; --elevated:#1D2129; --border:#262C36;
+    --blue:#1E8CE8; --coral:#D9502B; --amber:#DBA514; --green:#22C55E; --purple:#A78BFA;
+    --text:#F0F2F5; --muted:#8892A0;
+    --bebas:'Bebas Neue',sans-serif; --sans:'DM Sans',sans-serif; --mono:'DM Mono',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;padding-bottom:90px;}
+
+  /* HEADER */
+  .header{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 16px 0;position:sticky;top:0;z-index:100;}
+  .header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+  .logo{display:flex;align-items:center;gap:10px;}
+  .logo-ball{width:34px;height:34px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+  .logo-text{font-family:var(--bebas);font-size:19px;letter-spacing:1px;line-height:1;}
+  .logo-sub{font-size:10px;color:var(--muted);font-family:var(--mono);}
+  .session-badge{background:var(--elevated);border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:11px;color:var(--amber);font-family:var(--mono);white-space:nowrap;}
+
+  /* AGE SELECTOR */
+  .age-bar{display:flex;align-items:center;gap:8px;padding:0 0 10px;margin-top:2px;}
+  .age-arrow{width:30px;height:30px;background:var(--elevated);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;color:var(--blue);flex-shrink:0;transition:all 0.15s;user-select:none;}
+  .age-arrow:active{transform:scale(0.88);background:var(--border);}
+  .age-arrow.disabled{opacity:0.3;pointer-events:none;}
+  .age-selector-wrap{flex:1;position:relative;}
+  .age-select{width:100%;background:var(--elevated);border:1px solid var(--blue);border-radius:10px;color:var(--text);font-family:var(--bebas);font-size:16px;letter-spacing:1px;padding:7px 12px;appearance:none;cursor:pointer;outline:none;}
+  .age-select-arrow{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--blue);font-size:12px;pointer-events:none;}
+  .age-badge{background:var(--blue);border-radius:6px;padding:3px 8px;font-size:10px;font-family:var(--mono);color:white;white-space:nowrap;flex-shrink:0;}
+
+  /* TABS */
+  .tabs{display:flex;background:var(--elevated);border-radius:10px;padding:3px;gap:2px;}
+  .tab{flex:1;padding:8px 4px;border:none;background:transparent;color:var(--muted);font-family:var(--sans);font-size:12px;font-weight:600;border-radius:7px;cursor:pointer;transition:all 0.2s;}
+  .tab.active{background:var(--blue);color:white;}
+
+  .content{padding:14px 16px;}
+  .view{display:none;}
+  .view.active{display:block;}
+
+  /* TIMER */
+  .timer-bar{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+  .timer-main{flex:1;}
+  .timer-label{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px;}
+  .timer-value{font-family:var(--bebas);font-size:32px;color:var(--green);letter-spacing:1px;line-height:1;margin-bottom:6px;}
+  .timer-track{height:3px;background:var(--elevated);border-radius:2px;overflow:hidden;}
+  .timer-fill{height:100%;background:var(--green);border-radius:2px;transition:width 1s linear,background 0.5s;}
+  .timer-btn{background:var(--green);border:none;border-radius:10px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;flex-shrink:0;transition:transform 0.15s;}
+  .timer-btn:active{transform:scale(0.9);}
+
+  /* ACTIONS */
+  .action-row{display:flex;gap:8px;margin-bottom:14px;}
+  .btn{flex:1;padding:11px 6px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);font-family:var(--sans);font-size:12px;font-weight:700;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;justify-content:center;gap:4px;}
+  .btn:active{transform:scale(0.95);}
+  .btn.primary{background:var(--blue);border-color:var(--blue);}
+  .btn.accent{background:var(--amber);border-color:var(--amber);color:#0F1115;}
+
+  /* DRILL CARD */
+  .drill-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin-bottom:10px;overflow:hidden;animation:fadeUp 0.3s ease forwards;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+  .drill-card.done{opacity:0.4;}
+  .drill-header{padding:12px 14px 10px;display:flex;align-items:flex-start;gap:12px;}
+  .drill-icon{width:68px;height:68px;background:var(--elevated);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--border);overflow:hidden;}
+  .drill-icon svg{width:54px;height:54px;}
+  .drill-meta{flex:1;min-width:0;}
+  .drill-num{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.1em;margin-bottom:2px;}
+  .drill-name{font-family:var(--bebas);font-size:21px;letter-spacing:.5px;line-height:1.05;margin-bottom:5px;}
+  .drill-row2{display:flex;align-items:center;justify-content:space-between;}
+  .dur-badge{display:inline-flex;align-items:center;gap:4px;background:var(--elevated);border-radius:5px;padding:3px 7px;font-size:11px;font-family:var(--mono);color:var(--amber);}
+  .drill-btns{display:flex;gap:6px;}
+  .icon-btn{width:34px;height:34px;border:1px solid var(--border);border-radius:8px;background:var(--elevated);color:var(--muted);font-size:15px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.15s;}
+  .icon-btn:active{transform:scale(0.88);}
+  .icon-btn.green{border-color:var(--green);color:var(--green);}
+  .icon-btn.blue{border-color:var(--blue);color:var(--blue);}
+  .drill-body{padding:0 14px 12px;}
+  .info-lbl{font-size:9px;font-family:var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px;margin-top:8px;}
+  .info-txt{font-size:13px;line-height:1.5;color:var(--text);}
+  .cue-box{background:var(--elevated);border-left:3px solid var(--amber);border-radius:0 8px 8px 0;padding:8px 12px;margin-top:10px;}
+  .cue-lbl{font-size:9px;font-family:var(--mono);color:var(--amber);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;}
+  .cue-txt{font-size:13px;font-style:italic;}
+  .success-row{display:flex;align-items:flex-start;gap:7px;margin-top:8px;background:#22c55e0f;border:1px solid #22c55e25;border-radius:8px;padding:8px 10px;}
+  .success-icon{font-size:13px;flex-shrink:0;margin-top:1px;}
+  .success-txt{font-size:12px;color:var(--green);line-height:1.4;}
+
+  /* AGE GROUP FOCUS BANNER */
+  .focus-banner{background:var(--elevated);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:12px;display:flex;gap:10px;align-items:flex-start;}
+  .focus-dot{width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0;margin-top:4px;}
+  .focus-text{font-size:12px;color:var(--muted);line-height:1.5;}
+  .focus-text strong{color:var(--text);}
+
+  /* MODAL */
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:300;display:none;align-items:flex-end;}
+  .overlay.open{display:flex;}
+  .modal{background:var(--surface);border:1px solid var(--border);border-radius:20px 20px 0 0;padding:20px 16px 24px;width:100%;max-height:72vh;overflow-y:auto;animation:up 0.22s ease;}
+  @keyframes up{from{transform:translateY(30px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+  .modal-title{font-family:var(--bebas);font-size:22px;letter-spacing:.5px;margin-bottom:2px;}
+  .modal-sub{font-size:12px;color:var(--muted);margin-bottom:14px;}
+  .opt{background:var(--elevated);border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin-bottom:8px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:border-color 0.15s;}
+  .opt:active{border-color:var(--blue);}
+  .opt-icon{width:44px;height:44px;background:var(--surface);border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .opt-icon svg{width:34px;height:34px;}
+  .opt-info{flex:1;}
+  .opt-name{font-weight:700;font-size:13px;margin-bottom:3px;}
+  .opt-tags{display:flex;gap:5px;flex-wrap:wrap;}
+  .tag{font-size:10px;font-family:var(--mono);padding:2px 6px;border-radius:4px;background:var(--surface);color:var(--muted);border:1px solid var(--border);}
+  .modal-cancel{width:100%;padding:13px;background:var(--elevated);border:1px solid var(--border);border-radius:10px;color:var(--muted);font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;margin-top:4px;}
+
+  /* LIBRARY */
+  .lib-search{width:100%;padding:11px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--sans);font-size:14px;margin-bottom:10px;outline:none;}
+  .lib-search:focus{border-color:var(--blue);}
+  .filter-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px;}
+  .chip{padding:6px 12px;background:var(--surface);border:1px solid var(--border);border-radius:20px;color:var(--muted);font-size:11px;font-weight:700;white-space:nowrap;cursor:pointer;transition:all 0.15s;}
+  .chip.active{background:var(--blue);border-color:var(--blue);color:white;}
+  .lib-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;}
+  .lib-card-header{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+  .lib-icon{width:52px;height:52px;background:var(--elevated);border-radius:10px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .lib-icon svg{width:40px;height:40px;}
+  .lib-name{font-family:var(--bebas);font-size:19px;letter-spacing:.3px;margin-bottom:2px;}
+  .age-pill{display:inline-block;background:var(--elevated);border:1px solid var(--border);border-radius:4px;font-size:10px;font-family:var(--mono);color:var(--blue);padding:2px 6px;margin-right:4px;}
+
+  /* PROGRESS */
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+  .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;}
+  .stat-val{font-family:var(--bebas);font-size:34px;color:var(--blue);line-height:1;margin-bottom:4px;}
+  .stat-lbl{font-size:10px;color:var(--muted);font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase;}
+  .section-hd{font-family:var(--bebas);font-size:17px;letter-spacing:.5px;color:var(--muted);margin-bottom:10px;}
+  .hist-item{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;}
+  .hist-date{font-size:11px;font-family:var(--mono);color:var(--muted);}
+  .hist-drills{font-size:13px;font-weight:600;margin-top:2px;}
+  .hist-badge{background:var(--elevated);border-radius:6px;padding:4px 8px;font-size:11px;font-family:var(--mono);color:var(--green);}
+  .empty{text-align:center;padding:40px 16px;}
+  .empty-ico{font-size:44px;margin-bottom:10px;}
+  .empty-ttl{font-family:var(--bebas);font-size:22px;margin-bottom:6px;}
+  .empty-txt{font-size:13px;color:var(--muted);line-height:1.6;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div class="logo">
+      <div class="logo-ball">⚽</div>
+      <div>
+        <div class="logo-text">Cole's Soccer Coach</div>
+        <div class="logo-sub">BACKYARD · DAD-LED · SIZE 3 BALL</div>
+      </div>
+    </div>
+    <div class="session-badge" id="badge">20 MIN</div>
+  </div>
+
+  <!-- AGE SELECTOR -->
+  <div class="age-bar">
+    <div class="age-arrow" id="ageLeft" onclick="shiftAge(-1)">‹</div>
+    <div class="age-selector-wrap">
+      <select class="age-select" id="ageSelect" onchange="onAgeChange()">
+        <option value="0">U4/U6 · Ages 3–5</option>
+        <option value="1" selected>U6/U8 · Ages 5–7</option>
+        <option value="2">U8/U10 · Ages 7–9</option>
+        <option value="3">U10/U12 · Ages 9–11</option>
+      </select>
+      <div class="age-select-arrow">▾</div>
+    </div>
+    <div class="age-arrow" id="ageRight" onclick="shiftAge(1)">›</div>
+    <div class="age-badge" id="ageBadge">U6/U8</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchView('session',this)">Today</button>
+    <button class="tab" onclick="switchView('library',this)">Drills</button>
+    <button class="tab" onclick="switchView('progress',this)">Progress</button>
+  </div>
+</div>
+
+<div class="content">
+  <div class="view active" id="view-session">
+    <div class="focus-banner" id="focusBanner">
+      <div class="focus-dot"></div>
+      <div class="focus-text" id="focusText"></div>
+    </div>
+    <div class="timer-bar">
+      <div class="timer-main">
+        <div class="timer-label">Session Timer</div>
+        <div class="timer-value" id="timerDisplay">20:00</div>
+        <div class="timer-track"><div class="timer-fill" id="timerFill" style="width:100%"></div></div>
+      </div>
+      <button class="timer-btn" id="timerBtn" onclick="toggleTimer()">▶</button>
+    </div>
+    <div class="action-row">
+      <button class="btn primary" onclick="generateSession()">⚡ New</button>
+      <button class="btn accent" onclick="randomizeAll()">🎲 Shuffle</button>
+      <button class="btn" onclick="resetTimer()">↺ Reset</button>
+    </div>
+    <div id="drillList"></div>
+  </div>
+
+  <div class="view" id="view-library">
+    <input class="lib-search" id="libSearch" type="text" placeholder="Search all drills..." oninput="renderLib()">
+    <div class="filter-row">
+      <button class="chip active" data-filter="age" onclick="setFilter('age',this)">This Age</button>
+      <button class="chip" data-filter="all" onclick="setFilter('all',this)">All Ages</button>
+      <button class="chip" data-filter="control" onclick="setFilter('control',this)">Control</button>
+      <button class="chip" data-filter="shooting" onclick="setFilter('shooting',this)">Shooting</button>
+      <button class="chip" data-filter="movement" onclick="setFilter('movement',this)">Movement</button>
+      <button class="chip" data-filter="passing" onclick="setFilter('passing',this)">Passing</button>
+      <button class="chip" data-filter="fun" onclick="setFilter('fun',this)">⭐ Fun</button>
+    </div>
+    <div id="libList"></div>
+  </div>
+
+  <div class="view" id="view-progress">
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-val" id="pSessions">0</div><div class="stat-lbl">Sessions</div></div>
+      <div class="stat-card"><div class="stat-val" id="pDrills">0</div><div class="stat-lbl">Drills Done</div></div>
+      <div class="stat-card"><div class="stat-val" id="pMinutes">0</div><div class="stat-lbl">Minutes</div></div>
+      <div class="stat-card"><div class="stat-val" id="pStreak">0</div><div class="stat-lbl">Streak 🔥</div></div>
+    </div>
+    <div class="section-hd">Recent Sessions</div>
+    <div id="histList"></div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="maybeClose(event)">
+  <div class="modal">
+    <div class="modal-title">Swap Drill</div>
+    <div class="modal-sub">Choose a replacement from this age group</div>
+    <div id="swapList"></div>
+    <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+  </div>
+</div>
+
+<script>
+// ─── SVG ICONS ────────────────────────────────────────────────────────────────
+const ICONS = {
+  redlight:`<svg viewBox="0 0 54 54" fill="none"><circle cx="18" cy="42" r="5" fill="#22C55E" opacity=".9"/><circle cx="18" cy="42" r="5" fill="none" stroke="#0F1115" stroke-width=".8" stroke-dasharray="2.5 1.5"/><circle cx="18" cy="16" r="4" fill="#8892A0"/><line x1="18" y1="20" x2="18" y2="33" stroke="#8892A0" stroke-width="2.5" stroke-linecap="round"/><line x1="18" y1="33" x2="13" y2="42" stroke="#8892A0" stroke-width="2" stroke-linecap="round"/><line x1="18" y1="33" x2="23" y2="37" stroke="#8892A0" stroke-width="2" stroke-linecap="round"/><line x1="18" y1="24" x2="13" y2="30" stroke="#8892A0" stroke-width="2" stroke-linecap="round"/><line x1="27" y1="30" x2="36" y2="30" stroke="#DBA514" stroke-width="1.5" stroke-dasharray="2 1.5" stroke-linecap="round"/><circle cx="42" cy="22" r="9" fill="#D9502B" opacity=".9"/><rect x="38" y="20.5" width="8" height="3" rx="1.5" fill="white"/></svg>`,
+  cleanroom:`<svg viewBox="0 0 54 54" fill="none"><rect x="4" y="34" width="46" height="14" rx="2" fill="#1D2129" stroke="#262C36" stroke-width="1"/><line x1="4" y1="20" x2="4" y2="48" stroke="#8892A0" stroke-width="2.5" stroke-linecap="round"/><line x1="50" y1="20" x2="50" y2="48" stroke="#8892A0" stroke-width="2.5" stroke-linecap="round"/><line x1="4" y1="20" x2="50" y2="20" stroke="#8892A0" stroke-width="2.5" stroke-linecap="round"/><line x1="4" y1="27" x2="50" y2="27" stroke="#262C36" stroke-width="1"/><line x1="15" y1="20" x2="15" y2="48" stroke="#262C36" stroke-width="1"/><line x1="27" y1="20" x2="27" y2="48" stroke="#262C36" stroke-width="1"/><line x1="39" y1="20" x2="39" y2="48" stroke="#262C36" stroke-width="1"/><circle cx="12" cy="14" r="4" fill="#22C55E" opacity=".85"/><circle cx="27" cy="10" r="4" fill="#22C55E" opacity=".7"/><circle cx="42" cy="14" r="4" fill="#22C55E" opacity=".55"/><path d="M 27 14 Q 27 26 27 32" stroke="#1E8CE8" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="2.5 1.5" fill="none"/><polygon points="27,34 24,29 30,29" fill="#1E8CE8" opacity=".9"/></svg>`,
+  toetaps:`<svg viewBox="0 0 54 54" fill="none"><circle cx="27" cy="34" r="9" fill="#22C55E" opacity=".9"/><circle cx="27" cy="34" r="9" fill="none" stroke="#0F1115" stroke-width=".8" stroke-dasharray="3 2"/><ellipse cx="20" cy="28" rx="5" ry="2.5" fill="#8892A0" transform="rotate(-20 20 28)"/><ellipse cx="34" cy="22" rx="5" ry="2.5" fill="#1E8CE8" opacity=".8" transform="rotate(-20 34 22)"/><path d="M 20 24 Q 27 18 34 24" stroke="#DBA514" stroke-width="1.5" fill="none" stroke-linecap="round"/><circle cx="40" cy="12" r="8" fill="#1D2129" stroke="#DBA514" stroke-width="1.2"/><text x="40" y="16" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="10" fill="#DBA514">20+</text></svg>`,
+  passshoot:`<svg viewBox="0 0 54 54" fill="none"><circle cx="44" cy="22" r="3.5" fill="#8892A0"/><line x1="44" y1="25.5" x2="44" y2="36" stroke="#8892A0" stroke-width="2" stroke-linecap="round"/><line x1="44" y1="36" x2="40" y2="43" stroke="#8892A0" stroke-width="1.8" stroke-linecap="round"/><line x1="44" y1="36" x2="48" y2="43" stroke="#8892A0" stroke-width="1.8" stroke-linecap="round"/><line x1="36" y1="14" x2="36" y2="48" stroke="#262C36" stroke-width="1.5" stroke-dasharray="3 2"/><circle cx="14" cy="22" r="3.5" fill="#1E8CE8"/><line x1="14" y1="25.5" x2="14" y2="36" stroke="#1E8CE8" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="36" x2="10" y2="43" stroke="#1E8CE8" stroke-width="1.8" stroke-linecap="round"/><line x1="14" y1="36" x2="18" y2="43" stroke="#1E8CE8" stroke-width="1.8" stroke-linecap="round"/><path d="M 40 34 Q 27 20 18 34" stroke="#DBA514" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-dasharray="3 1.5"/><circle cx="27" cy="44" r="4.5" fill="#22C55E" opacity=".85"/><path d="M 19 38 L 34 30" stroke="#22C55E" stroke-width="2" stroke-linecap="round" marker-end="url(#ga)"/><defs><marker id="ga" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#22C55E"/></marker></defs></svg>`,
+  gate:`<svg viewBox="0 0 54 54" fill="none"><polygon points="18,40 15,48 21,48" fill="#DBA514" opacity=".9"/><polygon points="36,40 33,48 39,48" fill="#DBA514" opacity=".9"/><line x1="18" y1="40" x2="36" y2="40" stroke="#DBA514" stroke-width="1" stroke-dasharray="2 1.5"/><path d="M 10 20 Q 10 38 27 40" stroke="#8892A0" stroke-width="1.5" stroke-dasharray="2.5 1.5" fill="none" stroke-linecap="round"/><circle cx="27" cy="40" r="4" fill="#22C55E" opacity=".9"/><path d="M 31 38 L 44 24" stroke="#1E8CE8" stroke-width="2" stroke-linecap="round" marker-end="url(#ga2)"/><line x1="40" y1="14" x2="50" y2="14" stroke="#8892A0" stroke-width="2"/><line x1="40" y1="14" x2="40" y2="24" stroke="#8892A0" stroke-width="2"/><line x1="50" y1="14" x2="50" y2="24" stroke="#8892A0" stroke-width="2"/><defs><marker id="ga2" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#1E8CE8"/></marker></defs></svg>`,
+  nightmare:`<svg viewBox="0 0 54 54" fill="none"><circle cx="42" cy="10" r="3.5" fill="#8892A0"/><path d="M 40 13 L 28 28" stroke="#DBA514" stroke-width="1.3" stroke-dasharray="2 1.5" stroke-linecap="round"/><path d="M 42 14 L 42 30" stroke="#DBA514" stroke-width="1.3" stroke-dasharray="2 1.5" stroke-linecap="round"/><path d="M 44 13 L 48 30" stroke="#DBA514" stroke-width="1.3" stroke-dasharray="2 1.5" stroke-linecap="round"/><circle cx="28" cy="32" r="4" fill="#22C55E" opacity=".9"/><circle cx="42" cy="33" r="4" fill="#22C55E" opacity=".6"/><circle cx="48" cy="33" r="4" fill="#22C55E" opacity=".35"/><circle cx="18" cy="26" r="3.5" fill="#1E8CE8"/><line x1="18" y1="29.5" x2="18" y2="39" stroke="#1E8CE8" stroke-width="2" stroke-linecap="round"/><line x1="18" y1="39" x2="14" y2="46" stroke="#1E8CE8" stroke-width="1.8" stroke-linecap="round"/><line x1="18" y1="39" x2="22" y2="44" stroke="#1E8CE8" stroke-width="1.8" stroke-linecap="round"/></svg>`,
+  freeze:`<svg viewBox="0 0 54 54" fill="none"><rect x="6" y="6" width="42" height="42" rx="3" fill="none" stroke="#262C36" stroke-width="1.5" stroke-dasharray="3 2"/><circle cx="30" cy="34" r="6" fill="#22C55E" opacity=".9"/><circle cx="30" cy="34" r="8" fill="none" stroke="#D9502B" stroke-width="1.5"/><line x1="26" y1="30" x2="34" y2="38" stroke="#D9502B" stroke-width="2" stroke-linecap="round"/><line x1="34" y1="30" x2="26" y2="38" stroke="#D9502B" stroke-width="2" stroke-linecap="round"/><circle cx="20" cy="16" r="3.5" fill="#1E8CE8"/><line x1="20" y1="19.5" x2="20" y2="29" stroke="#1E8CE8" stroke-width="2" stroke-linecap="round"/><line x1="20" y1="29" x2="16" y2="36" stroke="#1E8CE8" stroke-width="1.8" stroke-linecap="round"/><line x1="20" y1="29" x2="24" y2="33" stroke="#1E8CE8" stroke-width="1.8" stroke-linecap="round"/><rect x="6" y="6" width="28" height="12" rx="4" fill="#D9502B" opacity=".15"/><text x="20" y="16" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="9" fill="#D9502B" letter-spacing="1">FREEZE</text></svg>`,
+  balloon:`<svg viewBox="0 0 54 54" fill="none"><ellipse cx="27" cy="14" rx="11" ry="13" fill="#1E8CE8" opacity=".7"/><ellipse cx="27" cy="14" rx="11" ry="13" fill="none" stroke="#1E8CE8" stroke-width="1.2"/><path d="M 27 27 Q 24 32 27 36" stroke="#8892A0" stroke-width="1.2" fill="none" stroke-linecap="round"/><ellipse cx="27" cy="42" rx="6" ry="2.5" fill="#1E8CE8" opacity=".8" transform="rotate(-10 27 42)"/><path d="M 20 36 L 20 29" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" marker-end="url(#ua)"/><path d="M 34 36 L 34 29" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" marker-end="url(#ua)"/><ellipse cx="23" cy="10" rx="3" ry="4" fill="white" opacity=".15" transform="rotate(-20 23 10)"/><defs><marker id="ua" markerWidth="5" markerHeight="5" refX="2.5" refY="0" orient="auto"><polygon points="0 5, 2.5 0, 5 5" fill="#22C55E"/></marker></defs></svg>`,
+  target:`<svg viewBox="0 0 54 54" fill="none"><rect x="4" y="16" width="32" height="20" rx="1.5" fill="#1D2129" stroke="#8892A0" stroke-width="1.5"/><rect x="4" y="16" width="16" height="10" rx="1" fill="#D9502B" opacity=".25"/><circle cx="12" cy="21" r="5" fill="none" stroke="#D9502B" stroke-width="1.2"/><line x1="12" y1="17" x2="12" y2="25" stroke="#D9502B" stroke-width="1" stroke-linecap="round"/><line x1="8" y1="21" x2="16" y2="21" stroke="#D9502B" stroke-width="1" stroke-linecap="round"/><circle cx="42" cy="40" r="5" fill="#22C55E" opacity=".9"/><path d="M 38 37 Q 28 28 17 22" stroke="#1E8CE8" stroke-width="1.8" fill="none" stroke-linecap="round" marker-end="url(#ta)"/><circle cx="44" cy="22" r="3" fill="#8892A0" opacity=".6"/><defs><marker id="ta" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#1E8CE8"/></marker></defs></svg>`,
+  freestyle:`<svg viewBox="0 0 54 54" fill="none"><line x1="27" y1="4" x2="27" y2="12" stroke="#DBA514" stroke-width="1.5" stroke-linecap="round" opacity=".6"/><line x1="43" y1="11" x2="37" y2="17" stroke="#DBA514" stroke-width="1.5" stroke-linecap="round" opacity=".6"/><line x1="50" y1="27" x2="42" y2="27" stroke="#DBA514" stroke-width="1.5" stroke-linecap="round" opacity=".6"/><line x1="11" y1="11" x2="17" y2="17" stroke="#DBA514" stroke-width="1.5" stroke-linecap="round" opacity=".6"/><line x1="4" y1="27" x2="12" y2="27" stroke="#DBA514" stroke-width="1.5" stroke-linecap="round" opacity=".6"/><path d="M 27 38 Q 14 30 8 18" stroke="#1E8CE8" stroke-width="1.8" fill="none" stroke-linecap="round" opacity=".8"/><path d="M 27 38 Q 27 22 27 10" stroke="#22C55E" stroke-width="1.8" fill="none" stroke-linecap="round" opacity=".8"/><path d="M 27 38 Q 40 30 46 18" stroke="#D9502B" stroke-width="1.8" fill="none" stroke-linecap="round" opacity=".8"/><circle cx="27" cy="40" r="8" fill="#22C55E" opacity=".15"/><circle cx="27" cy="40" r="6" fill="#22C55E" opacity=".9"/><text x="27" y="18" text-anchor="middle" font-size="10" fill="#DBA514">★</text></svg>`,
+  // U8/U10 new drills
+  dribbleweave:`<svg viewBox="0 0 54 54" fill="none"><circle cx="8" cy="44" r="3" fill="#DBA514" opacity=".8"/><circle cx="20" cy="28" r="3" fill="#DBA514" opacity=".8"/><circle cx="32" cy="44" r="3" fill="#DBA514" opacity=".8"/><circle cx="44" cy="28" r="3" fill="#DBA514" opacity=".8"/><path d="M 8 44 Q 14 20 20 28 Q 26 36 32 20 Q 38 4 44 28" stroke="#1E8CE8" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="44" cy="28" r="5" fill="#22C55E" opacity=".6"/><circle cx="8" cy="12" r="4" fill="#8892A0"/><line x1="8" y1="16" x2="8" y2="26" stroke="#8892A0" stroke-width="2" stroke-linecap="round"/></svg>`,
+  insideoutside:`<svg viewBox="0 0 54 54" fill="none"><circle cx="27" cy="36" r="8" fill="#22C55E" opacity=".9"/><ellipse cx="16" cy="28" rx="5" ry="2.5" fill="#1E8CE8" opacity=".9" transform="rotate(15 16 28)"/><ellipse cx="38" cy="28" rx="5" ry="2.5" fill="#D9502B" opacity=".9" transform="rotate(-15 38 28)"/><path d="M 16 26 Q 20 18 27 16" stroke="#1E8CE8" stroke-width="1.5" fill="none" stroke-linecap="round" marker-end="url(#io1)"/><path d="M 38 26 Q 34 18 27 16" stroke="#D9502B" stroke-width="1.5" fill="none" stroke-linecap="round" marker-end="url(#io2)"/><text x="14" y="14" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="9" fill="#1E8CE8">IN</text><text x="40" y="14" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="9" fill="#D9502B">OUT</text><defs><marker id="io1" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto"><polygon points="0 0, 5 2.5, 0 5" fill="#1E8CE8"/></marker><marker id="io2" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto"><polygon points="0 0, 5 2.5, 0 5" fill="#D9502B"/></marker></defs></svg>`,
+  shielding:`<svg viewBox="0 0 54 54" fill="none"><circle cx="20" cy="36" r="7" fill="#22C55E" opacity=".9"/><circle cx="20" cy="16" r="4" fill="#1E8CE8"/><line x1="20" y1="20" x2="20" y2="30" stroke="#1E8CE8" stroke-width="2.5" stroke-linecap="round"/><line x1="20" y1="30" x2="16" y2="38" stroke="#1E8CE8" stroke-width="2" stroke-linecap="round"/><line x1="20" y1="30" x2="24" y2="36" stroke="#1E8CE8" stroke-width="2" stroke-linecap="round"/><circle cx="38" cy="22" r="4" fill="#D9502B" opacity=".7"/><line x1="38" y1="26" x2="38" y2="36" stroke="#D9502B" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 1.5"/><path d="M 34 32 L 28 34" stroke="#D9502B" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="1.5 1"/><text x="20" y="8" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="8" fill="#1E8CE8">SHIELD</text></svg>`,
+  // U10/U12 drills
+  passweave:`<svg viewBox="0 0 54 54" fill="none"><circle cx="8" cy="44" r="4" fill="#8892A0"/><circle cx="27" cy="10" r="4" fill="#8892A0"/><circle cx="46" cy="44" r="4" fill="#8892A0"/><path d="M 12 42 L 23 14" stroke="#1E8CE8" stroke-width="1.8" fill="none" stroke-linecap="round" marker-end="url(#pw1)"/><path d="M 31 14 L 42 42" stroke="#1E8CE8" stroke-width="1.8" fill="none" stroke-linecap="round" marker-end="url(#pw2)"/><circle cx="27" cy="44" r="5" fill="#22C55E" opacity=".8"/><path d="M 11 46 L 22 46" stroke="#DBA514" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 1.5"/><path d="M 32 46 L 43 46" stroke="#DBA514" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 1.5"/><defs><marker id="pw1" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#1E8CE8"/></marker><marker id="pw2" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#1E8CE8"/></marker></defs></svg>`,
+  rondo:`<svg viewBox="0 0 54 54" fill="none"><circle cx="27" cy="27" r="16" fill="none" stroke="#262C36" stroke-width="1.5" stroke-dasharray="3 2"/><circle cx="27" cy="11" r="3.5" fill="#1E8CE8"/><circle cx="43" cy="35" r="3.5" fill="#1E8CE8"/><circle cx="11" cy="35" r="3.5" fill="#1E8CE8"/><circle cx="27" cy="27" r="3.5" fill="#D9502B"/><circle cx="35" cy="27" r="3.5" fill="#D9502B" opacity=".6"/><circle cx="27" cy="27" r="6" fill="#22C55E" opacity=".2"/><path d="M 27 14 Q 40 20 40 33" stroke="#1E8CE8" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-dasharray="2.5 1.5" marker-end="url(#ro)"/><defs><marker id="ro" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto"><polygon points="0 0, 5 2.5, 0 5" fill="#1E8CE8"/></marker></defs></svg>`,
+  crossing:`<svg viewBox="0 0 54 54" fill="none"><line x1="4" y1="8" x2="4" y2="50" stroke="#262C36" stroke-width="1.5"/><line x1="4" y1="8" x2="14" y2="8" stroke="#8892A0" stroke-width="2"/><line x1="4" y1="28" x2="14" y2="28" stroke="#8892A0" stroke-width="2"/><line x1="14" y1="8" x2="14" y2="28" stroke="#8892A0" stroke-width="2"/><circle cx="40" cy="14" r="4" fill="#8892A0"/><line x1="40" y1="18" x2="40" y2="30" stroke="#8892A0" stroke-width="2" stroke-linecap="round"/><circle cx="36" cy="40" r="5" fill="#22C55E" opacity=".8"/><path d="M 40 30 Q 28 30 18 20" stroke="#DBA514" stroke-width="2" fill="none" stroke-linecap="round" marker-end="url(#cr)"/><path d="M 18 22 L 10 18" stroke="#1E8CE8" stroke-width="1.5" fill="none" stroke-linecap="round" marker-end="url(#cr2)"/><defs><marker id="cr" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#DBA514"/></marker><marker id="cr2" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto"><polygon points="0 0, 5 2.5, 0 5" fill="#1E8CE8"/></marker></defs></svg>`,
+  // U4/U6 drills
+  hitcoach:`<svg viewBox="0 0 54 54" fill="none"><circle cx="38" cy="22" r="8" fill="#D9502B" opacity=".25" stroke="#D9502B" stroke-width="1.5"/><circle cx="38" cy="22" r="4" fill="#D9502B" opacity=".8"/><circle cx="14" cy="38" r="5" fill="#22C55E" opacity=".9"/><path d="M 18 35 Q 28 20 34 22" stroke="#1E8CE8" stroke-width="2" fill="none" stroke-linecap="round" marker-end="url(#hc)"/><circle cx="10" cy="16" r="3.5" fill="#8892A0"/><line x1="10" y1="19.5" x2="10" y2="28" stroke="#8892A0" stroke-width="2" stroke-linecap="round"/><line x1="10" y1="28" x2="7" y2="35" stroke="#8892A0" stroke-width="1.8" stroke-linecap="round"/><line x1="10" y1="28" x2="13" y2="34" stroke="#8892A0" stroke-width="1.8" stroke-linecap="round"/><defs><marker id="hc" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#1E8CE8"/></marker></defs></svg>`,
+  shapes:`<svg viewBox="0 0 54 54" fill="none"><polygon points="27,6 48,44 6,44" fill="none" stroke="#DBA514" stroke-width="1.5" stroke-dasharray="3 2"/><circle cx="10" cy="46" r="3" fill="#DBA514" opacity=".8"/><circle cx="44" cy="46" r="3" fill="#DBA514" opacity=".8"/><circle cx="27" cy="8" r="3" fill="#DBA514" opacity=".8"/><circle cx="27" cy="36" r="5" fill="#22C55E" opacity=".9"/><path d="M 14 44 Q 20 30 24 32" stroke="#8892A0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-dasharray="2 1.5"/><circle cx="12" cy="20" r="3.5" fill="#1E8CE8"/><line x1="12" y1="23.5" x2="12" y2="32" stroke="#1E8CE8" stroke-width="2" stroke-linecap="round"/></svg>`,
+};
+
+// ─── AGE GROUP DEFINITIONS ────────────────────────────────────────────────────
+const AGE_GROUPS = [
+  {
+    id:0, label:'U4/U6', sub:'Ages 3–5', badge:'U4/U6', ball:'Size 2–3',
+    focus:'<strong>Discovery & Fun.</strong> Motor skills first — dribbling in open space, learning the ball is a friend. No passing expectations. Chaos is OK. Every kid with their own ball.',
+    sessionMins:15,
+    defaultSession:['hitcoach','redlight','shapes','cleanroom','freestyle'],
+    drills:['hitcoach','redlight','shapes','cleanroom','toetaps','balloon','freeze','freestyle']
+  },
+  {
+    id:1, label:'U6/U8', sub:'Ages 5–7', badge:'U6/U8', ball:'Size 3',
+    focus:'<strong>Ball Mastery & First Shooting.</strong> High touches, dribbling with both feet, stopping the ball on command, kicking at goal. Introduce simple passing only as a reward drill.',
+    sessionMins:20,
+    defaultSession:['cleanroom','passshoot','gate','nightmare','freestyle'],
+    drills:['redlight','cleanroom','toetaps','passshoot','gate','nightmare','freeze','balloon','target','freestyle']
+  },
+  {
+    id:2, label:'U8/U10', sub:'Ages 7–9', badge:'U8/U10', ball:'Size 3–4',
+    focus:'<strong>Technical Foundation.</strong> Inside/outside of foot dribbling, receiving ground balls, shooting with the instep, basic 1v1 defending. Introduce small-sided games.',
+    sessionMins:20,
+    defaultSession:['dribbleweave','insideoutside','passshoot','shielding','target','freestyle'],
+    drills:['dribbleweave','insideoutside','passshoot','shielding','target','gate','nightmare','toetaps','freeze','freestyle']
+  },
+  {
+    id:3, label:'U10/U12', sub:'Ages 9–11', badge:'U10/U12', ball:'Size 4',
+    focus:'<strong>Skill Under Pressure.</strong> Passing combinations, ball mastery at speed, 1v1 attacking/defending, introduction to crossing and finishing. Position awareness begins.',
+    sessionMins:25,
+    defaultSession:['passweave','rondo','dribbleweave','crossing','target','freestyle'],
+    drills:['passweave','rondo','dribbleweave','crossing','insideoutside','shielding','target','gate','nightmare','freeze','freestyle']
+  }
+];
+
+// ─── FULL DRILL CATALOG ───────────────────────────────────────────────────────
+const ALL_DRILLS = {
+  // ── U4/U6 ──────────────────────────────────────────────────────────────────
+  hitcoach:{id:'hitcoach',name:'Hit the Coach',duration:4,setup:'Every player has their own ball. Dad stands in the middle of a 15ft circle.',how:'Players try to kick their ball and hit Dad\'s feet or shins. Dad shuffles and makes it a challenge. Reset and go again.',cue:'"Kick it at me — try to get me!"',success:'Eyes up scanning for Dad, not looking down at ball',tags:['control','movement','shooting'],fun:true,ages:[0,1]},
+  shapes:{id:'shapes',name:'Shape Dribble',duration:3,setup:'Use cones or shoes to mark corners of a triangle or square on the ground.',how:'Dribble around the outside of the shape, stop the ball at each cone, then go again. Change direction each round.',cue:'"Stop it right at the cone — squish it."',success:'Ball stops at each corner without rolling past',tags:['control','movement'],fun:false,ages:[0,1]},
+  // ── U6/U8 ──────────────────────────────────────────────────────────────────
+  redlight:{id:'redlight',name:'Red Light / Green Light',duration:4,setup:'Cole starts 15 ft from goal, ball at feet.',how:'He dribbles toward you. Call "Red Light" at random — he stops the ball instantly with the sole of his foot.',cue:'"Squish the bug" — sole of foot on top of ball',success:'Ball stops within one body length, no rolling away',tags:['control','movement'],fun:true,ages:[0,1,2]},
+  cleanroom:{id:'cleanroom',name:'Clean Your Room',duration:4,setup:'Scatter 4–6 balls in a 10×10 ft area.',how:'60-second timer — dribble and kick every ball into the goal. Run 2–3 rounds. Try to beat the count each time.',cue:'"Which one are you going for next?"',success:'He\'s scanning ahead, not staring at his feet',tags:['shooting','movement'],fun:true,ages:[0,1]},
+  toetaps:{id:'toetaps',name:'Toe Taps',duration:2,setup:'Ball stationary, player standing over it.',how:'Alternate feet tapping on top of the ball. Count reps out loud. Record challenge every round.',cue:'"Light touch — like you\'re testing if it\'s hot"',success:'Rhythm builds without kicking the ball away',tags:['control'],fun:false,ages:[0,1,2,3]},
+  passshoot:{id:'passshoot',name:'Pass and Shoot',duration:5,setup:'Dad rolls from goal area. Player receives at top of shooting zone.',how:'Dad passes, player controls and shoots back. First touch goes forward.',cue:'"First touch goes forward"',success:'Receives with inside of foot (not toe), shoots in one motion',tags:['shooting','control','passing'],fun:true,ages:[1,2,3]},
+  gate:{id:'gate',name:'Gate Dribbling',duration:4,setup:'Two shoes/cones 3 ft apart, 8 ft in front of goal.',how:'Dribble through the gate and immediately shoot. No stopping before the shot.',cue:'"Head up after the gate — pick your corner"',success:'Carries speed through the gate and into the shot',tags:['control','shooting'],fun:true,ages:[1,2,3]},
+  nightmare:{id:'nightmare',name:"Goalkeeper's Nightmare",duration:4,setup:'Dad stands behind player with several balls.',how:'Dad rolls balls to different spots — left, right, far. Chase each one and shoot without stopping.',cue:'"Get around it, then shoot"',success:'Adjusting body position before striking, not toe-poking',tags:['shooting','movement'],fun:true,ages:[1,2,3]},
+  freeze:{id:'freeze',name:'Freeze Tag Dribble',duration:3,setup:'Mark a 15×15 ft zone. Player dribbles freely inside.',how:'Dad calls "Freeze!" unpredictably. Ball must stop within one step.',cue:'"The ball stops when you stop"',success:'Ball stops within a step, stays under control',tags:['control','movement'],fun:true,ages:[0,1,2]},
+  balloon:{id:'balloon',name:'Balloon Juggling',duration:3,setup:'One balloon or beach ball. No hands.',how:'How many times off the ground? Feet, knees, head only. Count out loud and celebrate records.',cue:'"Soft touch — tap it, don\'t kick it"',success:'Any consecutive touches without hands — celebrate every record',tags:['control'],fun:true,ages:[0,1,2]},
+  target:{id:'target',name:'1v1 Target Practice',duration:4,setup:'Dad in goal. Name a specific target before each shot.',how:'"Hit my left hand." "Low shot." "Right post." Player picks a spot before kicking.',cue:'"Pick your spot before you swing"',success:'Thinking about placement over raw power',tags:['shooting'],fun:true,ages:[1,2,3]},
+  freestyle:{id:'freestyle',name:'Free Shoot — Finish Strong',duration:3,setup:'Open goal, player picks everything.',how:'No rules. Angles, distances, trick shots. End every session here.',cue:'"Your shot, your way"',success:'Smiling and wants to keep going',tags:['shooting'],fun:true,ages:[0,1,2,3]},
+  // ── U8/U10 ─────────────────────────────────────────────────────────────────
+  dribbleweave:{id:'dribbleweave',name:'Cone Weave',duration:4,setup:'6 cones in a line, 2 ft apart.',how:'Dribble through the weave using inside and outside of both feet. Time it. Beat the clock each round.',cue:'"Use both feet — outside foot on the outside cone"',success:'Alternates feet naturally, head up by 3rd rep',tags:['control','movement'],fun:false,ages:[2,3]},
+  insideoutside:{id:'insideoutside',name:'Inside / Outside',duration:4,setup:'Ball stationary. Player beside it.',how:'Touch ball with inside of right foot, push away with outside of left, repeat moving forward. Work both directions.',cue:'"Inside pulls it, outside pushes it"',success:'Ball stays within one body length throughout',tags:['control'],fun:false,ages:[2,3]},
+  shielding:{id:'shielding',name:'Shield and Turn',duration:4,setup:'Dad as defender. Player with ball on back.',how:'Player receives ball, uses body to shield Dad away, then turns and finds space. Swap sides each turn.',cue:'"Body between me and the ball — feel where I am"',success:'Player maintains possession through contact for 3 seconds',tags:['control','movement'],fun:true,ages:[2,3]},
+  // ── U10/U12 ────────────────────────────────────────────────────────────────
+  passweave:{id:'passweave',name:'Triangle Passing',duration:5,setup:'3 cones in a triangle ~10 ft apart. Player at each cone (use a cone for the third).',how:'1-2-touch passing around the triangle. Switch direction on Dad\'s call. Add movement: after passing, follow your pass.',cue:'"Pass and move — don\'t stand still after the ball leaves your foot"',success:'Ball moves around the triangle without stopping',tags:['passing','movement'],fun:false,ages:[3]},
+  rondo:{id:'rondo',name:'Keep Away (Rondo)',duration:5,setup:'15×15 ft grid. 2 players keep away from 1 defender.',how:'Passer + receiver maintain possession while Dad (defender) tries to win it. Switch defender when ball is won.',cue:'"Move before the ball arrives — create an angle"',success:'5+ consecutive passes without losing possession',tags:['passing','control'],fun:true,ages:[3]},
+  crossing:{id:'crossing',name:'Cross and Finish',duration:5,setup:'Ball on the side of goal area. Small target near far post.',how:'Dad crosses ball from the side. Player runs to meet it and shoots first time. Alternate sides.',cue:'"Attack the ball — don\'t wait for it"',success:'Shoots on first touch (even if off-target)',tags:['shooting','passing','movement'],fun:true,ages:[3]},
+};
+
+// ─── STATE ────────────────────────────────────────────────────────────────────
+let ageIdx = 1;
+let session=[], done=new Set(), swapIdx=null;
+let timerSec=1200, totalSec=1200, ticking=false, interval=null;
+let activeFilter='age';
+let state={sessions:[],totalDrills:0,totalMinutes:0,streak:0};
+
+const curGroup = () => AGE_GROUPS[ageIdx];
+const getDrill = id => ALL_DRILLS[id];
+const icon = (id,size=54) => `<svg viewBox="0 0 ${size} ${size}">${(ICONS[id]||'<circle cx="27" cy="27" r="22" fill="#22C55E" opacity=".4"/>').replace(/<svg[^>]*>/,'').replace('</svg>','')}</svg>`;
+
+// ─── AGE SELECTOR ─────────────────────────────────────────────────────────────
+function updateAgeUI() {
+  const g = curGroup();
+  document.getElementById('ageSelect').value = ageIdx;
+  document.getElementById('ageBadge').textContent = g.badge;
+  document.getElementById('ageLeft').classList.toggle('disabled', ageIdx===0);
+  document.getElementById('ageRight').classList.toggle('disabled', ageIdx===AGE_GROUPS.length-1);
+  document.getElementById('focusText').innerHTML = g.focus;
+  totalSec = timerSec = g.sessionMins * 60;
+  updateTimer();
+  document.getElementById('timerFill').style.width='100%';
+}
+
+function shiftAge(dir) {
+  const next = ageIdx + dir;
+  if (next < 0 || next >= AGE_GROUPS.length) return;
+  ageIdx = next;
+  updateAgeUI();
+  generateSession();
+}
+
+function onAgeChange() {
+  ageIdx = parseInt(document.getElementById('ageSelect').value);
+  updateAgeUI();
+  generateSession();
+}
+
+// ─── SESSION ──────────────────────────────────────────────────────────────────
+function generateSession() {
+  done.clear(); stopTimer();
+  const g = curGroup();
+  timerSec = totalSec = g.sessionMins * 60;
+  updateTimer();
+  document.getElementById('timerFill').style.width='100%';
+
+  const last = state.sessions.length ? state.sessions[state.sessions.length-1].drills : [];
+  let ids = [...g.defaultSession];
+  if (last.length) {
+    const ageDrills = g.drills.filter(id => id!=='freestyle');
+    const fresh = ageDrills.filter(id => !last.includes(id));
+    if (fresh.length && ids.length > 2) ids[2] = fresh[Math.floor(Math.random()*fresh.length)];
+  }
+  session = ids.map(getDrill).filter(Boolean);
+  renderSession();
+}
+
+function randomizeAll() {
+  done.clear(); stopTimer();
+  const g = curGroup();
+  timerSec = totalSec = g.sessionMins * 60;
+  updateTimer();
+  const pool = g.drills.filter(id=>id!=='freestyle').map(getDrill).filter(Boolean).sort(()=>Math.random()-0.5).slice(0,4);
+  session = [...pool, getDrill('freestyle')];
+  renderSession();
+}
+
+function resetTimer() {
+  done.clear(); stopTimer();
+  const g = curGroup();
+  timerSec = totalSec = g.sessionMins * 60;
+  updateTimer();
+  document.getElementById('timerFill').style.width='100%';
+  renderSession();
+}
+
+function renderSession() {
+  const el = document.getElementById('drillList');
+  if (!session.length) {
+    el.innerHTML=`<div class="empty"><div class="empty-ico">⚽</div><div class="empty-ttl">No Session Yet</div><div class="empty-txt">Tap New to load today's drills.</div></div>`;
+    return;
+  }
+  const mins = session.reduce((a,d)=>a+d.duration,0);
+  document.getElementById('badge').textContent=`${mins} MIN`;
+  el.innerHTML = session.map((d,i)=>`
+    <div class="drill-card ${done.has(i)?'done':''}" id="card-${i}">
+      <div class="drill-header">
+        <div class="drill-icon">${icon(d.id)}</div>
+        <div class="drill-meta">
+          <div class="drill-num">DRILL ${i+1} / ${session.length}</div>
+          <div class="drill-name">${d.name}</div>
+          <div class="drill-row2">
+            <div class="dur-badge">⏱ ${d.duration} min</div>
+            <div class="drill-btns">
+              <div class="icon-btn blue" onclick="openSwap(${i})">⇄</div>
+              <div class="icon-btn ${done.has(i)?'green':''}" onclick="markDone(${i})">${done.has(i)?'✓':'○'}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="drill-body">
+        <div class="info-lbl">Setup</div><div class="info-txt">${d.setup}</div>
+        <div class="info-lbl">How to Play</div><div class="info-txt">${d.how}</div>
+        <div class="cue-box"><div class="cue-lbl">Dad's Cue</div><div class="cue-txt">"${d.cue}"</div></div>
+        <div class="success-row"><div class="success-icon">✓</div><div class="success-txt">${d.success}</div></div>
+      </div>
+    </div>`).join('');
+}
+
+function markDone(i) {
+  done.has(i)?done.delete(i):done.add(i);
+  if (done.size===session.length) saveSession();
+  renderSession();
+}
+
+function saveSession() {
+  const today=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric'});
+  const mins=session.reduce((a,d)=>a+d.duration,0);
+  state.sessions.push({date:today,drills:session.map(d=>d.id),minutes:mins,ageGroup:curGroup().label});
+  state.totalDrills+=session.length; state.totalMinutes+=mins; state.streak+=1;
+}
+
+// ─── TIMER ────────────────────────────────────────────────────────────────────
+function toggleTimer(){ticking?stopTimer():startTimer();}
+function startTimer(){
+  ticking=true; document.getElementById('timerBtn').textContent='⏸';
+  interval=setInterval(()=>{
+    timerSec--;
+    if(timerSec<=0){timerSec=0;stopTimer();document.getElementById('timerBtn').textContent='✓';}
+    updateTimer();
+  },1000);
+}
+function stopTimer(){ticking=false;clearInterval(interval);document.getElementById('timerBtn').textContent='▶';}
+function updateTimer(){
+  const m=Math.floor(timerSec/60),s=timerSec%60;
+  document.getElementById('timerDisplay').textContent=`${m}:${s.toString().padStart(2,'0')}`;
+  const pct=timerSec/totalSec;
+  document.getElementById('timerFill').style.width=(pct*100)+'%';
+  const col=pct>.5?'var(--green)':pct>.25?'var(--amber)':'var(--coral)';
+  document.getElementById('timerDisplay').style.color=col;
+  document.getElementById('timerFill').style.background=col;
+}
+
+// ─── SWAP ─────────────────────────────────────────────────────────────────────
+function openSwap(i){
+  swapIdx=i;
+  const cur=session[i];
+  const g=curGroup();
+  const opts=g.drills.filter(id=>id!==cur.id&&!session.find(s=>s.id===id)).map(getDrill).filter(Boolean);
+  document.getElementById('swapList').innerHTML=opts.map(d=>`
+    <div class="opt" onclick="doSwap('${d.id}')">
+      <div class="opt-icon">${icon(d.id)}</div>
+      <div class="opt-info">
+        <div class="opt-name">${d.name}</div>
+        <div class="opt-tags">${d.tags.map(t=>`<span class="tag">${t}</span>`).join('')}<span class="tag">${d.duration}m</span></div>
+      </div>
+      <span style="color:var(--blue);font-size:18px;flex-shrink:0">→</span>
+    </div>`).join('');
+  document.getElementById('overlay').classList.add('open');
+}
+function doSwap(id){if(swapIdx!==null){session[swapIdx]=getDrill(id);done.delete(swapIdx);renderSession();}closeModal();}
+function closeModal(){document.getElementById('overlay').classList.remove('open');swapIdx=null;}
+function maybeClose(e){if(e.target===document.getElementById('overlay'))closeModal();}
+
+// ─── LIBRARY ──────────────────────────────────────────────────────────────────
+function renderLib(){
+  const search=document.getElementById('libSearch')?.value.toLowerCase()||'';
+  let drills=Object.values(ALL_DRILLS);
+  if(activeFilter==='age') drills=drills.filter(d=>d.ages.includes(ageIdx));
+  else if(activeFilter==='fun') drills=drills.filter(d=>d.fun);
+  else if(activeFilter!=='all') drills=drills.filter(d=>d.tags.includes(activeFilter));
+  if(search) drills=drills.filter(d=>d.name.toLowerCase().includes(search));
+
+  document.getElementById('libList').innerHTML=drills.length?drills.map(d=>{
+    const agePills=d.ages.map(a=>`<span class="age-pill">${AGE_GROUPS[a].badge}</span>`).join('');
+    return `<div class="lib-card">
+      <div class="lib-card-header">
+        <div class="lib-icon">${icon(d.id)}</div>
+        <div><div class="lib-name">${d.name}</div><div style="margin-top:4px">${agePills}<span class="tag" style="margin-left:2px">⏱ ${d.duration}m</span></div></div>
+      </div>
+      <div class="info-lbl">How to Play</div>
+      <div class="info-txt" style="margin-bottom:8px">${d.how}</div>
+      <div class="cue-box"><div class="cue-lbl">Dad's Cue</div><div class="cue-txt">"${d.cue}"</div></div>
+      <div style="margin-top:8px">${d.tags.map(t=>`<span class="tag">${t}</span> `).join('')}${d.fun?'<span class="tag" style="color:var(--amber);border-color:var(--amber)80">⭐ high fun</span>':''}</div>
+    </div>`;}).join(''):
+    `<div class="empty"><div class="empty-ico">🔍</div><div class="empty-ttl">No Results</div><div class="empty-txt">Try a different filter or search term.</div></div>`;
+}
+function setFilter(f,el){
+  activeFilter=f;
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  renderLib();
+}
+
+// ─── PROGRESS ─────────────────────────────────────────────────────────────────
+function renderProgress(){
+  document.getElementById('pSessions').textContent=state.sessions.length;
+  document.getElementById('pDrills').textContent=state.totalDrills;
+  document.getElementById('pMinutes').textContent=state.totalMinutes;
+  document.getElementById('pStreak').textContent=state.streak;
+  const hist=document.getElementById('histList');
+  if(!state.sessions.length){
+    hist.innerHTML=`<div class="empty"><div class="empty-ico">📋</div><div class="empty-ttl">No Sessions Yet</div><div class="empty-txt">Complete drills and mark them done to build history.</div></div>`;
+    return;
+  }
+  hist.innerHTML=[...state.sessions].reverse().slice(0,10).map(s=>`
+    <div class="hist-item">
+      <div>
+        <div class="hist-date">${s.date} · ${s.ageGroup||''}</div>
+        <div class="hist-drills">${s.drills.map(id=>getDrill(id)?.name||id).join(' · ')}</div>
+      </div>
+      <div class="hist-badge">${s.minutes}m</div>
+    </div>`).join('');
+}
+
+// ─── VIEW SWITCH ──────────────────────────────────────────────────────────────
+function switchView(name,el){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('view-'+name).classList.add('active');
+  el.classList.add('active');
+  if(name==='library') renderLib();
+  if(name==='progress') renderProgress();
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+updateAgeUI();
+generateSession();
+</script>
+</body>
+</html>
