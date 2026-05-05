@@ -88,6 +88,23 @@
   .pc-timer__fill{height:100%;background:linear-gradient(90deg,var(--green),var(--amber) 60%,var(--coral));
     border-radius:999px;transition:width 1s linear;}
   .pc-timer__fill--amber{background:var(--amber);}
+  .pc-pair__timer.drill-green{color:var(--green);}
+  @keyframes timer-open-pulse{0%,100%{opacity:.35}50%{opacity:.75}}
+  .pc-timer__fill--pulse{width:100%!important;background:var(--green);animation:timer-open-pulse 1.5s ease-in-out infinite;transition:none;}
+  .pc-dur-chips{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:4px 0;}
+  .pc-dur-chips::-webkit-scrollbar{display:none;}
+  .pc-dur-chip{flex-shrink:0;padding:3px 7px;border-radius:999px;border:1px solid var(--border);
+    background:var(--surface);font-size:10px;font-family:var(--mono);color:var(--muted);
+    letter-spacing:.05em;cursor:pointer;white-space:nowrap;
+    transition:all .15s cubic-bezier(.34,1.56,.64,1);}
+  .pc-dur-chip:active{transform:scale(.92);}
+  .pc-dur-chip.is-active{background:rgba(30,140,232,.12);border-color:rgba(30,140,232,.45);color:#8FC3F0;}
+  .pc-dur-chip.is-open{background:rgba(217,80,43,.12);border-color:rgba(217,80,43,.45);color:#E8845E;}
+  .pc-open-end-btn{width:100%;height:48px;border-radius:999px;background:var(--coral);
+    color:white;border:none;font-family:var(--sans);font-size:15px;font-weight:600;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+    transition:transform .15s;}
+  .pc-open-end-btn:active{transform:scale(.97);}
   .pc-play{display:flex;justify-content:flex-end;padding:4px 16px 2px;}
   .pc-playbtn{width:44px;height:44px;border-radius:14px;background:var(--blue);border:none;
     color:white;display:flex;align-items:center;justify-content:center;cursor:pointer;
@@ -349,9 +366,14 @@
     </svg>
     <div class="pc-logo-text">JUKIT</div>
   </div>
-  <div class="pc-mode-chip">
-    <span class="dot"></span>
-    <span>Parent</span>
+  <div style="display:flex;align-items:center;gap:6px">
+    <div class="pc-mode-chip" id="sessionModeBadge">
+      <span id="sessionModeText">20 MIN</span>
+    </div>
+    <div class="pc-mode-chip">
+      <span class="dot"></span>
+      <span>Parent</span>
+    </div>
   </div>
 </div>
 
@@ -395,15 +417,7 @@
     </div>
     <div class="pc-pair__card" id="durCard">
       <div class="pc-pair__lbl">Session</div>
-      <div class="pc-pair__row">
-        <button class="pc-pair__btn" onclick="shiftDuration(-1)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M15 6 L9 12 L15 18"/></svg>
-        </button>
-        <div class="pc-pair__val" id="durVal">20<span class="pc-pair__unit">min</span></div>
-        <button class="pc-pair__btn" onclick="shiftDuration(1)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M9 6 L15 12 L9 18"/></svg>
-        </button>
-      </div>
+      <div class="pc-dur-chips" id="durChips"></div>
       <div class="pc-pair__sub" id="drillCountSub">5 drills planned</div>
     </div>
   </div>
@@ -674,8 +688,10 @@ let session = [], done = new Set(), swapIdx = null;
 // Session timer
 let timerSec = sessionMins * 60, totalSec = sessionMins * 60, ticking = false, interval = null;
 let shownQuips = new Set();
-// Drill timer (counts up)
+// Drill timer (counts down from drill duration)
 let drillSec = 0, drillInterval = null;
+// Open-ended session mode
+let isOpenMode = false;
 // Now Playing state
 let activeIdx = 0;
 let queueOpen = false;
@@ -718,14 +734,39 @@ function showToast(msg) {
 }
 
 // ─── DURATION SELECTOR ────────────────────────────────────────────────────────
-function shiftDuration(dir) {
-  const i = DURATION_OPTIONS.indexOf(sessionMins);
-  const next = DURATION_OPTIONS[Math.max(0, Math.min(DURATION_OPTIONS.length - 1, i + dir))];
-  if (next === sessionMins) return;
-  sessionMins = next;
-  document.getElementById('durVal').innerHTML = `${sessionMins}<span class="pc-pair__unit">min</span>`;
+function renderDurChips() {
+  const container = document.getElementById('durChips');
+  if (!container) return;
+  container.innerHTML = DURATION_OPTIONS.map(m =>
+    `<div class="pc-dur-chip ${!isOpenMode && sessionMins === m ? 'is-active' : ''}" onclick="selectDuration(${m})">${m} MIN</div>`
+  ).join('') + `<div class="pc-dur-chip ${isOpenMode ? 'is-open' : ''}" onclick="selectOpenMode()">∞ Open</div>`;
+}
+function selectDuration(m) {
+  if (!isOpenMode && sessionMins === m) return;
   if (ticking) { showToast('Tap New to apply new duration'); return; }
+  isOpenMode = false;
+  sessionMins = m;
+  renderDurChips();
+  updateSessionBadge();
   generateSession();
+}
+function selectOpenMode() {
+  if (isOpenMode) return;
+  if (ticking) { showToast('Tap New to apply open mode'); return; }
+  isOpenMode = true;
+  renderDurChips();
+  updateSessionBadge();
+  generateSession();
+}
+function updateSessionBadge() {
+  const el = document.getElementById('sessionModeText');
+  if (el) el.textContent = isOpenMode ? 'OPEN' : `${sessionMins} MIN`;
+  const badge = document.getElementById('sessionModeBadge');
+  if (badge) {
+    badge.style.color = isOpenMode ? 'var(--coral)' : '';
+    badge.style.borderColor = isOpenMode ? 'rgba(217,80,43,.5)' : '';
+    badge.style.background = isOpenMode ? 'rgba(217,80,43,.08)' : '';
+  }
 }
 
 // ─── SPORT SELECTOR ───────────────────────────────────────────────────────────
@@ -754,8 +795,10 @@ function updateAgeUI() {
   document.getElementById('ageRight').disabled = ageIdx === AGE_GROUPS.length - 1;
   document.getElementById('ageRight').style.opacity = ageIdx === AGE_GROUPS.length - 1 ? '.3' : '1';
   document.getElementById('ageRight').style.pointerEvents = ageIdx === AGE_GROUPS.length - 1 ? 'none' : '';
+  isOpenMode = false;
   sessionMins = g.defaultMins;
-  document.getElementById('durVal').innerHTML = `${sessionMins}<span class="pc-pair__unit">min</span>`;
+  renderDurChips();
+  updateSessionBadge();
   totalSec = timerSec = sessionMins * 60;
   updateTimerDisplay();
 }
@@ -778,11 +821,13 @@ function generateSession() {
   clearQuip();
   stopTimer();
   stopDrillTimer();
-  if (activeSport !== 'soccer') { session = []; renderNowPlaying(); return; }
+  if (activeSport !== 'soccer') { session = []; updateDrillDisplay(); renderNowPlaying(); return; }
   const g = curGroup();
-  timerSec = totalSec = sessionMins * 60;
+  if (isOpenMode) { timerSec = 0; totalSec = 0; } else { timerSec = totalSec = sessionMins * 60; }
   updateTimerDisplay();
-  document.getElementById('timerFill').style.width = '100%';
+  const _fill = document.getElementById('timerFill');
+  if (isOpenMode) { _fill.className = 'pc-timer__fill pc-timer__fill--pulse'; _fill.style.width = ''; }
+  else { _fill.className = 'pc-timer__fill'; _fill.style.width = '100%'; }
 
   const recent = state.sessions.filter(s => s.ageIdx === ageIdx).slice(-5);
   const pool = g.drills.filter(id => id !== 'freestyle').map(getDrill).filter(Boolean);
@@ -805,6 +850,8 @@ function generateSession() {
   }
   picked.sort((a, b) => a.priority !== b.priority ? a.priority - b.priority : b.score - a.score);
   session = [...picked, getDrill('freestyle')];
+  drillSec = session[0] ? session[0].duration * 60 : 0;
+  updateDrillDisplay();
   document.getElementById('drillCountSub').textContent = `${session.length} drills planned`;
   renderNowPlaying();
 }
@@ -818,9 +865,11 @@ function randomizeAll() {
   stopTimer();
   stopDrillTimer();
   const g = curGroup();
-  timerSec = totalSec = sessionMins * 60;
+  if (isOpenMode) { timerSec = 0; totalSec = 0; } else { timerSec = totalSec = sessionMins * 60; }
   updateTimerDisplay();
-  document.getElementById('timerFill').style.width = '100%';
+  const _fill2 = document.getElementById('timerFill');
+  if (isOpenMode) { _fill2.className = 'pc-timer__fill pc-timer__fill--pulse'; _fill2.style.width = ''; }
+  else { _fill2.className = 'pc-timer__fill'; _fill2.style.width = '100%'; }
   const shuffled = g.drills.filter(id => id !== 'freestyle').map(getDrill).filter(Boolean).sort(() => Math.random() - .5);
   const budget = sessionMins - getDrill('freestyle').duration;
   const picked = [];
@@ -829,6 +878,8 @@ function randomizeAll() {
     if (time + d.duration <= budget + 1) { picked.push(d); time += d.duration; if (time >= budget) break; }
   }
   session = [...picked, getDrill('freestyle')];
+  drillSec = session[0] ? session[0].duration * 60 : 0;
+  updateDrillDisplay();
   document.getElementById('drillCountSub').textContent = `${session.length} drills planned`;
   renderNowPlaying();
 }
@@ -847,12 +898,7 @@ function renderNowPlaying() {
   const next = session[activeIdx + 1];
   const completed = activeIdx;
   const remaining = session.length - activeIdx - 1;
-  const dm = Math.floor(drillSec / 60), ds = drillSec % 60;
-  const drillPct = Math.min(100, (drillSec / (d.duration * 60)) * 100);
-
-  // Update drill timer display
-  document.getElementById('drillDisplay').textContent = `${dm}:${ds.toString().padStart(2,'0')}`;
-  document.getElementById('drillFill').style.width = drillPct + '%';
+  updateDrillDisplay();
 
   el.innerHTML = `
     <div class="pc-now">
@@ -885,6 +931,7 @@ function renderNowPlaying() {
               <div class="pc-success-txt">${d.success}</div>
             </div>
           </div>
+          ${isOpenMode ? `<div style="padding:0 0 10px"><button class="pc-open-end-btn" onclick="openEndModal()">⏹ End Session</button></div>` : ''}
           <div class="pc-now__actions">
             <button class="pc-btn pc-btn--ghost" onclick="openSwap(${activeIdx})" title="Swap drill">
               ${SVG.swap} Swap
@@ -958,17 +1005,16 @@ function skipDrill() {
 }
 
 function advanceDrill() {
-  drillSec = 0;
   stopDrillTimer();
-  document.getElementById('drillDisplay').textContent = '0:00';
-  document.getElementById('drillFill').style.width = '0%';
   if (activeIdx < session.length - 1) {
     activeIdx++;
+    drillSec = session[activeIdx] ? session[activeIdx].duration * 60 : 0;
     if (ticking) startDrillTimer();
   } else {
-    // Reached the end
+    drillSec = 0;
     showToast('Session complete! Tap Save to record it. 🏆');
   }
+  updateDrillDisplay();
   renderNowPlaying();
 }
 
@@ -990,7 +1036,17 @@ function openSwap(i) {
   document.getElementById('overlay').classList.add('open');
 }
 function doSwap(id) {
-  if (swapIdx !== null) { session[swapIdx] = getDrill(id); if (swapIdx === activeIdx) { drillSec = 0; stopDrillTimer(); } renderNowPlaying(); }
+  if (swapIdx !== null) {
+    session[swapIdx] = getDrill(id);
+    if (swapIdx === activeIdx) {
+      stopDrillTimer();
+      const nd = getDrill(id);
+      drillSec = nd ? nd.duration * 60 : 0;
+      updateDrillDisplay();
+      if (ticking) startDrillTimer();
+    }
+    renderNowPlaying();
+  }
   closeModal();
 }
 function closeModal() { document.getElementById('overlay').classList.remove('open'); swapIdx = null; }
@@ -1022,8 +1078,9 @@ function endSession() {
   else { state.streak = 1; }
   state.lastDate = todayStr;
   const today = new Date().toLocaleDateString('en-US', { month:'short', day:'numeric' });
-  const minsDone = doneIds.reduce((a, id) => a + (getDrill(id)?.duration || 0), 0);
-  state.sessions.push({ id:Date.now(), date:today, ageGroup:curGroup().label, ageIdx, drillsDone:doneIds, drillsTotal:totalIds, minutes:session.reduce((a,d)=>a+d.duration,0), minutesDone:minsDone });
+  const minsDone = isOpenMode ? Math.round(timerSec / 60) : doneIds.reduce((a, id) => a + (getDrill(id)?.duration || 0), 0);
+  const totalMins = isOpenMode ? Math.round(timerSec / 60) : session.reduce((a,d)=>a+d.duration,0);
+  state.sessions.push({ id:Date.now(), date:today, ageGroup:curGroup().label, ageIdx, drillsDone:doneIds, drillsTotal:totalIds, minutes:totalMins, minutesDone:minsDone });
   state.totalDrills += doneIds.length;
   state.totalMinutes += minsDone;
   persistState();
@@ -1035,10 +1092,14 @@ function toggleTimer() { ticking ? stopTimer() : startTimer(); }
 function startTimer() {
   ticking = true;
   updatePlayBtn();
-  if (!shownQuips.has(1.00)) { showQuip(DAD_JOKES[activeSport].find(j => j.pct === 1.00).text); shownQuips.add(1.00); }
+  if (!isOpenMode && !shownQuips.has(1.00)) { showQuip(DAD_JOKES[activeSport].find(j => j.pct === 1.00).text); shownQuips.add(1.00); }
   interval = setInterval(() => {
-    timerSec--;
-    if (timerSec <= 0) { timerSec = 0; stopTimer(); }
+    if (isOpenMode) {
+      timerSec++;
+    } else {
+      timerSec--;
+      if (timerSec <= 0) { timerSec = 0; stopTimer(); }
+    }
     updateTimerDisplay();
   }, 1000);
   startDrillTimer();
@@ -1052,16 +1113,34 @@ function stopTimer() {
 function startDrillTimer() {
   stopDrillTimer();
   drillInterval = setInterval(() => {
-    drillSec++;
-    const d = session[activeIdx];
-    const dm = Math.floor(drillSec / 60), ds = drillSec % 60;
-    document.getElementById('drillDisplay').textContent = `${dm}:${ds.toString().padStart(2,'0')}`;
-    const drillPct = d ? Math.min(100, (drillSec / (d.duration * 60)) * 100) : 0;
-    document.getElementById('drillFill').style.width = drillPct + '%';
+    drillSec--;
+    if (drillSec <= 0) {
+      drillSec = 0;
+      updateDrillDisplay();
+      stopDrillTimer();
+      const next = session[activeIdx + 1];
+      if (next) showToast(`Up Next: ${next.name}`);
+      advanceDrill();
+      return;
+    }
+    updateDrillDisplay();
   }, 1000);
 }
 function stopDrillTimer() {
   clearInterval(drillInterval);
+}
+function updateDrillDisplay() {
+  const d = session[activeIdx];
+  const drillTotal = d ? d.duration * 60 : 0;
+  const pct = drillTotal > 0 ? drillSec / drillTotal : 0;
+  const dm = Math.floor(drillSec / 60), ds = drillSec % 60;
+  const el = document.getElementById('drillDisplay');
+  if (el) {
+    el.textContent = `${dm}:${ds.toString().padStart(2,'0')}`;
+    el.className = 'pc-pair__timer ' + (drillTotal === 0 ? 'amber' : pct > .5 ? 'drill-green' : pct > .25 ? 'amber' : 'red');
+  }
+  const fill = document.getElementById('drillFill');
+  if (fill) fill.style.width = drillTotal > 0 ? (pct * 100) + '%' : '0%';
 }
 function updatePlayBtn() {
   const btn = document.getElementById('playBtn');
@@ -1075,10 +1154,16 @@ function updatePlayBtn() {
 }
 function updateTimerDisplay() {
   const m = Math.floor(timerSec / 60), s = timerSec % 60;
-  const pct = timerSec / totalSec;
   const disp = document.getElementById('timerDisplay');
   disp.textContent = `${m}:${s.toString().padStart(2,'0')}`;
+  if (isOpenMode) {
+    disp.className = 'pc-pair__timer drill-green';
+    document.getElementById('timerFill').className = 'pc-timer__fill pc-timer__fill--pulse';
+    return;
+  }
+  const pct = totalSec > 0 ? timerSec / totalSec : 0;
   disp.className = 'pc-pair__timer ' + (pct > .5 ? 'green' : pct > .25 ? 'amber' : 'red');
+  document.getElementById('timerFill').className = 'pc-timer__fill';
   document.getElementById('timerFill').style.width = (pct * 100) + '%';
   for (const j of DAD_JOKES[activeSport]) {
     if (j.pct < 1.00 && !shownQuips.has(j.pct) && pct <= j.pct) {
@@ -1169,7 +1254,7 @@ function switchView(name, el) {
 }
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
-updateAgeUI();
+updateAgeUI();   // also calls renderDurChips + updateSessionBadge
 renderSportChips();
 fetch('drills.json')
   .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
