@@ -61,6 +61,47 @@ Every drill includes: setup instructions, step-by-step execution, a parent verba
 
 ---
 
+## Development & Deployment
+
+### Local Development
+Run a local server:
+```
+npx serve .
+```
+Opens at http://localhost:3000
+
+### Stack
+- **Frontend:** Vanilla HTML/CSS/JS (`index.html`)
+- **Drill catalog:** `drills.json` (external JSON, fetched on load)
+- **Hosting:** Vercel (auto-deploy from GitHub)
+- **Repo:** github.com/th1seffinguy/jukit
+- **Live URL:** https://jukit.vercel.app
+
+### Deployment Workflow
+All deployments are automatic via Vercel:
+1. Make changes locally
+2. `git add .`
+3. `git commit -m "description"`
+4. `git push origin main`
+5. Vercel deploys in ~15 seconds automatically
+
+Never use GitHub Pages deployment commands.
+Never run manual deploy scripts.
+Push to main = live in production.
+
+### Future Architecture
+- `/api` folder: Vercel serverless functions (for Claude API calls, planned)
+- Environment variables: managed in Vercel dashboard
+- Preview deployments: every branch gets its own URL
+
+### Key Files
+- `index.html` — full app (HTML + CSS + JS)
+- `drills.json` — drill catalog (edit here to add drills)
+- `vercel.json` — Vercel configuration
+- `/assets/drills/` — future video assets per drill
+
+---
+
 ## Roadmap
 
 ### 1 — React Native / Expo conversion
