@@ -217,6 +217,68 @@
     padding:0 16px 8px;min-height:16px;opacity:0;transition:opacity .4s;}
   .pc-quip.show{opacity:1;}
 
+  /* ── SETUP PANEL ────────────────────────────────────────────── */
+  .pc-setup-section{padding:16px 16px 0;}
+  .pc-setup-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:10px;}
+  .pc-setup-age{display:flex;align-items:center;justify-content:space-between;
+    background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:12px 8px;}
+  .pc-setup-arrow{width:52px;height:52px;border-radius:12px;background:var(--elev);
+    border:1px solid var(--border);color:var(--text);font-size:28px;line-height:1;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;}
+  .pc-setup-arrow:active{transform:scale(.9);background:rgba(30,140,232,.15);border-color:rgba(30,140,232,.45);}
+  .pc-setup-age-inner{text-align:center;flex:1;padding:6px 0;}
+  .pc-setup-age-val{font-family:var(--bebas);font-size:56px;letter-spacing:.02em;line-height:1;color:var(--text);}
+  .pc-setup-age-sub{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:4px;}
+  .pc-setup-start-wrap{padding:20px 16px 16px;}
+  .pc-setup-start{width:100%;height:60px;font-size:17px;letter-spacing:.06em;}
+
+  /* ── STADIUM BOARD (ACTIVE SESSION) ────────────────────────────── */
+  .b-shell{display:flex;flex-direction:column;min-height:calc(100svh - 185px);}
+  .b-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 10px;}
+  .b-logo{font-family:var(--bebas);font-size:20px;letter-spacing:2px;opacity:.45;}
+  .b-header-right{display:flex;align-items:center;gap:10px;}
+  .b-progress-dots{display:flex;gap:5px;align-items:center;}
+  .b-dot{width:7px;height:7px;border-radius:50%;background:var(--border);transition:all .2s;}
+  .b-dot.done{background:var(--green);}
+  .b-dot.active{background:var(--amber);width:20px;border-radius:4px;}
+  .b-pause-btn{width:32px;height:32px;border-radius:10px;background:var(--elev);
+    border:1px solid var(--border);color:var(--muted);display:flex;align-items:center;
+    justify-content:center;cursor:pointer;transition:all .15s;}
+  .b-pause-btn:active{transform:scale(.88);}
+  .b-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 20px 8px;}
+  .b-now-tag{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--amber);
+    text-transform:uppercase;display:flex;align-items:center;gap:6px;margin-bottom:14px;}
+  .b-pulse{width:7px;height:7px;border-radius:50%;background:var(--amber);
+    animation:pulse 1.4s ease-in-out infinite;flex-shrink:0;}
+  .b-drill-name{font-family:var(--bebas);font-size:58px;line-height:.92;letter-spacing:.02em;
+    color:var(--text);margin-bottom:18px;}
+  .b-timer-block{background:var(--elev);border-radius:20px;padding:18px 20px 14px;}
+  .b-timer-row{display:flex;align-items:flex-end;justify-content:space-between;}
+  .b-timer-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--muted);
+    text-transform:uppercase;margin-bottom:4px;}
+  .b-timer-num{font-family:var(--bebas);font-size:72px;line-height:1;color:var(--green);letter-spacing:.02em;}
+  .b-timer-right{text-align:right;}
+  .b-timer-sess{font-family:var(--bebas);font-size:26px;color:var(--blue);}
+  .b-bar{height:3px;background:var(--border);border-radius:2px;margin-top:12px;}
+  .b-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--green),var(--amber));
+    width:100%;transition:width .5s linear;}
+  .b-cue-block{background:rgba(219,165,20,.08);border:1px solid rgba(219,165,20,.2);
+    border-radius:16px;padding:16px 18px;margin-top:16px;}
+  .b-cue-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--amber);
+    text-transform:uppercase;margin-bottom:7px;}
+  .b-cue-text{font-family:var(--sans);font-size:19px;font-weight:600;color:var(--text);line-height:1.3;}
+  .b-quip{font-size:10px;font-family:var(--mono);color:var(--amber);font-style:italic;
+    padding:8px 0 0;min-height:14px;opacity:0;transition:opacity .4s;}
+  .b-quip.show{opacity:1;}
+  .b-footer{padding:14px 18px 16px;display:flex;gap:10px;border-top:1px solid var(--border);}
+  .b-btn{height:52px;border-radius:14px;font-family:var(--sans);font-weight:600;font-size:14px;
+    border:1px solid var(--border);background:var(--elev);color:var(--text);
+    display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;}
+  .b-btn:active{transform:scale(.97);}
+  .b-btn-sm{width:74px;flex-shrink:0;}
+  .b-btn-done{flex:1;background:var(--green);color:#0A1A0E;border-color:var(--green);font-size:16px;}
+
   /* ── EMPTY STATE ────────────────────────────────────────────── */
   .pc-empty{text-align:center;padding:40px 16px;}
   .pc-empty-ico{font-size:44px;margin-bottom:10px;}
@@ -369,88 +431,113 @@
 
 <!-- TODAY VIEW -->
 <div class="view active" id="view-session">
-  <!-- Filter chips -->
-  <div class="pc-chips">
-    <span class="pc-chip is-active">
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19 H19 L13 4 H11 Z"/><path d="M7 14 H17"/></svg>
-      Minimal Kit
-    </span>
-    <span class="pc-chip is-active">
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg>
-      Outdoor
-    </span>
-    <span class="pc-chip" style="cursor:pointer">
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5 H21 L14 13 V20 L10 18 V13 Z"/></svg>
-      Filters
-    </span>
-  </div>
 
-  <!-- Pair 1: Age + Duration -->
-  <div class="pc-pair" id="ageBar">
-    <div class="pc-pair__card" id="ageCard">
-      <div class="pc-pair__lbl">Ages</div>
-      <div class="pc-pair__row">
-        <button class="pc-pair__btn" id="ageLeft" onclick="shiftAge(-1)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M15 6 L9 12 L15 18"/></svg>
-        </button>
-        <div class="pc-pair__val" id="ageBadgeVal">U6/U8</div>
-        <button class="pc-pair__btn" id="ageRight" onclick="shiftAge(1)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M9 6 L15 12 L9 18"/></svg>
-        </button>
-      </div>
-      <div class="pc-pair__sub" id="ageSubLabel">Ages 5–7</div>
+  <!-- ─── SETUP PANEL ──────────────────────────────────────────── -->
+  <div id="setupPanel">
+
+    <!-- Filter chips -->
+    <div class="pc-chips">
+      <span class="pc-chip is-active">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19 H19 L13 4 H11 Z"/><path d="M7 14 H17"/></svg>
+        Minimal Kit
+      </span>
+      <span class="pc-chip is-active">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg>
+        Outdoor
+      </span>
+      <span class="pc-chip" style="cursor:pointer">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5 H21 L14 13 V20 L10 18 V13 Z"/></svg>
+        Filters
+      </span>
     </div>
-    <div class="pc-pair__card" id="durCard">
-      <div class="pc-pair__lbl">Session</div>
+
+    <!-- Big age selector -->
+    <div class="pc-setup-section">
+      <div class="pc-setup-lbl">Age Group</div>
+      <div class="pc-setup-age">
+        <button class="pc-setup-arrow" id="ageLeft" onclick="shiftAge(-1)">&#8249;</button>
+        <div class="pc-setup-age-inner">
+          <div class="pc-setup-age-val" id="ageBadgeVal">U6/U8</div>
+          <div class="pc-setup-age-sub" id="ageSubLabel">Ages 5–7</div>
+        </div>
+        <button class="pc-setup-arrow" id="ageRight" onclick="shiftAge(1)">&#8250;</button>
+      </div>
+    </div>
+
+    <!-- Session length -->
+    <div class="pc-setup-section">
+      <div class="pc-setup-lbl">Session Length</div>
       <div class="pc-dur-chips" id="durChips"></div>
-      <div class="pc-pair__sub" id="drillCountSub">5 drills planned</div>
+      <div class="pc-pair__sub" id="drillCountSub" style="padding:6px 0 0">5 drills planned</div>
     </div>
+
+    <!-- Start button -->
+    <div class="pc-setup-start-wrap">
+      <button class="pc-btn pc-btn--primary pc-setup-start" onclick="startSession()">Start Session</button>
+    </div>
+
   </div>
 
-  <!-- Pair 2: Session Timer + Drill Timer -->
-  <div class="pc-pair">
-    <div class="pc-pair__card pc-pair__card--elev">
-      <div class="pc-pair__lbl">Session Left</div>
-      <div class="pc-pair__timer green" id="timerDisplay">20:00</div>
-      <div class="pc-timer__bar"><div class="pc-timer__fill" id="timerFill" style="width:100%"></div></div>
-    </div>
-    <div class="pc-pair__card pc-pair__card--elev pc-pair__card--drill">
-      <div class="pc-pair__lbl" style="color:var(--amber)">Drill Left</div>
-      <div class="pc-pair__timer amber" id="drillDisplay">0:00</div>
-      <div class="pc-timer__bar" style="background:rgba(219,165,20,.15)">
-        <div class="pc-timer__fill pc-timer__fill--amber" id="drillFill" style="width:0%"></div>
+  <!-- ─── ACTIVE PANEL ─────────────────────────────────────────── -->
+  <div id="activePanel" style="display:none">
+    <div class="b-shell">
+
+      <!-- Header: logo + progress dots + pause -->
+      <div class="b-header">
+        <div class="b-logo">JUKIT</div>
+        <div class="b-header-right">
+          <div class="b-progress-dots" id="progressDots"></div>
+          <button class="b-pause-btn" id="playBtn" onclick="toggleTimer()">
+            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="13" height="13"><path d="M6 4 L20 12 L6 20 Z"/></svg>
+          </button>
+        </div>
       </div>
+
+      <!-- Body: drill name + timer block + cue -->
+      <div class="b-body">
+        <div class="b-now-tag"><div class="b-pulse"></div> NOW PLAYING</div>
+        <div class="b-drill-name" id="bDrillName">—</div>
+        <div class="b-timer-block">
+          <div class="b-timer-row">
+            <div>
+              <div class="b-timer-lbl">Drill Left</div>
+              <div class="b-timer-num" id="drillDisplay">0:00</div>
+            </div>
+            <div class="b-timer-right">
+              <div class="b-timer-lbl">Session</div>
+              <div class="b-timer-sess" id="timerDisplay">20:00</div>
+            </div>
+          </div>
+          <div class="b-bar"><div class="b-bar-fill" id="drillFill" style="width:100%"></div></div>
+        </div>
+        <div class="b-cue-block">
+          <div class="b-cue-lbl">Coach Says</div>
+          <div class="b-cue-text" id="bCueTxt"></div>
+        </div>
+        <div class="b-quip" id="timerQuip"></div>
+      </div>
+
+      <!-- Footer: Swap + Skip + Done -->
+      <div class="b-footer">
+        <button class="b-btn b-btn-sm" onclick="openSwap(activeIdx)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
+          Swap
+        </button>
+        <button class="b-btn b-btn-sm" onclick="skipDrill()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+          Skip
+        </button>
+        <button class="b-btn b-btn-done" onclick="completeDrill()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>
+          Done
+        </button>
+      </div>
+
     </div>
+    <!-- hidden: keeps updateTimerDisplay() from erroring -->
+    <div id="timerFill" style="display:none"></div>
   </div>
 
-  <!-- Play / Pause -->
-  <div class="pc-play">
-    <button class="pc-playbtn paused" id="playBtn" onclick="toggleTimer()">
-      <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="16" height="16"><path d="M6 4 L20 12 L6 20 Z"/></svg>
-    </button>
-  </div>
-
-  <!-- Quip -->
-  <div class="pc-quip" id="timerQuip"></div>
-
-  <!-- Now Playing card -->
-  <div id="nowPlayingSection"><!-- rendered by renderNowPlaying() --></div>
-
-  <!-- Session actions -->
-  <div class="pc-session-actions">
-    <button class="pc-btn" style="flex:1;font-size:13px" onclick="generateSession()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M13 2 L3 14 L12 14 L11 22 L21 10 L12 10 Z"/></svg>
-      New
-    </button>
-    <button class="pc-btn" style="flex:1;font-size:13px" onclick="randomizeAll()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M16 3 H21 V8 M4 20 L21 3 M21 16 V21 H16 M15 15 L21 21 M4 4 L9 9"/></svg>
-      Shuffle
-    </button>
-    <button class="pc-btn" style="flex:1;font-size:13px" onclick="openEndModal()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M19 21 H5 a2 2 0 0 1-2-2 V5 a2 2 0 0 1 2-2 h11 l5 5 v11 a2 2 0 0 1-2 2 z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-      Save
-    </button>
-  </div>
 </div>
 
 <!-- LIBRARY VIEW -->
@@ -878,9 +965,6 @@ function generateSession() {
   const freeId = g.freestyleId || 'freestyle';
   if (isOpenMode) { timerSec = 0; totalSec = 0; } else { timerSec = totalSec = sessionMins * 60; }
   updateTimerDisplay();
-  const _fill = document.getElementById('timerFill');
-  if (isOpenMode) { _fill.className = 'pc-timer__fill pc-timer__fill--pulse'; _fill.style.width = ''; }
-  else { _fill.className = 'pc-timer__fill'; _fill.style.width = '100%'; }
 
   const recent = state.sessions.filter(s => s.ageIdx === ageIdx && (s.sport || 'soccer') === activeSport).slice(-5);
   const pool = g.drills.filter(id => id !== freeId).map(getDrill).filter(Boolean);
@@ -910,6 +994,21 @@ function generateSession() {
   renderNowPlaying();
 }
 
+function startSession() {
+  generateSession();
+  document.getElementById('setupPanel').style.display = 'none';
+  document.getElementById('activePanel').style.display = '';
+  if (!ticking) toggleTimer();
+}
+
+function returnToSetup() {
+  stopTimer();
+  stopDrillTimer();
+  document.getElementById('activePanel').style.display = 'none';
+  document.getElementById('setupPanel').style.display = '';
+  generateSession();
+}
+
 function randomizeAll() {
   done.clear();
   activeIdx = 0;
@@ -921,9 +1020,6 @@ function randomizeAll() {
   const g = curGroup();
   if (isOpenMode) { timerSec = 0; totalSec = 0; } else { timerSec = totalSec = sessionMins * 60; }
   updateTimerDisplay();
-  const _fill2 = document.getElementById('timerFill');
-  if (isOpenMode) { _fill2.className = 'pc-timer__fill pc-timer__fill--pulse'; _fill2.style.width = ''; }
-  else { _fill2.className = 'pc-timer__fill'; _fill2.style.width = '100%'; }
   const _freeId = g.freestyleId || 'freestyle';
   const shuffled = g.drills.filter(id => id !== _freeId).map(getDrill).filter(Boolean).sort(() => Math.random() - .5);
   const _freeDrill = getDrill(_freeId);
@@ -942,106 +1038,29 @@ function randomizeAll() {
 
 // ─── NOW PLAYING RENDER ───────────────────────────────────────────────────────
 function renderNowPlaying() {
-  const el = document.getElementById('nowPlayingSection');
-  if (!session.length) {
-    const sp = SPORTS.find(s => s.id === activeSport) || SPORTS[0];
-    el.innerHTML = `<div class="pc-empty"><div class="pc-empty-ico">${sp.emoji}</div><div class="pc-empty-ttl">No Session Yet</div><div class="pc-empty-txt">Tap New to load today's drills.</div></div>`;
+  const d = session[activeIdx];
+  const nameEl = document.getElementById('bDrillName');
+  const cueEl  = document.getElementById('bCueTxt');
+  if (!d) {
+    if (nameEl) nameEl.textContent = '—';
+    if (cueEl) cueEl.textContent = '';
+    renderProgressDots();
     return;
   }
-  const d = session[activeIdx];
-  if (!d) { el.innerHTML = ''; return; }
-  const next = session[activeIdx + 1];
-  const completed = activeIdx;
-  const remaining = session.length - activeIdx - 1;
+  if (nameEl) nameEl.textContent = d.name.toUpperCase();
+  if (cueEl) cueEl.textContent = d.cue || '';
+  renderProgressDots();
   updateDrillDisplay();
-
-  el.innerHTML = `
-    <div class="pc-now">
-      <div class="pc-now__label">
-        <span class="pc-now__nowtag"><span class="pulse"></span> Now Playing</span>
-        <span class="pc-now__counter">DRILL ${activeIdx + 1} / ${session.length}</span>
-      </div>
-      <div class="pc-now__body">
-        <h2 class="pc-now__title">${d.name.toUpperCase()}</h2>
-        <div class="pc-now__meta">
-          <span class="pc-badge-amber">${d.duration} MIN</span>
-          <span>${d.tags.join(' · ').toUpperCase()}</span>
-        </div>
-      </div>
-      <div class="pc-cue">
-        <div class="pc-cue__lbl">Coach Says</div>
-        <div class="pc-cue__txt">${d.cue}</div>
-      </div>
-    </div>
-
-    <button class="pc-detail-toggle" onclick="toggleDetail()">
-      ${detailOpen ? '▴ Hide Details' : '▾ Setup & Instructions'}
-    </button>
-    <div class="pc-drill-detail ${detailOpen ? 'open' : ''}" id="drillDetail">
-      <div class="pc-info-lbl">Setup</div>
-      <div class="pc-info-txt">${d.setup}</div>
-      <div class="pc-info-lbl">How to Play</div>
-      <div class="pc-info-txt">${d.how}</div>
-      <div class="pc-success-row">
-        <div style="color:var(--green);margin-right:4px;flex-shrink:0">✓</div>
-        <div class="pc-success-txt">${d.success}</div>
-      </div>
-    </div>
-    ${isOpenMode ? `<div style="padding:0 16px 6px"><button class="pc-open-end-btn" onclick="openEndModal()">⏹ End Session</button></div>` : ''}
-    <div class="pc-now__actions">
-      <button class="pc-btn pc-btn--ghost" onclick="openSwap(${activeIdx})" title="Swap drill">
-        ${SVG.swap} Swap
-      </button>
-      <button class="pc-btn pc-btn--ghost" onclick="skipDrill()">
-        ${SVG.skip} Skip
-      </button>
-      <button class="pc-btn pc-btn--primary" onclick="completeDrill()">
-        ${SVG.check} Done
-      </button>
-    </div>
-
-    ${next ? `
-    <div class="pc-nextup ${queueOpen ? 'is-open' : ''}" onclick="toggleQueue()">
-      <div class="pc-nextup__col">
-        <div class="pc-nextup__lbl">Next Up · ${remaining} remaining</div>
-        <div class="pc-nextup__name">${next.name}</div>
-      </div>
-      <div class="pc-nextup__dur">${next.duration} MIN</div>
-      <div class="pc-nextup__chev">${SVG.chevDown}</div>
-    </div>` : `
-    <div class="pc-nextup" style="opacity:.5;cursor:default">
-      <div class="pc-nextup__col">
-        <div class="pc-nextup__lbl">Last Drill</div>
-        <div class="pc-nextup__name">Almost there — finish strong!</div>
-      </div>
-    </div>`}
-
-    <div class="pc-queue ${queueOpen ? 'is-open' : ''}">
-      <div class="pc-queue__hd">
-        <span>Session Queue · ${session.length} drills</span>
-        <span>${completed} / ${session.length}</span>
-      </div>
-      <div class="pc-queue__list">
-        ${session.map((sd, i) => `
-          <div class="pc-queue__row ${i < activeIdx ? 'is-done' : ''} ${i === activeIdx ? 'is-active' : ''}">
-            <div class="pc-queue__num">${i < activeIdx ? SVG.check : (i + 1)}</div>
-            <div class="pc-queue__name">${sd.name}</div>
-            <div class="pc-queue__dur">${sd.duration} min</div>
-            <div class="pc-queue__dot"></div>
-          </div>`).join('')}
-      </div>
-    </div>
-  `;
 }
 
-function toggleDetail() {
-  detailOpen = !detailOpen;
-  renderNowPlaying();
-}
-
-function toggleQueue() {
-  queueOpen = !queueOpen;
-  renderNowPlaying();
+function renderProgressDots() {
+  const el = document.getElementById('progressDots');
+  if (!el) return;
+  el.innerHTML = session.map((_, i) => {
+    if (i < activeIdx) return '<div class="b-dot done"></div>';
+    if (i === activeIdx) return '<div class="b-dot active"></div>';
+    return '<div class="b-dot"></div>';
+  }).join('');
 }
 
 function completeDrill() {
@@ -1186,34 +1205,25 @@ function updateDrillDisplay() {
   const el = document.getElementById('drillDisplay');
   if (el) {
     el.textContent = `${dm}:${ds.toString().padStart(2,'0')}`;
-    el.className = 'pc-pair__timer ' + (drillTotal === 0 ? 'amber' : pct > .5 ? 'drill-green' : pct > .25 ? 'amber' : 'red');
+    const key = drillTotal === 0 ? 'amber' : pct > .5 ? 'green' : pct > .25 ? 'amber' : 'red';
+    el.style.color = key === 'green' ? 'var(--green)' : key === 'amber' ? 'var(--amber)' : 'var(--coral)';
   }
   const fill = document.getElementById('drillFill');
   if (fill) fill.style.width = drillTotal > 0 ? (pct * 100) + '%' : '0%';
 }
 function updatePlayBtn() {
   const btn = document.getElementById('playBtn');
-  if (ticking) {
-    btn.classList.remove('paused');
-    btn.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="16" height="16"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>`;
-  } else {
-    btn.classList.add('paused');
-    btn.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="16" height="16"><path d="M6 4 L20 12 L6 20 Z"/></svg>`;
-  }
+  if (!btn) return;
+  btn.innerHTML = ticking
+    ? `<svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="13" height="13"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>`
+    : `<svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="13" height="13"><path d="M6 4 L20 12 L6 20 Z"/></svg>`;
 }
 function updateTimerDisplay() {
   const m = Math.floor(timerSec / 60), s = timerSec % 60;
   const disp = document.getElementById('timerDisplay');
-  disp.textContent = `${m}:${s.toString().padStart(2,'0')}`;
-  if (isOpenMode) {
-    disp.className = 'pc-pair__timer drill-green';
-    document.getElementById('timerFill').className = 'pc-timer__fill pc-timer__fill--pulse';
-    return;
-  }
+  if (disp) disp.textContent = `${m}:${s.toString().padStart(2,'0')}`;
+  if (isOpenMode) return;
   const pct = totalSec > 0 ? timerSec / totalSec : 0;
-  disp.className = 'pc-pair__timer ' + (pct > .5 ? 'green' : pct > .25 ? 'amber' : 'red');
-  document.getElementById('timerFill').className = 'pc-timer__fill';
-  document.getElementById('timerFill').style.width = (pct * 100) + '%';
   for (const j of DAD_JOKES[activeSport]) {
     if (j.pct < 1.00 && !shownQuips.has(j.pct) && pct <= j.pct) {
       showQuip(j.text);
@@ -1328,8 +1338,7 @@ fetch('/api/drills')
     generateSession();
   })
   .catch(() => {
-    const el = document.getElementById('nowPlayingSection');
-    if (el) el.innerHTML = '<div style="padding:24px 16px;color:var(--coral);font-family:var(--mono);font-size:13px">Could not load drill catalog. Please refresh.</div>';
+    showToast('Could not load drill catalog. Please refresh.');
   });
 </script>
 </body>
