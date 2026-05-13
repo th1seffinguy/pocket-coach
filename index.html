@@ -61,11 +61,11 @@
   /* ── PAIR CARDS ─────────────────────────────────────────────── */
   .pc-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 16px 4px;}
   .pc-pair__card{background:var(--surface);border:1px solid var(--border);
-    border-radius:16px;padding:12px 12px 10px;min-width:0;}
+    border-radius:16px;padding:16px 14px 14px;min-width:0;}
   .pc-pair__card--elev{background:var(--elev);}
   .pc-pair__card--drill{border-color:rgba(219,165,20,.3);}
   .pc-pair__lbl{font-family:var(--mono);font-size:9px;letter-spacing:.18em;
-    color:var(--muted);text-transform:uppercase;margin-bottom:6px;}
+    color:var(--muted);text-transform:uppercase;margin-bottom:8px;}
   .pc-pair__row{display:flex;align-items:center;justify-content:space-between;gap:4px;}
   .pc-pair__btn{width:28px;height:28px;border-radius:8px;background:var(--elev);
     border:1px solid var(--border);display:flex;align-items:center;justify-content:center;
@@ -79,8 +79,8 @@
   .pc-pair__sub{margin-top:7px;font-size:10px;color:var(--muted);font-family:var(--mono);
     text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;
     overflow:hidden;text-overflow:ellipsis;}
-  .pc-pair__timer{font-family:var(--bebas);font-size:36px;letter-spacing:.02em;
-    line-height:1;margin-bottom:6px;font-feature-settings:'tnum' 1;}
+  .pc-pair__timer{font-family:var(--bebas);font-size:46px;letter-spacing:.02em;
+    line-height:.95;margin-bottom:6px;font-feature-settings:'tnum' 1;}
   .pc-pair__timer.amber{color:var(--amber);}
   .pc-pair__timer.red{color:var(--coral);}
   .pc-pair__timer.green{color:var(--text);}
@@ -117,7 +117,7 @@
   .pc-now{margin:10px 16px 8px;background:var(--elev);border:1px solid var(--border);
     border-radius:22px;overflow:hidden;
     box-shadow:0 8px 24px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.04);}
-  .pc-now__label{display:flex;align-items:center;justify-content:space-between;padding:12px 16px 8px;}
+  .pc-now__label{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 12px;}
   .pc-now__nowtag{display:inline-flex;align-items:center;gap:6px;
     font-family:var(--mono);font-size:10px;letter-spacing:.18em;
     color:var(--amber);text-transform:uppercase;}
@@ -125,36 +125,21 @@
     box-shadow:0 0 0 0 rgba(219,165,20,.8);animation:pulse-amber 1.6s infinite;}
   @keyframes pulse-amber{0%{box-shadow:0 0 0 0 rgba(219,165,20,.6);}70%{box-shadow:0 0 0 8px rgba(219,165,20,0);}100%{box-shadow:0 0 0 0 rgba(219,165,20,0);}}
   .pc-now__counter{font-family:var(--mono);font-size:11px;color:var(--muted);}
-  .pc-now__row{display:flex;flex-direction:row;gap:14px;align-items:flex-start;padding:0 16px 16px;}
-  .pc-now__left{flex:1;min-width:0;display:flex;flex-direction:column;}
-  .pc-now__right{width:140px;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;}
-  .pc-now__icon{width:130px;height:130px;border-radius:12px;background:#0F1115;
-    border:1px solid #262C36;overflow:hidden;
-    display:flex;align-items:center;justify-content:center;position:relative;}
-  .pc-now__icon::after{content:'';position:absolute;inset:0;
-    background:radial-gradient(60% 50% at 50% 60%,rgba(30,140,232,.08),transparent 70%);
-    pointer-events:none;}
-  .pc-now__icon svg{width:100%;height:100%;}
-  .pc-now__anim-counter{font-family:var(--mono);font-size:10px;color:var(--muted);text-align:right;margin-top:6px;letter-spacing:.08em;text-transform:uppercase;width:100%;}
-  .pc-now__body{padding:0 0 10px;}
-  .pc-now__left .pc-cue{margin:0 0 14px;}
-  .pc-now__left .pc-detail-toggle{margin:0 0 10px;width:100%;}
-  .pc-now__left .pc-drill-detail{padding:0 0 12px;}
-  .pc-now__left .pc-now__actions{padding:0;}
-  @media(max-width:360px){.pc-now__row{flex-direction:column;}.pc-now__right{width:100%;flex-direction:row;align-items:center;gap:10px;}.pc-now__icon{width:100%;height:90px;}.pc-now__anim-counter{margin-top:0;}}
-  .pc-now__title{font-family:var(--bebas);font-size:30px;letter-spacing:.025em;
-    margin:0;line-height:1;}
-  .pc-now__meta{display:flex;gap:10px;margin-top:6px;font-family:var(--mono);
-    font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;}
+  .pc-now__body{padding:0 20px 16px;}
+  .pc-now .pc-cue{margin:0;border-left:none;border-radius:0 0 22px 22px;border-top:1px solid rgba(219,165,20,.18);padding:18px 20px 22px;}
+  .pc-now__title{font-family:var(--bebas);font-size:50px;letter-spacing:.025em;
+    margin:0;line-height:.92;}
+  .pc-now__meta{display:flex;gap:10px;margin-top:12px;font-family:var(--mono);
+    font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;flex-wrap:wrap;}
   .pc-badge-amber{padding:3px 8px;border-radius:6px;background:rgba(219,165,20,.12);
     color:var(--amber);border:1px solid rgba(219,165,20,.25);}
   .pc-cue{margin:0 16px 14px;padding:12px 14px;background:rgba(219,165,20,.07);
     border-left:3px solid var(--amber);border-radius:4px 12px 12px 4px;}
   .pc-cue__lbl{font-family:var(--mono);font-size:10px;letter-spacing:.18em;
     color:var(--amber);text-transform:uppercase;margin-bottom:4px;}
-  .pc-cue__txt{font-style:italic;font-size:14px;line-height:1.35;color:var(--text);font-weight:500;}
-  .pc-now__actions{display:flex;gap:10px;padding:0 16px 16px;align-items:center;}
-  .pc-btn{height:48px;border-radius:14px;font-family:var(--sans);font-weight:600;font-size:15px;
+  .pc-cue__txt{font-style:normal;font-size:18px;line-height:1.35;color:var(--text);font-weight:600;}
+  .pc-now__actions{display:flex;gap:10px;padding:12px 16px 16px;align-items:center;}
+  .pc-btn{height:52px;border-radius:14px;font-family:var(--sans);font-weight:600;font-size:16px;
     border:1px solid var(--border);background:var(--surface);color:var(--text);
     cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
     transition:transform .15s cubic-bezier(.4,0,.2,1);}
@@ -183,13 +168,13 @@
 
   /* ── NEXT UP ROW ────────────────────────────────────────────── */
   .pc-nextup{margin:0 16px 6px;background:var(--surface);border:1px solid var(--border);
-    border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;
+    border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;
     transition:border-color .15s;}
   .pc-nextup:active{border-color:var(--blue);}
   .pc-nextup__col{flex:1;min-width:0;}
   .pc-nextup__lbl{font-family:var(--mono);font-size:9px;letter-spacing:.2em;
     color:var(--muted);text-transform:uppercase;}
-  .pc-nextup__name{font-size:14px;font-weight:600;color:var(--text);margin-top:2px;}
+  .pc-nextup__name{font-size:16px;font-weight:600;color:var(--text);margin-top:3px;}
   .pc-nextup__dur{font-family:var(--mono);font-size:11px;color:var(--muted);}
   .pc-nextup__chev{width:28px;height:28px;border-radius:8px;background:var(--elev);
     display:flex;align-items:center;justify-content:center;color:var(--muted);
@@ -974,51 +959,45 @@ function renderNowPlaying() {
     <div class="pc-now">
       <div class="pc-now__label">
         <span class="pc-now__nowtag"><span class="pulse"></span> Now Playing</span>
+        <span class="pc-now__counter">DRILL ${activeIdx + 1} / ${session.length}</span>
       </div>
-      <div class="pc-now__row">
-        <div class="pc-now__left">
-          <div class="pc-now__body">
-            <h2 class="pc-now__title">${d.name.toUpperCase()}</h2>
-            <div class="pc-now__meta">
-              <span class="pc-badge-amber">${d.duration} MIN</span>
-              <span>${d.tags.join(' · ').toUpperCase()}</span>
-            </div>
-          </div>
-          <div class="pc-cue">
-            <div class="pc-cue__lbl">Coach Says</div>
-            <div class="pc-cue__txt">${d.cue}</div>
-          </div>
-          <button class="pc-detail-toggle" onclick="toggleDetail()">
-            ${detailOpen ? '▴ Hide Details' : '▾ Setup & Instructions'}
-          </button>
-          <div class="pc-drill-detail ${detailOpen ? 'open' : ''}" id="drillDetail">
-            <div class="pc-info-lbl">Setup</div>
-            <div class="pc-info-txt">${d.setup}</div>
-            <div class="pc-info-lbl">How to Play</div>
-            <div class="pc-info-txt">${d.how}</div>
-            <div class="pc-success-row">
-              <div style="color:var(--green);margin-right:4px;flex-shrink:0">✓</div>
-              <div class="pc-success-txt">${d.success}</div>
-            </div>
-          </div>
-          ${isOpenMode ? `<div style="padding:0 0 10px"><button class="pc-open-end-btn" onclick="openEndModal()">⏹ End Session</button></div>` : ''}
-          <div class="pc-now__actions">
-            <button class="pc-btn pc-btn--ghost" onclick="openSwap(${activeIdx})" title="Swap drill">
-              ${SVG.swap} Swap
-            </button>
-            <button class="pc-btn pc-btn--ghost" onclick="skipDrill()">
-              ${SVG.skip} Skip
-            </button>
-            <button class="pc-btn pc-btn--primary" onclick="completeDrill()">
-              ${SVG.check} Done
-            </button>
-          </div>
-        </div>
-        <div class="pc-now__right">
-          <div class="pc-now__icon">${getNowPlayingMedia(d)}</div>
-          <div class="pc-now__anim-counter">DRILL ${activeIdx + 1} / ${session.length}</div>
+      <div class="pc-now__body">
+        <h2 class="pc-now__title">${d.name.toUpperCase()}</h2>
+        <div class="pc-now__meta">
+          <span class="pc-badge-amber">${d.duration} MIN</span>
+          <span>${d.tags.join(' · ').toUpperCase()}</span>
         </div>
       </div>
+      <div class="pc-cue">
+        <div class="pc-cue__lbl">Coach Says</div>
+        <div class="pc-cue__txt">${d.cue}</div>
+      </div>
+    </div>
+
+    <button class="pc-detail-toggle" onclick="toggleDetail()">
+      ${detailOpen ? '▴ Hide Details' : '▾ Setup & Instructions'}
+    </button>
+    <div class="pc-drill-detail ${detailOpen ? 'open' : ''}" id="drillDetail">
+      <div class="pc-info-lbl">Setup</div>
+      <div class="pc-info-txt">${d.setup}</div>
+      <div class="pc-info-lbl">How to Play</div>
+      <div class="pc-info-txt">${d.how}</div>
+      <div class="pc-success-row">
+        <div style="color:var(--green);margin-right:4px;flex-shrink:0">✓</div>
+        <div class="pc-success-txt">${d.success}</div>
+      </div>
+    </div>
+    ${isOpenMode ? `<div style="padding:0 16px 6px"><button class="pc-open-end-btn" onclick="openEndModal()">⏹ End Session</button></div>` : ''}
+    <div class="pc-now__actions">
+      <button class="pc-btn pc-btn--ghost" onclick="openSwap(${activeIdx})" title="Swap drill">
+        ${SVG.swap} Swap
+      </button>
+      <button class="pc-btn pc-btn--ghost" onclick="skipDrill()">
+        ${SVG.skip} Skip
+      </button>
+      <button class="pc-btn pc-btn--primary" onclick="completeDrill()">
+        ${SVG.check} Done
+      </button>
     </div>
 
     ${next ? `
