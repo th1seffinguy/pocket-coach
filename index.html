@@ -1341,8 +1341,9 @@ function switchView(name, el) {
 updateAgeUI();   // also calls renderDurChips + updateSessionBadge
 renderSportChips();
 renderFilterChips();
-fetch('drills.json')
+fetch('/api/drills')
   .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .catch(() => fetch('drills.json').then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }))
   .then(arr => {
     ALL_DRILLS = Object.fromEntries(arr.map(d => [d.id, d]));
     generateSession();
