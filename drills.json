@@ -8,9 +8,16 @@
     "how": "Players try to kick their ball and hit Coach's feet or shins. Coach shuffles and makes it a challenge. Reset and go again.",
     "cue": "\"Kick it at me — try to get me!\"",
     "success": "Eyes up scanning for Coach, not looking down at ball",
-    "tags": ["control", "movement", "shooting"],
+    "tags": [
+      "control",
+      "movement",
+      "shooting"
+    ],
     "fun": true,
-    "ages": [0, 1],
+    "ages": [
+      0,
+      1
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -28,9 +35,15 @@
     "how": "Dribble around the outside of the shape, stop the ball at each cone, then go again. Change direction each round.",
     "cue": "\"Stop it right at the cone — squish it.\"",
     "success": "Ball stops at each corner without rolling past",
-    "tags": ["control", "movement"],
+    "tags": [
+      "control",
+      "movement"
+    ],
     "fun": false,
-    "ages": [0, 1],
+    "ages": [
+      0,
+      1
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -45,12 +58,19 @@
     "sport": "soccer",
     "duration": 4,
     "setup": "Player starts 15 ft from goal, ball at feet.",
-    "how": "Player dribbles toward you. Call \"Red Light\" at random — they stop the ball instantly with the sole of their foot.",
+    "how": "Player dribbles toward you. Call \"Red Light\" at random: they stop the ball instantly with the sole of their foot.",
     "cue": "\"Squish the bug\" — sole of foot on top of ball",
     "success": "Ball stops within one body length, no rolling away",
-    "tags": ["control", "movement"],
+    "tags": [
+      "control",
+      "movement"
+    ],
     "fun": true,
-    "ages": [0, 1, 2],
+    "ages": [
+      0,
+      1,
+      2
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -65,12 +85,18 @@
     "sport": "soccer",
     "duration": 4,
     "setup": "Scatter 4–6 balls in a 10×10 ft area.",
-    "how": "60-second timer — dribble and kick every ball into the goal. Run 2–3 rounds. Try to beat the count each time.",
+    "how": "60-second timer: dribble and kick every ball into the goal. Run 2–3 rounds. Try to beat the count each time.",
     "cue": "\"Which one are you going for next?\"",
     "success": "Player is scanning ahead, not staring at their feet",
-    "tags": ["shooting", "movement"],
+    "tags": [
+      "shooting",
+      "movement"
+    ],
     "fun": true,
-    "ages": [0, 1],
+    "ages": [
+      0,
+      1
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -88,9 +114,16 @@
     "how": "Alternate feet tapping on top of the ball. Count reps out loud. Record challenge every round.",
     "cue": "\"Light touch — like you're testing if it's hot\"",
     "success": "Rhythm builds without kicking the ball away",
-    "tags": ["control"],
+    "tags": [
+      "control"
+    ],
     "fun": false,
-    "ages": [0, 1, 2, 3],
+    "ages": [
+      0,
+      1,
+      2,
+      3
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -108,9 +141,17 @@
     "how": "Coach passes, player controls and shoots back. First touch goes forward.",
     "cue": "\"First touch goes forward\"",
     "success": "Receives with inside of foot (not toe), shoots in one motion",
-    "tags": ["shooting", "control", "passing"],
+    "tags": [
+      "shooting",
+      "control",
+      "passing"
+    ],
     "fun": true,
-    "ages": [1, 2, 3],
+    "ages": [
+      1,
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -128,9 +169,16 @@
     "how": "Dribble through the gate and immediately shoot. No stopping before the shot.",
     "cue": "\"Head up after the gate — pick your corner\"",
     "success": "Carries speed through the gate and into the shot",
-    "tags": ["control", "shooting"],
+    "tags": [
+      "control",
+      "shooting"
+    ],
     "fun": true,
-    "ages": [1, 2, 3],
+    "ages": [
+      1,
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -145,12 +193,19 @@
     "sport": "soccer",
     "duration": 4,
     "setup": "Coach stands behind player with several balls.",
-    "how": "Coach rolls balls to different spots — left, right, far. Chase each one and shoot without stopping.",
+    "how": "Coach rolls balls to different spots: left, right, far. Chase each one and shoot without stopping.",
     "cue": "\"Get around it, then shoot\"",
     "success": "Adjusting body position before striking, not toe-poking",
-    "tags": ["shooting", "movement"],
+    "tags": [
+      "shooting",
+      "movement"
+    ],
     "fun": true,
-    "ages": [1, 2, 3],
+    "ages": [
+      1,
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -168,9 +223,16 @@
     "how": "Coach calls \"Freeze!\" unpredictably. Ball must stop within one step.",
     "cue": "\"The ball stops when you stop\"",
     "success": "Ball stops within a step, stays under control",
-    "tags": ["control", "movement"],
+    "tags": [
+      "control",
+      "movement"
+    ],
     "fun": true,
-    "ages": [0, 1, 2],
+    "ages": [
+      0,
+      1,
+      2
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -188,9 +250,15 @@
     "how": "How many times off the ground? Feet, knees, head only. Count out loud and celebrate records.",
     "cue": "\"Soft touch — tap it, don't kick it\"",
     "success": "Any consecutive touches without hands — celebrate every record",
-    "tags": ["control"],
+    "tags": [
+      "control"
+    ],
     "fun": true,
-    "ages": [0, 1, 2],
+    "ages": [
+      0,
+      1,
+      2
+    ],
     "priority": 3,
     "hasVideo": false,
     "insights": [
@@ -208,9 +276,15 @@
     "how": "\"Hit my left hand.\" \"Low shot.\" \"Right post.\" Player picks a spot before kicking.",
     "cue": "\"Pick your spot before you swing\"",
     "success": "Thinking about placement over raw power",
-    "tags": ["shooting"],
+    "tags": [
+      "shooting"
+    ],
     "fun": true,
-    "ages": [1, 2, 3],
+    "ages": [
+      1,
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -228,9 +302,16 @@
     "how": "No rules. Angles, distances, trick shots. End every session here.",
     "cue": "\"Your shot, your way\"",
     "success": "Smiling and wants to keep going",
-    "tags": ["shooting"],
+    "tags": [
+      "shooting"
+    ],
     "fun": true,
-    "ages": [0, 1, 2, 3],
+    "ages": [
+      0,
+      1,
+      2,
+      3
+    ],
     "priority": 3,
     "hasVideo": false,
     "insights": [
@@ -248,9 +329,15 @@
     "how": "Dribble through the weave using inside and outside of both feet. Time it. Beat the clock each round.",
     "cue": "\"Use both feet — outside foot on the outside cone\"",
     "success": "Alternates feet naturally, head up by 3rd rep",
-    "tags": ["control", "movement"],
+    "tags": [
+      "control",
+      "movement"
+    ],
     "fun": false,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -268,9 +355,14 @@
     "how": "Touch ball with inside of right foot, push away with outside of left, repeat moving forward. Work both directions.",
     "cue": "\"Inside pulls it, outside pushes it\"",
     "success": "Ball stays within one body length throughout",
-    "tags": ["control"],
+    "tags": [
+      "control"
+    ],
     "fun": false,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -288,9 +380,15 @@
     "how": "Player receives ball, uses body to shield Coach away, then turns and finds space. Swap sides each turn.",
     "cue": "\"Body between me and the ball — feel where I am\"",
     "success": "Player maintains possession through contact for 3 seconds",
-    "tags": ["control", "movement"],
+    "tags": [
+      "control",
+      "movement"
+    ],
     "fun": true,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -308,9 +406,14 @@
     "how": "1-2-touch passing around the triangle. Switch direction on Coach's call. Add movement: after passing, follow your pass.",
     "cue": "\"Pass and move — don't stand still after the ball leaves your foot\"",
     "success": "Ball moves around the triangle without stopping",
-    "tags": ["passing", "movement"],
+    "tags": [
+      "passing",
+      "movement"
+    ],
     "fun": false,
-    "ages": [3],
+    "ages": [
+      3
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -328,9 +431,14 @@
     "how": "Passer + receiver maintain possession while Coach (defender) tries to win it. Switch defender when ball is won.",
     "cue": "\"Move before the ball arrives — create an angle\"",
     "success": "5+ consecutive passes without losing possession",
-    "tags": ["passing", "control"],
+    "tags": [
+      "passing",
+      "control"
+    ],
     "fun": true,
-    "ages": [3],
+    "ages": [
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -348,9 +456,15 @@
     "how": "Coach crosses ball from the side. Player runs to meet it and shoots first time. Alternate sides.",
     "cue": "\"Attack the ball — don't wait for it\"",
     "success": "Shoots on first touch (even if off-target)",
-    "tags": ["shooting", "passing", "movement"],
+    "tags": [
+      "shooting",
+      "passing",
+      "movement"
+    ],
     "fun": true,
-    "ages": [3],
+    "ages": [
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -368,9 +482,14 @@
     "how": "Place sole of foot on top of ball and roll it slowly in circles clockwise, then counter-clockwise. Switch feet each set. 10 circles each direction.",
     "cue": "\"Draw a circle — slow is smooth\"",
     "success": "Ball stays under the sole the whole time without rolling away",
-    "tags": ["control"],
+    "tags": [
+      "control"
+    ],
     "fun": false,
-    "ages": [0, 1],
+    "ages": [
+      0,
+      1
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -385,12 +504,17 @@
     "sport": "soccer",
     "duration": 3,
     "setup": "Open space 15 ft+. Player starts with ball.",
-    "how": "Parent slowly walks toward player as the Monster. Player must dribble to stay away. Monster can't run — but player has to keep the ball under control. Play 3 rounds.",
+    "how": "Parent slowly walks toward player as the Monster. Player must dribble to stay away. Monster can't run, but player has to keep the ball under control. Play 3 rounds.",
     "cue": "\"Don't let the monster get you — keep moving!\"",
     "success": "Player keeps ball under control while moving away without kicking it wild",
-    "tags": ["control", "movement"],
+    "tags": [
+      "control",
+      "movement"
+    ],
     "fun": true,
-    "ages": [0],
+    "ages": [
+      0
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -408,9 +532,15 @@
     "how": "Dribble toward the line. Just before it, roll the ball back with the sole of foot, turn, and accelerate the other way. Repeat from the opposite direction.",
     "cue": "\"Sole, roll, go!\"",
     "success": "Direction change happens in one smooth motion — no pause between the pullback and the acceleration",
-    "tags": ["control", "movement"],
+    "tags": [
+      "control",
+      "movement"
+    ],
     "fun": true,
-    "ages": [1, 2],
+    "ages": [
+      1,
+      2
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -428,9 +558,15 @@
     "how": "Dribble in a figure 8 around the two cones continuously, alternating feet. Time it. Add speed each round.",
     "cue": "\"Outside foot around the outside of each cone\"",
     "success": "Ball never goes more than one step from the cone edge — tight and controlled",
-    "tags": ["control", "movement"],
+    "tags": [
+      "control",
+      "movement"
+    ],
     "fun": false,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -448,9 +584,14 @@
     "how": "Keep the ball in the air using feet and thighs. Count consecutive touches. Break your record every round. Start with drop-and-catch if needed.",
     "cue": "\"Soft touch — push it up, not forward\"",
     "success": "Any improvement on the previous record — even one extra touch counts",
-    "tags": ["control"],
+    "tags": [
+      "control"
+    ],
     "fun": true,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -465,12 +606,18 @@
     "sport": "soccer",
     "duration": 4,
     "setup": "Mark a penalty spot 8–12 ft from goal. Parent in goal.",
-    "how": "Player takes 5 penalty kicks. Parent leans to one side before each kick — player watches and goes the other way. Track goals scored.",
+    "how": "Player takes 5 penalty kicks. Parent leans to one side before each kick: player watches and goes the other way. Track goals scored.",
     "cue": "\"Watch the keeper — go where they're not\"",
     "success": "Player picks a side and commits before making contact — no last-second changes",
-    "tags": ["shooting"],
+    "tags": [
+      "shooting"
+    ],
     "fun": true,
-    "ages": [1, 2, 3],
+    "ages": [
+      1,
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -488,9 +635,15 @@
     "how": "Dribble to the cone at speed. Fake a cross by cutting ball back inside with the inside of foot. Shoot near post or across goal.",
     "cue": "\"Sell the cross first — then cut it back\"",
     "success": "The goalkeeper (parent) commits to the fake before the shot is taken",
-    "tags": ["shooting", "movement"],
+    "tags": [
+      "shooting",
+      "movement"
+    ],
     "fun": true,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -508,9 +661,13 @@
     "how": "Coach tosses ball underhand into the shooting zone. Player volleys it first-time toward goal. Alternate which side the toss comes from.",
     "cue": "\"Watch the ball onto your foot — plant foot points at the target\"",
     "success": "Ball contacted cleanly with the laces before it hits the ground",
-    "tags": ["shooting"],
+    "tags": [
+      "shooting"
+    ],
     "fun": true,
-    "ages": [3],
+    "ages": [
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -525,12 +682,17 @@
     "sport": "soccer",
     "duration": 5,
     "setup": "10 ft apart. Coach is the wall. Player attacks down the side.",
-    "how": "Player passes to Coach, sprints past the defender line, receives the return pass in space, and shoots. Coach plays ball into space for the run — not at the player's feet.",
+    "how": "Player passes to Coach, sprints past the defender line, receives the return pass in space, and shoots. Coach plays ball into space for the run, not at the player's feet.",
     "cue": "\"Pass and move — don't wait for the return\"",
     "success": "Player is already running when the return pass arrives — no stopping",
-    "tags": ["passing", "control"],
+    "tags": [
+      "passing",
+      "control"
+    ],
     "fun": false,
-    "ages": [3],
+    "ages": [
+      3
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -548,9 +710,13 @@
     "how": "Swing right foot over the ball outside-to-inside, plant it, then push ball with outside of left foot. Do 5 each direction. Then try at walking pace.",
     "cue": "\"Over, plant, go — make the defender lean\"",
     "success": "The fake foot goes all the way over the ball before the real move happens",
-    "tags": ["control"],
+    "tags": [
+      "control"
+    ],
     "fun": true,
-    "ages": [3],
+    "ages": [
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -568,9 +734,14 @@
     "how": "Roll the sole of foot all the way around the ball in a full circle without losing contact. Clockwise, then counter-clockwise. Switch feet. Add speed each round.",
     "cue": "\"Keep contact the whole way around — don't let it escape\"",
     "success": "Foot maintains contact with the ball through the full 360° rotation",
-    "tags": ["control"],
+    "tags": [
+      "control"
+    ],
     "fun": false,
-    "ages": [1, 2],
+    "ages": [
+      1,
+      2
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -588,9 +759,13 @@
     "how": "Full-speed approach. Drive ball with laces (top of foot) toward goal. Aim for low corners. Focus on a long approach stride and locked ankle at contact.",
     "cue": "\"Long stride, lock the ankle, lean over it\"",
     "success": "Ball stays below hip height and reaches the goal without bouncing more than twice",
-    "tags": ["shooting"],
+    "tags": [
+      "shooting"
+    ],
     "fun": true,
-    "ages": [3],
+    "ages": [
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -608,9 +783,15 @@
     "how": "Coach rolls, player receives with inside of foot. First touch turns them to face upfield. Then attack space. Vary which side the ball rolls to.",
     "cue": "\"First touch opens your body — face where you want to go\"",
     "success": "Player is facing upfield after the first touch, not sideways or backward",
-    "tags": ["control", "passing"],
+    "tags": [
+      "control",
+      "passing"
+    ],
     "fun": false,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -625,12 +806,18 @@
     "sport": "soccer",
     "duration": 4,
     "setup": "Normal drill setup. Place a colored cone near the weaker-foot side as a reminder.",
-    "how": "Run a complete rep set of any movement or shooting drill using only the weaker foot. Reduce difficulty as needed — closer range, slower pace.",
+    "how": "Run a complete rep set of any movement or shooting drill using only the weaker foot. Reduce difficulty as needed: closer range, slower pace.",
     "cue": "\"This one doesn't count — just get the touch right\"",
     "success": "Player attempts every rep with the weak foot without reverting, regardless of outcome",
-    "tags": ["control", "shooting"],
+    "tags": [
+      "control",
+      "shooting"
+    ],
     "fun": false,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -648,9 +835,14 @@
     "how": "Player sets up for shot. Coach calls a number. Player aims for that corner before shooting. Track hits per round.",
     "cue": "\"Pick the corner — eyes on the spot, not the ball\"",
     "success": "Player looks at the target zone before stepping into the kick on every rep",
-    "tags": ["shooting"],
+    "tags": [
+      "shooting"
+    ],
     "fun": true,
-    "ages": [1, 2],
+    "ages": [
+      1,
+      2
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -668,9 +860,15 @@
     "how": "Player receives a pass into the box, executes a specified turn (inside hook, drag-back, L-turn), exits the box, passes back to Coach. 6 reps of each turn.",
     "cue": "\"Turn and exit — no standing in the box\"",
     "success": "Player exits the box on the correct side after completing the specified turn",
-    "tags": ["control", "movement"],
+    "tags": [
+      "control",
+      "movement"
+    ],
     "fun": false,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -688,9 +886,14 @@
     "how": "Approach ball as if shooting. Instead, drag ball with inside of kicking foot behind the standing leg. Turn 180° and accelerate.",
     "cue": "\"Fake the shot — then disappear behind you\"",
     "success": "Defender (parent) steps toward the fake shot before the real move happens",
-    "tags": ["control", "movement"],
+    "tags": [
+      "control",
+      "movement"
+    ],
     "fun": true,
-    "ages": [3],
+    "ages": [
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -708,9 +911,15 @@
     "how": "Parent stands outside the zone and slowly closes in from different angles every few seconds. Player must shield the ball, keeping their body between parent and ball at all times.",
     "cue": "\"Body between me and the ball — feel where I am\"",
     "success": "Player maintains possession while tracking parent's position without staring at the ball",
-    "tags": ["control", "movement"],
+    "tags": [
+      "control",
+      "movement"
+    ],
     "fun": true,
-    "ages": [1, 2],
+    "ages": [
+      1,
+      2
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -719,7 +928,6 @@
       "Eyes-up dribbling while tracking a threat builds the dual-attention skill that separates composed players from those who panic."
     ]
   },
-
   {
     "id": "bb_bouncestart",
     "name": "Bounce & Catch",
@@ -729,9 +937,13 @@
     "how": "Hold ball at waist height, drop it, let it bounce back up to chest, and catch with two hands. 10 in a row without moving feet. Vary the bounce height.",
     "cue": "\"Let the ball do the work — just catch it\"",
     "success": "Ball bounces straight back to both hands 5+ times in a row",
-    "tags": ["ball-handling"],
+    "tags": [
+      "ball-handling"
+    ],
     "fun": true,
-    "ages": [0],
+    "ages": [
+      0
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -749,9 +961,14 @@
     "how": "Dribble in place with dominant hand at knee height for 20 reps. Switch hands. Count out loud. Try eyes up after 5 reps.",
     "cue": "\"Push it down — don't slap it\"",
     "success": "Ball stays below waist height consistently; player looks up at least half the time",
-    "tags": ["dribbling"],
+    "tags": [
+      "dribbling"
+    ],
     "fun": false,
-    "ages": [0, 1],
+    "ages": [
+      0,
+      1
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -769,9 +986,15 @@
     "how": "Walk forward slowly while dribbling with the dominant hand. Reach the end, stop, turn, and walk back with the other hand.",
     "cue": "\"Ball stays beside your hip — not in front\"",
     "success": "Player maintains continuous dribble without stopping through both lengths",
-    "tags": ["dribbling", "movement"],
+    "tags": [
+      "dribbling",
+      "movement"
+    ],
     "fun": false,
-    "ages": [0, 1],
+    "ages": [
+      0,
+      1
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -789,9 +1012,16 @@
     "how": "Use B-E-E-F: Balance (feet shoulder-width), Eyes on target, Elbow under ball, Follow-through (hold wrist down after release). Shoot from 3 ft. Move back 1 ft after 3 makes.",
     "cue": "\"Hold your follow-through until the ball hits the floor\"",
     "success": "Wrist follows through toward basket on every shot",
-    "tags": ["shooting"],
+    "tags": [
+      "shooting"
+    ],
     "fun": false,
-    "ages": [0, 1, 2, 3],
+    "ages": [
+      0,
+      1,
+      2,
+      3
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -809,9 +1039,16 @@
     "how": "Right-hand layup: approach from the right, step right-left, jump off the left foot, shoot with the right hand using the backboard. Left-hand layup: mirror. 5 reps each side.",
     "cue": "\"Two steps, jump, bank it off the glass\"",
     "success": "Player jumps off the correct foot (opposite of shooting hand) on every rep",
-    "tags": ["shooting", "movement"],
+    "tags": [
+      "shooting",
+      "movement"
+    ],
     "fun": true,
-    "ages": [1, 2, 3],
+    "ages": [
+      1,
+      2,
+      3
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -829,9 +1066,14 @@
     "how": "Hold ball at chest, thumbs behind ball. Step toward receiver, extend arms fully, snap wrists so thumbs point down at release. Receiver calls 'ready' before each pass.",
     "cue": "\"Thumbs down at the end — like you're pouring water\"",
     "success": "Ball arrives at receiver's chest height every time",
-    "tags": ["passing"],
+    "tags": [
+      "passing"
+    ],
     "fun": false,
-    "ages": [1, 2],
+    "ages": [
+      1,
+      2
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -849,9 +1091,14 @@
     "how": "Aim bounce pass to land 2/3 of the distance from passer to receiver. Ball should arrive at receiver's waist. Strong push, thumbs down, step into it.",
     "cue": "\"Two-thirds of the way — not halfway\"",
     "success": "Ball arrives at receiver's waist height after one clean bounce",
-    "tags": ["passing"],
+    "tags": [
+      "passing"
+    ],
     "fun": false,
-    "ages": [1, 2],
+    "ages": [
+      1,
+      2
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -866,12 +1113,19 @@
     "sport": "basketball",
     "duration": 4,
     "setup": "5–6 cones in a line, 3 ft apart.",
-    "how": "Dribble through the cones with dominant hand going, off-hand coming back. Push through each gate tightly — don't loop wide. Time it.",
+    "how": "Dribble through the cones with dominant hand going, off-hand coming back. Push through each gate tightly, don't loop wide. Time it.",
     "cue": "\"Low dribble through the gates — keep it tight\"",
     "success": "Ball never rolls past the adjacent cone's line",
-    "tags": ["dribbling", "movement"],
+    "tags": [
+      "dribbling",
+      "movement"
+    ],
     "fun": false,
-    "ages": [1, 2, 3],
+    "ages": [
+      1,
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -889,9 +1143,15 @@
     "how": "Start in defensive stance: knees bent, weight on balls of feet, hands out. Slide left to the endpoint, slide back right. 5 sets. Never cross your feet.",
     "cue": "\"Sit in the chair — don't stand up\"",
     "success": "Feet never cross during any slide; weight stays on balls of feet throughout",
-    "tags": ["defense", "movement"],
+    "tags": [
+      "defense",
+      "movement"
+    ],
     "fun": false,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -909,9 +1169,15 @@
     "how": "10 free throw attempts. Consistent pre-shot routine: 1–2 dribbles, hold ball, aim, shoot. Track makes. Beat your previous record each session.",
     "cue": "\"Same routine every time — make it automatic\"",
     "success": "Pre-shot routine is identical on every attempt, whether the previous one went in or not",
-    "tags": ["shooting"],
+    "tags": [
+      "shooting"
+    ],
     "fun": true,
-    "ages": [1, 2, 3],
+    "ages": [
+      1,
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -929,9 +1195,14 @@
     "how": "Dribble ball in figure 8 pattern through and around both legs without losing control. 10 reps, then reverse direction. Progress to single bounces between each leg.",
     "cue": "\"Low, tight, no traveling — hands follow the ball\"",
     "success": "Completes 5 full figure 8 reps without losing ball control",
-    "tags": ["dribbling"],
+    "tags": [
+      "dribbling"
+    ],
     "fun": false,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -949,9 +1220,14 @@
     "how": "Dribble both balls simultaneously in place. Alternate bounces (one up, one down). Then try simultaneous bounces. Add walking forward.",
     "cue": "\"Let one hand be the leader — the other follows\"",
     "success": "Both balls stay below waist height for 10+ consecutive bounces",
-    "tags": ["dribbling"],
+    "tags": [
+      "dribbling"
+    ],
     "fun": true,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 3,
     "hasVideo": false,
     "insights": [
@@ -969,9 +1245,14 @@
     "how": "Shoot from spot 1. Make it: move to spot 2. Miss: stay or go back (choose difficulty). Complete all 5 spots.",
     "cue": "\"New spot, same form — every shot is the same shot\"",
     "success": "Form is consistent across all 5 spots — no rushing or changing stance",
-    "tags": ["shooting"],
+    "tags": [
+      "shooting"
+    ],
     "fun": true,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -986,12 +1267,18 @@
     "sport": "basketball",
     "duration": 4,
     "setup": "Basket. Start directly under the hoop.",
-    "how": "Shoot a right-hand layup off the backboard, catch the ball before it hits the ground, step to the left side, shoot a left-hand layup. Repeat continuously — 10 each side.",
+    "how": "Shoot a right-hand layup off the backboard, catch the ball before it hits the ground, step to the left side, shoot a left-hand layup. Repeat continuously: 10 each side.",
     "cue": "\"Right, catch, left, catch — keep the rhythm\"",
     "success": "Maintains continuous rhythm without stopping or letting ball hit the floor",
-    "tags": ["shooting", "movement"],
+    "tags": [
+      "shooting",
+      "movement"
+    ],
     "fun": false,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -1006,12 +1293,18 @@
     "sport": "basketball",
     "duration": 4,
     "setup": "Mark the elbow of the key on both sides (where the free throw line meets the lane line).",
-    "how": "Coach feeds ball. Player catches at the elbow, sets feet, shoots mid-range jumper. Alternate elbows. Focus on catch-and-shoot rhythm — no dribble.",
+    "how": "Coach feeds ball. Player catches at the elbow, sets feet, shoots mid-range jumper. Alternate elbows. Focus on catch-and-shoot rhythm: no dribble.",
     "cue": "\"Feet first — be ready before the ball gets there\"",
     "success": "Feet are set and body aligned before catching the ball on every rep",
-    "tags": ["shooting", "movement"],
+    "tags": [
+      "shooting",
+      "movement"
+    ],
     "fun": false,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -1029,9 +1322,14 @@
     "how": "Dribble forward with right hand, stop, crossover to left hand (ball crosses low in front), accelerate. Repeat left-to-right. Add a cone as a defender to crossover around.",
     "cue": "\"Low and quick — don't give the defender time to react\"",
     "success": "Crossover happens below knee height — ball is never above the defender's reach",
-    "tags": ["dribbling"],
+    "tags": [
+      "dribbling"
+    ],
     "fun": true,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -1049,9 +1347,16 @@
     "how": "No rules. Any shot, any distance, any style. End every session here. Celebrate every make.",
     "cue": "\"Your shot — shoot what you want\"",
     "success": "Smiling and wants to keep going",
-    "tags": ["shooting"],
+    "tags": [
+      "shooting"
+    ],
     "fun": true,
-    "ages": [0, 1, 2, 3],
+    "ages": [
+      0,
+      1,
+      2,
+      3
+    ],
     "priority": 3,
     "hasVideo": false,
     "insights": [
@@ -1066,12 +1371,16 @@
     "sport": "basketball",
     "duration": 3,
     "setup": "Coach has the ball 15 ft from basket. Player starts under the basket.",
-    "how": "Coach drives toward basket. Player sprints to close out — high hand, choppy steps at the last 5 ft, do not leave feet. Contest the shot without fouling.",
+    "how": "Coach drives toward basket. Player sprints to close out: high hand, choppy steps at the last 5 ft, do not leave feet. Contest the shot without fouling.",
     "cue": "\"Sprint then chop — hands up, don't jump\"",
     "success": "Player gets a hand up without leaving feet before coach releases the ball",
-    "tags": ["defense"],
+    "tags": [
+      "defense"
+    ],
     "fun": false,
-    "ages": [3],
+    "ages": [
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -1080,7 +1389,6 @@
       "Hand up without jumping prevents the most common closeout foul: vertical challenge discipline separates team defenders from instinct defenders."
     ]
   },
-
   {
     "id": "bsb_armcircles",
     "name": "Arm Circle Warm-Up",
@@ -1090,9 +1398,16 @@
     "how": "10 small forward circles, 10 backward circles with each arm. Then 10 large forward circles, 10 backward. Cross arms at chest 10 times. Do this before every throwing session.",
     "cue": "\"Start every catch-and-throw with arm circles — no exceptions\"",
     "success": "Completed full sequence before picking up a ball",
-    "tags": ["movement"],
+    "tags": [
+      "movement"
+    ],
     "fun": false,
-    "ages": [0, 1, 2, 3],
+    "ages": [
+      0,
+      1,
+      2,
+      3
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -1110,9 +1425,17 @@
     "how": "Basic catch and throw. Focus: catch with two hands, soft hands (give with the catch), four-seam grip before throwing. Move back 5 ft after 5 clean exchanges.",
     "cue": "\"Soft hands first — then grip it to throw\"",
     "success": "Ball is caught with both hands on every rep (glove covers, bare hand secures)",
-    "tags": ["throwing", "fielding"],
+    "tags": [
+      "throwing",
+      "fielding"
+    ],
     "fun": false,
-    "ages": [0, 1, 2, 3],
+    "ages": [
+      0,
+      1,
+      2,
+      3
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -1130,9 +1453,16 @@
     "how": "10 swings. Focus on contact point. Ball should be at the front hip at contact. Reset the ball after every swing.",
     "cue": "\"Hit through the ball — don't stop at contact\"",
     "success": "Ball goes off the tee cleanly with no frame tipping or tee contact on the swing",
-    "tags": ["hitting"],
+    "tags": [
+      "hitting"
+    ],
     "fun": false,
-    "ages": [0, 1, 2, 3],
+    "ages": [
+      0,
+      1,
+      2,
+      3
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -1150,9 +1480,16 @@
     "how": "Take slow-motion half-swings watching your own form. Check: balanced stance, hands back, hip rotation before hands, extension through contact. 10 reps.",
     "cue": "\"Watch your hips — they should move before your hands\"",
     "success": "Player can describe one thing they saw in their own swing",
-    "tags": ["hitting"],
+    "tags": [
+      "hitting"
+    ],
     "fun": false,
-    "ages": [0, 1, 2, 3],
+    "ages": [
+      0,
+      1,
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -1170,9 +1507,15 @@
     "how": "Coach tosses ball upward at 45° into the hitting zone. Player tracks it and swings. Alternate sides. 10 reps per round.",
     "cue": "\"Wait for it — don't swing until you see it enter the zone\"",
     "success": "Player loads (weight back) before every toss, not after",
-    "tags": ["hitting"],
+    "tags": [
+      "hitting"
+    ],
     "fun": true,
-    "ages": [1, 2, 3],
+    "ages": [
+      1,
+      2,
+      3
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -1187,12 +1530,18 @@
     "sport": "baseball",
     "duration": 3,
     "setup": "Open field. No ball initially.",
-    "how": "Practice the ready position: feet shoulder-width, weight on balls of feet, knees bent, glove open at waist height. Coach calls left/right/in/back — player takes a crossover step in that direction.",
+    "how": "Practice the ready position: feet shoulder-width, weight on balls of feet, knees bent, glove open at waist height. Coach calls left/right/in/back: player takes a crossover step in that direction.",
     "cue": "\"On your toes — every pitch, every play\"",
     "success": "First step is a crossover in the correct direction within 1 second of the call",
-    "tags": ["fielding"],
+    "tags": [
+      "fielding"
+    ],
     "fun": false,
-    "ages": [1, 2, 3],
+    "ages": [
+      1,
+      2,
+      3
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -1210,9 +1559,15 @@
     "how": "Field each ground ball: glove low and in front, charge the ball (don't wait for it), bare hand covers glove at contact, field through then up into throwing position.",
     "cue": "\"Glove down, charge it, field through\"",
     "success": "Glove bottom touches the ground before the ball arrives on every rep",
-    "tags": ["fielding"],
+    "tags": [
+      "fielding"
+    ],
     "fun": false,
-    "ages": [1, 2, 3],
+    "ages": [
+      1,
+      2,
+      3
+    ],
     "priority": 1,
     "hasVideo": false,
     "insights": [
@@ -1227,12 +1582,17 @@
     "sport": "baseball",
     "duration": 3,
     "setup": "Coach with 5 balls in hand. Player 8–10 ft away.",
-    "how": "Coach tosses balls in rapid succession — as soon as one is caught, the next is thrown. No gap. Alternate tosses left and right. Player drops caught balls, focuses on the next one.",
+    "how": "Coach tosses balls in rapid succession: as soon as one is caught, the next is thrown. No gap. Alternate tosses left and right. Player drops caught balls, focuses on the next one.",
     "cue": "\"Reset fast — the next one's already coming\"",
     "success": "Player catches 4 of 5 in each set without losing their fielding stance",
-    "tags": ["fielding"],
+    "tags": [
+      "fielding"
+    ],
     "fun": true,
-    "ages": [1, 2],
+    "ages": [
+      1,
+      2
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -1250,9 +1610,14 @@
     "how": "Throw all 5 balls trying to land them in the bucket. 3 rounds. Track hits per round. Adjust distance to find the right challenge.",
     "cue": "\"Step toward the target — front foot points at what you're throwing at\"",
     "success": "Front foot points at the bucket on every throw, regardless of accuracy",
-    "tags": ["throwing"],
+    "tags": [
+      "throwing"
+    ],
     "fun": true,
-    "ages": [1, 2],
+    "ages": [
+      1,
+      2
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -1270,9 +1635,15 @@
     "how": "Coach tosses ball high (20+ ft arc). Player tracks it, moves under it, calls 'I got it!', and catches above the forehead with two hands. Vary distance and direction.",
     "cue": "\"Call it early — then run to the ball, don't back up slowly\"",
     "success": "Player calls 'I got it' before reaching the ball's landing spot every time",
-    "tags": ["fielding"],
+    "tags": [
+      "fielding"
+    ],
     "fun": true,
-    "ages": [1, 2, 3],
+    "ages": [
+      1,
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -1287,12 +1658,18 @@
     "sport": "baseball",
     "duration": 3,
     "setup": "Two gloves. Kneel on glove-side knee (right-handed: left knee). 15 ft apart.",
-    "how": "Throw from a kneeling position — eliminates lower-body mechanics and isolates arm path, elbow height, wrist snap, and follow-through. 10 reps.",
+    "how": "Throw from a kneeling position: eliminates lower-body mechanics and isolates arm path, elbow height, wrist snap, and follow-through. 10 reps.",
     "cue": "\"Elbow up to shoulder height before you release\"",
     "success": "Elbow leads at or above shoulder height on every throw",
-    "tags": ["throwing"],
+    "tags": [
+      "throwing"
+    ],
     "fun": false,
-    "ages": [1, 2, 3],
+    "ages": [
+      1,
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -1310,9 +1687,15 @@
     "how": "Sprint from home to first with correct form: run through the bag (don't leap), hit the inside corner of the bag, look up the right-field line as you hit it to read the ball. Time it.",
     "cue": "\"Run through it — don't jump on it\"",
     "success": "Player hits the bag and decelerates past it rather than stopping at it",
-    "tags": ["movement"],
+    "tags": [
+      "movement"
+    ],
     "fun": true,
-    "ages": [1, 2, 3],
+    "ages": [
+      1,
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -1327,12 +1710,17 @@
     "sport": "baseball",
     "duration": 4,
     "setup": "Two gloves. 30 ft starting distance. Move back 10 ft after 5 clean throws.",
-    "how": "Play catch at progressively increasing distances. Let the ball arc naturally — don't flatten it. Throw through the partner, not at them. Return to 30 ft to finish.",
+    "how": "Play catch at progressively increasing distances. Let the ball arc naturally, don't flatten it. Throw through the partner, not at them. Return to 30 ft to finish.",
     "cue": "\"Arc it up — let it ride\"",
     "success": "Ball arcs naturally to partner without arm strain; no short-hops",
-    "tags": ["throwing"],
+    "tags": [
+      "throwing"
+    ],
     "fun": false,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -1350,9 +1738,14 @@
     "how": "Move tee for each zone. Pull: hands lead, inside-out. Middle: standard contact. Opposite: let ball travel deeper, hit it late. 5 reps per zone.",
     "cue": "\"Let the ball come to you on the outside — don't reach for it\"",
     "success": "Ball goes to the intended field zone on at least 3 of 5 reps",
-    "tags": ["hitting"],
+    "tags": [
+      "hitting"
+    ],
     "fun": false,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -1370,9 +1763,14 @@
     "how": "Intentional short-hop fielding: glove opens wide, knees bent, field the ball on the long-hop side. Work both backhand and forehand short hops.",
     "cue": "\"Eat the short hop — don't back up from it\"",
     "success": "Ball is fielded cleanly without bouncing off the chest or missing to either side",
-    "tags": ["fielding"],
+    "tags": [
+      "fielding"
+    ],
     "fun": false,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -1390,9 +1788,14 @@
     "how": "Slow-motion swing drill: load (shift weight to back foot and coil hips), then fire hips before hands, extend through the contact zone. Pause at each phase.",
     "cue": "\"Hips then hands — if your hands go first, start over\"",
     "success": "Hips are rotating before the hands move on every rep",
-    "tags": ["hitting"],
+    "tags": [
+      "hitting"
+    ],
     "fun": false,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -1410,9 +1813,14 @@
     "how": "Work through delivery in phases: wind-up (balance point, hip tuck), stride (knee drive then extension), arm (elbow up, glove tuck), finish (follow-through down). 10 full throws.",
     "cue": "\"Balance, stride, arm, finish — in that order\"",
     "success": "Player pauses at balance point on every rep without falling forward",
-    "tags": ["throwing"],
+    "tags": [
+      "throwing"
+    ],
     "fun": false,
-    "ages": [2, 3],
+    "ages": [
+      2,
+      3
+    ],
     "priority": 2,
     "hasVideo": false,
     "insights": [
@@ -1427,12 +1835,19 @@
     "sport": "baseball",
     "duration": 3,
     "setup": "Tee or soft toss setup. Player picks everything.",
-    "how": "No instructions. Player hits however they want — adjust tee, choose their pitch, experiment. End every session here.",
+    "how": "No instructions. Player hits however they want: adjust tee, choose their pitch, experiment. End every session here.",
     "cue": "\"Show me your best swing — whatever that means to you\"",
     "success": "Player is experimenting and engaging voluntarily, not waiting for instructions",
-    "tags": ["hitting"],
+    "tags": [
+      "hitting"
+    ],
     "fun": true,
-    "ages": [0, 1, 2, 3],
+    "ages": [
+      0,
+      1,
+      2,
+      3
+    ],
     "priority": 3,
     "hasVideo": false,
     "insights": [
