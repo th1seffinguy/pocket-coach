@@ -283,9 +283,11 @@
   .b-timer-num{font-family:var(--bebas);font-size:54px;line-height:1;color:var(--green);letter-spacing:.02em;}
   .b-timer-right{text-align:right;}
   .b-timer-sess{font-family:var(--bebas);font-size:24px;color:var(--blue);}
-  .b-bar{height:3px;background:var(--border);border-radius:2px;margin-top:12px;}
+  .b-bar{height:3px;background:var(--border);border-radius:2px;margin-top:12px;position:relative;overflow:visible;}
   .b-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--green),var(--amber));
-    width:100%;transition:width .5s linear;}
+    width:100%;transition:width 1s linear;}
+  .b-bar-ball{position:absolute;top:50%;transform:translate(-50%,-50%);font-size:15px;line-height:1;
+    transition:left 1s linear;pointer-events:none;filter:drop-shadow(0 1px 3px rgba(0,0,0,.5));}
   .b-cue-block{background:rgba(219,165,20,.08);border:1px solid rgba(219,165,20,.2);
     border-radius:16px;padding:16px 18px;margin-top:16px;}
   .b-drill-card .b-cue-block{background:transparent;border:0;border-radius:0;padding:0;margin-top:0;}
@@ -615,7 +617,7 @@
               <div class="b-timer-sess" id="timerDisplay">20:00</div>
             </div>
           </div>
-          <div class="b-bar"><div class="b-bar-fill" id="drillFill" style="width:100%"></div></div>
+          <div class="b-bar"><div class="b-bar-fill" id="drillFill" style="width:100%"></div><span class="b-bar-ball" id="drillBall" style="left:100%">⚽</span></div>
         </div>
         <div class="b-drill-card">
           <div class="b-now-tag"><div class="b-pulse"></div> NOW PLAYING</div>
@@ -1616,6 +1618,11 @@ function updateDrillDisplay() {
   }
   const fill = document.getElementById('drillFill');
   if (fill) fill.style.width = drillTotal > 0 ? (pct * 100) + '%' : '0%';
+  const ball = document.getElementById('drillBall');
+  if (ball) {
+    ball.style.left = drillTotal > 0 ? (pct * 100) + '%' : '0%';
+    ball.textContent = SPORTS.find(s => s.id === activeSport)?.emoji || '⚽';
+  }
 }
 function updatePlayBtn() {
   const btn = document.getElementById('playBtn');
