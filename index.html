@@ -292,6 +292,10 @@
   .b-cue-lbl{font-family:var(--mono);font-size:8px;letter-spacing:.18em;color:var(--amber);
     text-transform:uppercase;margin-bottom:5px;}
   .b-cue-text{font-family:var(--sans);font-size:16px;font-weight:600;color:var(--text);line-height:1.25;}
+  .b-how-block{margin-top:10px;margin-bottom:12px;}
+  .b-how-lbl{font-family:var(--mono);font-size:8px;letter-spacing:.18em;color:var(--muted);
+    text-transform:uppercase;margin-bottom:4px;}
+  .b-how-txt{font-size:13px;line-height:1.45;color:rgba(232,234,240,.75);}
   .b-insights{display:none;margin-top:8px;background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.22);
     border-radius:12px;overflow:hidden;}
   .b-insights.open{display:block;}
@@ -614,6 +618,10 @@
         <div class="b-drill-card">
           <div class="b-now-tag"><div class="b-pulse"></div> NOW PLAYING</div>
           <div class="b-drill-name" id="bDrillName">—</div>
+          <div class="b-how-block" id="bHowBlock">
+            <div class="b-how-lbl">How To</div>
+            <div class="b-how-txt" id="bHowTxt"></div>
+          </div>
           <div class="b-card-rule"></div>
           <div class="b-cue-block">
             <div class="b-cue-lbl">Coach Says</div>
@@ -1364,12 +1372,15 @@ function renderNowPlaying() {
   const d = session[activeIdx];
   const nameEl = document.getElementById('bDrillName');
   const cueEl  = document.getElementById('bCueTxt');
+  const howEl  = document.getElementById('bHowTxt');
+  const howBlock = document.getElementById('bHowBlock');
   const mediaEl = document.getElementById('bMedia');
   const insightsEl = document.getElementById('bInsights');
   const insightsRow = document.getElementById('bInsightsRow');
   if (!d) {
     if (nameEl) nameEl.textContent = '—';
     if (cueEl) cueEl.textContent = '';
+    if (howEl) howEl.textContent = '';
     if (mediaEl) mediaEl.innerHTML = '';
     if (insightsEl) insightsEl.classList.remove('open');
     renderProgressDots();
@@ -1377,6 +1388,8 @@ function renderNowPlaying() {
   }
   if (nameEl) nameEl.textContent = d.name.toUpperCase();
   if (cueEl) cueEl.textContent = d.cue || '';
+  if (howEl) howEl.textContent = d.how || '';
+  if (howBlock) howBlock.style.display = d.how ? '' : 'none';
   if (mediaEl) mediaEl.innerHTML = getNowPlayingMedia(d);
   if (insightsEl && insightsRow) {
     const insights = Array.isArray(d.insights) ? d.insights.filter(Boolean) : [];
