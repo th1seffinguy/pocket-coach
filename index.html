@@ -222,20 +222,38 @@
   .pc-setup-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
     color:var(--muted);margin-bottom:10px;}
   .pc-setup-age{display:flex;align-items:center;justify-content:space-between;
-    background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:12px 8px;}
-  .pc-setup-arrow{width:52px;height:52px;border-radius:12px;background:var(--elev);
+    background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:8px 8px;}
+  .pc-setup-arrow{width:40px;height:40px;border-radius:10px;background:var(--elev);
     border:1px solid var(--border);color:var(--text);font-size:28px;line-height:1;
     display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;}
   .pc-setup-arrow:active{transform:scale(.9);background:rgba(30,140,232,.15);border-color:rgba(30,140,232,.45);}
-  .pc-setup-age-inner{text-align:center;flex:1;padding:6px 0;}
-  .pc-setup-age-val{font-family:var(--bebas);font-size:56px;letter-spacing:.02em;line-height:1;color:var(--text);}
-  .pc-setup-age-sub{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:4px;}
+  .pc-setup-age-inner{text-align:center;flex:1;padding:4px 0;}
+  .pc-setup-age-val{font-family:var(--bebas);font-size:34px;letter-spacing:.02em;line-height:1;color:var(--text);}
+  .pc-setup-age-sub{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:3px;}
+  .pc-theme-pill{display:inline-flex;align-items:center;gap:5px;margin-top:7px;padding:4px 8px;
+    border-radius:999px;background:var(--elev);border:1px solid var(--border);
+    font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+  .pc-theme-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);box-shadow:0 0 8px currentColor;}
   .pc-setup-start-wrap{padding:20px 16px 16px;}
   .pc-setup-start{width:100%;height:60px;font-size:17px;letter-spacing:.06em;}
+  .pc-dur-chips--setup{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;overflow:visible;}
+  .pc-dur-chips--setup .pc-dur-chip{height:48px;display:flex;align-items:center;justify-content:center;
+    padding:0 8px;border-radius:12px;font-family:var(--bebas);font-size:20px;letter-spacing:.04em;}
+  .pc-dur-chips--setup .pc-dur-chip.is-active{box-shadow:inset 0 0 0 1px rgba(30,140,232,.25);}
 
   /* ── STADIUM BOARD (ACTIVE SESSION) ────────────────────────────── */
   .b-shell{display:flex;flex-direction:column;min-height:calc(100svh - 185px);}
-  .b-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 10px;}
+  .b-config-strip{margin:10px 16px 0;padding:9px 10px;background:var(--surface);
+    border:1px solid var(--border);border-radius:14px;display:flex;align-items:center;gap:8px;}
+  .b-config-main{display:flex;gap:6px;align-items:center;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;}
+  .b-config-main::-webkit-scrollbar{display:none;}
+  .b-config-chip{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;padding:5px 8px;
+    border-radius:999px;background:var(--elev);border:1px solid var(--border);font-family:var(--mono);
+    font-size:10px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;}
+  .b-config-action{height:30px;border-radius:9px;border:1px solid rgba(30,140,232,.45);
+    background:rgba(30,140,232,.1);color:#8FC3F0;font-family:var(--mono);font-size:10px;
+    letter-spacing:.08em;text-transform:uppercase;padding:0 10px;cursor:pointer;flex-shrink:0;}
+  .b-header{display:flex;align-items:center;justify-content:space-between;padding:10px 20px 8px;}
   .b-logo{font-family:var(--bebas);font-size:20px;letter-spacing:2px;opacity:.45;}
   .b-header-right{display:flex;align-items:center;gap:10px;}
   .b-progress-dots{display:flex;gap:5px;align-items:center;}
@@ -246,33 +264,50 @@
     border:1px solid var(--border);color:var(--muted);display:flex;align-items:center;
     justify-content:center;cursor:pointer;transition:all .15s;}
   .b-pause-btn:active{transform:scale(.88);}
-  .b-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 20px 8px;}
-  .b-now-tag{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--amber);
-    text-transform:uppercase;display:flex;align-items:center;gap:6px;margin-bottom:14px;}
+  .b-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 20px 6px;}
+  .b-media{height:82px;background:var(--surface);border:1px solid var(--border);
+    border-radius:16px;overflow:hidden;margin-bottom:10px;display:flex;align-items:center;justify-content:center;}
+  .b-media svg{display:block;width:100%;height:100%;}
+  .b-drill-card{background:var(--elev);border:1px solid var(--border);border-radius:18px;
+    padding:12px 18px;margin-bottom:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,.035);}
+  .b-now-tag{font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--amber);
+    text-transform:uppercase;display:flex;align-items:center;gap:6px;margin-bottom:8px;}
   .b-pulse{width:7px;height:7px;border-radius:50%;background:var(--amber);
     animation:pulse 1.4s ease-in-out infinite;flex-shrink:0;}
-  .b-drill-name{font-family:var(--bebas);font-size:58px;line-height:.92;letter-spacing:.02em;
-    color:var(--text);margin-bottom:18px;}
-  .b-timer-block{background:var(--elev);border-radius:20px;padding:18px 20px 14px;}
+  .b-drill-name{font-family:var(--bebas);font-size:40px;line-height:.92;letter-spacing:.02em;color:var(--text);}
+  .b-card-rule{height:1px;background:linear-gradient(90deg,var(--amber),transparent);margin:9px 0 9px;}
+  .b-timer-block{background:var(--elev);border-radius:18px;padding:12px 18px 10px;margin-bottom:10px;}
   .b-timer-row{display:flex;align-items:flex-end;justify-content:space-between;}
   .b-timer-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--muted);
     text-transform:uppercase;margin-bottom:4px;}
-  .b-timer-num{font-family:var(--bebas);font-size:72px;line-height:1;color:var(--green);letter-spacing:.02em;}
+  .b-timer-num{font-family:var(--bebas);font-size:54px;line-height:1;color:var(--green);letter-spacing:.02em;}
   .b-timer-right{text-align:right;}
-  .b-timer-sess{font-family:var(--bebas);font-size:26px;color:var(--blue);}
+  .b-timer-sess{font-family:var(--bebas);font-size:24px;color:var(--blue);}
   .b-bar{height:3px;background:var(--border);border-radius:2px;margin-top:12px;}
   .b-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--green),var(--amber));
     width:100%;transition:width .5s linear;}
   .b-cue-block{background:rgba(219,165,20,.08);border:1px solid rgba(219,165,20,.2);
     border-radius:16px;padding:16px 18px;margin-top:16px;}
-  .b-cue-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--amber);
-    text-transform:uppercase;margin-bottom:7px;}
-  .b-cue-text{font-family:var(--sans);font-size:19px;font-weight:600;color:var(--text);line-height:1.3;}
+  .b-drill-card .b-cue-block{background:transparent;border:0;border-radius:0;padding:0;margin-top:0;}
+  .b-cue-lbl{font-family:var(--mono);font-size:8px;letter-spacing:.18em;color:var(--amber);
+    text-transform:uppercase;margin-bottom:5px;}
+  .b-cue-text{font-family:var(--sans);font-size:16px;font-weight:600;color:var(--text);line-height:1.25;}
+  .b-insights{display:none;margin-top:8px;background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.22);
+    border-radius:12px;padding:7px 9px;}
+  .b-insights.open{display:block;}
+  .b-insights-lbl{font-family:var(--mono);font-size:8px;letter-spacing:.18em;color:#A78BFA;text-transform:uppercase;margin-bottom:5px;}
+  .b-insights-row{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;}
+  .b-insights-row::-webkit-scrollbar{display:none;}
+  .b-insight-card{min-width:48%;scroll-snap-align:start;font-size:10px;line-height:1.3;color:var(--text);
+    background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06);border-radius:9px;
+    padding:6px 8px;max-height:34px;overflow:hidden;}
   .b-quip{font-size:10px;font-family:var(--mono);color:var(--amber);font-style:italic;
     padding:8px 0 0;min-height:14px;opacity:0;transition:opacity .4s;}
   .b-quip.show{opacity:1;}
-  .b-footer{padding:14px 18px 16px;display:flex;gap:10px;border-top:1px solid var(--border);}
-  .b-btn{height:52px;border-radius:14px;font-family:var(--sans);font-weight:600;font-size:14px;
+  .b-footer{position:fixed;left:0;right:0;bottom:78px;z-index:95;padding:10px 18px 12px;
+    display:flex;gap:10px;border-top:1px solid var(--border);background:rgba(15,17,21,.96);
+    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);}
+  .b-btn{height:46px;border-radius:14px;font-family:var(--sans);font-weight:600;font-size:14px;
     border:1px solid var(--border);background:var(--elev);color:var(--text);
     display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;}
   .b-btn:active{transform:scale(.97);}
@@ -299,6 +334,30 @@
     font-family:var(--mono);}
   .pc-filter-chip.active{background:var(--blue);border-color:var(--blue);color:white;}
   .pc-filter-chip:active{transform:scale(.92);}
+  .pc-filter-label{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.16em;
+    text-transform:uppercase;padding:6px 16px 5px;}
+  .pc-builder-bar{margin:0 16px 10px;background:var(--elev);border:1px solid var(--border);
+    border-radius:14px;padding:10px;display:flex;align-items:center;gap:10px;}
+  .pc-builder-summary{flex:1;min-width:0;}
+  .pc-builder-title{font-family:var(--bebas);font-size:20px;letter-spacing:.02em;}
+  .pc-builder-meta{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
+  .pc-builder-actions{display:flex;gap:6px;align-items:center;}
+  .pc-mini-btn{height:34px;border-radius:10px;border:1px solid var(--border);background:var(--surface);
+    color:var(--text);font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+    padding:0 10px;cursor:pointer;white-space:nowrap;}
+  .pc-mini-btn--primary{background:var(--green);border-color:var(--green);color:#0A1A0E;font-weight:700;}
+  .pc-add-btn{height:34px;border-radius:10px;border:1px solid rgba(30,140,232,.45);
+    background:rgba(30,140,232,.12);color:#8FC3F0;font-family:var(--mono);font-size:10px;
+    letter-spacing:.08em;text-transform:uppercase;padding:0 10px;cursor:pointer;white-space:nowrap;}
+  .pc-builder-list{display:flex;flex-direction:column;gap:8px;margin-bottom:12px;}
+  .pc-builder-row{display:flex;align-items:center;gap:10px;background:var(--elev);border:1px solid var(--border);
+    border-radius:12px;padding:9px;}
+  .pc-builder-num{width:24px;height:24px;border-radius:8px;background:var(--blue);color:white;
+    display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;flex-shrink:0;}
+  .pc-builder-name{flex:1;font-size:13px;font-weight:700;min-width:0;}
+  .pc-builder-controls{display:flex;gap:4px;}
+  .pc-builder-controls button{width:30px;height:30px;border-radius:8px;border:1px solid var(--border);
+    background:var(--surface);color:var(--muted);cursor:pointer;}
   .pc-lib-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;
     padding:14px;margin:0 16px 10px;}
   .pc-lib-card-hd{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
@@ -346,6 +405,14 @@
     font-size:11px;font-family:var(--mono);color:var(--green);white-space:nowrap;}
   .pc-hist-drills{font-size:13px;font-weight:600;line-height:1.4;}
   .pc-hist-meta{font-size:10px;color:var(--muted);font-family:var(--mono);margin-top:4px;}
+  .pc-ach-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:0 16px 14px;}
+  .pc-ach{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:11px;
+    min-height:76px;opacity:.55;}
+  .pc-ach.unlocked{opacity:1;border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.06);}
+  .pc-ach-ico{font-size:20px;margin-bottom:6px;}
+  .pc-ach-name{font-size:12px;font-weight:700;color:var(--text);}
+  .pc-ach-desc{font-size:10px;line-height:1.35;color:var(--muted);margin-top:3px;}
+  @media (min-height:820px){.b-media{height:132px}.b-drill-name{font-size:50px}.b-timer-num{font-size:66px}}
 
   /* ── TOAST ──────────────────────────────────────────────────── */
   .toast{position:fixed;bottom:96px;left:50%;transform:translateX(-50%) translateY(12px);
@@ -385,6 +452,27 @@
     display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;
     transition:transform .2s;}
   .modal-save:active{transform:scale(.97);}
+  .editor-section{margin-bottom:16px;}
+  .editor-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--muted);
+    text-transform:uppercase;margin-bottom:8px;}
+  .editor-chip-row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;}
+  .editor-chip-row::-webkit-scrollbar{display:none;}
+  .editor-chip{height:38px;border-radius:999px;border:1px solid var(--border);background:var(--elev);
+    color:var(--muted);font-family:var(--mono);font-size:11px;font-weight:700;padding:0 13px;
+    cursor:pointer;white-space:nowrap;}
+  .editor-chip.active{background:rgba(30,140,232,.14);border-color:rgba(30,140,232,.5);color:#8FC3F0;}
+  .editor-age{display:flex;align-items:center;justify-content:space-between;background:var(--elev);
+    border:1px solid var(--border);border-radius:14px;padding:10px 8px;}
+  .editor-arrow{width:38px;height:38px;border-radius:10px;background:var(--surface);border:1px solid var(--border);
+    color:var(--text);font-size:22px;cursor:pointer;}
+  .editor-age-mid{text-align:center;flex:1;min-width:0;padding:0 8px;}
+  .editor-age-title{font-family:var(--bebas);font-size:32px;line-height:1;letter-spacing:.02em;}
+  .editor-age-sub{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:3px;}
+  .editor-age-theme{display:inline-flex;margin-top:7px;padding:4px 8px;border-radius:999px;background:var(--surface);
+    border:1px solid var(--border);font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+  .editor-duration-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;}
+  .editor-duration-grid .editor-chip{width:100%;height:44px;border-radius:12px;font-family:var(--bebas);
+    font-size:18px;letter-spacing:.04em;padding:0;}
 
   /* ── SPORT SELECTOR ─────────────────────────────────────────── */
   .pc-sport-row{display:flex;gap:8px;padding:10px 16px 0;overflow-x:auto;scrollbar-width:none;}
@@ -459,6 +547,7 @@
         <div class="pc-setup-age-inner">
           <div class="pc-setup-age-val" id="ageBadgeVal">U6/U8</div>
           <div class="pc-setup-age-sub" id="ageSubLabel">Ages 5–7</div>
+          <div class="pc-theme-pill"><span class="pc-theme-dot" id="ageThemeDot"></span><span id="ageThemeLabel">Coordination</span></div>
         </div>
         <button class="pc-setup-arrow" id="ageRight" onclick="shiftAge(1)">&#8250;</button>
       </div>
@@ -467,7 +556,7 @@
     <!-- Session length -->
     <div class="pc-setup-section">
       <div class="pc-setup-lbl">Session Length</div>
-      <div class="pc-dur-chips" id="durChips"></div>
+      <div class="pc-dur-chips pc-dur-chips--setup" id="durChips"></div>
       <div class="pc-pair__sub" id="drillCountSub" style="padding:6px 0 0">5 drills planned</div>
     </div>
 
@@ -480,6 +569,10 @@
 
   <!-- ─── ACTIVE PANEL ─────────────────────────────────────────── -->
   <div id="activePanel" style="display:none">
+    <div class="b-config-strip" onclick="openSessionEditor()">
+      <div class="b-config-main" id="activeConfigStrip"></div>
+      <button class="b-config-action" onclick="openSessionEditor(event)">Edit</button>
+    </div>
     <div class="b-shell">
 
       <!-- Header: logo + progress dots + pause -->
@@ -495,8 +588,7 @@
 
       <!-- Body: drill name + timer block + cue -->
       <div class="b-body">
-        <div class="b-now-tag"><div class="b-pulse"></div> NOW PLAYING</div>
-        <div class="b-drill-name" id="bDrillName">—</div>
+        <div class="b-media" id="bMedia"></div>
         <div class="b-timer-block">
           <div class="b-timer-row">
             <div>
@@ -510,9 +602,18 @@
           </div>
           <div class="b-bar"><div class="b-bar-fill" id="drillFill" style="width:100%"></div></div>
         </div>
-        <div class="b-cue-block">
-          <div class="b-cue-lbl">Coach Says</div>
-          <div class="b-cue-text" id="bCueTxt"></div>
+        <div class="b-drill-card">
+          <div class="b-now-tag"><div class="b-pulse"></div> NOW PLAYING</div>
+          <div class="b-drill-name" id="bDrillName">—</div>
+          <div class="b-card-rule"></div>
+          <div class="b-cue-block">
+            <div class="b-cue-lbl">Coach Says</div>
+            <div class="b-cue-text" id="bCueTxt"></div>
+          </div>
+          <div class="b-insights" id="bInsights">
+            <div class="b-insights-lbl">Why This Drill</div>
+            <div class="b-insights-row" id="bInsightsRow"></div>
+          </div>
         </div>
         <div class="b-quip" id="timerQuip"></div>
       </div>
@@ -543,6 +644,16 @@
 <!-- LIBRARY VIEW -->
 <div class="view" id="view-library">
   <input class="pc-lib-search" id="libSearch" type="text" placeholder="Search all drills…" oninput="renderLib()">
+  <div class="pc-builder-bar">
+    <div class="pc-builder-summary">
+      <div class="pc-builder-title">Custom Session</div>
+      <div class="pc-builder-meta" id="builderMeta">0 drills · 0 min</div>
+    </div>
+    <div class="pc-builder-actions">
+      <button class="pc-mini-btn" onclick="openBuilder()">Build</button>
+      <button class="pc-mini-btn pc-mini-btn--primary" id="builderStartBtn" onclick="startCustomSession()" disabled>Start</button>
+    </div>
+  </div>
   <div class="pc-filter-row" id="filterRow"></div>
   <div id="libList"></div>
 </div>
@@ -555,6 +666,8 @@
     <div class="pc-stat"><div class="pc-stat__lbl">Minutes</div><div class="pc-stat__val pc-stat__val--green" id="pMinutes">0</div></div>
     <div class="pc-stat"><div class="pc-stat__lbl">Streak 🔥</div><div class="pc-stat__val pc-stat__val--coral" id="pStreak">0</div></div>
   </div>
+  <div class="pc-section-hd">Achievements</div>
+  <div class="pc-ach-grid" id="achievementGrid"></div>
   <div class="pc-section-hd">Session History</div>
   <div id="histList"></div>
 </div>
@@ -636,6 +749,49 @@
       Save and Close
     </button>
     <button class="modal-cancel" onclick="confirmEndDiscard()">Discard and Close</button>
+  </div>
+</div>
+
+<!-- Custom Session Builder Modal -->
+<div class="overlay" id="builderOverlay" onclick="maybeCloseBuilder(event)">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Build Session</div>
+    <div class="modal-sub" id="builderModalSub">Pick drills from the library, then start when ready.</div>
+    <div class="pc-builder-list" id="builderList"></div>
+    <button class="modal-save" id="builderModalStart" onclick="startCustomSession()">Start Session</button>
+    <button class="modal-cancel" onclick="closeBuilder()">Close</button>
+  </div>
+</div>
+
+<!-- Active Session Editor Modal -->
+<div class="overlay" id="sessionEditorOverlay" onclick="maybeCloseSessionEditor(event)">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Edit Session</div>
+    <div class="modal-sub">Changing these settings will create a fresh session.</div>
+    <div class="editor-section">
+      <div class="editor-label">Sport</div>
+      <div class="editor-chip-row" id="editorSportRow"></div>
+    </div>
+    <div class="editor-section">
+      <div class="editor-label">Age Group</div>
+      <div class="editor-age">
+        <button class="editor-arrow" id="editorAgeLeft" onclick="shiftEditorAge(-1)">&#8249;</button>
+        <div class="editor-age-mid">
+          <div class="editor-age-title" id="editorAgeTitle">U6/U8</div>
+          <div class="editor-age-sub" id="editorAgeSub">Ages 5-7</div>
+          <div class="editor-age-theme" id="editorAgeTheme">Coordination & First Shooting</div>
+        </div>
+        <button class="editor-arrow" id="editorAgeRight" onclick="shiftEditorAge(1)">&#8250;</button>
+      </div>
+    </div>
+    <div class="editor-section">
+      <div class="editor-label">Session Length</div>
+      <div class="editor-duration-grid" id="editorDurationGrid"></div>
+    </div>
+    <button class="modal-save" onclick="applySessionEditor()">Apply New Session</button>
+    <button class="modal-cancel" onclick="closeSessionEditor()">Cancel</button>
   </div>
 </div>
 
@@ -775,22 +931,22 @@ function getNowPlayingMedia(d) {
 // ─── AGE GROUP DEFINITIONS ────────────────────────────────────────────────────
 const AGE_GROUPS = {
   soccer: [
-    { id:0, label:'U4/U6', sub:'Ages 3–5', badge:'U4/U6', ball:'Size 2–3', focus:'<strong>Discovery & Fun.</strong> Motor skills first — dribbling in open space, learning the ball is a friend. No passing expectations. Chaos is OK.', defaultMins:15, freestyleId:'freestyle', drills:['hitcoach','redlight','shapes','cleanroom','toetaps','balloon','freeze','soleroll','monster','freestyle'] },
-    { id:1, label:'U6/U8', sub:'Ages 5–7', badge:'U6/U8', ball:'Size 3', focus:'<strong>Ball Mastery & First Shooting.</strong> High touches, dribbling with both feet, stopping the ball on command, kicking at goal. Introduce simple passing only as a reward drill.', defaultMins:20, freestyleId:'freestyle', drills:['redlight','cleanroom','toetaps','passshoot','gate','nightmare','freeze','balloon','target','pullback','aroundworld','numshoot','pressuredrib','freestyle'] },
-    { id:2, label:'U8/U10', sub:'Ages 7–9', badge:'U8/U10', ball:'Size 3–4', focus:'<strong>Technical Foundation.</strong> Inside/outside of foot dribbling, receiving ground balls, shooting with the instep, basic 1v1 defending.', defaultMins:25, freestyleId:'freestyle', drills:['dribbleweave','insideoutside','passshoot','shielding','target','gate','nightmare','toetaps','freeze','pullback','fig8cones','juggle','penaltykick','cutbackfinish','receiveturn','weakfoot','numshoot','boxdrill','pressuredrib','freestyle'] },
-    { id:3, label:'U10/U12', sub:'Ages 9–11', badge:'U10/U12', ball:'Size 4', focus:'<strong>Skill Under Pressure.</strong> Passing combinations, ball mastery at speed, 1v1 attacking/defending, introduction to crossing and finishing.', defaultMins:30, freestyleId:'freestyle', drills:['passweave','rondo','dribbleweave','crossing','insideoutside','shielding','target','gate','nightmare','freeze','fig8cones','juggle','penaltykick','cutbackfinish','volleyfinish','wallpasscombo','stepovermove','longrangelaser','receiveturn','weakfoot','boxdrill','cruyff','freestyle'] }
+    { id:0, label:'U4/U6', sub:'Ages 3–5', badge:'U4/U6', ball:'Size 2–3', themeLabel:'Motor Skills & Discovery', themeColor:'amber', themeAttributes:['movement','control'], focus:'<strong>Discovery & Fun.</strong> Motor skills first — dribbling in open space, learning the ball is a friend. No passing expectations. Chaos is OK.', defaultMins:15, freestyleId:'freestyle', drills:['hitcoach','redlight','shapes','cleanroom','toetaps','balloon','freeze','soleroll','monster','freestyle'] },
+    { id:1, label:'U6/U8', sub:'Ages 5–7', badge:'U6/U8', ball:'Size 3', themeLabel:'Coordination & First Shooting', themeColor:'green', themeAttributes:['coordination','shooting'], focus:'<strong>Ball Mastery & First Shooting.</strong> High touches, dribbling with both feet, stopping on command, kicking at goal. Introduce simple passing only as a reward drill.', defaultMins:20, freestyleId:'freestyle', drills:['redlight','cleanroom','toetaps','passshoot','gate','nightmare','freeze','balloon','target','pullback','aroundworld','numshoot','pressuredrib','freestyle'] },
+    { id:2, label:'U8/U10', sub:'Ages 7–9', badge:'U8/U10', ball:'Size 3–4', themeLabel:'Technique & 1v1 Skills', themeColor:'blue', themeAttributes:['technique','1v1'], focus:'<strong>Technical Foundation.</strong> Inside/outside of foot dribbling, receiving ground balls, shooting with the instep, basic 1v1 defending.', defaultMins:25, freestyleId:'freestyle', drills:['dribbleweave','insideoutside','passshoot','shielding','target','gate','nightmare','toetaps','freeze','pullback','fig8cones','juggle','penaltykick','cutbackfinish','receiveturn','weakfoot','numshoot','boxdrill','pressuredrib','freestyle'] },
+    { id:3, label:'U10/U12', sub:'Ages 9–11', badge:'U10/U12', ball:'Size 4', themeLabel:'Vision & Skill Under Pressure', themeColor:'coral', themeAttributes:['vision','pressure'], focus:'<strong>Skill Under Pressure.</strong> Passing combinations, ball mastery at speed, 1v1 attacking/defending, introduction to crossing and finishing.', defaultMins:30, freestyleId:'freestyle', drills:['passweave','rondo','dribbleweave','crossing','insideoutside','shielding','target','gate','nightmare','freeze','fig8cones','juggle','penaltykick','cutbackfinish','volleyfinish','wallpasscombo','stepovermove','longrangelaser','receiveturn','weakfoot','boxdrill','cruyff','freestyle'] }
   ],
   basketball: [
-    { id:0, label:'Mini Hoops', sub:'Ages 3–5', badge:'MINI', ball:'Size 4–5', focus:'<strong>Ball Discovery.</strong> Getting comfortable with the ball — bouncing, catching, and rolling. No shooting pressure. Fun first.', defaultMins:15, freestyleId:'bb_freestyle', drills:['bb_bouncestart','bb_statdribble','bb_walkdribble','bb_formshoot','bb_freestyle'] },
-    { id:1, label:'Rookie', sub:'Ages 5–7', badge:'ROOKIE', ball:'Size 5', focus:'<strong>First Skills.</strong> Dribbling while moving, basic shooting form, layup introduction, and simple passing. High repetition, low pressure.', defaultMins:20, freestyleId:'bb_freestyle', drills:['bb_statdribble','bb_walkdribble','bb_formshoot','bb_layup','bb_chestpass','bb_bouncepass','bb_coneslalom','bb_freethrow','bb_freestyle'] },
-    { id:2, label:'Junior', sub:'Ages 7–9', badge:'JUNIOR', ball:'Size 6', focus:'<strong>Skill Building.</strong> Layups, passing combinations, defensive fundamentals, and ball-handling complexity. Introduce weak-hand drills.', defaultMins:25, freestyleId:'bb_freestyle', drills:['bb_layup','bb_chestpass','bb_bouncepass','bb_coneslalom','bb_defslide','bb_freethrow','bb_fig8legs','bb_twoball','bb_aroundworld','bb_mikan','bb_elbow','bb_crossover','bb_freestyle'] },
-    { id:3, label:'Travel', sub:'Ages 9–11', badge:'TRAVEL', ball:'Size 7', focus:'<strong>Game Skills.</strong> Advanced handles, catch-and-shoot, defensive closeouts, and competitive shooting drills. Prepare for team play.', defaultMins:30, freestyleId:'bb_freestyle', drills:['bb_defslide','bb_freethrow','bb_fig8legs','bb_twoball','bb_aroundworld','bb_mikan','bb_elbow','bb_crossover','bb_closeout','bb_coneslalom','bb_layup','bb_freestyle'] }
+    { id:0, label:'Mini Hoops', sub:'Ages 3–5', badge:'MINI', ball:'Size 4–5', themeLabel:'Ball Discovery', themeColor:'amber', focus:'<strong>Ball Discovery.</strong> Getting comfortable with the ball — bouncing, catching, and rolling. No shooting pressure. Fun first.', defaultMins:15, freestyleId:'bb_freestyle', drills:['bb_bouncestart','bb_statdribble','bb_walkdribble','bb_formshoot','bb_freestyle'] },
+    { id:1, label:'Rookie', sub:'Ages 5–7', badge:'ROOKIE', ball:'Size 5', themeLabel:'First Skills', themeColor:'green', focus:'<strong>First Skills.</strong> Dribbling while moving, basic shooting form, layup introduction, and simple passing. High repetition, low pressure.', defaultMins:20, freestyleId:'bb_freestyle', drills:['bb_statdribble','bb_walkdribble','bb_formshoot','bb_layup','bb_chestpass','bb_bouncepass','bb_coneslalom','bb_freethrow','bb_freestyle'] },
+    { id:2, label:'Junior', sub:'Ages 7–9', badge:'JUNIOR', ball:'Size 6', themeLabel:'Skill Building', themeColor:'blue', focus:'<strong>Skill Building.</strong> Layups, passing combinations, defensive fundamentals, and ball-handling complexity. Introduce weak-hand drills.', defaultMins:25, freestyleId:'bb_freestyle', drills:['bb_layup','bb_chestpass','bb_bouncepass','bb_coneslalom','bb_defslide','bb_freethrow','bb_fig8legs','bb_twoball','bb_aroundworld','bb_mikan','bb_elbow','bb_crossover','bb_freestyle'] },
+    { id:3, label:'Travel', sub:'Ages 9–11', badge:'TRAVEL', ball:'Size 7', themeLabel:'Game Skills', themeColor:'coral', focus:'<strong>Game Skills.</strong> Advanced handles, catch-and-shoot, defensive closeouts, and competitive shooting drills. Prepare for team play.', defaultMins:30, freestyleId:'bb_freestyle', drills:['bb_defslide','bb_freethrow','bb_fig8legs','bb_twoball','bb_aroundworld','bb_mikan','bb_elbow','bb_crossover','bb_closeout','bb_coneslalom','bb_layup','bb_freestyle'] }
   ],
   baseball: [
-    { id:0, label:'T-Ball', sub:'Ages 3–5', badge:'T-BALL', ball:'Soft ball', focus:'<strong>Just Swing.</strong> Tee work, basic catch and throw, arm warm-up. Big swings, big fun. No pressure on mechanics.', defaultMins:15, freestyleId:'bsb_freestyle', drills:['bsb_armcircles','bsb_catchthrow','bsb_teework','bsb_mirrorswing','bsb_freestyle'] },
-    { id:1, label:'Coach Pitch', sub:'Ages 5–7', badge:'COACH PITCH', ball:'Size 5 soft', focus:'<strong>Contact & Fielding.</strong> Soft toss hitting, ground ball basics, pop fly tracking, and base running fundamentals.', defaultMins:20, freestyleId:'bsb_freestyle', drills:['bsb_armcircles','bsb_catchthrow','bsb_teework','bsb_softtoss','bsb_bucketthrow','bsb_groundball','bsb_popfly','bsb_rapidfire','bsb_baserun','bsb_mirrorswing','bsb_fieldingpos','bsb_freestyle'] },
-    { id:2, label:'Kid Pitch', sub:'Ages 7–9', badge:'KID PITCH', ball:'Standard youth', focus:'<strong>Mechanics Matter.</strong> One-knee throwing, contact zones, short hops, long toss, and full pitching delivery basics.', defaultMins:25, freestyleId:'bsb_freestyle', drills:['bsb_armcircles','bsb_catchthrow','bsb_softtoss','bsb_longtoss','bsb_groundball','bsb_popfly','bsb_oneknee','bsb_teecontact','bsb_shorthop','bsb_rapidfire','bsb_baserun','bsb_loadswing','bsb_fieldingpos','bsb_freestyle'] },
-    { id:3, label:'Travel Ball', sub:'Ages 9–11', badge:'TRAVEL BALL', ball:'Standard', focus:'<strong>Competitive Edge.</strong> Pitching mechanics, advanced fielding, contact zone mastery, and situational baserunning.', defaultMins:30, freestyleId:'bsb_freestyle', drills:['bsb_armcircles','bsb_longtoss','bsb_softtoss','bsb_groundball','bsb_popfly','bsb_oneknee','bsb_teecontact','bsb_shorthop','bsb_baserun','bsb_loadswing','bsb_pitchingmech','bsb_fieldingpos','bsb_freestyle'] }
+    { id:0, label:'T-Ball', sub:'Ages 3–5', badge:'T-BALL', ball:'Soft ball', themeLabel:'Just Swing', themeColor:'amber', focus:'<strong>Just Swing.</strong> Tee work, basic catch and throw, arm warm-up. Big swings, big fun. No pressure on mechanics.', defaultMins:15, freestyleId:'bsb_freestyle', drills:['bsb_armcircles','bsb_catchthrow','bsb_teework','bsb_mirrorswing','bsb_freestyle'] },
+    { id:1, label:'Coach Pitch', sub:'Ages 5–7', badge:'COACH PITCH', ball:'Size 5 soft', themeLabel:'Contact & Fielding', themeColor:'green', focus:'<strong>Contact & Fielding.</strong> Soft toss hitting, ground ball basics, pop fly tracking, and base running fundamentals.', defaultMins:20, freestyleId:'bsb_freestyle', drills:['bsb_armcircles','bsb_catchthrow','bsb_teework','bsb_softtoss','bsb_bucketthrow','bsb_groundball','bsb_popfly','bsb_rapidfire','bsb_baserun','bsb_mirrorswing','bsb_fieldingpos','bsb_freestyle'] },
+    { id:2, label:'Kid Pitch', sub:'Ages 7–9', badge:'KID PITCH', ball:'Standard youth', themeLabel:'Mechanics Matter', themeColor:'blue', focus:'<strong>Mechanics Matter.</strong> One-knee throwing, contact zones, short hops, long toss, and full pitching delivery basics.', defaultMins:25, freestyleId:'bsb_freestyle', drills:['bsb_armcircles','bsb_catchthrow','bsb_softtoss','bsb_longtoss','bsb_groundball','bsb_popfly','bsb_oneknee','bsb_teecontact','bsb_shorthop','bsb_rapidfire','bsb_baserun','bsb_loadswing','bsb_fieldingpos','bsb_freestyle'] },
+    { id:3, label:'Travel Ball', sub:'Ages 9–11', badge:'TRAVEL BALL', ball:'Standard', themeLabel:'Competitive Edge', themeColor:'coral', focus:'<strong>Competitive Edge.</strong> Pitching mechanics, advanced fielding, contact zone mastery, and situational baserunning.', defaultMins:30, freestyleId:'bsb_freestyle', drills:['bsb_armcircles','bsb_longtoss','bsb_softtoss','bsb_groundball','bsb_popfly','bsb_oneknee','bsb_teecontact','bsb_shorthop','bsb_baserun','bsb_loadswing','bsb_pitchingmech','bsb_fieldingpos','bsb_freestyle'] }
   ]
 };
 
@@ -834,12 +990,20 @@ let isOpenMode = false;
 let activeIdx = 0;
 let queueOpen = false;
 let detailOpen = false;
-let activeFilter = 'age';
+let customSession = [];
+let builderOpen = false;
+let builderMode = 'scratch';
+let isCustomActiveSession = false;
+let sessionEditorDraft = null;
+let libraryFilters = { categories:new Set(), durations:new Set(), ageMode:'age', funOnly:false };
 let state = loadState();
 
 const curGroup  = () => AGE_GROUPS[activeSport][ageIdx];
 const getDrill  = id => ALL_DRILLS[id];
 const icon = (id, size=54) => `<svg viewBox="0 0 ${size} ${size}">${(ICONS[id]||'<circle cx="27" cy="27" r="22" fill="#22C55E" opacity=".4"/>').replace(/<svg[^>]*>/,'').replace('</svg>','')}</svg>`;
+const themeVar = key => ({ amber:'var(--amber)', green:'var(--green)', blue:'var(--blue)', coral:'var(--coral)' }[key] || 'var(--blue)');
+const sportLabel = id => SPORTS.find(s => s.id === id)?.label || id;
+const durationBucket = d => d.duration < 3 ? 'under3' : d.duration <= 4 ? '3to4' : '5plus';
 
 // ─── ICON HELPERS ─────────────────────────────────────────────────────────────
 const SVG = {
@@ -886,6 +1050,7 @@ function selectDuration(m) {
   sessionMins = m;
   renderDurChips();
   updateSessionBadge();
+  renderActiveConfigStrip();
   generateSession();
 }
 function selectOpenMode() {
@@ -894,16 +1059,18 @@ function selectOpenMode() {
   isOpenMode = true;
   renderDurChips();
   updateSessionBadge();
+  renderActiveConfigStrip();
   generateSession();
 }
 function updateSessionBadge() {
   const el = document.getElementById('sessionModeText');
-  if (el) el.textContent = isOpenMode ? 'OPEN' : `${sessionMins} MIN`;
+  if (el) el.textContent = isCustomActiveSession ? 'CUSTOM' : isOpenMode ? 'OPEN' : `${sessionMins} MIN`;
   const badge = document.getElementById('sessionModeBadge');
   if (badge) {
-    badge.style.color = isOpenMode ? 'var(--coral)' : '';
-    badge.style.borderColor = isOpenMode ? 'rgba(217,80,43,.5)' : '';
-    badge.style.background = isOpenMode ? 'rgba(217,80,43,.08)' : '';
+    const warm = isOpenMode || isCustomActiveSession;
+    badge.style.color = warm ? 'var(--coral)' : '';
+    badge.style.borderColor = warm ? 'rgba(217,80,43,.5)' : '';
+    badge.style.background = warm ? 'rgba(217,80,43,.08)' : '';
   }
 }
 
@@ -913,10 +1080,13 @@ function renderSportChips() {
     `<div class="pc-sport-sel ${s.id === activeSport ? 'active' : ''}" onclick="selectSport('${s.id}')">${s.emoji} ${s.label}</div>`
   ).join('');
   const hsl = document.getElementById('headerSportLabel'); if (hsl) hsl.textContent = SPORTS.find(s => s.id === activeSport)?.label || 'Soccer';
+  renderBuilder();
+  renderActiveConfigStrip();
 }
 function selectSport(id) {
   activeSport = id;
   ageIdx = Math.min(ageIdx, AGE_GROUPS[id].length - 1);
+  libraryFilters.categories.clear();
   renderSportChips();
   renderFilterChips();
   updateAgeUI();
@@ -928,6 +1098,13 @@ function updateAgeUI() {
   const g = curGroup();
   document.getElementById('ageBadgeVal').textContent = g.badge;
   document.getElementById('ageSubLabel').textContent = g.sub;
+  const themeLabel = document.getElementById('ageThemeLabel');
+  const themeDot = document.getElementById('ageThemeDot');
+  if (themeLabel) themeLabel.textContent = g.themeLabel || g.label;
+  if (themeDot) {
+    themeDot.style.background = themeVar(g.themeColor);
+    themeDot.style.color = themeVar(g.themeColor);
+  }
   document.getElementById('ageLeft').disabled = ageIdx === 0;
   document.getElementById('ageLeft').style.opacity = ageIdx === 0 ? '.3' : '1';
   document.getElementById('ageLeft').style.pointerEvents = ageIdx === 0 ? 'none' : '';
@@ -941,6 +1118,7 @@ function updateAgeUI() {
   updateSessionBadge();
   totalSec = timerSec = sessionMins * 60;
   updateTimerDisplay();
+  renderActiveConfigStrip();
 }
 function shiftAge(dir) {
   const next = ageIdx + dir;
@@ -952,6 +1130,7 @@ function shiftAge(dir) {
 
 // ─── SMART SESSION GENERATION ─────────────────────────────────────────────────
 function generateSession() {
+  isCustomActiveSession = false;
   done.clear();
   activeIdx = 0;
   drillSec = 0;
@@ -964,6 +1143,7 @@ function generateSession() {
   const g = curGroup();
   const freeId = g.freestyleId || 'freestyle';
   if (isOpenMode) { timerSec = 0; totalSec = 0; } else { timerSec = totalSec = sessionMins * 60; }
+  updateSessionBadge();
   updateTimerDisplay();
 
   const recent = state.sessions.filter(s => s.ageIdx === ageIdx && (s.sport || 'soccer') === activeSport).slice(-5);
@@ -991,6 +1171,7 @@ function generateSession() {
   drillSec = session[0] ? session[0].duration * 60 : 0;
   updateDrillDisplay();
   document.getElementById('drillCountSub').textContent = `${session.length} drills planned`;
+  renderActiveConfigStrip();
   renderNowPlaying();
 }
 
@@ -1007,6 +1188,109 @@ function returnToSetup() {
   document.getElementById('activePanel').style.display = 'none';
   document.getElementById('setupPanel').style.display = '';
   generateSession();
+}
+
+function confirmReturnToSetup() {
+  if (ticking) stopTimer();
+  const hasProgress = activeIdx > 0 || done.size > 0;
+  if (!hasProgress || confirm('Start a new setup and discard this active session?')) returnToSetup();
+}
+
+function openSessionEditor(e) {
+  if (e) e.stopPropagation();
+  stopTimer();
+  sessionEditorDraft = {
+    sport: activeSport,
+    age: ageIdx,
+    mins: sessionMins,
+    open: isOpenMode,
+  };
+  renderSessionEditor();
+  document.getElementById('sessionEditorOverlay').classList.add('open');
+}
+
+function closeSessionEditor() {
+  document.getElementById('sessionEditorOverlay').classList.remove('open');
+  sessionEditorDraft = null;
+}
+
+function maybeCloseSessionEditor(e) {
+  if (e.target === document.getElementById('sessionEditorOverlay')) closeSessionEditor();
+}
+
+function renderSessionEditor() {
+  if (!sessionEditorDraft) return;
+  const groups = AGE_GROUPS[sessionEditorDraft.sport];
+  sessionEditorDraft.age = Math.min(sessionEditorDraft.age, groups.length - 1);
+  const g = groups[sessionEditorDraft.age];
+  const sportRow = document.getElementById('editorSportRow');
+  const durationGrid = document.getElementById('editorDurationGrid');
+  sportRow.innerHTML = SPORTS.map(s =>
+    `<button class="editor-chip ${s.id === sessionEditorDraft.sport ? 'active' : ''}" onclick="selectEditorSport('${s.id}')">${s.emoji} ${s.label}</button>`
+  ).join('');
+  document.getElementById('editorAgeTitle').textContent = g.badge;
+  document.getElementById('editorAgeSub').textContent = g.sub;
+  const theme = document.getElementById('editorAgeTheme');
+  theme.textContent = g.themeLabel || g.label;
+  theme.style.borderColor = `${themeVar(g.themeColor)}55`;
+  theme.style.color = themeVar(g.themeColor);
+  const left = document.getElementById('editorAgeLeft');
+  const right = document.getElementById('editorAgeRight');
+  left.disabled = sessionEditorDraft.age === 0;
+  right.disabled = sessionEditorDraft.age === groups.length - 1;
+  left.style.opacity = left.disabled ? '.35' : '1';
+  right.style.opacity = right.disabled ? '.35' : '1';
+  durationGrid.innerHTML = DURATION_OPTIONS.map(m =>
+    `<button class="editor-chip ${!sessionEditorDraft.open && sessionEditorDraft.mins === m ? 'active' : ''}" onclick="selectEditorDuration(${m})">${m}</button>`
+  ).join('') + `<button class="editor-chip ${sessionEditorDraft.open ? 'active' : ''}" onclick="selectEditorOpen()">∞</button>`;
+}
+
+function selectEditorSport(id) {
+  sessionEditorDraft.sport = id;
+  sessionEditorDraft.age = Math.min(sessionEditorDraft.age, AGE_GROUPS[id].length - 1);
+  const g = AGE_GROUPS[id][sessionEditorDraft.age];
+  sessionEditorDraft.mins = g.defaultMins;
+  sessionEditorDraft.open = false;
+  renderSessionEditor();
+}
+
+function shiftEditorAge(dir) {
+  const next = sessionEditorDraft.age + dir;
+  const groups = AGE_GROUPS[sessionEditorDraft.sport];
+  if (next < 0 || next >= groups.length) return;
+  sessionEditorDraft.age = next;
+  sessionEditorDraft.mins = groups[next].defaultMins;
+  sessionEditorDraft.open = false;
+  renderSessionEditor();
+}
+
+function selectEditorDuration(mins) {
+  sessionEditorDraft.mins = mins;
+  sessionEditorDraft.open = false;
+  renderSessionEditor();
+}
+
+function selectEditorOpen() {
+  sessionEditorDraft.open = true;
+  renderSessionEditor();
+}
+
+function applySessionEditor() {
+  if (!sessionEditorDraft) return;
+  const draft = { ...sessionEditorDraft };
+  activeSport = draft.sport;
+  ageIdx = draft.age;
+  closeSessionEditor();
+  renderSportChips();
+  updateAgeUI();
+  isOpenMode = draft.open;
+  sessionMins = draft.mins;
+  renderDurChips();
+  updateSessionBadge();
+  generateSession();
+  document.getElementById('setupPanel').style.display = 'none';
+  document.getElementById('activePanel').style.display = '';
+  showToast('New session ready');
 }
 
 function randomizeAll() {
@@ -1041,16 +1325,41 @@ function renderNowPlaying() {
   const d = session[activeIdx];
   const nameEl = document.getElementById('bDrillName');
   const cueEl  = document.getElementById('bCueTxt');
+  const mediaEl = document.getElementById('bMedia');
+  const insightsEl = document.getElementById('bInsights');
+  const insightsRow = document.getElementById('bInsightsRow');
   if (!d) {
     if (nameEl) nameEl.textContent = '—';
     if (cueEl) cueEl.textContent = '';
+    if (mediaEl) mediaEl.innerHTML = '';
+    if (insightsEl) insightsEl.classList.remove('open');
     renderProgressDots();
     return;
   }
   if (nameEl) nameEl.textContent = d.name.toUpperCase();
   if (cueEl) cueEl.textContent = d.cue || '';
+  if (mediaEl) mediaEl.innerHTML = getNowPlayingMedia(d);
+  if (insightsEl && insightsRow) {
+    const insights = Array.isArray(d.insights) ? d.insights.filter(Boolean) : [];
+    insightsEl.classList.toggle('open', insights.length > 0);
+    insightsRow.innerHTML = insights.map(t => `<div class="b-insight-card">${t}</div>`).join('');
+  }
+  renderActiveConfigStrip();
   renderProgressDots();
   updateDrillDisplay();
+}
+
+function renderActiveConfigStrip() {
+  const el = document.getElementById('activeConfigStrip');
+  if (!el) return;
+  const g = curGroup();
+  const mode = isCustomActiveSession ? 'Custom' : isOpenMode ? 'Open' : `${sessionMins} min`;
+  el.innerHTML = `
+    <span class="b-config-chip">${sportLabel(activeSport)}</span>
+    <span class="b-config-chip" style="border-color:${themeVar(g.themeColor)}55;color:${themeVar(g.themeColor)}">${g.badge}</span>
+    <span class="b-config-chip">${g.themeLabel || g.label}</span>
+    <span class="b-config-chip">${mode}</span>
+  `;
 }
 
 function renderProgressDots() {
@@ -1080,7 +1389,8 @@ function advanceDrill() {
     if (ticking) startDrillTimer();
   } else {
     drillSec = 0;
-    showToast('Session complete! Tap Save to record it. 🏆');
+    showToast('Session complete! Save it to record progress.');
+    setTimeout(openEndModal, 350);
   }
   updateDrillDisplay();
   renderNowPlaying();
@@ -1148,7 +1458,7 @@ function endSession() {
   const today = new Date().toLocaleDateString('en-US', { month:'short', day:'numeric' });
   const minsDone = isOpenMode ? Math.round(timerSec / 60) : doneIds.reduce((a, id) => a + (getDrill(id)?.duration || 0), 0);
   const totalMins = isOpenMode ? Math.round(timerSec / 60) : session.reduce((a,d)=>a+d.duration,0);
-  state.sessions.push({ id:Date.now(), date:today, ageGroup:curGroup().label, ageIdx, drillsDone:doneIds, drillsTotal:totalIds, minutes:totalMins, minutesDone:minsDone });
+  state.sessions.push({ id:Date.now(), date:today, sport:activeSport, custom:isCustomActiveSession, ageGroup:curGroup().label, ageIdx, drillsDone:doneIds, drillsTotal:totalIds, minutes:totalMins, minutesDone:minsDone });
   state.totalDrills += doneIds.length;
   state.totalMinutes += minsDone;
   persistState();
@@ -1232,22 +1542,119 @@ function updateTimerDisplay() {
   }
 }
 
+// ─── CUSTOM SESSION BUILDER ───────────────────────────────────────────────────
+function builderMinutes() {
+  return customSession.reduce((sum, id) => sum + (getDrill(id)?.duration || 0), 0);
+}
+function renderBuilder() {
+  const count = customSession.length;
+  const minutes = builderMinutes();
+  const meta = document.getElementById('builderMeta');
+  const sub = document.getElementById('builderModalSub');
+  const startBtn = document.getElementById('builderStartBtn');
+  const modalStart = document.getElementById('builderModalStart');
+  const list = document.getElementById('builderList');
+  if (meta) meta.textContent = `${count} drill${count === 1 ? '' : 's'} · ${minutes} min`;
+  if (sub) sub.textContent = count ? `${count} drill${count === 1 ? '' : 's'} selected · ${minutes} min total` : 'Pick drills from the library, then start when ready.';
+  if (startBtn) startBtn.disabled = count === 0;
+  if (modalStart) modalStart.disabled = count === 0;
+  if (list) {
+    list.innerHTML = count ? customSession.map((id, i) => {
+      const d = getDrill(id);
+      if (!d) return '';
+      return `<div class="pc-builder-row">
+        <div class="pc-builder-num">${i + 1}</div>
+        <div class="pc-builder-name">${d.name}<div class="pc-builder-meta">${d.duration} min · ${d.tags.slice(0,2).join(' · ')}</div></div>
+        <div class="pc-builder-controls">
+          <button onclick="moveBuilderDrill(${i},-1)" ${i === 0 ? 'disabled' : ''}>↑</button>
+          <button onclick="moveBuilderDrill(${i},1)" ${i === count - 1 ? 'disabled' : ''}>↓</button>
+          <button onclick="removeBuilderDrill(${i})">×</button>
+        </div>
+      </div>`;
+    }).join('') : `<div class="pc-empty"><div class="pc-empty-ttl">No Drills Yet</div><div class="pc-empty-txt">Use Add on any drill card to build a custom session.</div></div>`;
+  }
+}
+function openBuilder() {
+  builderOpen = true;
+  renderBuilder();
+  document.getElementById('builderOverlay').classList.add('open');
+}
+function closeBuilder() {
+  builderOpen = false;
+  document.getElementById('builderOverlay').classList.remove('open');
+}
+function maybeCloseBuilder(e) {
+  if (e.target === document.getElementById('builderOverlay')) closeBuilder();
+}
+function addBuilderDrill(id) {
+  builderMode = 'scratch';
+  customSession.push(id);
+  renderBuilder();
+  renderLib();
+  showToast('Added to custom session');
+}
+function removeBuilderDrill(index) {
+  customSession.splice(index, 1);
+  renderBuilder();
+  renderLib();
+}
+function moveBuilderDrill(index, dir) {
+  const next = index + dir;
+  if (next < 0 || next >= customSession.length) return;
+  const [id] = customSession.splice(index, 1);
+  customSession.splice(next, 0, id);
+  renderBuilder();
+}
+function startCustomSession() {
+  const picked = customSession.map(getDrill).filter(Boolean);
+  if (!picked.length) { showToast('Add at least one drill first'); return; }
+  closeBuilder();
+  stopTimer();
+  stopDrillTimer();
+  done.clear();
+  activeIdx = 0;
+  session = picked;
+  isCustomActiveSession = true;
+  isOpenMode = false;
+  timerSec = totalSec = session.reduce((sum, d) => sum + d.duration, 0) * 60;
+  drillSec = session[0].duration * 60;
+  shownQuips = new Set();
+  clearQuip();
+  updateSessionBadge();
+  updateTimerDisplay();
+  updateDrillDisplay();
+  document.getElementById('setupPanel').style.display = 'none';
+  document.getElementById('activePanel').style.display = '';
+  switchView('session', document.getElementById('tab-session'));
+  renderActiveConfigStrip();
+  renderNowPlaying();
+  if (!ticking) toggleTimer();
+}
+
 // ─── LIBRARY ──────────────────────────────────────────────────────────────────
 const SPORT_TAGS = {
   soccer:     ['control','shooting','passing','movement'],
   basketball: ['dribbling','shooting','passing','defense','ball-handling','movement'],
   baseball:   ['hitting','throwing','fielding','movement'],
 };
+const DURATION_FILTERS = [
+  { id:'under3', label:'Under 3 min' },
+  { id:'3to4', label:'3-4 min' },
+  { id:'5plus', label:'5+ min' },
+];
 
 function renderFilterChips() {
   const tags = SPORT_TAGS[activeSport] || [];
   const row = document.getElementById('filterRow');
   if (!row) return;
+  const selectedCount = libraryFilters.categories.size + libraryFilters.durations.size + (libraryFilters.ageMode !== 'age' ? 1 : 0) + (libraryFilters.funOnly ? 1 : 0);
   row.innerHTML = `
-    <button class="pc-filter-chip ${activeFilter==='age'?'active':''}" onclick="setFilter('age',this)">This Age</button>
-    <button class="pc-filter-chip ${activeFilter==='all'?'active':''}" onclick="setFilter('all',this)">All Ages</button>
-    ${tags.map(t=>`<button class="pc-filter-chip ${activeFilter===t?'active':''}" onclick="setFilter('${t}',this)">${t.charAt(0).toUpperCase()+t.slice(1)}</button>`).join('')}
-    <button class="pc-filter-chip ${activeFilter==='fun'?'active':''}" onclick="setFilter('fun',this)">⭐ Fun</button>
+    <button class="pc-filter-chip ${libraryFilters.ageMode==='age'?'active':''}" onclick="setAgeFilter('age')">This Age</button>
+    <button class="pc-filter-chip ${libraryFilters.ageMode==='all'?'active':''}" onclick="setAgeFilter('all')">All Drills</button>
+    ${tags.map(t=>`<button class="pc-filter-chip ${libraryFilters.categories.has(t)?'active':''}" onclick="toggleCategoryFilter('${t}')">${t.charAt(0).toUpperCase()+t.slice(1)}</button>`).join('')}
+    ${DURATION_FILTERS.map(f=>`<button class="pc-filter-chip ${libraryFilters.durations.has(f.id)?'active':''}" onclick="toggleDurationFilter('${f.id}')">${f.label}</button>`).join('')}
+    <button class="pc-filter-chip ${libraryFilters.funOnly?'active':''}" onclick="toggleFunFilter()">Fun</button>
+    ${selectedCount > 1 ? '<button class="pc-filter-chip" onclick="clearLibraryFilters()">Clear All</button>' : ''}
   `;
 }
 
@@ -1255,19 +1662,25 @@ function renderLib() {
   const search = document.getElementById('libSearch')?.value.toLowerCase() || '';
   const sportGroups = AGE_GROUPS[activeSport] || [];
   let drills = Object.values(ALL_DRILLS).filter(d => d.sport === activeSport);
-  if (activeFilter === 'age') drills = drills.filter(d => d.ages.includes(ageIdx));
-  else if (activeFilter === 'fun') drills = drills.filter(d => d.fun);
-  else if (activeFilter !== 'all') drills = drills.filter(d => d.tags.includes(activeFilter));
+  if (libraryFilters.ageMode === 'age') drills = drills.filter(d => d.ages.includes(ageIdx));
+  if (libraryFilters.categories.size) drills = drills.filter(d => [...libraryFilters.categories].every(c => d.tags.includes(c)));
+  if (libraryFilters.durations.size) drills = drills.filter(d => libraryFilters.durations.has(durationBucket(d)));
+  if (libraryFilters.funOnly) drills = drills.filter(d => d.fun);
   if (search) drills = drills.filter(d => d.name.toLowerCase().includes(search));
   document.getElementById('libList').innerHTML = drills.length ? drills.map(d => {
-    const agePills = d.ages.map(a => `<span class="pc-age-pill">${sportGroups[a]?.badge || a}</span>`).join('');
+    const agePills = d.ages.map(a => {
+      const group = sportGroups[a];
+      return `<span class="pc-age-pill" style="border-color:${themeVar(group?.themeColor)}55;color:${themeVar(group?.themeColor)}">${group?.badge || a}</span>`;
+    }).join('');
+    const isAdded = customSession.includes(d.id);
     return `<div class="pc-lib-card">
       <div class="pc-lib-card-hd">
         <div class="pc-lib-icon">${icon(d.id)}</div>
-        <div>
+        <div style="flex:1;min-width:0">
           <div class="pc-lib-name">${d.name}${d.priority === 1 ? ' <span class="pc-priority-badge">KEY DRILL</span>' : ''}</div>
           <div style="margin-top:4px">${agePills}<span class="pc-tag" style="margin-left:2px">⏱ ${d.duration}m</span></div>
         </div>
+        <button class="pc-add-btn" onclick="addBuilderDrill('${d.id}')">${isAdded ? 'Add Again' : 'Add'}</button>
       </div>
       <div class="pc-info-lbl">How to Play</div>
       <div class="pc-info-txt" style="margin-bottom:8px">${d.how}</div>
@@ -1278,21 +1691,68 @@ function renderLib() {
       ${d.insights ? `<div class="pc-insights"><div class="pc-insights__lbl">Why This Drill</div><ul class="pc-insights__list">${d.insights.map(b=>`<li>${b}</li>`).join('')}</ul></div>` : ''}
       <div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap">${d.tags.map(t=>`<span class="pc-tag">${t}</span>`).join('')}${d.fun?'<span class="pc-tag" style="color:var(--amber);border-color:rgba(219,165,20,.5)">⭐ fun</span>':''}</div>
     </div>`;
-  }).join('') : `<div class="pc-empty"><div class="pc-empty-ico">🔍</div><div class="pc-empty-ttl">No Results</div><div class="pc-empty-txt">Try a different filter or search term.</div></div>`;
+  }).join('') : `<div class="pc-empty"><div class="pc-empty-ttl">No Results</div><div class="pc-empty-txt">Your filters may be too narrow. Clear one and try again.</div></div>`;
+  renderBuilder();
 }
-function setFilter(f, el) {
-  activeFilter = f;
-  document.querySelectorAll('.pc-filter-chip').forEach(c => c.classList.remove('active'));
-  if (el) el.classList.add('active');
+function setAgeFilter(mode) {
+  libraryFilters.ageMode = mode;
+  renderFilterChips();
+  renderLib();
+}
+function toggleCategoryFilter(tag) {
+  libraryFilters.categories.has(tag) ? libraryFilters.categories.delete(tag) : libraryFilters.categories.add(tag);
+  renderFilterChips();
+  renderLib();
+}
+function toggleDurationFilter(id) {
+  libraryFilters.durations.has(id) ? libraryFilters.durations.delete(id) : libraryFilters.durations.add(id);
+  renderFilterChips();
+  renderLib();
+}
+function toggleFunFilter() {
+  libraryFilters.funOnly = !libraryFilters.funOnly;
+  renderFilterChips();
+  renderLib();
+}
+function clearLibraryFilters() {
+  libraryFilters = { categories:new Set(), durations:new Set(), ageMode:'all', funOnly:false };
+  renderFilterChips();
   renderLib();
 }
 
 // ─── PROGRESS ─────────────────────────────────────────────────────────────────
+function buildAchievements() {
+  const sessions = state.sessions || [];
+  const drillsDone = state.totalDrills || 0;
+  const minutes = state.totalMinutes || 0;
+  const sportsDone = new Set(sessions.map(s => s.sport || 'soccer'));
+  const agesDone = new Set(sessions.map(s => `${s.sport || 'soccer'}:${s.ageIdx ?? ''}`));
+  return [
+    { name:'First Session', desc:'Save any coaching session.', icon:'✓', unlocked:sessions.length >= 1 },
+    { name:'First Drill', desc:'Complete at least one drill.', icon:'1', unlocked:drillsDone >= 1 },
+    { name:'3-Day Streak', desc:'Coach three days in a row.', icon:'3', unlocked:(state.streak || 0) >= 3 },
+    { name:'5 Sessions', desc:'Build a steady routine.', icon:'5', unlocked:sessions.length >= 5 },
+    { name:'30 Minutes', desc:'Coach 30 total minutes.', icon:'30', unlocked:minutes >= 30 },
+    { name:'Sport Starter', desc:'Save a session for any sport.', icon:'S', unlocked:sportsDone.size >= 1 },
+    { name:'Age Milestone', desc:'Complete sessions across two age groups.', icon:'A', unlocked:agesDone.size >= 2 },
+    { name:'Custom Builder', desc:'Save a hand-built session.', icon:'C', unlocked:sessions.some(s => s.custom) },
+  ];
+}
+function renderAchievements() {
+  const grid = document.getElementById('achievementGrid');
+  if (!grid) return;
+  grid.innerHTML = buildAchievements().map(a => `<div class="pc-ach ${a.unlocked ? 'unlocked' : ''}">
+    <div class="pc-ach-ico">${a.icon}</div>
+    <div class="pc-ach-name">${a.name}</div>
+    <div class="pc-ach-desc">${a.unlocked ? 'Unlocked' : a.desc}</div>
+  </div>`).join('');
+}
 function renderProgress() {
   document.getElementById('pSessions').textContent = state.sessions.length;
   document.getElementById('pDrills').textContent = state.totalDrills;
   document.getElementById('pMinutes').textContent = state.totalMinutes;
   document.getElementById('pStreak').textContent = state.streak || 0;
+  renderAchievements();
   const hist = document.getElementById('histList');
   if (!state.sessions.length) {
     hist.innerHTML = `<div class="pc-empty"><div class="pc-empty-ico">📋</div><div class="pc-empty-ttl">No Sessions Yet</div><div class="pc-empty-txt">Run a session and tap Save to build your history.</div></div>`;
@@ -1305,7 +1765,7 @@ function renderProgress() {
     return `<div class="pc-hist-item">
       <div class="pc-hist-top">
         <div>
-          <div class="pc-hist-date">${s.date} · ${s.ageGroup || ''}</div>
+          <div class="pc-hist-date">${s.date} · ${s.custom ? 'Custom Session' : (s.ageGroup || '')} · ${sportLabel(s.sport || 'soccer')}</div>
           <div class="pc-hist-meta">${completion} · ${s.minutesDone ?? s.minutes ?? 0}m</div>
         </div>
         <div class="pc-hist-badge">${s.minutesDone ?? s.minutes ?? 0}m</div>
