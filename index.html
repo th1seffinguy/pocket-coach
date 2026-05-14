@@ -253,18 +253,17 @@
   .b-config-action{height:30px;border-radius:9px;border:1px solid rgba(30,140,232,.45);
     background:rgba(30,140,232,.1);color:#8FC3F0;font-family:var(--mono);font-size:10px;
     letter-spacing:.08em;text-transform:uppercase;padding:0 10px;cursor:pointer;flex-shrink:0;}
-  .b-header{display:flex;align-items:center;justify-content:space-between;padding:10px 20px 8px;}
-  .b-logo{font-family:var(--bebas);font-size:20px;letter-spacing:2px;opacity:.45;}
-  .b-header-right{display:flex;align-items:center;gap:10px;}
+  .b-header{display:none;}
+  .b-timer-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
   .b-progress-dots{display:flex;gap:5px;align-items:center;}
   .b-dot{width:7px;height:7px;border-radius:50%;background:var(--border);transition:all .2s;}
   .b-dot.done{background:var(--green);}
   .b-dot.active{background:var(--amber);width:20px;border-radius:4px;}
-  .b-pause-btn{width:32px;height:32px;border-radius:10px;background:var(--elev);
+  .b-pause-btn{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.06);
     border:1px solid var(--border);color:var(--muted);display:flex;align-items:center;
     justify-content:center;cursor:pointer;transition:all .15s;}
   .b-pause-btn:active{transform:scale(.88);}
-  .b-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 20px 80px;}
+  .b-body{flex:1;display:flex;flex-direction:column;padding:0 20px 80px;}
   .b-media{height:82px;background:var(--surface);border:1px solid var(--border);
     border-radius:16px;overflow:hidden;margin-bottom:10px;display:flex;align-items:center;justify-content:center;}
   .b-media svg{display:block;width:100%;height:100%;}
@@ -593,19 +592,17 @@
     <div class="b-shell">
 
       <!-- Header: logo + progress dots + pause -->
-      <div class="b-header">
-        <div class="b-logo">JUKIT</div>
-        <div class="b-header-right">
-          <div class="b-progress-dots" id="progressDots"></div>
-          <button class="b-pause-btn" id="playBtn" onclick="toggleTimer()">
-            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="13" height="13"><path d="M6 4 L20 12 L6 20 Z"/></svg>
-          </button>
-        </div>
-      </div>
+      <div class="b-header"></div>
 
       <!-- Body: drill name + timer block + cue -->
       <div class="b-body">
         <div class="b-timer-block">
+          <div class="b-timer-top">
+            <div class="b-progress-dots" id="progressDots"></div>
+            <button class="b-pause-btn" id="playBtn" onclick="toggleTimer()">
+              <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="13" height="13"><path d="M6 4 L20 12 L6 20 Z"/></svg>
+            </button>
+          </div>
           <div class="b-timer-row">
             <div>
               <div class="b-timer-lbl">Drill Left</div>
