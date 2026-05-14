@@ -324,7 +324,7 @@
     border:1px solid var(--border);background:var(--elev);color:var(--text);
     display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;}
   .b-btn:active{transform:scale(.97);}
-  .b-btn-sm{width:74px;flex-shrink:0;}
+  .b-btn-sm{width:66px;flex-shrink:0;font-size:12px;}
   .b-btn-done{flex:1;background:var(--green);color:#0A1A0E;border-color:var(--green);font-size:16px;}
 
   /* ── EMPTY STATE ────────────────────────────────────────────── */
@@ -632,8 +632,8 @@
               <div class="b-insights-header-left">
                 <span class="b-insights-badge">
                   <svg width="15" height="15" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 1.5A4 4 0 0 0 3 5.5c0 1.4.72 2.63 1.8 3.35V10a.5.5 0 0 0 .5.5h3.4a.5.5 0 0 0 .5-.5V8.85A4 4 0 0 0 7 1.5Z" stroke="#A78BFA" stroke-width="1.1" stroke-linejoin="round"/>
-                    <path d="M5 11h4M5.5 12.5h3" stroke="#A78BFA" stroke-width="1.1" stroke-linecap="round"/>
+                    <path d="M7 1.5A4 4 0 0 0 3 5.5c0 1.4.72 2.63 1.8 3.35V10a.5.5 0 0 0 .5.5h3.4a.5.5 0 0 0 .5-.5V8.85A4 4 0 0 0 7 1.5Z" stroke="#DBA514" stroke-width="1.1" stroke-linejoin="round"/>
+                    <path d="M5 11h4M5.5 12.5h3" stroke="#DBA514" stroke-width="1.1" stroke-linecap="round"/>
                   </svg>
                 </span>
                 <span class="b-insights-lbl">Insights</span>
@@ -651,6 +651,10 @@
         <button class="b-btn b-btn-sm" onclick="openSwap(activeIdx)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
           Swap
+        </button>
+        <button class="b-btn b-btn-sm" onclick="shuffleDrill()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+          Shuffle
         </button>
         <button class="b-btn b-btn-sm" onclick="skipDrill()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
@@ -1506,6 +1510,16 @@ function doSwap(id) {
     renderNowPlaying();
   }
   closeModal();
+}
+function shuffleDrill() {
+  const cur = session[activeIdx];
+  const g = curGroup();
+  if (!g) return;
+  const opts = g.drills.filter(id => id !== cur?.id && !session.find(s => s.id === id)).map(getDrill).filter(Boolean);
+  if (!opts.length) { showToast('No other drills to shuffle in'); return; }
+  const pick = opts[Math.floor(Math.random() * opts.length)];
+  swapIdx = activeIdx;
+  doSwap(pick.id);
 }
 function closeModal() { document.getElementById('overlay').classList.remove('open'); swapIdx = null; }
 function maybeClose(e) { if (e.target === document.getElementById('overlay')) closeModal(); }
