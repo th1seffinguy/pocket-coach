@@ -86,9 +86,9 @@
     "id": "cleanroom",
     "name": "Clean Your Room",
     "sport": "soccer",
-    "duration": 4,
+    "duration": 2,
     "setup": "Scatter 4\u20136 balls in a 10\u00d710 ft area.",
-    "how": "60-second timer: dribble and kick every ball into the goal. Run 2\u20133 rounds. Try to beat the count each time.",
+    "how": "60-second timer \u2014 dribble and kick every ball into the goal. Rest 15 seconds. Run 2 rounds and try to beat your count each time.",
     "cue": "\"Which one are you going for next?\"",
     "success": "Player is scanning ahead, not staring at their feet",
     "tags": [
