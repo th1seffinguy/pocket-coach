@@ -6,7 +6,7 @@
     "duration": 4,
     "setup": "Every player has their own ball. Coach stands in the middle of a 15ft circle.",
     "how": "Players try to kick their ball and hit Coach's feet or shins. Coach shuffles and makes it a challenge. Reset and go again.",
-    "cue": "\"Kick it at me — try to get me!\"",
+    "cue": "\"Kick it at me \u2014 try to get me!\"",
     "success": "Eyes up scanning for Coach, not looking down at ball",
     "tags": [
       "control",
@@ -24,7 +24,8 @@
       "Directional kicking to a moving target generates more purposeful foot contacts per minute than unstructured play.",
       "Seeing the target before striking is the clearest marker separating skilled players from ball-watchers.",
       "Kids trying to get Coach stay fully engaged every rep and learn faster than when following instructions."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "shapes",
@@ -33,7 +34,7 @@
     "duration": 3,
     "setup": "Use cones or shoes to mark corners of a triangle or square on the ground.",
     "how": "Dribble around the outside of the shape, stop the ball at each cone, then go again. Change direction each round.",
-    "cue": "\"Stop it right at the cone — squish it.\"",
+    "cue": "\"Stop it right at the cone \u2014 squish it.\"",
     "success": "Ball stops at each corner without rolling past",
     "tags": [
       "control",
@@ -50,7 +51,8 @@
       "Stopping at a fixed marker builds sole-of-foot awareness used in every direction change, trap, and receiving moment.",
       "Tracking the next cone while moving develops spatial planning before players are ready for complex decisions.",
       "Simple enough for ages 3-5 and produces real motor patterns that carry forward to every future drill."
-    ]
+    ],
+    "location": "indoor"
   },
   {
     "id": "redlight",
@@ -59,7 +61,7 @@
     "duration": 4,
     "setup": "Player starts 15 ft from goal, ball at feet.",
     "how": "Player dribbles toward you. Call \"Red Light\" at random: they stop the ball instantly with the sole of their foot.",
-    "cue": "\"Squish the bug\" — sole of foot on top of ball",
+    "cue": "\"Squish the bug\" \u2014 sole of foot on top of ball",
     "success": "Ball stops within one body length, no rolling away",
     "tags": [
       "control",
@@ -77,15 +79,16 @@
       "Emergency ball control is the most undercoached skill at youth ages and gives a decisive advantage in real games.",
       "Sole-of-foot braking develops weight transfer and body position used in shielding, trapping, and sharp direction changes.",
       "Unpredictable \"red light\" timing trains reactive control far better than any self-paced stopping drill."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "cleanroom",
     "name": "Clean Your Room",
     "sport": "soccer",
     "duration": 4,
-    "setup": "Scatter 4–6 balls in a 10×10 ft area.",
-    "how": "60-second timer: dribble and kick every ball into the goal. Run 2–3 rounds. Try to beat the count each time.",
+    "setup": "Scatter 4\u20136 balls in a 10\u00d710 ft area.",
+    "how": "60-second timer: dribble and kick every ball into the goal. Run 2\u20133 rounds. Try to beat the count each time.",
     "cue": "\"Which one are you going for next?\"",
     "success": "Player is scanning ahead, not staring at their feet",
     "tags": [
@@ -103,7 +106,8 @@
       "Produces 8-12 shots per 60-second round, more shooting reps per minute than almost any other drill.",
       "Scanning ahead for the next ball builds the eyes-up habit most young players never develop without direct prompting.",
       "Beat-your-time framing drives intrinsic motivation: kids will voluntarily run this again before other drills."
-    ]
+    ],
+    "location": "outdoor"
   },
   {
     "id": "toetaps",
@@ -112,7 +116,7 @@
     "duration": 2,
     "setup": "Ball stationary, player standing over it.",
     "how": "Alternate feet tapping on top of the ball. Count reps out loud. Record challenge every round.",
-    "cue": "\"Light touch — like you're testing if it's hot\"",
+    "cue": "\"Light touch \u2014 like you're testing if it's hot\"",
     "success": "Rhythm builds without kicking the ball away",
     "tags": [
       "control"
@@ -130,7 +134,8 @@
       "Highest foot-to-ball contacts per minute of any drill: no other exercise builds alternating-foot coordination faster.",
       "The rhythmic alternating pattern trains the motor pathway used in every dribbling move, direction change, and step-over.",
       "60 seconds of daily toe taps produces visible improvement in ball feel within one week."
-    ]
+    ],
+    "location": "indoor"
   },
   {
     "id": "passshoot",
@@ -158,7 +163,8 @@
       "Receiving and shooting in one motion replicates the most common goal-scoring sequence in youth soccer.",
       "First touch going forward rather than sideways is the most-lost habit on video review of U6-U10 games.",
       "Coach-as-passer creates unpredictable service, a better stimulus than a wall or stationary ball for developing first-touch adaptability."
-    ]
+    ],
+    "location": "outdoor"
   },
   {
     "id": "gate",
@@ -167,7 +173,7 @@
     "duration": 4,
     "setup": "Two shoes/cones 3 ft apart, 8 ft in front of goal.",
     "how": "Dribble through the gate and immediately shoot. No stopping before the shot.",
-    "cue": "\"Head up after the gate — pick your corner\"",
+    "cue": "\"Head up after the gate \u2014 pick your corner\"",
     "success": "Carries speed through the gate and into the shot",
     "tags": [
       "control",
@@ -185,7 +191,8 @@
       "Dribble-then-shoot is the most common goal-scoring pattern in youth soccer: this drill trains it at high repetition.",
       "Head-up after the gate directly transfers to goalkeeper awareness before shooting, one of the most trainable game-intelligence habits at this age.",
       "Maintaining speed through a gate without losing control indicates dribbling readiness for small-sided competition."
-    ]
+    ],
+    "location": "outdoor"
   },
   {
     "id": "nightmare",
@@ -212,14 +219,15 @@
       "Reacting to a loose ball and shooting is the most common scoring opportunity in youth games, replicated at higher volume than any match.",
       "Body adjustment before striking rather than toe-poking is the critical technical habit built here.",
       "Multi-ball urgency creates realistic pressure and one of the strongest fun-to-skill ratios in the catalog."
-    ]
+    ],
+    "location": "outdoor"
   },
   {
     "id": "freeze",
     "name": "Freeze Tag Dribble",
     "sport": "soccer",
     "duration": 3,
-    "setup": "Mark a 15×15 ft zone. Player dribbles freely inside.",
+    "setup": "Mark a 15\u00d715 ft zone. Player dribbles freely inside.",
     "how": "Coach calls \"Freeze!\" unpredictably. Ball must stop within one step.",
     "cue": "\"The ball stops when you stop\"",
     "success": "Ball stops within a step, stays under control",
@@ -239,7 +247,8 @@
       "Sudden-stop training builds emergency ball control: possession loss on first touch is the most common mistake at U6-U10.",
       "Unpredictable timing from a parent is more effective than self-paced drills: the reactive element is where real adaptation happens.",
       "Ball-stops-when-you-stop develops lower-center-of-gravity awareness that transfers directly to shielding and 1v1 defending."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "balloon",
@@ -248,8 +257,8 @@
     "duration": 3,
     "setup": "One balloon or beach ball. No hands.",
     "how": "How many times off the ground? Feet, knees, head only. Count out loud and celebrate records.",
-    "cue": "\"Soft touch — tap it, don't kick it\"",
-    "success": "Any consecutive touches without hands — celebrate every record",
+    "cue": "\"Soft touch \u2014 tap it, don't kick it\"",
+    "success": "Any consecutive touches without hands \u2014 celebrate every record",
     "tags": [
       "control"
     ],
@@ -265,7 +274,8 @@
       "Balloons force soft-touch calibration: overhitting is immediately obvious, accelerating self-correction in ways a regular ball cannot.",
       "Develops the delicate ball-contact feel that speeds up juggling and first-touch skill faster than heavy-ball reps alone.",
       "Record-chasing keeps kids voluntarily repeating reps well past what any structured drill generates."
-    ]
+    ],
+    "location": "indoor"
   },
   {
     "id": "target",
@@ -291,11 +301,12 @@
       "Naming a target before kicking activates the cognitive planning pathway skilled strikers use automatically.",
       "Learning placement before power is the correct developmental sequence: players who aim first improve faster long-term.",
       "Coach-in-goal creates game-realistic pressure with immediate visual feedback on shot quality."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "freestyle",
-    "name": "Free Shoot — Finish Strong",
+    "name": "Free Shoot \u2014 Finish Strong",
     "sport": "soccer",
     "duration": 3,
     "setup": "Open goal, player picks everything.",
@@ -318,7 +329,8 @@
       "Open exploration lets players consolidate drilled skills through self-directed play, measurably accelerating retention.",
       "Creativity and shot confidence compound when there is no right or wrong answer, building the intrinsic love of practice.",
       "Always finish here: ending on enjoyment is the strongest predictor the child asks to come back tomorrow."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "dribbleweave",
@@ -327,7 +339,7 @@
     "duration": 4,
     "setup": "6 cones in a line, 2 ft apart.",
     "how": "Dribble through the weave using inside and outside of both feet. Time it. Beat the clock each round.",
-    "cue": "\"Use both feet — outside foot on the outside cone\"",
+    "cue": "\"Use both feet \u2014 outside foot on the outside cone\"",
     "success": "Alternates feet naturally, head up by 3rd rep",
     "tags": [
       "control",
@@ -344,7 +356,8 @@
       "Cone-weave patterns are among the strongest predictors of dribbling improvement in U8-U12: the alternating-foot demand builds habits free dribbling never creates.",
       "The weight-shifting pattern transfers directly to beating a defender: the movement is identical, only the position changes.",
       "Timed personal records drive self-competition: players improve fastest chasing their own numbers."
-    ]
+    ],
+    "location": "outdoor"
   },
   {
     "id": "insideoutside",
@@ -369,7 +382,8 @@
       "The inside-outside pattern is the foundation of 80% of advanced dribbling moves: learning it at ages 7-9 is dramatically faster than at any later stage.",
       "Isolates the two most important contact surfaces: inside for control and direction, outside for acceleration and width.",
       "This motor pattern means skills like the Cruyff turn and step-over emerge naturally later without explicit retraining."
-    ]
+    ],
+    "location": "indoor"
   },
   {
     "id": "shielding",
@@ -378,7 +392,7 @@
     "duration": 4,
     "setup": "Coach as defender. Player with ball on back.",
     "how": "Player receives ball, uses body to shield Coach away, then turns and finds space. Swap sides each turn.",
-    "cue": "\"Body between me and the ball — feel where I am\"",
+    "cue": "\"Body between me and the ball \u2014 feel where I am\"",
     "success": "Player maintains possession through contact for 3 seconds",
     "tags": [
       "control",
@@ -395,7 +409,8 @@
       "Body shielding is the most neglected skill at U8-U10: players who can hold the ball under pressure rarely lose 1v1 battles.",
       "Develops spatial awareness of the defender's position, a cognitive skill that transfers to receiving under pressure at every position.",
       "Three seconds of maintained possession under contact is a reliable benchmark for 1v1 game readiness."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "passweave",
@@ -404,7 +419,7 @@
     "duration": 5,
     "setup": "3 cones in a triangle ~10 ft apart. Player at each cone (use a cone for the third).",
     "how": "1-2-touch passing around the triangle. Switch direction on Coach's call. Add movement: after passing, follow your pass.",
-    "cue": "\"Pass and move — don't stand still after the ball leaves your foot\"",
+    "cue": "\"Pass and move \u2014 don't stand still after the ball leaves your foot\"",
     "success": "Ball moves around the triangle without stopping",
     "tags": [
       "passing",
@@ -420,16 +435,17 @@
       "Pass-and-move is the most important habit to establish before U12: standing still after passing is the primary differentiator between recreational and competitive players.",
       "Triangle geometry teaches angle-creation intuitively: players internalize passing lanes without needing to understand it abstractly.",
       "One-to-two-touch restriction forces faster decision-making, the main technical differentiator at U10/U12."
-    ]
+    ],
+    "location": "outdoor"
   },
   {
     "id": "rondo",
     "name": "Keep Away (Rondo)",
     "sport": "soccer",
     "duration": 5,
-    "setup": "15×15 ft grid. 2 players keep away from 1 defender.",
+    "setup": "15\u00d715 ft grid. 2 players keep away from 1 defender.",
     "how": "Passer + receiver maintain possession while Coach (defender) tries to win it. Switch defender when ball is won.",
-    "cue": "\"Move before the ball arrives — create an angle\"",
+    "cue": "\"Move before the ball arrives \u2014 create an angle\"",
     "success": "5+ consecutive passes without losing possession",
     "tags": [
       "passing",
@@ -445,7 +461,8 @@
       "Possession under pressure is the defining skill of elite youth players: no drill develops it more directly than keep-away.",
       "Decision speed under a closing defender is more trainable at ages 9-11 than at any later stage: the window is time-sensitive.",
       "The five-pass target gives players a self-monitored metric that builds motivation without requiring parent prompting."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "crossing",
@@ -454,7 +471,7 @@
     "duration": 5,
     "setup": "Ball on the side of goal area. Small target near far post.",
     "how": "Coach crosses ball from the side. Player runs to meet it and shoots first time. Alternate sides.",
-    "cue": "\"Attack the ball — don't wait for it\"",
+    "cue": "\"Attack the ball \u2014 don't wait for it\"",
     "success": "Shoots on first touch (even if off-target)",
     "tags": [
       "shooting",
@@ -471,7 +488,8 @@
       "First-time finishing from a cross replicates the most common advanced goal-scoring sequence in youth and adult soccer.",
       "Attacking the ball rather than waiting is a cognitive habit that transfers automatically to headers, volleys, and rebounds.",
       "Alternating sides trains both feet in a realistic game context, more effective than isolated striking practice."
-    ]
+    ],
+    "location": "outdoor"
   },
   {
     "id": "soleroll",
@@ -480,7 +498,7 @@
     "duration": 3,
     "setup": "Ball stationary on flat ground. No cones needed.",
     "how": "Place sole of foot on top of ball and roll it slowly in circles clockwise, then counter-clockwise. Switch feet each set. 10 circles each direction.",
-    "cue": "\"Draw a circle — slow is smooth\"",
+    "cue": "\"Draw a circle \u2014 slow is smooth\"",
     "success": "Ball stays under the sole the whole time without rolling away",
     "tags": [
       "control"
@@ -496,7 +514,8 @@
       "Sole-of-foot awareness is the foundation of every stopping and rolling move in soccer: the simplest way to build it at ages 3-7.",
       "Circular motion forces consistent weight placement over the ball used in Cruyff turns, drag-backs, and pullbacks.",
       "Works in any space with no setup: an ideal warm-up before any drill session."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "monster",
@@ -505,7 +524,7 @@
     "duration": 3,
     "setup": "Open space 15 ft+. Player starts with ball.",
     "how": "Parent slowly walks toward player as the Monster. Player must dribble to stay away. Monster can't run, but player has to keep the ball under control. Play 3 rounds.",
-    "cue": "\"Don't let the monster get you — keep moving!\"",
+    "cue": "\"Don't let the monster get you \u2014 keep moving!\"",
     "success": "Player keeps ball under control while moving away without kicking it wild",
     "tags": [
       "control",
@@ -521,7 +540,8 @@
       "Moving while dribbling under mild pressure is the hardest early skill to develop: this drill combines both in the simplest possible way.",
       "Emotional engagement dramatically increases reps: kids run this longer than any structured cone drill at ages 3-5.",
       "Parent-as-threat provides the first experience of dribbling with a purpose, a critical step toward game awareness."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "pullback",
@@ -531,7 +551,7 @@
     "setup": "Ball and open space. Mark a line 10 ft ahead as the defender line.",
     "how": "Dribble toward the line. Just before it, roll the ball back with the sole of foot, turn, and accelerate the other way. Repeat from the opposite direction.",
     "cue": "\"Sole, roll, go!\"",
-    "success": "Direction change happens in one smooth motion — no pause between the pullback and the acceleration",
+    "success": "Direction change happens in one smooth motion \u2014 no pause between the pullback and the acceleration",
     "tags": [
       "control",
       "movement"
@@ -547,7 +567,8 @@
       "The pullback turn separates dribblers who can beat defenders from those who just run fast: it works at every level of the game.",
       "Combining deceleration with immediate acceleration builds the explosive first step coaches look for in advanced players.",
       "The foot-on-top sensation is the same feeling used in every touch-control drill, now with a game-realistic application."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "fig8cones",
@@ -557,7 +578,7 @@
     "setup": "Two cones 6 ft apart.",
     "how": "Dribble in a figure 8 around the two cones continuously, alternating feet. Time it. Add speed each round.",
     "cue": "\"Outside foot around the outside of each cone\"",
-    "success": "Ball never goes more than one step from the cone edge — tight and controlled",
+    "success": "Ball never goes more than one step from the cone edge \u2014 tight and controlled",
     "tags": [
       "control",
       "movement"
@@ -573,7 +594,8 @@
       "Figure 8 patterns force both feet to lead in both directions: the only drill that builds true bilateral dribbling in one continuous movement.",
       "Tight cone spacing teaches weight adjustment through a curve, the same pattern used in every direction change against a live defender.",
       "Time challenges produce the self-competition framework that drives the most consistent improvement in 7-11 year olds."
-    ]
+    ],
+    "location": "outdoor"
   },
   {
     "id": "juggle",
@@ -582,8 +604,8 @@
     "duration": 4,
     "setup": "Regular soccer ball. No setup needed.",
     "how": "Keep the ball in the air using feet and thighs. Count consecutive touches. Break your record every round. Start with drop-and-catch if needed.",
-    "cue": "\"Soft touch — push it up, not forward\"",
-    "success": "Any improvement on the previous record — even one extra touch counts",
+    "cue": "\"Soft touch \u2014 push it up, not forward\"",
+    "success": "Any improvement on the previous record \u2014 even one extra touch counts",
     "tags": [
       "control"
     ],
@@ -598,17 +620,18 @@
       "Players who can juggle 20+ times consistently have a measurable first-touch advantage in game situations.",
       "The failure loop is built in: kids develop resilience and self-correction habits faster here than in any other solo exercise.",
       "Personal records create intrinsic motivation without external reward, one of the best long-term practice habit builders."
-    ]
+    ],
+    "location": "indoor"
   },
   {
     "id": "penaltykick",
     "name": "Penalty Countdown",
     "sport": "soccer",
     "duration": 4,
-    "setup": "Mark a penalty spot 8–12 ft from goal. Parent in goal.",
+    "setup": "Mark a penalty spot 8\u201312 ft from goal. Parent in goal.",
     "how": "Player takes 5 penalty kicks. Parent leans to one side before each kick: player watches and goes the other way. Track goals scored.",
-    "cue": "\"Watch the keeper — go where they're not\"",
-    "success": "Player picks a side and commits before making contact — no last-second changes",
+    "cue": "\"Watch the keeper \u2014 go where they're not\"",
+    "success": "Player picks a side and commits before making contact \u2014 no last-second changes",
     "tags": [
       "shooting"
     ],
@@ -624,7 +647,8 @@
       "Reading goalkeeper movement before shooting is a game-intelligence skill trainable as early as U6 that most coaches never explicitly develop.",
       "Committing to a side before kicking activates the same decision-making pathway used under full match pressure.",
       "Scoring against a parent-keeper is deeply motivating: end on a made penalty to build finishing confidence."
-    ]
+    ],
+    "location": "outdoor"
   },
   {
     "id": "cutbackfinish",
@@ -633,7 +657,7 @@
     "duration": 4,
     "setup": "One cone at the side of goal 5 ft out. Player starts 15 ft away.",
     "how": "Dribble to the cone at speed. Fake a cross by cutting ball back inside with the inside of foot. Shoot near post or across goal.",
-    "cue": "\"Sell the cross first — then cut it back\"",
+    "cue": "\"Sell the cross first \u2014 then cut it back\"",
     "success": "The goalkeeper (parent) commits to the fake before the shot is taken",
     "tags": [
       "shooting",
@@ -650,7 +674,8 @@
       "The cutback replicates one of the most effective individual goal-scoring patterns in soccer: defenders commit to blocking a cross.",
       "Moving the ball across the body at pace builds hip rotation mechanics that transfer to instep shooting and 1v1 turns.",
       "A real target (parent as goalkeeper) raises decision-making quality compared to a cone or stationary goal."
-    ]
+    ],
+    "location": "outdoor"
   },
   {
     "id": "volleyfinish",
@@ -659,7 +684,7 @@
     "duration": 4,
     "setup": "Coach stands 8 ft to the side of goal. Player at the penalty spot.",
     "how": "Coach tosses ball underhand into the shooting zone. Player volleys it first-time toward goal. Alternate which side the toss comes from.",
-    "cue": "\"Watch the ball onto your foot — plant foot points at the target\"",
+    "cue": "\"Watch the ball onto your foot \u2014 plant foot points at the target\"",
     "success": "Ball contacted cleanly with the laces before it hits the ground",
     "tags": [
       "shooting"
@@ -674,7 +699,8 @@
       "First-time volleying is among the most complex finishing skills in youth soccer and builds confidence for advanced play when introduced at U10/U12.",
       "Watch-ball-onto-foot is the key: players who look at the goal instead miss more than half their volleys regardless of technique.",
       "Alternating sides trains both feet in a realistic finishing scenario."
-    ]
+    ],
+    "location": "outdoor"
   },
   {
     "id": "wallpasscombo",
@@ -683,8 +709,8 @@
     "duration": 5,
     "setup": "10 ft apart. Coach is the wall. Player attacks down the side.",
     "how": "Player passes to Coach, sprints past the defender line, receives the return pass in space, and shoots. Coach plays ball into space for the run, not at the player's feet.",
-    "cue": "\"Pass and move — don't wait for the return\"",
-    "success": "Player is already running when the return pass arrives — no stopping",
+    "cue": "\"Pass and move \u2014 don't wait for the return\"",
+    "success": "Player is already running when the return pass arrives \u2014 no stopping",
     "tags": [
       "passing",
       "control"
@@ -699,7 +725,8 @@
       "The give-and-go is the most effective way to beat a defender in youth soccer: players who automate it at U10/U12 never lose it.",
       "Stopping after passing gives away positional advantage: this drill breaks that habit through repetition.",
       "Playing the return into space (not at feet) teaches players to read where the ball is going, the most important cognitive leap in soccer development."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "stepovermove",
@@ -708,7 +735,7 @@
     "duration": 4,
     "setup": "Ball stationary. Open space.",
     "how": "Swing right foot over the ball outside-to-inside, plant it, then push ball with outside of left foot. Do 5 each direction. Then try at walking pace.",
-    "cue": "\"Over, plant, go — make the defender lean\"",
+    "cue": "\"Over, plant, go \u2014 make the defender lean\"",
     "success": "The fake foot goes all the way over the ball before the real move happens",
     "tags": [
       "control"
@@ -723,7 +750,8 @@
       "The step-over is one of the most effective 1v1 tools at U10/U12 and builds enormous confidence when mastered.",
       "The false weight transfer pattern is the same mechanism as the scissors, Maradona, and elastico: mastering one speeds up learning all others.",
       "Slow repetition before attempting at speed is the correct sequence: players who skip the slow phase collapse under match pressure."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "aroundworld",
@@ -732,8 +760,8 @@
     "duration": 3,
     "setup": "Ball stationary on flat ground.",
     "how": "Roll the sole of foot all the way around the ball in a full circle without losing contact. Clockwise, then counter-clockwise. Switch feet. Add speed each round.",
-    "cue": "\"Keep contact the whole way around — don't let it escape\"",
-    "success": "Foot maintains contact with the ball through the full 360° rotation",
+    "cue": "\"Keep contact the whole way around \u2014 don't let it escape\"",
+    "success": "Foot maintains contact with the ball through the full 360\u00b0 rotation",
     "tags": [
       "control"
     ],
@@ -748,14 +776,15 @@
       "Continuous contact around the ball builds the touch sensitivity for close-quarters dribbling: the foot learns every angle of the ball surface.",
       "Simultaneously builds flexibility, balance, and ball feel with no equipment beyond the ball.",
       "A progression from sole roll, it gives U6/U8 players a visible 360 goal that produces the same self-competition engagement as personal records."
-    ]
+    ],
+    "location": "outdoor"
   },
   {
     "id": "longrangelaser",
     "name": "Long-Range Laser",
     "sport": "soccer",
     "duration": 4,
-    "setup": "Mark a shooting line 18–22 ft from goal. Ball on the line.",
+    "setup": "Mark a shooting line 18\u201322 ft from goal. Ball on the line.",
     "how": "Full-speed approach. Drive ball with laces (top of foot) toward goal. Aim for low corners. Focus on a long approach stride and locked ankle at contact.",
     "cue": "\"Long stride, lock the ankle, lean over it\"",
     "success": "Ball stays below hip height and reaches the goal without bouncing more than twice",
@@ -772,7 +801,8 @@
       "Long-range shooting develops instep drive mechanics: long stride, locked ankle, and follow-through are identical patterns at all levels.",
       "Leaning over the ball prevents ballooning, the most common error in young strikers, and stops a bad habit from becoming ingrained.",
       "Training corners explicitly over raw velocity produces higher goal-to-shot ratios in youth games."
-    ]
+    ],
+    "location": "outdoor"
   },
   {
     "id": "receiveturn",
@@ -781,7 +811,7 @@
     "duration": 4,
     "setup": "Player starts with back to goal. Coach rolls ball from 10 ft.",
     "how": "Coach rolls, player receives with inside of foot. First touch turns them to face upfield. Then attack space. Vary which side the ball rolls to.",
-    "cue": "\"First touch opens your body — face where you want to go\"",
+    "cue": "\"First touch opens your body \u2014 face where you want to go\"",
     "success": "Player is facing upfield after the first touch, not sideways or backward",
     "tags": [
       "control",
@@ -798,7 +828,8 @@
       "A forward-facing first touch is the most common differentiator between recreational and competitive players at every level.",
       "Back-to-defender receiving is the hardest scenario in soccer: training it builds the spatial awareness needed for midfield and striker play.",
       "Varying delivery side forces the player to process ball speed, angle, and body position simultaneously."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "weakfoot",
@@ -807,7 +838,7 @@
     "duration": 4,
     "setup": "Normal drill setup. Place a colored cone near the weaker-foot side as a reminder.",
     "how": "Run a complete rep set of any movement or shooting drill using only the weaker foot. Reduce difficulty as needed: closer range, slower pace.",
-    "cue": "\"This one doesn't count — just get the touch right\"",
+    "cue": "\"This one doesn't count \u2014 just get the touch right\"",
     "success": "Player attempts every rep with the weak foot without reverting, regardless of outcome",
     "tags": [
       "control",
@@ -824,7 +855,8 @@
       "Bilateral development at U8-U12 is the highest-return investment in youth soccer: players who miss this window face a permanent ceiling.",
       "'This one doesn't count' removes performance pressure, the only way to build genuine comfort on the weaker side.",
       "Even mediocre weak-foot reps produce measurable improvement: neurological adaptation happens regardless of outcome quality."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "numshoot",
@@ -833,7 +865,7 @@
     "duration": 4,
     "setup": "Goal or wall target. Four zones: 1=top-left, 2=top-right, 3=bottom-left, 4=bottom-right.",
     "how": "Player sets up for shot. Coach calls a number. Player aims for that corner before shooting. Track hits per round.",
-    "cue": "\"Pick the corner — eyes on the spot, not the ball\"",
+    "cue": "\"Pick the corner \u2014 eyes on the spot, not the ball\"",
     "success": "Player looks at the target zone before stepping into the kick on every rep",
     "tags": [
       "shooting"
@@ -849,7 +881,8 @@
       "Pre-shot targeting trains the visual processing pathway skilled strikers use automatically, converting shooting from a power action into a placement decision.",
       "A specific numbered target produces measurably higher placement accuracy within the same session.",
       "Tracking zone hits builds self-awareness: players who know their tendencies correct them faster than those receiving generalized feedback."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "boxdrill",
@@ -858,7 +891,7 @@
     "duration": 4,
     "setup": "4 cones in a square, 6 ft per side. Coach stands outside with a ball.",
     "how": "Player receives a pass into the box, executes a specified turn (inside hook, drag-back, L-turn), exits the box, passes back to Coach. 6 reps of each turn.",
-    "cue": "\"Turn and exit — no standing in the box\"",
+    "cue": "\"Turn and exit \u2014 no standing in the box\"",
     "success": "Player exits the box on the correct side after completing the specified turn",
     "tags": [
       "control",
@@ -875,7 +908,8 @@
       "Confined-space turns replicate exact game pressure: limited space, a turn required, immediate exit needed.",
       "Specific turn names develop technical vocabulary: players who name what they're doing correct errors faster than those following visual-only cues.",
       "Pairing a turn with a return pass teaches the real game sequence: receive, turn, pass."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "cruyff",
@@ -883,8 +917,8 @@
     "sport": "soccer",
     "duration": 3,
     "setup": "Ball on flat ground. Open space. Mark a line as the fake-shot direction.",
-    "how": "Approach ball as if shooting. Instead, drag ball with inside of kicking foot behind the standing leg. Turn 180° and accelerate.",
-    "cue": "\"Fake the shot — then disappear behind you\"",
+    "how": "Approach ball as if shooting. Instead, drag ball with inside of kicking foot behind the standing leg. Turn 180\u00b0 and accelerate.",
+    "cue": "\"Fake the shot \u2014 then disappear behind you\"",
     "success": "Defender (parent) steps toward the fake shot before the real move happens",
     "tags": [
       "control",
@@ -900,16 +934,17 @@
       "The Cruyff turn is one of the most effective 1v1 moves ever developed, introduced in 1974 and still common at elite level.",
       "Fake forward, drag backward trains hip rotation and weight transfer that also applies to the step-over and elastico.",
       "A parent defender reacting to the fake gives immediate feedback on whether the deception is convincing."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "pressuredrib",
     "name": "Pressure Dribble",
     "sport": "soccer",
     "duration": 4,
-    "setup": "Mark a 10×10 ft zone. Player starts with ball in the middle.",
+    "setup": "Mark a 10\u00d710 ft zone. Player starts with ball in the middle.",
     "how": "Parent stands outside the zone and slowly closes in from different angles every few seconds. Player must shield the ball, keeping their body between parent and ball at all times.",
-    "cue": "\"Body between me and the ball — feel where I am\"",
+    "cue": "\"Body between me and the ball \u2014 feel where I am\"",
     "success": "Player maintains possession while tracking parent's position without staring at the ball",
     "tags": [
       "control",
@@ -926,7 +961,8 @@
       "Shielding under directional pressure trains the spatial awareness of a defender's position that transfers to every moment of possession play.",
       "The back-to-pressure body position is the most important shielding habit: players who learn it at U6/U8 have it for life.",
       "Eyes-up dribbling while tracking a threat builds the dual-attention skill that separates composed players from those who panic."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bb_bouncestart",
@@ -935,7 +971,7 @@
     "duration": 2,
     "setup": "Basketball on a flat surface.",
     "how": "Hold ball at waist height, drop it, let it bounce back up to chest, and catch with two hands. 10 in a row without moving feet. Vary the bounce height.",
-    "cue": "\"Let the ball do the work — just catch it\"",
+    "cue": "\"Let the ball do the work \u2014 just catch it\"",
     "success": "Ball bounces straight back to both hands 5+ times in a row",
     "tags": [
       "ball-handling"
@@ -950,7 +986,8 @@
       "Bounce-and-catch teaches two-handed control and ball tracking, the foundation of every other basketball skill before dribbling begins.",
       "Dropping rather than bouncing down teaches correct ball release mechanics: forcing a bounce introduces wrist habits hard to unlearn at ages 3-5.",
       "Waiting for the ball to return builds the same patience used in catching passes."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bb_statdribble",
@@ -959,7 +996,7 @@
     "duration": 3,
     "setup": "Basketball. Open space.",
     "how": "Dribble in place with dominant hand at knee height for 20 reps. Switch hands. Count out loud. Try eyes up after 5 reps.",
-    "cue": "\"Push it down — don't slap it\"",
+    "cue": "\"Push it down \u2014 don't slap it\"",
     "success": "Ball stays below waist height consistently; player looks up at least half the time",
     "tags": [
       "dribbling"
@@ -975,7 +1012,8 @@
       "Stationary dribbling isolates pure hand-eye coordination without movement: the correct starting point before adding complexity.",
       "Push-not-slap mechanics are built at this stage: a slapping dribble before age 6 requires explicit retraining that takes far longer than preventing it.",
       "Eyes-up begins here: even partial attention above the ball while dribbling is a measurable neurological step forward."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bb_walkdribble",
@@ -984,7 +1022,7 @@
     "duration": 3,
     "setup": "Basketball. 20 ft of clear space.",
     "how": "Walk forward slowly while dribbling with the dominant hand. Reach the end, stop, turn, and walk back with the other hand.",
-    "cue": "\"Ball stays beside your hip — not in front\"",
+    "cue": "\"Ball stays beside your hip \u2014 not in front\"",
     "success": "Player maintains continuous dribble without stopping through both lengths",
     "tags": [
       "dribbling",
@@ -1001,14 +1039,15 @@
       "Moving while dribbling is the earliest coordination challenge in basketball and separates players who can play from those who can only practice stationary.",
       "Ball-beside-hip (not out front) prevents the future turnover-producing habit of dribbling too far forward.",
       "Switching hands at the turn teaches bilateral dribbling as a natural part of movement, not an isolated exercise."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bb_formshoot",
     "name": "Form Shooting",
     "sport": "basketball",
     "duration": 4,
-    "setup": "Basket or target. Stand 3–5 ft away.",
+    "setup": "Basket or target. Stand 3\u20135 ft away.",
     "how": "Use B-E-E-F: Balance (feet shoulder-width), Eyes on target, Elbow under ball, Follow-through (hold wrist down after release). Shoot from 3 ft. Move back 1 ft after 3 makes.",
     "cue": "\"Hold your follow-through until the ball hits the floor\"",
     "success": "Wrist follows through toward basket on every shot",
@@ -1028,14 +1067,15 @@
       "BEEF mechanics are the most studied shooting framework in youth basketball: correct at every level of the game.",
       "Follow-through is self-checked and can be coached verbally without slowing reps, making it uniquely trainable without a coach present.",
       "Starting close (3 ft) and moving back only after makes prevents bad habits built by forcing long-range shots before mechanics are ready."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bb_layup",
     "name": "Layup Approach",
     "sport": "basketball",
     "duration": 4,
-    "setup": "Basket. Approach from 45° angle, starting 10 ft out.",
+    "setup": "Basket. Approach from 45\u00b0 angle, starting 10 ft out.",
     "how": "Right-hand layup: approach from the right, step right-left, jump off the left foot, shoot with the right hand using the backboard. Left-hand layup: mirror. 5 reps each side.",
     "cue": "\"Two steps, jump, bank it off the glass\"",
     "success": "Player jumps off the correct foot (opposite of shooting hand) on every rep",
@@ -1055,16 +1095,17 @@
       "The layup accounts for over 40% of points in youth games and must be technically correct to remain effective as competition increases.",
       "Wrong-foot takeoff creates a fundamentally broken layup that misses under pressure: correcting it early is critical.",
       "Using the backboard deliberately builds one of the most reliable targeting habits in basketball."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bb_chestpass",
     "name": "Chest Pass",
     "sport": "basketball",
     "duration": 4,
-    "setup": "Two people 10–15 ft apart.",
+    "setup": "Two people 10\u201315 ft apart.",
     "how": "Hold ball at chest, thumbs behind ball. Step toward receiver, extend arms fully, snap wrists so thumbs point down at release. Receiver calls 'ready' before each pass.",
-    "cue": "\"Thumbs down at the end — like you're pouring water\"",
+    "cue": "\"Thumbs down at the end \u2014 like you're pouring water\"",
     "success": "Ball arrives at receiver's chest height every time",
     "tags": [
       "passing"
@@ -1080,16 +1121,17 @@
       "Thumb-down wrist snap is the technical key to accurate chest passes: without it, unpredictable spin makes the ball hard to catch.",
       "Stepping into the pass teaches weight transfer that applies directly to all court movement skills.",
       "Calling 'ready' before each pass builds the communication habit that separates team players from individual ones."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bb_bouncepass",
     "name": "Bounce Pass",
     "sport": "basketball",
     "duration": 3,
-    "setup": "Two people 10–12 ft apart.",
+    "setup": "Two people 10\u201312 ft apart.",
     "how": "Aim bounce pass to land 2/3 of the distance from passer to receiver. Ball should arrive at receiver's waist. Strong push, thumbs down, step into it.",
-    "cue": "\"Two-thirds of the way — not halfway\"",
+    "cue": "\"Two-thirds of the way \u2014 not halfway\"",
     "success": "Ball arrives at receiver's waist height after one clean bounce",
     "tags": [
       "passing"
@@ -1105,16 +1147,17 @@
       "Two-thirds target (not halfway) is the single correction that fixes 90% of bad bounce passes.",
       "Bounce passes get through hand-checking defenders and are the primary entry pass into the post, making them higher-value than chest passes for most game situations.",
       "The physics of the bounce pass teach ball reaction intuition that applies to every future rebounding and loose-ball situation."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bb_coneslalom",
     "name": "Cone Dribble Slalom",
     "sport": "basketball",
     "duration": 4,
-    "setup": "5–6 cones in a line, 3 ft apart.",
+    "setup": "5\u20136 cones in a line, 3 ft apart.",
     "how": "Dribble through the cones with dominant hand going, off-hand coming back. Push through each gate tightly, don't loop wide. Time it.",
-    "cue": "\"Low dribble through the gates — keep it tight\"",
+    "cue": "\"Low dribble through the gates \u2014 keep it tight\"",
     "success": "Ball never rolls past the adjacent cone's line",
     "tags": [
       "dribbling",
@@ -1132,7 +1175,8 @@
       "Cone slaloms develop the burst-and-control cycle that defenders use to disrupt dribblers: practicing it builds resistance to this technique.",
       "Dominant hand going, off-hand returning ensures balanced development without requiring a separate drill.",
       "Personal best timing produces the self-competition framework that drives the most consistent improvement at ages 5-11."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bb_defslide",
@@ -1141,7 +1185,7 @@
     "duration": 3,
     "setup": "Open flat space 15 ft wide. Mark two endpoints.",
     "how": "Start in defensive stance: knees bent, weight on balls of feet, hands out. Slide left to the endpoint, slide back right. 5 sets. Never cross your feet.",
-    "cue": "\"Sit in the chair — don't stand up\"",
+    "cue": "\"Sit in the chair \u2014 don't stand up\"",
     "success": "Feet never cross during any slide; weight stays on balls of feet throughout",
     "tags": [
       "defense",
@@ -1158,16 +1202,17 @@
       "Defensive stance with bent knees and no foot-crossing is the foundation of on-ball defense: players who cross feet can be beaten with any single-direction move.",
       "'Sit in the chair' is the most effective single cue in youth basketball for knee-bend: abstract instructions don't produce the same correction.",
       "Lateral quickness from defensive slides transfers directly to offensive first-step explosiveness: same muscle group, same movement."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bb_freethrow",
     "name": "Free Throw Focus",
     "sport": "basketball",
     "duration": 4,
-    "setup": "Free throw line or modified distance (8–10 ft for younger players).",
-    "how": "10 free throw attempts. Consistent pre-shot routine: 1–2 dribbles, hold ball, aim, shoot. Track makes. Beat your previous record each session.",
-    "cue": "\"Same routine every time — make it automatic\"",
+    "setup": "Free throw line or modified distance (8\u201310 ft for younger players).",
+    "how": "10 free throw attempts. Consistent pre-shot routine: 1\u20132 dribbles, hold ball, aim, shoot. Track makes. Beat your previous record each session.",
+    "cue": "\"Same routine every time \u2014 make it automatic\"",
     "success": "Pre-shot routine is identical on every attempt, whether the previous one went in or not",
     "tags": [
       "shooting"
@@ -1184,7 +1229,8 @@
       "Pre-shot routine consistency is more predictive of free throw success than any other measurable variable.",
       "Tracking makes (not misses) builds confidence and provides objective progress feedback that intrinsically motivates continued practice.",
       "The free throw is the only undefended shot in basketball: purely mechanical and the highest-return drill for players who track their numbers."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bb_fig8legs",
@@ -1193,7 +1239,7 @@
     "duration": 3,
     "setup": "Basketball. Stand in place, feet shoulder-width apart.",
     "how": "Dribble ball in figure 8 pattern through and around both legs without losing control. 10 reps, then reverse direction. Progress to single bounces between each leg.",
-    "cue": "\"Low, tight, no traveling — hands follow the ball\"",
+    "cue": "\"Low, tight, no traveling \u2014 hands follow the ball\"",
     "success": "Completes 5 full figure 8 reps without losing ball control",
     "tags": [
       "dribbling"
@@ -1209,7 +1255,8 @@
       "Figure 8 ball-handling isolates the hand-switch pattern used in every crossover, between-the-legs, and spin move: the foundational drill for advanced handles.",
       "The bilateral coordination demand builds the cross-body motor pathway underdeveloped in players who only dribble dominant-hand.",
       "Players who master figure 8 report higher confidence in tight game spaces: the drill specifically trains spatial awareness under pressure."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bb_twoball",
@@ -1218,7 +1265,7 @@
     "duration": 3,
     "setup": "Two basketballs.",
     "how": "Dribble both balls simultaneously in place. Alternate bounces (one up, one down). Then try simultaneous bounces. Add walking forward.",
-    "cue": "\"Let one hand be the leader — the other follows\"",
+    "cue": "\"Let one hand be the leader \u2014 the other follows\"",
     "success": "Both balls stay below waist height for 10+ consecutive bounces",
     "tags": [
       "dribbling"
@@ -1234,7 +1281,8 @@
       "Two-ball dribbling forces the non-dominant hand to work independently: the most direct path to an off-hand dribble that doesn't require active concentration.",
       "The coordination demand creates the attention management needed when dribbling in heavy traffic.",
       "High fun factor sustains engagement past when players would stop single-ball dribbling: novelty keeps both player and parent more engaged."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bb_aroundworld",
@@ -1243,8 +1291,8 @@
     "duration": 5,
     "setup": "Basket. Mark 5 spots: left wing, left elbow, top of key, right elbow, right wing.",
     "how": "Shoot from spot 1. Make it: move to spot 2. Miss: stay or go back (choose difficulty). Complete all 5 spots.",
-    "cue": "\"New spot, same form — every shot is the same shot\"",
-    "success": "Form is consistent across all 5 spots — no rushing or changing stance",
+    "cue": "\"New spot, same form \u2014 every shot is the same shot\"",
+    "success": "Form is consistent across all 5 spots \u2014 no rushing or changing stance",
     "tags": [
       "shooting"
     ],
@@ -1259,7 +1307,8 @@
       "Around the World builds positional floor awareness and consistent form from multiple angles, neither of which develops through straight-line shooting.",
       "The make-and-move format naturally adjusts to the player's level: strong shooters advance fast, developing ones get more reps from comfortable spots.",
       "Playing it as a game makes it self-motivating: kids voluntarily extend past the allotted drill time."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bb_mikan",
@@ -1268,7 +1317,7 @@
     "duration": 4,
     "setup": "Basket. Start directly under the hoop.",
     "how": "Shoot a right-hand layup off the backboard, catch the ball before it hits the ground, step to the left side, shoot a left-hand layup. Repeat continuously: 10 each side.",
-    "cue": "\"Right, catch, left, catch — keep the rhythm\"",
+    "cue": "\"Right, catch, left, catch \u2014 keep the rhythm\"",
     "success": "Maintains continuous rhythm without stopping or letting ball hit the floor",
     "tags": [
       "shooting",
@@ -1285,7 +1334,8 @@
       "The Mikan Drill is the most proven close-range finishing drill in basketball history, still standard from youth leagues to the NBA.",
       "Catch-before-floor forces players to stay in the paint: the exact positioning needed for offensive rebounding and put-back finishes.",
       "Left-right rhythm builds automatic ambidexterity for close-range finishing: players show measurably higher finishing percentages on both sides within weeks."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bb_elbow",
@@ -1294,7 +1344,7 @@
     "duration": 4,
     "setup": "Mark the elbow of the key on both sides (where the free throw line meets the lane line).",
     "how": "Coach feeds ball. Player catches at the elbow, sets feet, shoots mid-range jumper. Alternate elbows. Focus on catch-and-shoot rhythm: no dribble.",
-    "cue": "\"Feet first — be ready before the ball gets there\"",
+    "cue": "\"Feet first \u2014 be ready before the ball gets there\"",
     "success": "Feet are set and body aligned before catching the ball on every rep",
     "tags": [
       "shooting",
@@ -1311,7 +1361,8 @@
       "The elbow jumper is the highest-percentage mid-range shot in basketball: automatic from both elbows is a permanent offensive weapon.",
       "Catch-and-shoot develops shot readiness mechanics: shooting immediately off a pass is the most important skill gap between youth and advanced players.",
       "Getting feet set before the catch (not after) separates shooters from dribblers who shoot: building it at U8-U12 makes it automatic under pressure."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bb_crossover",
@@ -1320,8 +1371,8 @@
     "duration": 4,
     "setup": "Basketball. Open space. Optional cone as defender.",
     "how": "Dribble forward with right hand, stop, crossover to left hand (ball crosses low in front), accelerate. Repeat left-to-right. Add a cone as a defender to crossover around.",
-    "cue": "\"Low and quick — don't give the defender time to react\"",
-    "success": "Crossover happens below knee height — ball is never above the defender's reach",
+    "cue": "\"Low and quick \u2014 don't give the defender time to react\"",
+    "success": "Crossover happens below knee height \u2014 ball is never above the defender's reach",
     "tags": [
       "dribbling"
     ],
@@ -1336,16 +1387,17 @@
       "The crossover is the most used dribble move in basketball: a reliable low crossover can attack any defender who reaches.",
       "Keeping it below knee height is the detail that makes a crossover undefendable: high crossovers become turnovers against any competent defender.",
       "Adding a cone as a defender makes this a decision drill: the player learns where and when to cross over, not just how."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bb_freestyle",
     "name": "Free Shoot",
     "sport": "basketball",
     "duration": 3,
-    "setup": "Basket. Open shooting — player picks everything.",
+    "setup": "Basket. Open shooting \u2014 player picks everything.",
     "how": "No rules. Any shot, any distance, any style. End every session here. Celebrate every make.",
-    "cue": "\"Your shot — shoot what you want\"",
+    "cue": "\"Your shot \u2014 shoot what you want\"",
     "success": "Smiling and wants to keep going",
     "tags": [
       "shooting"
@@ -1363,7 +1415,8 @@
       "Open shooting after structured reps consolidates drilled mechanics through self-directed exploration, measurably accelerating retention.",
       "Creative freedom builds shooting confidence that translates to games: players who only shoot when told rarely shoot when open.",
       "Always finish here: ending on enjoyment is the strongest predictor the child asks to come back tomorrow."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bb_closeout",
@@ -1372,7 +1425,7 @@
     "duration": 3,
     "setup": "Coach has the ball 15 ft from basket. Player starts under the basket.",
     "how": "Coach drives toward basket. Player sprints to close out: high hand, choppy steps at the last 5 ft, do not leave feet. Contest the shot without fouling.",
-    "cue": "\"Sprint then chop — hands up, don't jump\"",
+    "cue": "\"Sprint then chop \u2014 hands up, don't jump\"",
     "success": "Player gets a hand up without leaving feet before coach releases the ball",
     "tags": [
       "defense"
@@ -1387,7 +1440,8 @@
       "The closeout is the most common defensive breakdown in youth basketball: over 60% of uncontested shots in U10/U12 occur because defenders don't recover in time.",
       "'Sprint then chop' is technically correct: players who don't slow down foul constantly at this age.",
       "Hand up without jumping prevents the most common closeout foul: vertical challenge discipline separates team defenders from instinct defenders."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bsb_armcircles",
@@ -1396,7 +1450,7 @@
     "duration": 2,
     "setup": "Open space. No equipment.",
     "how": "10 small forward circles, 10 backward circles with each arm. Then 10 large forward circles, 10 backward. Cross arms at chest 10 times. Do this before every throwing session.",
-    "cue": "\"Start every catch-and-throw with arm circles — no exceptions\"",
+    "cue": "\"Start every catch-and-throw with arm circles \u2014 no exceptions\"",
     "success": "Completed full sequence before picking up a ball",
     "tags": [
       "movement"
@@ -1414,16 +1468,17 @@
       "Rotator cuff warm-up before throwing is the most effective arm injury prevention tool at youth level: UCL injuries have increased 400% in 15 years largely due to skipped warm-ups.",
       "Small then large, forward then backward lubricates the shoulder in the same range of motion used during throwing before adding resistance.",
       "Building this habit at the youngest ages makes it non-negotiable as throwing loads increase."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bsb_catchthrow",
     "name": "Catch & Throw",
     "sport": "baseball",
     "duration": 4,
-    "setup": "Gloves (or bare hands for young). 10–20 ft apart to start.",
+    "setup": "Gloves (or bare hands for young). 10\u201320 ft apart to start.",
     "how": "Basic catch and throw. Focus: catch with two hands, soft hands (give with the catch), four-seam grip before throwing. Move back 5 ft after 5 clean exchanges.",
-    "cue": "\"Soft hands first — then grip it to throw\"",
+    "cue": "\"Soft hands first \u2014 then grip it to throw\"",
     "success": "Ball is caught with both hands on every rep (glove covers, bare hand secures)",
     "tags": [
       "throwing",
@@ -1442,7 +1497,8 @@
       "Two-hand catching is the foundational fielding habit that prevents dropped balls at higher levels: glove-only catching costs outs in competitive play.",
       "Four-seam grip before throwing develops the most accurate arm path: random gripping produces inconsistent velocity and accuracy.",
       "Increasing distance progressively is the most effective arm-development protocol for ages 3-11: the longer arc naturally improves arm strength and mechanics."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bsb_teework",
@@ -1451,7 +1507,7 @@
     "duration": 4,
     "setup": "Batting tee, ball, bat. Set tee at belt height for the player.",
     "how": "10 swings. Focus on contact point. Ball should be at the front hip at contact. Reset the ball after every swing.",
-    "cue": "\"Hit through the ball — don't stop at contact\"",
+    "cue": "\"Hit through the ball \u2014 don't stop at contact\"",
     "success": "Ball goes off the tee cleanly with no frame tipping or tee contact on the swing",
     "tags": [
       "hitting"
@@ -1469,7 +1525,8 @@
       "Tee work is the foundation of hitting at every level: Ted Williams hit off a tee daily because it isolates mechanics from pitch timing.",
       "Belt-height tee position forces the correct contact point: adjusting height trains different pitch zones without needing a pitcher.",
       "Hit-through (extension) prevents pulling off early, the most common youth batting flaw, and produces immediate visible improvement in ball distance."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bsb_mirrorswing",
@@ -1478,7 +1535,7 @@
     "duration": 3,
     "setup": "Bat. Phone propped at stance height, or reflective window.",
     "how": "Take slow-motion half-swings watching your own form. Check: balanced stance, hands back, hip rotation before hands, extension through contact. 10 reps.",
-    "cue": "\"Watch your hips — they should move before your hands\"",
+    "cue": "\"Watch your hips \u2014 they should move before your hands\"",
     "success": "Player can describe one thing they saw in their own swing",
     "tags": [
       "hitting"
@@ -1496,7 +1553,8 @@
       "Visual self-feedback builds the self-coaching habit: players who identify their own errors improve three times faster than those relying on external feedback.",
       "Hip-before-hands is the most important sequence in hitting: slow-speed video is the clearest way to see whether it's happening.",
       "Mirror work at young ages establishes the video review habit every professional hitter uses, making it natural rather than uncomfortable."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bsb_softtoss",
@@ -1504,8 +1562,8 @@
     "sport": "baseball",
     "duration": 4,
     "setup": "Coach kneels 5 ft to the side of the player at the net or backstop.",
-    "how": "Coach tosses ball upward at 45° into the hitting zone. Player tracks it and swings. Alternate sides. 10 reps per round.",
-    "cue": "\"Wait for it — don't swing until you see it enter the zone\"",
+    "how": "Coach tosses ball upward at 45\u00b0 into the hitting zone. Player tracks it and swings. Alternate sides. 10 reps per round.",
+    "cue": "\"Wait for it \u2014 don't swing until you see it enter the zone\"",
     "success": "Player loads (weight back) before every toss, not after",
     "tags": [
       "hitting"
@@ -1522,7 +1580,8 @@
       "Soft toss is the bridge between tee work and live pitching: introduces pitch-tracking and timing without the speed and location of a full delivery.",
       "Loading before the toss (not after) is the key training point: the weight-back habit ensures the correct sequence before speed is added.",
       "Side-angle feeding creates a realistic ball path without requiring a full mound distance, viable in any backyard or garage."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bsb_fieldingpos",
@@ -1531,7 +1590,7 @@
     "duration": 3,
     "setup": "Open field. No ball initially.",
     "how": "Practice the ready position: feet shoulder-width, weight on balls of feet, knees bent, glove open at waist height. Coach calls left/right/in/back: player takes a crossover step in that direction.",
-    "cue": "\"On your toes — every pitch, every play\"",
+    "cue": "\"On your toes \u2014 every pitch, every play\"",
     "success": "First step is a crossover in the correct direction within 1 second of the call",
     "tags": [
       "fielding"
@@ -1548,7 +1607,8 @@
       "The crossover step is consistently faster than the jab step: players who crossover first cover more ground per step.",
       "Weight on balls-of-feet is the physical requirement for any reactive crossover: players who settle onto their heels cannot generate a first step in any direction.",
       "Every defensive failure in youth baseball traces back to ready position: building this habit before live hitting makes the difference between range and no range."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bsb_groundball",
@@ -1574,16 +1634,17 @@
       "Glove-down approach prevents the most common fielding error: players who start high and sweep down miss easy ground balls.",
       "Charging the ball (not waiting) gives the fielder control over the hop sequence: the biggest gap between recreational and competitive fielders.",
       "Field-through prevents short-arm fielding, which produces throwing errors even when the catch itself is clean."
-    ]
+    ],
+    "location": "outdoor"
   },
   {
     "id": "bsb_rapidfire",
     "name": "Rapid Fire Catches",
     "sport": "baseball",
     "duration": 3,
-    "setup": "Coach with 5 balls in hand. Player 8–10 ft away.",
+    "setup": "Coach with 5 balls in hand. Player 8\u201310 ft away.",
     "how": "Coach tosses balls in rapid succession: as soon as one is caught, the next is thrown. No gap. Alternate tosses left and right. Player drops caught balls, focuses on the next one.",
-    "cue": "\"Reset fast — the next one's already coming\"",
+    "cue": "\"Reset fast \u2014 the next one's already coming\"",
     "success": "Player catches 4 of 5 in each set without losing their fielding stance",
     "tags": [
       "fielding"
@@ -1599,7 +1660,8 @@
       "Rapid succession catching builds reaction quickness no single-toss drill can develop: the short interval forces hand-eye acceleration that carries into live fielding.",
       "Dropping caught balls teaches the fielder to focus on the next ball, the habit that prevents a caught ball from distracting in double-play situations.",
       "The fast pace is inherently fun for younger players: one of the few fielding drills where engagement doesn't drop in the second set."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bsb_bucketthrow",
@@ -1608,7 +1670,7 @@
     "duration": 4,
     "setup": "A bucket or trash can 20 ft away. 5 balls.",
     "how": "Throw all 5 balls trying to land them in the bucket. 3 rounds. Track hits per round. Adjust distance to find the right challenge.",
-    "cue": "\"Step toward the target — front foot points at what you're throwing at\"",
+    "cue": "\"Step toward the target \u2014 front foot points at what you're throwing at\"",
     "success": "Front foot points at the bucket on every throw, regardless of accuracy",
     "tags": [
       "throwing"
@@ -1624,16 +1686,17 @@
       "Front foot alignment is the most important mechanical fix for throwing accuracy: a foot pointing away from the target means consistent misses in that direction.",
       "Target throwing removes social pressure from the accuracy challenge, letting players focus on mechanics rather than embarrassing a partner.",
       "Tracking hits across rounds gives young players objective self-measurement, the earliest form of performance accountability."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bsb_popfly",
     "name": "Pop Fly Tracking",
     "sport": "baseball",
     "duration": 4,
-    "setup": "Coach with a ball, player 15–20 ft away.",
+    "setup": "Coach with a ball, player 15\u201320 ft away.",
     "how": "Coach tosses ball high (20+ ft arc). Player tracks it, moves under it, calls 'I got it!', and catches above the forehead with two hands. Vary distance and direction.",
-    "cue": "\"Call it early — then run to the ball, don't back up slowly\"",
+    "cue": "\"Call it early \u2014 then run to the ball, don't back up slowly\"",
     "success": "Player calls 'I got it' before reaching the ball's landing spot every time",
     "tags": [
       "fielding"
@@ -1650,7 +1713,8 @@
       "Calling your pop fly early is the communication habit that prevents the most common youth baseball collision: players who don't call cause teammates to hesitate.",
       "Moving aggressively to the ball (not backing up passively) gives the fielder a better look at the ball path.",
       "Two-handed catching above the forehead is the safest and most reliable technique: catching too low causes jamming on high tosses."
-    ]
+    ],
+    "location": "outdoor"
   },
   {
     "id": "bsb_oneknee",
@@ -1676,16 +1740,17 @@
       "Kneeling throwing is the most efficient arm-mechanics isolation drill: removing leg drive forces every flaw to show up immediately in throw quality.",
       "Elbow-up is the most critical throwing mechanic for arm health: low elbow is the primary cause of youth arm injuries and is directly trainable.",
       "15-minute one-knee sessions produce more arm mechanics improvement per unit of time than full-throw sessions."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bsb_baserun",
     "name": "Base Running Form",
     "sport": "baseball",
     "duration": 3,
-    "setup": "Open area. Mark home plate and first base 30–40 ft apart (scaled down).",
+    "setup": "Open area. Mark home plate and first base 30\u201340 ft apart (scaled down).",
     "how": "Sprint from home to first with correct form: run through the bag (don't leap), hit the inside corner of the bag, look up the right-field line as you hit it to read the ball. Time it.",
-    "cue": "\"Run through it — don't jump on it\"",
+    "cue": "\"Run through it \u2014 don't jump on it\"",
     "success": "Player hits the bag and decelerates past it rather than stopping at it",
     "tags": [
       "movement"
@@ -1702,7 +1767,8 @@
       "Running through first base is faster than any other technique: the physics are non-negotiable and produce faster safe times.",
       "Inside corner of the bag is optimal for rounding a turn: players who hit the outside corner lose a full stride on any attempt to advance.",
       "Looking right as you hit the bag to read the ball's location is the game-intelligence habit that turns singles into doubles, trainable before age 7."
-    ]
+    ],
+    "location": "outdoor"
   },
   {
     "id": "bsb_longtoss",
@@ -1711,7 +1777,7 @@
     "duration": 4,
     "setup": "Two gloves. 30 ft starting distance. Move back 10 ft after 5 clean throws.",
     "how": "Play catch at progressively increasing distances. Let the ball arc naturally, don't flatten it. Throw through the partner, not at them. Return to 30 ft to finish.",
-    "cue": "\"Arc it up — let it ride\"",
+    "cue": "\"Arc it up \u2014 let it ride\"",
     "success": "Ball arcs naturally to partner without arm strain; no short-hops",
     "tags": [
       "throwing"
@@ -1727,7 +1793,8 @@
       "Long toss is the most effective arm-strength development protocol for youth players: the extended arc produces the same mechanics used in high-velocity pitching.",
       "Letting the ball arc (not forcing a flat line) reduces arm stress while developing the full range of motion for a powerful, healthy throw.",
       "The return-to-short-distance protocol at the end prevents arm soreness: skipping it is the most common cause of next-day soreness."
-    ]
+    ],
+    "location": "outdoor"
   },
   {
     "id": "bsb_teecontact",
@@ -1736,7 +1803,7 @@
     "duration": 4,
     "setup": "Batting tee. Mark three zones: pull side (front hip), middle (directly in front), opposite (back hip).",
     "how": "Move tee for each zone. Pull: hands lead, inside-out. Middle: standard contact. Opposite: let ball travel deeper, hit it late. 5 reps per zone.",
-    "cue": "\"Let the ball come to you on the outside — don't reach for it\"",
+    "cue": "\"Let the ball come to you on the outside \u2014 don't reach for it\"",
     "success": "Ball goes to the intended field zone on at least 3 of 5 reps",
     "tags": [
       "hitting"
@@ -1752,16 +1819,17 @@
       "Contact zone awareness separates average hitters from good ones and is almost never coached at youth level.",
       "Opposite-field hitting is the most game-useful skill to develop by U10/U12: pitchers at this age increasingly locate outside pitches.",
       "Tee work at multiple positions isolates body position as the only variable, more effective than soft toss for contact zone training."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bsb_shorthop",
     "name": "Short Hop Drill",
     "sport": "baseball",
     "duration": 3,
-    "setup": "Coach bounces ball intentionally 3–4 ft in front of fielder.",
+    "setup": "Coach bounces ball intentionally 3\u20134 ft in front of fielder.",
     "how": "Intentional short-hop fielding: glove opens wide, knees bent, field the ball on the long-hop side. Work both backhand and forehand short hops.",
-    "cue": "\"Eat the short hop — don't back up from it\"",
+    "cue": "\"Eat the short hop \u2014 don't back up from it\"",
     "success": "Ball is fielded cleanly without bouncing off the chest or missing to either side",
     "tags": [
       "fielding"
@@ -1777,7 +1845,8 @@
       "Short hops are unavoidable in competitive baseball: players who can't field them commit routine errors, and training explicitly at U8/U10 eliminates this hole.",
       "Attacking the short hop (not backing up) gives the fielder control over which side of the bounce they receive.",
       "Backhand short hops are the hardest fielding skill and separate good infielders from great ones."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bsb_loadswing",
@@ -1786,7 +1855,7 @@
     "duration": 3,
     "setup": "Bat. Open space. No ball needed.",
     "how": "Slow-motion swing drill: load (shift weight to back foot and coil hips), then fire hips before hands, extend through the contact zone. Pause at each phase.",
-    "cue": "\"Hips then hands — if your hands go first, start over\"",
+    "cue": "\"Hips then hands \u2014 if your hands go first, start over\"",
     "success": "Hips are rotating before the hands move on every rep",
     "tags": [
       "hitting"
@@ -1802,16 +1871,17 @@
       "Hip-first rotation generates the rotational power that separates weak contact from hard contact: hands alone produce roughly 40% less bat speed.",
       "Slow-motion pausing at each phase builds kinesthetic awareness faster than full-speed repetitions: the brain processes isolated phase feedback better.",
       "This drill works without a ball: removing the contact variable allows full attention on sequencing."
-    ]
+    ],
+    "location": "both"
   },
   {
     "id": "bsb_pitchingmech",
     "name": "Pitching Mechanics",
     "sport": "baseball",
     "duration": 4,
-    "setup": "Mound distance or flat ground 30–40 ft from plate. Catcher or net.",
+    "setup": "Mound distance or flat ground 30\u201340 ft from plate. Catcher or net.",
     "how": "Work through delivery in phases: wind-up (balance point, hip tuck), stride (knee drive then extension), arm (elbow up, glove tuck), finish (follow-through down). 10 full throws.",
-    "cue": "\"Balance, stride, arm, finish — in that order\"",
+    "cue": "\"Balance, stride, arm, finish \u2014 in that order\"",
     "success": "Player pauses at balance point on every rep without falling forward",
     "tags": [
       "throwing"
@@ -1827,7 +1897,8 @@
       "Balance point is the most reliable diagnostic of the entire pitching delivery: rushing through it causes compensations that produce arm stress and inaccuracy.",
       "Phase-by-phase teaching produces faster mechanics development than full-speed throwing with feedback.",
       "Pitching mechanics at U8/U10 is appropriate when volume is kept low: the goal at this stage is movement pattern, not velocity."
-    ]
+    ],
+    "location": "outdoor"
   },
   {
     "id": "bsb_freestyle",
@@ -1836,7 +1907,7 @@
     "duration": 3,
     "setup": "Tee or soft toss setup. Player picks everything.",
     "how": "No instructions. Player hits however they want: adjust tee, choose their pitch, experiment. End every session here.",
-    "cue": "\"Show me your best swing — whatever that means to you\"",
+    "cue": "\"Show me your best swing \u2014 whatever that means to you\"",
     "success": "Player is experimenting and engaging voluntarily, not waiting for instructions",
     "tags": [
       "hitting"
@@ -1854,6 +1925,7 @@
       "Open exploration after drilled reps allows players to consolidate mechanics through self-directed experimentation, the same mechanism that makes batting cages effective.",
       "Creative freedom builds the game-day confidence to swing in unexpected situations: players who only hit when told hesitate at the plate.",
       "Always finish here: ending practice on enjoyment ensures the next session starts with enthusiasm."
-    ]
+    ],
+    "location": "both"
   }
 ]
