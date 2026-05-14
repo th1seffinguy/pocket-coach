@@ -387,15 +387,17 @@
   .pc-priority-badge{background:#D9502B18;border:1px solid #D9502B55;border-radius:4px;
     padding:1px 5px;font-size:9px;font-family:var(--mono);color:var(--coral);
     letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;}
-  .pc-insights{background:var(--elev);border-left:3px solid #A78BFA;border-radius:0 8px 8px 0;
-    padding:8px 12px;margin-top:8px;}
-  .pc-insights__lbl{font-size:9px;font-family:var(--mono);color:#A78BFA;letter-spacing:.1em;
-    text-transform:uppercase;margin-bottom:5px;}
-  .pc-insights__list{list-style:none;display:flex;flex-direction:column;gap:5px;}
-  .pc-insights__list li{font-size:12px;line-height:1.45;color:var(--muted);
-    padding-left:14px;position:relative;}
-  .pc-insights__list li::before{content:'→';position:absolute;left:0;color:#A78BFA;
-    font-size:10px;top:1px;}
+  .pc-insights{background:rgba(167,139,250,.07);border:1px solid rgba(167,139,250,.2);
+    border-radius:12px;overflow:hidden;margin-top:10px;}
+  .pc-insights__hd{display:flex;align-items:center;gap:7px;padding:8px 10px 6px;}
+  .pc-insights__badge{width:22px;height:22px;border-radius:7px;background:rgba(167,139,250,.18);
+    border:1px solid rgba(167,139,250,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .pc-insights__lbl{font-family:var(--mono);font-size:10px;letter-spacing:.15em;color:#A78BFA;text-transform:uppercase;}
+  .pc-insights__body{display:flex;flex-direction:column;gap:6px;padding:0 10px 10px;}
+  .pc-insights__card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);
+    border-radius:9px;padding:9px 10px;display:flex;align-items:flex-start;gap:7px;}
+  .pc-insights__icon{flex-shrink:0;width:13px;height:13px;margin-top:2px;}
+  .pc-insights__txt{font-size:12px;line-height:1.45;color:var(--text);}
 
   /* ── PROGRESS ───────────────────────────────────────────────── */
   .pc-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;
@@ -708,7 +710,7 @@
 <div class="pc-tabs">
   <button class="pc-tab is-active" id="tab-session" onclick="switchView('session',this)">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 L12 4 L20 11 V20 H14 V14 H10 V20 H4 Z"/></svg>
-    <span class="pc-tab__lbl">Today</span>
+    <span class="pc-tab__lbl">Session</span>
   </button>
   <button class="pc-tab" id="tab-library" onclick="switchView('library',this)">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="5" height="14" rx="1"/><rect x="11" y="5" width="5" height="14" rx="1"/><rect x="18" y="5" width="2" height="14" rx="1"/></svg>
@@ -1776,13 +1778,19 @@ function renderLib() {
         </div>
         <button class="pc-add-btn" onclick="addBuilderDrill('${d.id}')">${isAdded ? 'Add Again' : 'Add'}</button>
       </div>
-      <div class="pc-info-lbl">How to Play</div>
+      <div class="pc-info-lbl">How To</div>
       <div class="pc-info-txt" style="margin-bottom:8px">${d.how}</div>
       <div class="pc-cue" style="margin:0 0 8px">
         <div class="pc-cue__lbl">Coach Says</div>
         <div class="pc-cue__txt">${d.cue}</div>
       </div>
-      ${d.insights ? `<div class="pc-insights"><div class="pc-insights__lbl">Why This Drill</div><ul class="pc-insights__list">${d.insights.map(b=>`<li>${b}</li>`).join('')}</ul></div>` : ''}
+      ${d.insights?.length ? `<div class="pc-insights">
+        <div class="pc-insights__hd">
+          <span class="pc-insights__badge"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1.5A4 4 0 0 0 3 5.5c0 1.4.72 2.63 1.8 3.35V10a.5.5 0 0 0 .5.5h3.4a.5.5 0 0 0 .5-.5V8.85A4 4 0 0 0 7 1.5Z" stroke="#DBA514" stroke-width="1.1" stroke-linejoin="round"/><path d="M5 11h4M5.5 12.5h3" stroke="#DBA514" stroke-width="1.1" stroke-linecap="round"/></svg></span>
+          <span class="pc-insights__lbl">Insights</span>
+        </div>
+        <div class="pc-insights__body">${d.insights.map(t=>{const cat=classifyInsight(t);return `<div class="pc-insights__card"><span class="pc-insights__icon">${INSIGHT_ICONS[cat]}</span><span class="pc-insights__txt">${t}</span></div>`;}).join('')}</div>
+      </div>` : ''}
       <div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap">${d.tags.map(t=>`<span class="pc-tag">${t}</span>`).join('')}${d.fun?'<span class="pc-tag" style="color:var(--amber);border-color:rgba(219,165,20,.5)">⭐ fun</span>':''}</div>
     </div>`;
   }).join('') : `<div class="pc-empty"><div class="pc-empty-ttl">No Results</div><div class="pc-empty-txt">Your filters may be too narrow. Clear one and try again.</div></div>`;
