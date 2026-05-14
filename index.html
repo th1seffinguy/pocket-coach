@@ -264,7 +264,7 @@
     border:1px solid var(--border);color:var(--muted);display:flex;align-items:center;
     justify-content:center;cursor:pointer;transition:all .15s;}
   .b-pause-btn:active{transform:scale(.88);}
-  .b-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 20px 6px;}
+  .b-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 20px 80px;}
   .b-media{height:82px;background:var(--surface);border:1px solid var(--border);
     border-radius:16px;overflow:hidden;margin-bottom:10px;display:flex;align-items:center;justify-content:center;}
   .b-media svg{display:block;width:100%;height:100%;}
@@ -293,17 +293,20 @@
     text-transform:uppercase;margin-bottom:5px;}
   .b-cue-text{font-family:var(--sans);font-size:16px;font-weight:600;color:var(--text);line-height:1.25;}
   .b-insights{display:none;margin-top:8px;background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.22);
-    border-radius:12px;padding:7px 9px;}
+    border-radius:12px;overflow:hidden;}
   .b-insights.open{display:block;}
-  .b-insights-lbl{font-family:var(--mono);font-size:8px;letter-spacing:.18em;color:#A78BFA;text-transform:uppercase;margin-bottom:5px;}
-  .b-insights-row{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;}
-  .b-insights-row::-webkit-scrollbar{display:none;}
-  .b-insight-card{min-width:48%;scroll-snap-align:start;color:var(--text);
+  .b-insights-header{display:flex;align-items:center;justify-content:space-between;
+    padding:7px 10px;cursor:pointer;min-height:34px;-webkit-tap-highlight-color:transparent;}
+  .b-insights-lbl{font-family:var(--mono);font-size:8px;letter-spacing:.18em;color:#A78BFA;text-transform:uppercase;}
+  .b-insights-chev{color:#A78BFA;font-size:11px;transition:transform .2s;line-height:1;}
+  .b-insights.expanded .b-insights-chev{transform:rotate(180deg);}
+  .b-insights-row{display:none;flex-direction:column;gap:6px;padding:0 10px 10px;}
+  .b-insights.expanded .b-insights-row{display:flex;}
+  .b-insight-card{color:var(--text);
     background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06);border-radius:9px;
-    padding:6px 8px;max-height:38px;overflow:hidden;display:flex;align-items:flex-start;gap:5px;}
-  .b-insight-icon{flex-shrink:0;width:12px;height:12px;margin-top:1px;}
-  .b-insight-txt{font-size:10px;line-height:1.3;overflow:hidden;display:-webkit-box;
-    -webkit-line-clamp:2;-webkit-box-orient:vertical;}
+    padding:8px 9px;display:flex;align-items:flex-start;gap:6px;}
+  .b-insight-icon{flex-shrink:0;width:12px;height:12px;margin-top:2px;}
+  .b-insight-txt{font-size:10px;line-height:1.45;}
   .b-quip{font-size:10px;font-family:var(--mono);color:var(--amber);font-style:italic;
     padding:8px 0 0;min-height:14px;opacity:0;transition:opacity .4s;}
   .b-quip.show{opacity:1;}
@@ -614,7 +617,10 @@
             <div class="b-cue-text" id="bCueTxt"></div>
           </div>
           <div class="b-insights" id="bInsights">
-            <div class="b-insights-lbl">Why This Drill</div>
+            <div class="b-insights-header" id="bInsightsHeader">
+              <span class="b-insights-lbl">Insights</span>
+              <span class="b-insights-chev">▾</span>
+            </div>
             <div class="b-insights-row" id="bInsightsRow"></div>
           </div>
         </div>
@@ -1368,6 +1374,21 @@ function renderNowPlaying() {
       const cat = classifyInsight(t);
       return `<div class="b-insight-card b-insight-${cat}"><span class="b-insight-icon">${INSIGHT_ICONS[cat]}</span><span class="b-insight-txt">${t}</span></div>`;
     }).join('');
+  }
+  const hdr = document.getElementById('bInsightsHeader');
+  if (hdr && !hdr._insightsBound) {
+    hdr._insightsBound = true;
+    hdr.addEventListener('click', () => {
+      const el = document.getElementById('bInsights');
+      const opening = !el.classList.contains('expanded');
+      el.classList.toggle('expanded');
+      if (opening) setTimeout(() => {
+        const rect = el.getBoundingClientRect();
+        const clearance = 160; // fixed footer height
+        const excess = rect.bottom - (window.innerHeight - clearance);
+        if (excess > 0) window.scrollBy({top: excess, behavior: 'smooth'});
+      }, 80);
+    });
   }
   renderActiveConfigStrip();
   renderProgressDots();
