@@ -296,21 +296,21 @@
   .b-how-lbl{font-family:var(--mono);font-size:8px;letter-spacing:.18em;color:var(--muted);
     text-transform:uppercase;margin-bottom:4px;}
   .b-how-txt{font-size:13px;line-height:1.45;color:rgba(232,234,240,.75);}
-  .b-insights{display:none;margin-top:8px;background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.22);
+  .b-insights{display:none;margin-top:8px;background:rgba(240,238,232,.08);border:1px solid rgba(219,165,20,.3);
     border-radius:12px;overflow:hidden;}
   .b-insights.open{display:block;}
   .b-insights-header{display:flex;align-items:center;justify-content:space-between;
     padding:8px 10px;cursor:pointer;min-height:36px;-webkit-tap-highlight-color:transparent;}
   .b-insights-header-left{display:flex;align-items:center;gap:7px;}
-  .b-insights-badge{width:26px;height:26px;border-radius:8px;background:rgba(167,139,250,.18);
-    border:1px solid rgba(167,139,250,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .b-insights-lbl{font-family:var(--mono);font-size:13px;letter-spacing:.15em;color:#A78BFA;text-transform:uppercase;}
-  .b-insights-chev{color:#A78BFA;font-size:15px;transition:transform .2s;line-height:1;}
+  .b-insights-badge{width:26px;height:26px;border-radius:8px;background:rgba(219,165,20,.18);
+    border:1px solid rgba(219,165,20,.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .b-insights-lbl{font-family:var(--mono);font-size:13px;letter-spacing:.15em;color:#E8E4DC;text-transform:uppercase;}
+  .b-insights-chev{color:#DBA514;font-size:15px;transition:transform .2s;line-height:1;}
   .b-insights.expanded .b-insights-chev{transform:rotate(180deg);}
   .b-insights-row{display:none;flex-direction:column;gap:7px;padding:0 10px 12px;}
   .b-insights.expanded .b-insights-row{display:flex;}
   .b-insight-card{color:var(--text);
-    background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06);border-radius:10px;
+    background:rgba(255,255,255,.04);border:1px solid rgba(219,165,20,.1);border-radius:10px;
     padding:10px 11px;display:flex;align-items:flex-start;gap:8px;}
   .b-insight-icon{flex-shrink:0;width:14px;height:14px;margin-top:2px;}
   .b-insight-txt{font-size:13px;line-height:1.5;}
@@ -324,7 +324,7 @@
     border:1px solid var(--border);background:var(--elev);color:var(--text);
     display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;}
   .b-btn:active{transform:scale(.97);}
-  .b-btn-sm{width:74px;flex-shrink:0;}
+  .b-btn-sm{width:66px;flex-shrink:0;font-size:12px;}
   .b-btn-done{flex:1;background:var(--green);color:#0A1A0E;border-color:var(--green);font-size:16px;}
 
   /* ── EMPTY STATE ────────────────────────────────────────────── */
@@ -387,15 +387,17 @@
   .pc-priority-badge{background:#D9502B18;border:1px solid #D9502B55;border-radius:4px;
     padding:1px 5px;font-size:9px;font-family:var(--mono);color:var(--coral);
     letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;}
-  .pc-insights{background:var(--elev);border-left:3px solid #A78BFA;border-radius:0 8px 8px 0;
-    padding:8px 12px;margin-top:8px;}
-  .pc-insights__lbl{font-size:9px;font-family:var(--mono);color:#A78BFA;letter-spacing:.1em;
-    text-transform:uppercase;margin-bottom:5px;}
-  .pc-insights__list{list-style:none;display:flex;flex-direction:column;gap:5px;}
-  .pc-insights__list li{font-size:12px;line-height:1.45;color:var(--muted);
-    padding-left:14px;position:relative;}
-  .pc-insights__list li::before{content:'→';position:absolute;left:0;color:#A78BFA;
-    font-size:10px;top:1px;}
+  .pc-insights{background:rgba(240,238,232,.08);border:1px solid rgba(219,165,20,.3);
+    border-radius:12px;overflow:hidden;margin-top:10px;}
+  .pc-insights__hd{display:flex;align-items:center;gap:7px;padding:8px 10px 6px;}
+  .pc-insights__badge{width:22px;height:22px;border-radius:7px;background:rgba(219,165,20,.18);
+    border:1px solid rgba(219,165,20,.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .pc-insights__lbl{font-family:var(--mono);font-size:10px;letter-spacing:.15em;color:#E8E4DC;text-transform:uppercase;}
+  .pc-insights__body{display:flex;flex-direction:column;gap:6px;padding:0 10px 10px;}
+  .pc-insights__card{background:rgba(255,255,255,.04);border:1px solid rgba(219,165,20,.1);
+    border-radius:9px;padding:9px 10px;display:flex;align-items:flex-start;gap:7px;}
+  .pc-insights__icon{flex-shrink:0;width:13px;height:13px;margin-top:2px;}
+  .pc-insights__txt{font-size:12px;line-height:1.45;color:var(--text);}
 
   /* ── PROGRESS ───────────────────────────────────────────────── */
   .pc-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;
@@ -632,8 +634,8 @@
               <div class="b-insights-header-left">
                 <span class="b-insights-badge">
                   <svg width="15" height="15" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 1.5A4 4 0 0 0 3 5.5c0 1.4.72 2.63 1.8 3.35V10a.5.5 0 0 0 .5.5h3.4a.5.5 0 0 0 .5-.5V8.85A4 4 0 0 0 7 1.5Z" stroke="#A78BFA" stroke-width="1.1" stroke-linejoin="round"/>
-                    <path d="M5 11h4M5.5 12.5h3" stroke="#A78BFA" stroke-width="1.1" stroke-linecap="round"/>
+                    <path d="M7 1.5A4 4 0 0 0 3 5.5c0 1.4.72 2.63 1.8 3.35V10a.5.5 0 0 0 .5.5h3.4a.5.5 0 0 0 .5-.5V8.85A4 4 0 0 0 7 1.5Z" stroke="#DBA514" stroke-width="1.1" stroke-linejoin="round"/>
+                    <path d="M5 11h4M5.5 12.5h3" stroke="#DBA514" stroke-width="1.1" stroke-linecap="round"/>
                   </svg>
                 </span>
                 <span class="b-insights-lbl">Insights</span>
@@ -651,6 +653,10 @@
         <button class="b-btn b-btn-sm" onclick="openSwap(activeIdx)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
           Swap
+        </button>
+        <button class="b-btn b-btn-sm" onclick="shuffleDrill()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+          Shuffle
         </button>
         <button class="b-btn b-btn-sm" onclick="skipDrill()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
@@ -704,7 +710,7 @@
 <div class="pc-tabs">
   <button class="pc-tab is-active" id="tab-session" onclick="switchView('session',this)">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 L12 4 L20 11 V20 H14 V14 H10 V20 H4 Z"/></svg>
-    <span class="pc-tab__lbl">Today</span>
+    <span class="pc-tab__lbl">Session</span>
   </button>
   <button class="pc-tab" id="tab-library" onclick="switchView('library',this)">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="5" height="14" rx="1"/><rect x="11" y="5" width="5" height="14" rx="1"/><rect x="18" y="5" width="2" height="14" rx="1"/></svg>
@@ -917,12 +923,12 @@ function classifyInsight(t) {
   return 'skill';
 }
 const INSIGHT_ICONS = {
-  reps:      `<svg viewBox="0 0 12 12" fill="none"><path d="M7 1L3.5 6h3L5 11l3.5-5H5L7 1z" fill="#A78BFA"/></svg>`,
-  focus:     `<svg viewBox="0 0 12 12" fill="none"><path d="M1 6c0 0 2-3.5 5-3.5S11 6 11 6s-2 3.5-5 3.5S1 6 1 6z" stroke="#A78BFA" stroke-width="1" fill="none"/><circle cx="6" cy="6" r="1.5" fill="#A78BFA"/></svg>`,
-  mechanics: `<svg viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="2" stroke="#A78BFA" stroke-width="1" fill="none"/><path d="M6 1v1.5M6 9.5V11M1 6h1.5M9.5 6H11M2.9 2.9l1.1 1.1M8 8l1.1 1.1M9.1 2.9L8 4M4 8l-1.1 1.1" stroke="#A78BFA" stroke-width="1" stroke-linecap="round"/></svg>`,
-  drive:     `<svg viewBox="0 0 12 12" fill="none"><path d="M6 11c-2 0-3.5-1.5-3.5-3.5 0-1.5 1-2.5 1.5-3C4.5 5 5 5.5 5 6.5c.5-.5.5-2 1.5-3.5C7 4.5 7.5 5.5 7.5 6c.5-.5.5-1.5.5-2.5C9.5 5 9.5 7 9.5 7.5 9.5 9.5 8 11 6 11z" fill="#A78BFA" opacity=".9"/></svg>`,
-  progress:  `<svg viewBox="0 0 12 12" fill="none"><path d="M6 10V3" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round"/><path d="M3.5 5.5L6 3l2.5 2.5" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-  skill:     `<svg viewBox="0 0 12 12" fill="none"><path d="M6 1.5L10.5 6 6 10.5 1.5 6z" stroke="#A78BFA" stroke-width="1" fill="none"/></svg>`,
+  reps:      `<svg viewBox="0 0 12 12" fill="none"><path d="M7 1L3.5 6h3L5 11l3.5-5H5L7 1z" fill="#DBA514"/></svg>`,
+  focus:     `<svg viewBox="0 0 12 12" fill="none"><path d="M1 6c0 0 2-3.5 5-3.5S11 6 11 6s-2 3.5-5 3.5S1 6 1 6z" stroke="#DBA514" stroke-width="1" fill="none"/><circle cx="6" cy="6" r="1.5" fill="#DBA514"/></svg>`,
+  mechanics: `<svg viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="2" stroke="#DBA514" stroke-width="1" fill="none"/><path d="M6 1v1.5M6 9.5V11M1 6h1.5M9.5 6H11M2.9 2.9l1.1 1.1M8 8l1.1 1.1M9.1 2.9L8 4M4 8l-1.1 1.1" stroke="#DBA514" stroke-width="1" stroke-linecap="round"/></svg>`,
+  drive:     `<svg viewBox="0 0 12 12" fill="none"><path d="M6 11c-2 0-3.5-1.5-3.5-3.5 0-1.5 1-2.5 1.5-3C4.5 5 5 5.5 5 6.5c.5-.5.5-2 1.5-3.5C7 4.5 7.5 5.5 7.5 6c.5-.5.5-1.5.5-2.5C9.5 5 9.5 7 9.5 7.5 9.5 9.5 8 11 6 11z" fill="#DBA514" opacity=".9"/></svg>`,
+  progress:  `<svg viewBox="0 0 12 12" fill="none"><path d="M6 10V3" stroke="#DBA514" stroke-width="1.5" stroke-linecap="round"/><path d="M3.5 5.5L6 3l2.5 2.5" stroke="#DBA514" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  skill:     `<svg viewBox="0 0 12 12" fill="none"><path d="M6 1.5L10.5 6 6 10.5 1.5 6z" stroke="#DBA514" stroke-width="1" fill="none"/></svg>`,
 };
 
 // ─── DRILL ANIMATIONS (inline SVG, CSS @keyframes) ───────────────────────────
@@ -1507,6 +1513,16 @@ function doSwap(id) {
   }
   closeModal();
 }
+function shuffleDrill() {
+  const cur = session[activeIdx];
+  const g = curGroup();
+  if (!g) return;
+  const opts = g.drills.filter(id => id !== cur?.id && !session.find(s => s.id === id)).map(getDrill).filter(Boolean);
+  if (!opts.length) { showToast('No other drills to shuffle in'); return; }
+  const pick = opts[Math.floor(Math.random() * opts.length)];
+  swapIdx = activeIdx;
+  doSwap(pick.id);
+}
 function closeModal() { document.getElementById('overlay').classList.remove('open'); swapIdx = null; }
 function maybeClose(e) { if (e.target === document.getElementById('overlay')) closeModal(); }
 
@@ -1762,13 +1778,19 @@ function renderLib() {
         </div>
         <button class="pc-add-btn" onclick="addBuilderDrill('${d.id}')">${isAdded ? 'Add Again' : 'Add'}</button>
       </div>
-      <div class="pc-info-lbl">How to Play</div>
+      <div class="pc-info-lbl">How To</div>
       <div class="pc-info-txt" style="margin-bottom:8px">${d.how}</div>
       <div class="pc-cue" style="margin:0 0 8px">
         <div class="pc-cue__lbl">Coach Says</div>
         <div class="pc-cue__txt">${d.cue}</div>
       </div>
-      ${d.insights ? `<div class="pc-insights"><div class="pc-insights__lbl">Why This Drill</div><ul class="pc-insights__list">${d.insights.map(b=>`<li>${b}</li>`).join('')}</ul></div>` : ''}
+      ${d.insights?.length ? `<div class="pc-insights">
+        <div class="pc-insights__hd">
+          <span class="pc-insights__badge"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1.5A4 4 0 0 0 3 5.5c0 1.4.72 2.63 1.8 3.35V10a.5.5 0 0 0 .5.5h3.4a.5.5 0 0 0 .5-.5V8.85A4 4 0 0 0 7 1.5Z" stroke="#DBA514" stroke-width="1.1" stroke-linejoin="round"/><path d="M5 11h4M5.5 12.5h3" stroke="#DBA514" stroke-width="1.1" stroke-linecap="round"/></svg></span>
+          <span class="pc-insights__lbl">Insights</span>
+        </div>
+        <div class="pc-insights__body">${d.insights.map(t=>{const cat=classifyInsight(t);return `<div class="pc-insights__card"><span class="pc-insights__icon">${INSIGHT_ICONS[cat]}</span><span class="pc-insights__txt">${t}</span></div>`;}).join('')}</div>
+      </div>` : ''}
       <div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap">${d.tags.map(t=>`<span class="pc-tag">${t}</span>`).join('')}${d.fun?'<span class="pc-tag" style="color:var(--amber);border-color:rgba(219,165,20,.5)">⭐ fun</span>':''}</div>
     </div>`;
   }).join('') : `<div class="pc-empty"><div class="pc-empty-ttl">No Results</div><div class="pc-empty-txt">Your filters may be too narrow. Clear one and try again.</div></div>`;
