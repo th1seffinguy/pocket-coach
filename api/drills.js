@@ -1,5 +1,5 @@
 const TOKEN = process.env.NOTION_API_KEY || process.env.NOTION_TOKEN;
-const DB_ID = process.env.NOTION_DRILLS_DB_ID || 'dacc5ce2-1878-4e94-8a24-555754413363';
+const DB_ID = process.env.NOTION_DRILLS_DB_ID || 'dd33ca29-26cb-442b-a9ba-3e0782a25e7f';
 
 async function queryAll() {
   const pages = [];
