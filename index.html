@@ -717,14 +717,14 @@
         </div>
         <div class="b-footer-actions">
           <button class="b-mute-btn" id="audioToggle" onclick="toggleAudioMuted()" title="Mute alerts" aria-label="Mute alerts">🔔</button>
-          <button class="b-footer-btn" id="playBtn" onclick="toggleTimer()" title="Pause or play" aria-label="Pause or play" onpointerdown="startFooterTip('Pause or play')" onpointerup="clearFooterTip()" onpointerleave="clearFooterTip()" onpointercancel="clearFooterTip()">
-            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M6 4 L20 12 L6 20 Z"/></svg>
-          </button>
           <button class="b-footer-btn" onclick="openSwap(activeIdx)" title="Swap drill" aria-label="Swap drill" onpointerdown="startFooterTip('Swap drill')" onpointerup="clearFooterTip()" onpointerleave="clearFooterTip()" onpointercancel="clearFooterTip()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
           </button>
           <button class="b-footer-btn" onclick="skipDrill()" title="Skip drill" aria-label="Skip drill" onpointerdown="startFooterTip('Skip drill')" onpointerup="clearFooterTip()" onpointerleave="clearFooterTip()" onpointercancel="clearFooterTip()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+          </button>
+          <button class="b-footer-btn" id="playBtn" onclick="toggleTimer()" title="Pause or play" aria-label="Pause or play" onpointerdown="startFooterTip('Pause or play')" onpointerup="clearFooterTip()" onpointerleave="clearFooterTip()" onpointercancel="clearFooterTip()">
+            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M6 4 L20 12 L6 20 Z"/></svg>
           </button>
           <button class="b-footer-btn b-footer-end" onclick="openEndModal('manual')" title="End session" aria-label="End session" onpointerdown="startFooterTip('End session')" onpointerup="clearFooterTip()" onpointerleave="clearFooterTip()" onpointercancel="clearFooterTip()">
             <span class="b-stop-icon" aria-hidden="true"></span>
@@ -803,7 +803,7 @@
       </button>
     </div>
     <div style="text-align:center;padding:20px 0;font-family:var(--mono);font-size:12px;color:var(--muted-2);letter-spacing:.05em">
-      JUKIT · Youth Coaching · <span id="versionLabel">v0.9.10</span>
+      JUKIT · Youth Coaching · <span id="versionLabel">v0.9.11</span>
     </div>
   </div>
 </div>
@@ -895,7 +895,7 @@
 </div>
 
 <script>
-const VERSION = 'v0.9.10';
+const VERSION = 'v0.9.11';
 
 // ─── SVG ICONS ────────────────────────────────────────────────────────────────
 const ICONS = {
