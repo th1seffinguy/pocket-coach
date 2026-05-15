@@ -351,7 +351,7 @@
     background:var(--surface);border:1px solid var(--border);border-radius:10px;
     color:var(--text);font-family:var(--sans);font-size:16px;outline:none;display:block;}
   .pc-lib-search:focus{border-color:var(--blue);}
-  .pc-filter-row{display:flex;gap:6px;overflow-x:auto;padding:0 16px 4px;margin-bottom:10px;
+  .pc-filter-row{display:flex;gap:6px;overflow-x:auto;padding:0 16px 4px;margin-bottom:4px;
     scrollbar-width:none;}
   .pc-filter-row::-webkit-scrollbar{display:none;}
   .pc-filter-chip{padding:8px 14px;background:var(--surface);border:1px solid var(--border);
@@ -361,7 +361,10 @@
   .pc-filter-chip.active{background:var(--blue);border-color:var(--blue);color:white;}
   .pc-filter-chip:active{transform:scale(.92);}
   .pc-filter-label{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.1em;
-    text-transform:uppercase;padding:6px 16px 5px;}
+    text-transform:uppercase;padding:6px 16px 2px;}
+  .lib-count-bar{display:flex;align-items:center;justify-content:space-between;padding:4px 16px 8px;}
+  .lib-count-txt{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.06em;}
+  .lib-clear-btn{font-family:var(--mono);font-size:11px;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;letter-spacing:.06em;}
   .pc-builder-bar{margin:0 16px 10px;background:var(--elev);border:1px solid var(--border);
     border-radius:14px;padding:10px;display:flex;align-items:center;gap:10px;}
   .pc-builder-summary{flex:1;min-width:0;}
@@ -708,7 +711,7 @@
       <button class="pc-mini-btn pc-mini-btn--primary" id="builderStartBtn" onclick="startCustomSession()" disabled>Start</button>
     </div>
   </div>
-  <div class="pc-filter-row" id="filterRow"></div>
+  <div id="filterRows"></div>
   <div id="libList"></div>
 </div>
 
@@ -1082,7 +1085,7 @@ let builderOpen = false;
 let builderMode = 'scratch';
 let isCustomActiveSession = false;
 let sessionEditorDraft = null;
-let libraryFilters = { categories:new Set(), durations:new Set(), ageMode:'age', funOnly:false };
+let libraryFilters = { ageMode:'age', category:'all', duration:'any' };
 let state = loadState();
 
 const curGroup  = () => AGE_GROUPS[activeSport][ageIdx];
@@ -1173,7 +1176,7 @@ function renderSportChips() {
 function selectSport(id) {
   activeSport = id;
   ageIdx = Math.min(ageIdx, AGE_GROUPS[id].length - 1);
-  libraryFilters.categories.clear();
+  libraryFilters = { ageMode:'age', category:'all', duration:'any' };
   renderSportChips();
   renderFilterChips();
   updateAgeUI();
@@ -1757,29 +1760,42 @@ function startCustomSession() {
 }
 
 // ─── LIBRARY ──────────────────────────────────────────────────────────────────
-const SPORT_TAGS = {
-  soccer:     ['control','shooting','passing','movement'],
-  basketball: ['dribbling','shooting','passing','defense','ball-handling','movement'],
-  baseball:   ['hitting','throwing','fielding','movement'],
+const SPORT_CATEGORIES = {
+  soccer:     [{id:'all',label:'All'},{id:'control',label:'Control'},{id:'shooting',label:'Shooting'},{id:'movement',label:'Movement'},{id:'passing',label:'Passing'},{id:'speed-agility',label:'Speed & Agility'},{id:'fun',label:'⭐ Fun'}],
+  basketball: [{id:'all',label:'All'},{id:'dribbling',label:'Dribbling'},{id:'shooting',label:'Shooting'},{id:'passing',label:'Passing'},{id:'defense',label:'Defense'},{id:'movement',label:'Movement'},{id:'fun',label:'⭐ Fun'}],
+  baseball:   [{id:'all',label:'All'},{id:'hitting',label:'Hitting'},{id:'throwing',label:'Throwing'},{id:'fielding',label:'Fielding'},{id:'movement',label:'Movement'},{id:'fun',label:'⭐ Fun'}],
 };
 const DURATION_FILTERS = [
-  { id:'under3', label:'Under 3 min' },
-  { id:'3to4', label:'3-4 min' },
-  { id:'5plus', label:'5+ min' },
+  {id:'any',    label:'Any'},
+  {id:'under3', label:'Under 3 min'},
+  {id:'3to4',   label:'3-4 min'},
+  {id:'5plus',  label:'5+ min'},
 ];
+function matchesCategory(d, cat) {
+  if (cat === 'all') return true;
+  if (cat === 'fun') return d.fun;
+  if (cat === 'speed-agility') return d.tags.includes('speed') || d.tags.includes('agility');
+  return d.tags.includes(cat);
+}
 
 function renderFilterChips() {
-  const tags = SPORT_TAGS[activeSport] || [];
-  const row = document.getElementById('filterRow');
-  if (!row) return;
-  const selectedCount = libraryFilters.categories.size + libraryFilters.durations.size + (libraryFilters.ageMode !== 'age' ? 1 : 0) + (libraryFilters.funOnly ? 1 : 0);
-  row.innerHTML = `
-    <button class="pc-filter-chip ${libraryFilters.ageMode==='age'?'active':''}" onclick="setAgeFilter('age')">This Age</button>
-    <button class="pc-filter-chip ${libraryFilters.ageMode==='all'?'active':''}" onclick="setAgeFilter('all')">All Drills</button>
-    ${tags.map(t=>`<button class="pc-filter-chip ${libraryFilters.categories.has(t)?'active':''}" onclick="toggleCategoryFilter('${t}')">${t.charAt(0).toUpperCase()+t.slice(1)}</button>`).join('')}
-    ${DURATION_FILTERS.map(f=>`<button class="pc-filter-chip ${libraryFilters.durations.has(f.id)?'active':''}" onclick="toggleDurationFilter('${f.id}')">${f.label}</button>`).join('')}
-    <button class="pc-filter-chip ${libraryFilters.funOnly?'active':''}" onclick="toggleFunFilter()">Fun</button>
-    ${selectedCount > 1 ? '<button class="pc-filter-chip" onclick="clearLibraryFilters()">Clear All</button>' : ''}
+  const cats = SPORT_CATEGORIES[activeSport] || SPORT_CATEGORIES.soccer;
+  const wrap = document.getElementById('filterRows');
+  if (!wrap) return;
+  wrap.innerHTML = `
+    <div class="pc-filter-label">Age</div>
+    <div class="pc-filter-row">
+      <button class="pc-filter-chip ${libraryFilters.ageMode==='age'?'active':''}" onclick="setAgeFilter('age')">This Age</button>
+      <button class="pc-filter-chip ${libraryFilters.ageMode==='all'?'active':''}" onclick="setAgeFilter('all')">All Ages</button>
+    </div>
+    <div class="pc-filter-label">Category</div>
+    <div class="pc-filter-row">
+      ${cats.map(c=>`<button class="pc-filter-chip ${libraryFilters.category===c.id?'active':''}" onclick="setCategoryFilter('${c.id}')">${c.label}</button>`).join('')}
+    </div>
+    <div class="pc-filter-label">Duration</div>
+    <div class="pc-filter-row" style="margin-bottom:8px">
+      ${DURATION_FILTERS.map(f=>`<button class="pc-filter-chip ${libraryFilters.duration===f.id?'active':''}" onclick="setDurationFilter('${f.id}')">${f.label}</button>`).join('')}
+    </div>
   `;
 }
 
@@ -1788,11 +1804,12 @@ function renderLib() {
   const sportGroups = AGE_GROUPS[activeSport] || [];
   let drills = Object.values(ALL_DRILLS).filter(d => d.sport === activeSport);
   if (libraryFilters.ageMode === 'age') drills = drills.filter(d => d.ages.includes(ageIdx));
-  if (libraryFilters.categories.size) drills = drills.filter(d => [...libraryFilters.categories].every(c => d.tags.includes(c)));
-  if (libraryFilters.durations.size) drills = drills.filter(d => libraryFilters.durations.has(durationBucket(d)));
-  if (libraryFilters.funOnly) drills = drills.filter(d => d.fun);
+  if (libraryFilters.category !== 'all') drills = drills.filter(d => matchesCategory(d, libraryFilters.category));
+  if (libraryFilters.duration !== 'any') drills = drills.filter(d => durationBucket(d) === libraryFilters.duration);
   if (search) drills = drills.filter(d => d.name.toLowerCase().includes(search));
-  document.getElementById('libList').innerHTML = drills.length ? drills.map(d => {
+  const isDefault = libraryFilters.ageMode === 'age' && libraryFilters.category === 'all' && libraryFilters.duration === 'any' && !search;
+  const countBar = `<div class="lib-count-bar"><span class="lib-count-txt">${drills.length} drill${drills.length !== 1 ? 's' : ''}</span>${!isDefault ? '<button class="lib-clear-btn" onclick="clearLibraryFilters()">Clear All</button>' : ''}</div>`;
+  document.getElementById('libList').innerHTML = countBar + (drills.length ? drills.map(d => {
     const agePills = d.ages.map(a => {
       const group = sportGroups[a];
       return `<span class="pc-age-pill" style="border-color:${themeVar(group?.themeColor)}55;color:${themeVar(group?.themeColor)}">${group?.badge || a}</span>`;
@@ -1822,7 +1839,7 @@ function renderLib() {
       </div>` : ''}
       <div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap">${d.tags.map(t=>`<span class="pc-tag">${t}</span>`).join('')}${d.fun?'<span class="pc-tag" style="color:var(--amber);border-color:rgba(219,165,20,.5)">⭐ fun</span>':''}</div>
     </div>`;
-  }).join('') : `<div class="pc-empty"><div class="pc-empty-ttl">No Results</div><div class="pc-empty-txt">Your filters may be too narrow. Clear one and try again.</div></div>`;
+  }).join('') : `<div class="pc-empty"><div class="pc-empty-ttl">No drills match these filters</div><div class="pc-empty-txt">Try adjusting your filters.</div><button class="pc-filter-chip" style="margin:12px auto;display:block" onclick="clearLibraryFilters()">Clear All Filters</button></div>`);
   renderBuilder();
 }
 function setAgeFilter(mode) {
@@ -1830,23 +1847,18 @@ function setAgeFilter(mode) {
   renderFilterChips();
   renderLib();
 }
-function toggleCategoryFilter(tag) {
-  libraryFilters.categories.has(tag) ? libraryFilters.categories.delete(tag) : libraryFilters.categories.add(tag);
+function setCategoryFilter(cat) {
+  libraryFilters.category = cat;
   renderFilterChips();
   renderLib();
 }
-function toggleDurationFilter(id) {
-  libraryFilters.durations.has(id) ? libraryFilters.durations.delete(id) : libraryFilters.durations.add(id);
-  renderFilterChips();
-  renderLib();
-}
-function toggleFunFilter() {
-  libraryFilters.funOnly = !libraryFilters.funOnly;
+function setDurationFilter(dur) {
+  libraryFilters.duration = dur;
   renderFilterChips();
   renderLib();
 }
 function clearLibraryFilters() {
-  libraryFilters = { categories:new Set(), durations:new Set(), ageMode:'all', funOnly:false };
+  libraryFilters = { ageMode:'age', category:'all', duration:'any' };
   renderFilterChips();
   renderLib();
 }
