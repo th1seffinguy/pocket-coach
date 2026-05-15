@@ -287,7 +287,8 @@
   .b-dot{width:7px;height:7px;border-radius:50%;background:var(--border);transition:all .2s;}
   .b-dot.done{background:var(--green);}
   .b-dot.active{background:var(--amber);width:20px;border-radius:4px;}
-  .b-body{flex:1;display:flex;flex-direction:column;padding:10px 20px calc(220px + env(safe-area-inset-bottom));}
+  body.session-active #activePanel{padding-bottom:calc(220px + env(safe-area-inset-bottom));}
+  .b-body{flex:1;display:flex;flex-direction:column;padding:10px 20px 14px;}
   .b-media{height:82px;background:var(--surface);border:1px solid var(--border);
     border-radius:16px;overflow:hidden;margin-bottom:10px;display:flex;align-items:center;justify-content:center;}
   .b-media svg{display:block;width:100%;height:100%;}
@@ -802,7 +803,7 @@
       </button>
     </div>
     <div style="text-align:center;padding:20px 0;font-family:var(--mono);font-size:12px;color:var(--muted-2);letter-spacing:.05em">
-      JUKIT · Youth Coaching · <span id="versionLabel">v0.9.3</span>
+      JUKIT · Youth Coaching · <span id="versionLabel">v0.9.4</span>
     </div>
   </div>
 </div>
@@ -894,7 +895,7 @@
 </div>
 
 <script>
-const VERSION = 'v0.9.3';
+const VERSION = 'v0.9.4';
 
 // ─── SVG ICONS ────────────────────────────────────────────────────────────────
 const ICONS = {
