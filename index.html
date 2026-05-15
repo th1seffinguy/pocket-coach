@@ -27,6 +27,7 @@
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased;}
   body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;padding-bottom:78px;}
+  body.session-active{padding-bottom:0;}
   body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:999;opacity:0.06;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)'/%3E%3C/svg%3E");
     background-size:300px 300px;}
@@ -59,6 +60,7 @@
     align-items:center;padding:9px 12px 20px;
     background:rgba(15,17,21,.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
     border-top:1px solid var(--border-soft);z-index:100;}
+  body.session-active .pc-tabs{display:none;}
   .pc-tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;
     padding:7px 0;cursor:pointer;color:var(--muted-2);background:none;border:none;
     transition:color .2s;}
@@ -281,17 +283,11 @@
     color:var(--text);font-size:20px;font-weight:800;cursor:pointer;}
   .pc-player-count{min-width:38px;text-align:center;font-family:var(--bebas);font-size:30px;line-height:1;color:var(--text);}
   .b-header{display:none;}
-  .b-timer-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
   .b-progress-dots{display:flex;gap:5px;align-items:center;}
   .b-dot{width:7px;height:7px;border-radius:50%;background:var(--border);transition:all .2s;}
   .b-dot.done{background:var(--green);}
   .b-dot.active{background:var(--amber);width:20px;border-radius:4px;}
-  .b-timer-actions{display:flex;align-items:center;gap:8px;}
-  .b-pause-btn{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.06);
-    border:1px solid var(--border);color:var(--muted);display:flex;align-items:center;
-    justify-content:center;cursor:pointer;transition:all .15s;}
-  .b-pause-btn:active{transform:scale(.88);}
-  .b-body{flex:1;display:flex;flex-direction:column;padding:10px 20px 84px;}
+  .b-body{flex:1;display:flex;flex-direction:column;padding:10px 20px calc(116px + env(safe-area-inset-bottom));}
   .b-media{height:82px;background:var(--surface);border:1px solid var(--border);
     border-radius:16px;overflow:hidden;margin-bottom:10px;display:flex;align-items:center;justify-content:center;}
   .b-media svg{display:block;width:100%;height:100%;}
@@ -303,24 +299,10 @@
     animation:pulse 1.4s ease-in-out infinite;flex-shrink:0;}
   .b-drill-name{font-family:var(--bebas);font-size:44px;line-height:.92;letter-spacing:.02em;color:var(--text);}
   .b-card-rule{height:1px;background:linear-gradient(90deg,var(--amber),transparent);margin:12px 0 11px;}
-  .b-timer-block{background:var(--elev);border-radius:18px;padding:12px 18px 10px;margin-bottom:10px;}
-  .b-timer-row{display:flex;align-items:flex-end;justify-content:space-between;}
-  .b-timer-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.09em;color:var(--muted);
-    text-transform:uppercase;margin-bottom:4px;font-weight:700;}
-  .b-timer-num{font-family:var(--bebas);font-size:54px;line-height:1;color:var(--green);letter-spacing:.02em;}
-  .b-timer-right{text-align:right;}
-  .b-timer-sess{font-family:var(--bebas);font-size:30px;color:var(--blue);}
-  .b-bar{height:3px;background:var(--border);border-radius:2px;margin-top:12px;position:relative;overflow:visible;}
-  .b-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--green),var(--amber));
-    width:100%;transition:width 1s linear;}
-  .b-bar-ball{position:absolute;top:50%;transform:translate(-50%,-50%);font-size:15px;line-height:1;
-    transition:left 1s linear;pointer-events:none;filter:drop-shadow(0 1px 3px rgba(0,0,0,.5));}
-  .b-end-session{min-height:44px;border-radius:14px;border:1px solid rgba(217,80,43,.26);
-    background:rgba(217,80,43,.18);color:#F3A58F;font-family:var(--sans);font-size:13px;font-weight:800;
-    display:flex;align-items:center;justify-content:center;gap:7px;cursor:pointer;padding:0 14px;
-    white-space:nowrap;}
-  .b-end-session:active{transform:scale(.98);}
-  .b-stop-icon{width:10px;height:10px;border-radius:2.5px;background:currentColor;display:block;opacity:.9;}
+  .b-card-done{width:100%;min-height:52px;margin-top:14px;border-radius:14px;border:1px solid var(--green);
+    background:var(--green);color:#0A1A0E;font-family:var(--sans);font-size:17px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;}
+  .b-card-done:active{transform:scale(.98);}
   .b-cue-block{background:rgba(219,165,20,.08);border:1px solid rgba(219,165,20,.2);
     border-radius:16px;padding:16px 18px;margin-top:16px;}
   .b-drill-card .b-cue-block{background:transparent;border:0;border-radius:0;padding:0;margin-top:0;}
@@ -359,15 +341,28 @@
   .b-quip{font-size:12px;font-family:var(--mono);color:var(--amber);font-style:italic;
     padding:8px 0 0;min-height:14px;opacity:0;transition:opacity .4s;}
   .b-quip.show{opacity:1;}
-  .b-footer{position:fixed;left:0;right:0;bottom:78px;z-index:95;padding:10px 18px 12px;
-    display:flex;gap:10px;border-top:1px solid var(--border);background:rgba(15,17,21,.96);
-    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);}
-  .b-btn{height:52px;border-radius:14px;font-family:var(--sans);font-weight:700;font-size:15px;
-    border:1px solid var(--border);background:var(--elev);color:var(--text);
-    display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;}
-  .b-btn:active{transform:scale(.97);}
-  .b-btn-sm{width:76px;flex-shrink:0;font-size:13px;}
-  .b-btn-done{flex:1;background:var(--green);color:#0A1A0E;border-color:var(--green);font-size:18px;}
+  .b-footer{position:fixed;left:0;right:0;bottom:0;z-index:200;min-height:80px;
+    padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:#1D2129;
+    border-top:1px solid #262C36;display:flex;align-items:center;gap:12px;
+    box-shadow:0 -12px 26px rgba(0,0,0,.32);}
+  .b-footer-timers{display:flex;flex-direction:column;gap:5px;min-width:92px;flex:1;}
+  .b-footer-timer{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
+  .b-footer-label{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--muted);
+    text-transform:uppercase;font-weight:800;white-space:nowrap;}
+  .b-footer-value{font-family:var(--bebas);font-size:22px;line-height:1;letter-spacing:.03em;
+    font-variant-numeric:tabular-nums;color:var(--green);white-space:nowrap;}
+  .b-footer-value.drill{color:var(--amber);}
+  .b-footer-actions{display:flex;align-items:center;gap:7px;position:relative;padding-top:13px;}
+  .b-footer-btn{width:44px;height:44px;border-radius:13px;border:1px solid var(--border);
+    background:var(--surface);color:var(--text);display:flex;align-items:center;justify-content:center;
+    cursor:pointer;padding:0;}
+  .b-footer-btn:active{transform:scale(.94);}
+  .b-footer-btn svg{width:17px;height:17px;}
+  .b-footer-end{border-color:rgba(217,80,43,.28);background:rgba(217,80,43,.16);color:#F3A58F;}
+  .b-stop-icon{width:12px;height:12px;border-radius:3px;background:currentColor;display:block;opacity:.92;}
+  .b-mute-btn{position:absolute;right:0;top:-13px;width:30px;height:26px;border-radius:9px;
+    border:1px solid var(--border);background:rgba(15,17,21,.5);color:var(--muted);
+    display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;}
 
   /* ── EMPTY STATE ────────────────────────────────────────────── */
   .pc-empty{text-align:center;padding:40px 16px;}
@@ -665,30 +660,8 @@
       <!-- Loading state shown until drills fetch resolves -->
       <div id="drillsLoading" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg);z-index:10;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;">Loading drills...</div>
 
-      <!-- Body: drill name + timer block + cue -->
+      <!-- Body: drill name + cue -->
       <div class="b-body">
-        <div class="b-timer-block">
-          <div class="b-timer-top">
-            <div class="b-progress-dots" id="progressDots"></div>
-            <div class="b-timer-actions">
-              <button class="b-end-session" id="globalEndSessionBtn" onclick="openEndModal('manual')"><span class="b-stop-icon" aria-hidden="true"></span><span>End</span></button>
-              <button class="b-pause-btn" id="playBtn" onclick="toggleTimer()">
-                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="13" height="13"><path d="M6 4 L20 12 L6 20 Z"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="b-timer-row">
-            <div>
-              <div class="b-timer-lbl">Drill Left</div>
-              <div class="b-timer-num" id="drillDisplay">0:00</div>
-            </div>
-            <div class="b-timer-right">
-              <div class="b-timer-lbl">Session</div>
-              <div class="b-timer-sess" id="timerDisplay">20:00</div>
-            </div>
-          </div>
-          <div class="b-bar"><div class="b-bar-fill" id="drillFill" style="width:100%"></div><span class="b-bar-ball" id="drillBall" style="left:100%">⚽</span></div>
-        </div>
         <div class="b-media" id="bMedia"></div>
         <div class="b-drill-card">
           <div class="b-now-tag"><div class="b-pulse"></div> NOW PLAYING</div>
@@ -718,28 +691,41 @@
             </div>
             <div class="b-insights-row" id="bInsightsRow"></div>
           </div>
+          <button class="b-card-done" onclick="completeDrill()" aria-label="Mark drill done">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>
+            Done
+          </button>
         </div>
         <div class="b-quip" id="timerQuip"></div>
       </div>
 
-      <!-- Footer: Swap + Skip + Done -->
-      <div class="b-footer">
-        <button class="b-btn b-btn-sm" onclick="openSwap(activeIdx)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
-          Swap
-        </button>
-        <button class="b-btn b-btn-sm" onclick="shuffleDrill()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
-          Shuffle
-        </button>
-        <button class="b-btn b-btn-sm" onclick="skipDrill()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
-          Skip
-        </button>
-        <button class="b-btn b-btn-done" onclick="completeDrill()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>
-          Done
-        </button>
+      <!-- Footer: timers + global controls -->
+      <div class="b-footer" role="toolbar" aria-label="Session controls">
+        <div class="b-footer-timers">
+          <div class="b-footer-timer">
+            <span class="b-footer-label">Session Left</span>
+            <span class="b-footer-value" id="timerDisplay">20:00</span>
+          </div>
+          <div class="b-footer-timer">
+            <span class="b-footer-label">Drill Left</span>
+            <span class="b-footer-value drill" id="drillDisplay">0:00</span>
+          </div>
+        </div>
+        <div class="b-footer-actions">
+          <button class="b-mute-btn" id="audioToggle" onclick="toggleAudioMuted()" title="Mute alerts" aria-label="Mute alerts">🔔</button>
+          <button class="b-footer-btn" id="playBtn" onclick="toggleTimer()" title="Pause or play" aria-label="Pause or play" onpointerdown="startFooterTip('Pause or play')" onpointerup="clearFooterTip()" onpointerleave="clearFooterTip()" onpointercancel="clearFooterTip()">
+            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M6 4 L20 12 L6 20 Z"/></svg>
+          </button>
+          <button class="b-footer-btn" onclick="openSwap(activeIdx)" title="Swap drill" aria-label="Swap drill" onpointerdown="startFooterTip('Swap drill')" onpointerup="clearFooterTip()" onpointerleave="clearFooterTip()" onpointercancel="clearFooterTip()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
+          </button>
+          <button class="b-footer-btn" onclick="skipDrill()" title="Skip drill" aria-label="Skip drill" onpointerdown="startFooterTip('Skip drill')" onpointerup="clearFooterTip()" onpointerleave="clearFooterTip()" onpointercancel="clearFooterTip()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+          </button>
+          <button class="b-footer-btn b-footer-end" onclick="openEndModal('manual')" title="End session" aria-label="End session" onpointerdown="startFooterTip('End session')" onpointerup="clearFooterTip()" onpointerleave="clearFooterTip()" onpointercancel="clearFooterTip()">
+            <span class="b-stop-icon" aria-hidden="true"></span>
+          </button>
+        </div>
       </div>
 
     </div>
@@ -813,7 +799,7 @@
       </button>
     </div>
     <div style="text-align:center;padding:20px 0;font-family:var(--mono);font-size:12px;color:var(--muted-2);letter-spacing:.05em">
-      JUKIT · Youth Coaching · <span id="versionLabel">v0.8.0</span>
+      JUKIT · Youth Coaching · <span id="versionLabel">v0.9.0</span>
     </div>
   </div>
 </div>
@@ -905,7 +891,7 @@
 </div>
 
 <script>
-const VERSION = 'v0.8.0';
+const VERSION = 'v0.9.0';
 
 // ─── SVG ICONS ────────────────────────────────────────────────────────────────
 const ICONS = {
@@ -1163,6 +1149,8 @@ let builderMode = 'scratch';
 let isCustomActiveSession = false;
 let sessionEditorDraft = null;
 let libraryFilters = { ageMode:'age', category:'all' };
+let audioMuted = readStored('jukit_audio_muted', 'false') === 'true';
+let footerTipTimer = null;
 let state = loadState();
 
 const curGroup  = () => AGE_GROUPS[activeSport][ageIdx];
@@ -1319,6 +1307,35 @@ function showToast(msg) {
   toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
 }
 
+function setSessionActiveUI(active) {
+  document.body.classList.toggle('session-active', active);
+}
+
+function renderAudioButton() {
+  const btn = document.getElementById('audioToggle');
+  if (!btn) return;
+  btn.textContent = audioMuted ? '🔕' : '🔔';
+  btn.title = audioMuted ? 'Unmute alerts' : 'Mute alerts';
+  btn.setAttribute('aria-label', audioMuted ? 'Unmute alerts' : 'Mute alerts');
+}
+
+function toggleAudioMuted() {
+  audioMuted = !audioMuted;
+  writeStored('jukit_audio_muted', audioMuted ? 'true' : 'false');
+  renderAudioButton();
+  showToast(audioMuted ? 'Alerts muted' : 'Alerts on');
+}
+
+function startFooterTip(label) {
+  clearFooterTip();
+  footerTipTimer = setTimeout(() => showToast(label), 550);
+}
+
+function clearFooterTip() {
+  clearTimeout(footerTipTimer);
+  footerTipTimer = null;
+}
+
 // ─── DURATION SELECTOR ────────────────────────────────────────────────────────
 function renderDurChips() {
   const container = document.getElementById('durChips');
@@ -1469,6 +1486,8 @@ function startSession() {
   generateSession();
   document.getElementById('setupPanel').style.display = 'none';
   document.getElementById('activePanel').style.display = '';
+  setSessionActiveUI(true);
+  renderAudioButton();
   if (!ticking) toggleTimer();
 }
 
@@ -1477,6 +1496,7 @@ function returnToSetup() {
   stopDrillTimer();
   document.getElementById('activePanel').style.display = 'none';
   document.getElementById('setupPanel').style.display = '';
+  setSessionActiveUI(false);
   generateSession();
 }
 
@@ -1581,6 +1601,8 @@ function applySessionEditor() {
   generateSession();
   document.getElementById('setupPanel').style.display = 'none';
   document.getElementById('activePanel').style.display = '';
+  setSessionActiveUI(true);
+  renderAudioButton();
   showToast('New session ready');
 }
 
@@ -1910,8 +1932,7 @@ function updateDrillDisplay() {
   const el = document.getElementById('drillDisplay');
   if (el) {
     el.textContent = `${dm}:${ds.toString().padStart(2,'0')}`;
-    const key = drillTotal === 0 ? 'amber' : pct > .5 ? 'green' : pct > .25 ? 'amber' : 'red';
-    el.style.color = key === 'green' ? 'var(--green)' : key === 'amber' ? 'var(--amber)' : 'var(--coral)';
+    el.style.color = 'var(--amber)';
   }
   const fill = document.getElementById('drillFill');
   if (fill) fill.style.width = drillTotal > 0 ? (pct * 100) + '%' : '0%';
@@ -1931,7 +1952,12 @@ function updatePlayBtn() {
 function updateTimerDisplay() {
   const m = Math.floor(timerSec / 60), s = timerSec % 60;
   const disp = document.getElementById('timerDisplay');
-  if (disp) disp.textContent = `${m}:${s.toString().padStart(2,'0')}`;
+  if (disp) {
+    disp.textContent = `${m}:${s.toString().padStart(2,'0')}`;
+    const pct = isOpenMode ? 1 : totalSec > 0 ? timerSec / totalSec : 0;
+    const key = isOpenMode || pct > .5 ? 'green' : pct > .25 ? 'amber' : 'red';
+    disp.style.color = key === 'green' ? 'var(--green)' : key === 'amber' ? 'var(--amber)' : 'var(--coral)';
+  }
   if (isOpenMode) return;
   const pct = totalSec > 0 ? timerSec / totalSec : 0;
   for (const j of DAD_JOKES[activeSport]) {
@@ -2025,6 +2051,8 @@ function startCustomSession() {
   updateDrillDisplay();
   document.getElementById('setupPanel').style.display = 'none';
   document.getElementById('activePanel').style.display = '';
+  setSessionActiveUI(true);
+  renderAudioButton();
   switchView('session', document.getElementById('tab-session'));
   renderActiveConfigStrip();
   renderNowPlaying();
@@ -2304,6 +2332,8 @@ function finishFirstSessionLaunch() {
   switchView('session', document.getElementById('tab-session'));
   document.getElementById('setupPanel').style.display = 'none';
   document.getElementById('activePanel').style.display = '';
+  setSessionActiveUI(true);
+  renderAudioButton();
   if (!ticking) toggleTimer();
 }
 
