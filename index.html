@@ -350,6 +350,8 @@
   .b-footer-timer{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;
     min-height:0;padding:5px 8px;border:1px solid rgba(255,255,255,.08);
     border-radius:14px;background:rgba(15,17,21,.36);}
+  .b-footer-timer.timer-pulse{animation:timer-card-pulse .42s ease-out 2;}
+  @keyframes timer-card-pulse{0%{box-shadow:0 0 0 0 rgba(219,165,20,.55);border-color:rgba(219,165,20,.6)}100%{box-shadow:0 0 0 12px rgba(219,165,20,0);border-color:rgba(255,255,255,.08)}}
   .b-footer-label{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--muted);
     text-transform:uppercase;font-weight:800;white-space:nowrap;}
   .b-footer-value{font-family:var(--bebas);font-size:58px;line-height:.82;letter-spacing:.03em;
@@ -803,7 +805,7 @@
       </button>
     </div>
     <div style="text-align:center;padding:20px 0;font-family:var(--mono);font-size:12px;color:var(--muted-2);letter-spacing:.05em">
-      JUKIT · Youth Coaching · <span id="versionLabel">v0.9.18</span>
+      JUKIT · Youth Coaching · <span id="versionLabel">v0.9.19</span>
     </div>
   </div>
 </div>
@@ -895,7 +897,7 @@
 </div>
 
 <script>
-const VERSION = 'v0.9.18';
+const VERSION = 'v0.9.19';
 
 // ─── SVG ICONS ────────────────────────────────────────────────────────────────
 const ICONS = {
@@ -1051,7 +1053,7 @@ bsb_groundball:`<svg viewBox="0 0 320 160" preserveAspectRatio="xMidYMid slice" 
 
 function getNowPlayingMedia(d) {
   if (d.hasVideo && d.videoSrc) {
-    return `<video src="${d.videoSrc}" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;border-radius:16px"></video>`;
+    return `<video src="${escapeHTML(d.videoSrc)}" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;border-radius:16px"></video>`;
   }
   if (DRILL_ANIMATIONS[d.id]) return DRILL_ANIMATIONS[d.id];
   const tag = (d.tags[0] || 'drill').toUpperCase();
@@ -1100,14 +1102,40 @@ const DAD_JOKES = {
 
 // ─── PERSISTENCE ──────────────────────────────────────────────────────────────
 const STORAGE_KEY = 'jukit_v1';
+const COMPAT_STORAGE_KEY = 'jukit_state';
 const PERSONA_SET_KEY = 'jukit_persona_set';
+const ONBOARDING_COMPLETE_KEY = 'jukit_onboarding_complete';
 const VALID_PERSONAS = ['parent','coach','athlete'];
 const VALID_LOCATIONS = ['outdoor','indoor'];
-function loadState() {
-  try { const r = localStorage.getItem(STORAGE_KEY); if (r) return JSON.parse(r); } catch(e) {}
-  return { sessions:[], totalDrills:0, totalMinutes:0, streak:0, lastDate:null };
+const emptyAttributeXP = () => Object.fromEntries(ATTRIBUTE_KEYS.map(k => [k, 0]));
+function normalizeState(raw) {
+  const next = raw && typeof raw === 'object' ? raw : {};
+  const attributeXP = { ...emptyAttributeXP(), ...(next.attributeXP || {}) };
+  const sessions = Array.isArray(next.sessions) ? next.sessions : [];
+  return {
+    sessions,
+    attributeXP,
+    totalDrills: Number.isFinite(Number(next.totalDrills)) ? Number(next.totalDrills) : 0,
+    totalMinutes: Number.isFinite(Number(next.totalMinutes)) ? Number(next.totalMinutes) : 0,
+    streak: Number.isFinite(Number(next.streak)) ? Number(next.streak) : 0,
+    lastDate: next.lastDate || null,
+    overallRating: Number.isFinite(Number(next.overallRating)) ? Number(next.overallRating) : 0,
+  };
 }
-function persistState() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {} }
+function loadState() {
+  try {
+    const r = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(COMPAT_STORAGE_KEY);
+    if (r) return normalizeState(JSON.parse(r));
+  } catch(e) {}
+  return normalizeState();
+}
+function persistState() {
+  try {
+    const payload = JSON.stringify(normalizeState(state));
+    localStorage.setItem(STORAGE_KEY, payload);
+    localStorage.setItem(COMPAT_STORAGE_KEY, payload);
+  } catch(e) {}
+}
 function readStored(key, fallback) {
   try {
     const value = localStorage.getItem(key);
@@ -1155,15 +1183,21 @@ let sessionEditorDraft = null;
 let libraryFilters = { ageMode:'age', category:'all' };
 let audioMuted = readStored('jukit_audio_muted', 'false') === 'true';
 let footerTipTimer = null;
+let audioCtx = null;
+let drillWarned30 = false;
+let sessionFinished = false;
 let state = loadState();
 
 const curGroup  = () => AGE_GROUPS[activeSport][ageIdx];
 const getDrill  = id => ALL_DRILLS[id];
 const icon = (id, size=54) => `<svg viewBox="0 0 ${size} ${size}">${(ICONS[id]||'<circle cx="27" cy="27" r="22" fill="#22C55E" opacity=".4"/>').replace(/<svg[^>]*>/,'').replace('</svg>','')}</svg>`;
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[ch]));
+}
 const themeVar = key => ({ amber:'var(--amber)', green:'var(--green)', blue:'var(--blue)', coral:'var(--coral)' }[key] || 'var(--blue)');
 const sportLabel = id => SPORTS.find(s => s.id === id)?.label || id;
 const durationBucket = d => d.duration < 3 ? 'under3' : d.duration <= 4 ? '3to4' : '5plus';
-const isPersonaSet = () => readStored(PERSONA_SET_KEY, null) !== null;
+const isPersonaSet = () => readStored(ONBOARDING_COMPLETE_KEY, null) !== null || readStored(PERSONA_SET_KEY, null) !== null;
 const isActiveSessionVisible = () => {
   const panel = document.getElementById('activePanel');
   return Boolean(panel && panel.style.display !== 'none');
@@ -1260,7 +1294,9 @@ function drillMatchesActiveFilters(d) {
 
 function filterPromptForDrill(d) {
   if (!d) return '';
-  if (inferEquipmentTier(d) > activeEquipment) return 'This drill needs a goal. Swap it?';
+  if (inferEquipmentTier(d) > activeEquipment) {
+    return inferEquipmentTier(d) > 2 ? 'This drill needs cones or markers. Swap it?' : 'This drill needs a goal. Swap it?';
+  }
   if (activeLocation === 'indoor' && (d.location || '').toLowerCase() === 'outdoor') return 'This drill needs outdoor space. Swap it?';
   return '';
 }
@@ -1277,6 +1313,7 @@ function eligibleGroupDrills(includeFreestyle = true) {
 
 function changePersona() {
   removeStored(PERSONA_SET_KEY);
+  removeStored(ONBOARDING_COMPLETE_KEY);
   removeStored('activePersona');
   window.location.reload();
 }
@@ -1334,6 +1371,58 @@ function renderAudioButton() {
   btn.textContent = audioMuted ? '🔕' : '🔔';
   btn.title = audioMuted ? 'Unmute alerts' : 'Mute alerts';
   btn.setAttribute('aria-label', audioMuted ? 'Unmute alerts' : 'Mute alerts');
+}
+
+function ensureAudioContext() {
+  if (audioMuted) return null;
+  const Ctx = window.AudioContext || window.webkitAudioContext;
+  if (!Ctx) return null;
+  if (!audioCtx) audioCtx = new Ctx();
+  if (audioCtx.state === 'suspended') audioCtx.resume().catch(() => {});
+  return audioCtx;
+}
+
+function playTone(freq, durationMs, delayMs = 0, gainValue = 0.08) {
+  const ctx = ensureAudioContext();
+  if (!ctx) return;
+  const start = ctx.currentTime + delayMs / 1000;
+  const end = start + durationMs / 1000;
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = 'sine';
+  osc.frequency.setValueAtTime(freq, start);
+  gain.gain.setValueAtTime(gainValue, start);
+  gain.gain.setValueAtTime(gainValue, Math.max(start, end - 0.1));
+  gain.gain.linearRampToValueAtTime(0.0001, end);
+  osc.connect(gain).connect(ctx.destination);
+  osc.start(start);
+  osc.stop(end + 0.02);
+}
+
+function pulseTimer(kind) {
+  const id = kind === 'session' ? 'timerDisplay' : 'drillDisplay';
+  const card = document.getElementById(id)?.closest('.b-footer-timer');
+  if (!card) return;
+  card.classList.remove('timer-pulse');
+  void card.offsetWidth;
+  card.classList.add('timer-pulse');
+}
+
+function playDrillWarning() {
+  playTone(350, 80, 0, 0.045);
+  playTone(350, 80, 180, 0.045);
+  pulseTimer('drill');
+}
+
+function playDrillTransition() {
+  playTone(400, 300, 0, 0.07);
+  pulseTimer('drill');
+}
+
+function playSessionEndChime() {
+  playTone(523, 250, 0, 0.095);
+  playTone(659, 250, 310, 0.095);
+  pulseTimer('session');
 }
 
 function toggleAudioMuted() {
@@ -1457,6 +1546,8 @@ function generateSession() {
   done.clear();
   activeIdx = 0;
   drillSec = 0;
+  drillWarned30 = false;
+  sessionFinished = false;
   queueOpen = false;
   detailOpen = false;
   shownQuips = new Set();
@@ -1493,6 +1584,7 @@ function generateSession() {
   picked.sort((a, b) => (a.priority || 3) !== (b.priority || 3) ? (a.priority || 3) - (b.priority || 3) : b.score - a.score);
   session = freeDrill ? [...picked, freeDrill] : picked;
   drillSec = session[0] ? session[0].duration * 60 : 0;
+  drillWarned30 = false;
   updateDrillDisplay();
   document.getElementById('drillCountSub').textContent = `${session.length} drill${session.length !== 1 ? 's' : ''} planned`;
   renderActiveConfigStrip();
@@ -1682,14 +1774,14 @@ function renderNowPlaying() {
   if (swapPrompt) {
     const prompt = filterPromptForDrill(d);
     swapPrompt.classList.toggle('show', Boolean(prompt));
-    swapPrompt.innerHTML = prompt ? `<div class="b-swap-copy">${prompt}</div><button class="b-swap-btn" onclick="openSwap(activeIdx)">Swap</button>` : '';
+    swapPrompt.innerHTML = prompt ? `<div class="b-swap-copy">${escapeHTML(prompt)}</div><button class="b-swap-btn" onclick="openSwap(activeIdx)">Swap</button>` : '';
   }
   if (insightsEl && insightsRow) {
     const insights = Array.isArray(d.insights) ? d.insights.filter(Boolean) : [];
     insightsEl.classList.toggle('open', insights.length > 0);
     insightsRow.innerHTML = insights.map(t => {
       const cat = classifyInsight(t);
-      return `<div class="b-insight-card b-insight-${cat}"><span class="b-insight-icon">${INSIGHT_ICONS[cat]}</span><span class="b-insight-txt">${t}</span></div>`;
+      return `<div class="b-insight-card b-insight-${cat}"><span class="b-insight-icon">${INSIGHT_ICONS[cat]}</span><span class="b-insight-txt">${escapeHTML(t)}</span></div>`;
     }).join('');
   }
   const hdr = document.getElementById('bInsightsHeader');
@@ -1720,8 +1812,8 @@ function renderActiveConfigStrip() {
   const mode = isCustomActiveSession ? 'Custom' : isOpenMode ? 'Open' : `${sessionMins} min`;
   el.innerHTML = `
     <span class="b-config-chip">${sportLabel(activeSport)}</span>
-    <span class="b-config-chip" style="border-color:${themeVar(g.themeColor)}55;color:${themeVar(g.themeColor)}">${g.badge}</span>
-    <span class="b-config-chip">${g.themeLabel || g.label}</span>
+    <span class="b-config-chip" style="border-color:${themeVar(g.themeColor)}55;color:${themeVar(g.themeColor)}">${escapeHTML(g.badge)}</span>
+    <span class="b-config-chip">${escapeHTML(g.themeLabel || g.label)}</span>
     <span class="b-config-chip">${mode}</span>
   `;
 }
@@ -1734,6 +1826,20 @@ function renderProgressDots() {
     if (i === activeIdx) return '<div class="b-dot active"></div>';
     return '<div class="b-dot"></div>';
   }).join('');
+}
+
+function finishSession(reason = 'complete') {
+  if (sessionFinished) return;
+  sessionFinished = true;
+  if (reason === 'timer') playSessionEndChime();
+  stopTimer();
+  stopDrillTimer();
+  drillSec = Math.max(0, drillSec);
+  updateTimerDisplay();
+  updateDrillDisplay();
+  showToast(reason === 'timer' ? 'Time! Session complete.' : 'Session complete!');
+  const summary = endSession();
+  setTimeout(() => showSessionSummary(summary), reason === 'timer' ? 620 : 350);
 }
 
 function completeDrill() {
@@ -1750,11 +1856,14 @@ function advanceDrill() {
   if (activeIdx < session.length - 1) {
     activeIdx++;
     drillSec = session[activeIdx] ? session[activeIdx].duration * 60 : 0;
+    drillWarned30 = false;
     if (ticking) startDrillTimer();
   } else {
     drillSec = 0;
-    showToast('Session complete! Save it to record progress.');
-    setTimeout(openEndModal, 350);
+    updateDrillDisplay();
+    renderNowPlaying();
+    finishSession('drills');
+    return;
   }
   updateDrillDisplay();
   renderNowPlaying();
@@ -1769,8 +1878,8 @@ function openSwap(i) {
     <div class="pc-opt" onclick="doSwap('${d.id}')">
       <div class="pc-opt-icon">${icon(d.id)}</div>
       <div class="pc-opt-info">
-        <div class="pc-opt-name">${d.name}${d.priority === 1 ? ' <span class="pc-priority-badge">KEY</span>' : ''}</div>
-        <div class="pc-opt-tags">${d.tags.map(t => `<span class="pc-tag">${t}</span>`).join('')}<span class="pc-tag">${d.duration}m</span></div>
+        <div class="pc-opt-name">${escapeHTML(d.name)}${d.priority === 1 ? ' <span class="pc-priority-badge">KEY</span>' : ''}</div>
+        <div class="pc-opt-tags">${(d.tags || []).map(t => `<span class="pc-tag">${escapeHTML(t)}</span>`).join('')}<span class="pc-tag">${d.duration}m</span></div>
       </div>
       <span style="color:var(--blue);font-size:18px;flex-shrink:0">→</span>
     </div>`).join('');
@@ -1812,12 +1921,13 @@ function openEndModal()  {
 function closeEndModal() { document.getElementById('endOverlay').classList.remove('open'); }
 function confirmEndSave() {
   closeEndModal();
+  sessionFinished = true;
   const summary = endSession();
   showSessionSummary(summary);
 }
 function confirmEndDiscard() {
   closeEndModal();
-  generateSession();
+  returnToSetup();
 }
 
 // ─── RECORD SESSION ───────────────────────────────────────────────────────────
@@ -1826,12 +1936,27 @@ function calculateSessionXP(doneIds) {
   doneIds.forEach(id => {
     const d = getDrill(id);
     if (!d) return;
-    const attrs = d.attributes || {};
+    const attrs = effectiveAttributes(d);
     ATTRIBUTE_KEYS.forEach(k => {
       xp[k] += (attrs[k] || 0) * (d.duration || 0) * 10;
     });
   });
   return xp;
+}
+
+function effectiveAttributes(d) {
+  if (d?.attributes && Object.values(d.attributes).some(v => Number(v) > 0)) return d.attributes;
+  const tags = new Set(d?.tags || []);
+  const attrs = emptyAttributeXP();
+  if (tags.has('control')) { attrs.technique = 2; attrs.coordination = 2; attrs.balance = 1; }
+  if (tags.has('shooting')) { attrs.technique = Math.max(attrs.technique, 2); attrs.coordination = Math.max(attrs.coordination, 1); }
+  if (tags.has('passing')) { attrs.vision = 2; attrs.technique = Math.max(attrs.technique, 1); }
+  if (tags.has('movement')) { attrs.agility = 2; attrs.speed = 1; attrs.endurance = 1; }
+  if (tags.has('speed')) attrs.speed = 3;
+  if (tags.has('agility')) attrs.agility = 3;
+  if (tags.has('defense') || tags.has('defending')) { attrs.agility = Math.max(attrs.agility, 2); attrs.strength = 1; }
+  if (tags.has('throwing') || tags.has('hitting') || tags.has('fielding')) { attrs.coordination = Math.max(attrs.coordination, 2); attrs.technique = Math.max(attrs.technique, 2); }
+  return attrs;
 }
 
 function formatXPChips(xp) {
@@ -1858,7 +1983,16 @@ function endSession() {
   const minsDone = isOpenMode ? Math.round(timerSec / 60) : doneIds.reduce((a, id) => a + (getDrill(id)?.duration || 0), 0);
   const totalMins = isOpenMode ? Math.round(timerSec / 60) : session.reduce((a,d)=>a+d.duration,0);
   const xpEarned = calculateSessionXP(doneIds);
-  const sessionRecord = { id:Date.now(), date:today, sport:activeSport, custom:isCustomActiveSession, ageGroup:curGroup().label, ageIdx, drillsDone:doneIds, drillsTotal:totalIds, minutes:totalMins, minutesDone:minsDone, xpEarned };
+  state.attributeXP = { ...emptyAttributeXP(), ...(state.attributeXP || {}) };
+  ATTRIBUTE_KEYS.forEach(k => { state.attributeXP[k] += xpEarned[k] || 0; });
+  state.overallRating = Math.min(100, Math.round(Object.values(state.attributeXP).reduce((sum, value) => sum + value, 0) / 120));
+  const sessionRecord = {
+    id:Date.now(), date:today, sport:activeSport, custom:isCustomActiveSession,
+    ageGroup:curGroup().label, ageIdx, drillsDone:doneIds, drillsTotal:totalIds,
+    minutes:totalMins, minutesDone:minsDone, xpEarned,
+    attributeXPAfter:{ ...state.attributeXP },
+    overallRatingAfter:state.overallRating,
+  };
   state.sessions.push(sessionRecord);
   state.totalDrills += doneIds.length;
   state.totalMinutes += minsDone;
@@ -1873,7 +2007,7 @@ function endSession() {
 function showSessionSummary(summary) {
   const body = document.getElementById('sessionSummaryBody');
   if (!body) return;
-  const names = summary.drillNames.length ? summary.drillNames.join(' · ') : 'No completed drills yet';
+  const names = summary.drillNames.length ? summary.drillNames.map(escapeHTML).join(' · ') : 'No completed drills yet';
   body.innerHTML = `
     <div class="summary-grid">
       <div class="summary-stat">
@@ -1905,15 +2039,23 @@ function closeSummaryAndReturnHome() {
 // ─── TIMER ────────────────────────────────────────────────────────────────────
 function toggleTimer() { ticking ? stopTimer() : startTimer(); }
 function startTimer() {
+  if (ticking) return;
+  ensureAudioContext();
   ticking = true;
   updatePlayBtn();
   if (!isOpenMode && !shownQuips.has(1.00)) { showQuip(DAD_JOKES[activeSport].find(j => j.pct === 1.00).text); shownQuips.add(1.00); }
+  clearInterval(interval);
   interval = setInterval(() => {
     if (isOpenMode) {
       timerSec++;
     } else {
       timerSec--;
-      if (timerSec <= 0) { timerSec = 0; stopTimer(); }
+      if (timerSec <= 0) {
+        timerSec = 0;
+        updateTimerDisplay();
+        finishSession('timer');
+        return;
+      }
     }
     updateTimerDisplay();
   }, 1000);
@@ -1922,19 +2064,28 @@ function startTimer() {
 function stopTimer() {
   ticking = false;
   clearInterval(interval);
+  interval = null;
   stopDrillTimer();
   updatePlayBtn();
 }
 function startDrillTimer() {
   stopDrillTimer();
+  if (!session[activeIdx]) return;
   drillInterval = setInterval(() => {
     drillSec--;
+    if (!drillWarned30 && drillSec === 30) {
+      drillWarned30 = true;
+      playDrillWarning();
+    }
     if (drillSec <= 0) {
       drillSec = 0;
       updateDrillDisplay();
       stopDrillTimer();
       const next = session[activeIdx + 1];
-      if (next) showToast(`Up Next: ${next.name}`);
+      if (next) {
+        playDrillTransition();
+        showToast(`Up Next: ${next.name}`);
+      }
       advanceDrill();
       return;
     }
@@ -1943,6 +2094,7 @@ function startDrillTimer() {
 }
 function stopDrillTimer() {
   clearInterval(drillInterval);
+  drillInterval = null;
 }
 function updateDrillDisplay() {
   const d = session[activeIdx];
@@ -2010,7 +2162,7 @@ function renderBuilder() {
       if (!d) return '';
       return `<div class="pc-builder-row">
         <div class="pc-builder-num">${i + 1}</div>
-        <div class="pc-builder-name">${d.name}<div class="pc-builder-meta">${d.duration} min · ${d.tags.slice(0,2).join(' · ')}</div></div>
+        <div class="pc-builder-name">${escapeHTML(d.name)}<div class="pc-builder-meta">${d.duration} min · ${(d.tags || []).slice(0,2).map(escapeHTML).join(' · ')}</div></div>
         <div class="pc-builder-controls">
           <button onclick="moveBuilderDrill(${i},-1)" ${i === 0 ? 'disabled' : ''}>↑</button>
           <button onclick="moveBuilderDrill(${i},1)" ${i === count - 1 ? 'disabled' : ''}>↓</button>
@@ -2064,6 +2216,8 @@ function startCustomSession() {
   isOpenMode = false;
   timerSec = totalSec = session.reduce((sum, d) => sum + d.duration, 0) * 60;
   drillSec = session[0].duration * 60;
+  drillWarned30 = false;
+  sessionFinished = false;
   shownQuips = new Set();
   clearQuip();
   updateSessionBadge();
@@ -2089,8 +2243,9 @@ const SPORT_CATEGORIES = {
 function matchesCategory(d, cat) {
   if (cat === 'all') return true;
   if (cat === 'fun') return d.fun;
-  if (cat === 'speed-agility') return d.tags.includes('speed') || d.tags.includes('agility');
-  return d.tags.includes(cat);
+  const tags = d.tags || [];
+  if (cat === 'speed-agility') return tags.includes('speed') || tags.includes('agility');
+  return tags.includes(cat);
 }
 
 function renderFilterChips() {
@@ -2114,13 +2269,13 @@ function renderLib() {
   const search = document.getElementById('libSearch')?.value.toLowerCase() || '';
   const sportGroups = AGE_GROUPS[activeSport] || [];
   let drills = Object.values(ALL_DRILLS).filter(d => d.sport === activeSport);
-  if (libraryFilters.ageMode === 'age') drills = drills.filter(d => d.ages.includes(ageIdx));
+  if (libraryFilters.ageMode === 'age') drills = drills.filter(d => (d.ages || []).includes(ageIdx));
   if (libraryFilters.category !== 'all') drills = drills.filter(d => matchesCategory(d, libraryFilters.category));
-  if (search) drills = drills.filter(d => d.name.toLowerCase().includes(search));
+  if (search) drills = drills.filter(d => (d.name || '').toLowerCase().includes(search));
   const isDefault = libraryFilters.ageMode === 'age' && libraryFilters.category === 'all' && !search;
   const countBar = `<div class="lib-count-bar"><span class="lib-count-txt">${drills.length} drill${drills.length !== 1 ? 's' : ''}</span>${!isDefault ? '<button class="lib-clear-btn" onclick="clearLibraryFilters()">Clear All</button>' : ''}</div>`;
   document.getElementById('libList').innerHTML = countBar + (drills.length ? drills.map(d => {
-    const agePills = d.ages.map(a => {
+    const agePills = (d.ages || []).map(a => {
       const group = sportGroups[a];
       return `<span class="pc-age-pill" style="border-color:${themeVar(group?.themeColor)}55;color:${themeVar(group?.themeColor)}">${group?.badge || a}</span>`;
     }).join('');
@@ -2129,25 +2284,25 @@ function renderLib() {
       <div class="pc-lib-card-hd">
         <div class="pc-lib-icon">${icon(d.id)}</div>
         <div style="flex:1;min-width:0">
-          <div class="pc-lib-name">${d.name}${d.priority === 1 ? ' <span class="pc-priority-badge">KEY DRILL</span>' : ''}</div>
+          <div class="pc-lib-name">${escapeHTML(d.name)}${d.priority === 1 ? ' <span class="pc-priority-badge">KEY DRILL</span>' : ''}</div>
           <div style="margin-top:4px">${agePills}<span class="pc-tag" style="margin-left:2px">⏱ ${d.duration}m</span></div>
         </div>
         <button class="pc-add-btn" onclick="addBuilderDrill('${d.id}')">${isAdded ? 'Add Again' : 'Add'}</button>
       </div>
       <div class="pc-info-lbl">How To</div>
-      <div class="pc-info-txt" style="margin-bottom:8px">${d.how}</div>
+      <div class="pc-info-txt" style="margin-bottom:8px">${escapeHTML(d.how)}</div>
       <div class="pc-cue" style="margin:0 0 8px">
         <div class="pc-cue__lbl">Coach Says</div>
-        <div class="pc-cue__txt">${d.cue}</div>
+        <div class="pc-cue__txt">${escapeHTML(d.cue)}</div>
       </div>
       ${d.insights?.length ? `<div class="pc-insights">
         <div class="pc-insights__hd">
           <span class="pc-insights__badge"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1.5A4 4 0 0 0 3 5.5c0 1.4.72 2.63 1.8 3.35V10a.5.5 0 0 0 .5.5h3.4a.5.5 0 0 0 .5-.5V8.85A4 4 0 0 0 7 1.5Z" stroke="#DBA514" stroke-width="1.1" stroke-linejoin="round"/><path d="M5 11h4M5.5 12.5h3" stroke="#DBA514" stroke-width="1.1" stroke-linecap="round"/></svg></span>
           <span class="pc-insights__lbl">Insights</span>
         </div>
-        <div class="pc-insights__body">${d.insights.map(t=>{const cat=classifyInsight(t);return `<div class="pc-insights__card"><span class="pc-insights__icon">${INSIGHT_ICONS[cat]}</span><span class="pc-insights__txt">${t}</span></div>`;}).join('')}</div>
+        <div class="pc-insights__body">${d.insights.map(t=>{const cat=classifyInsight(t);return `<div class="pc-insights__card"><span class="pc-insights__icon">${INSIGHT_ICONS[cat]}</span><span class="pc-insights__txt">${escapeHTML(t)}</span></div>`;}).join('')}</div>
       </div>` : ''}
-      <div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap">${d.tags.map(t=>`<span class="pc-tag">${t}</span>`).join('')}${d.fun?'<span class="pc-tag" style="color:var(--amber);border-color:rgba(219,165,20,.5)">⭐ fun</span>':''}</div>
+      <div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap">${(d.tags || []).map(t=>`<span class="pc-tag">${escapeHTML(t)}</span>`).join('')}${d.fun?'<span class="pc-tag" style="color:var(--amber);border-color:rgba(219,165,20,.5)">⭐ fun</span>':''}</div>
     </div>`;
   }).join('') : `<div class="pc-empty"><div class="pc-empty-ttl">No drills match these filters</div><div class="pc-empty-txt">Try adjusting your filters.</div><button class="pc-filter-chip" style="margin:12px auto;display:block" onclick="clearLibraryFilters()">Clear All Filters</button></div>`);
   renderBuilder();
@@ -2213,13 +2368,13 @@ function renderProgress() {
     return `<div class="pc-hist-item">
       <div class="pc-hist-top">
         <div>
-          <div class="pc-hist-date">${s.date} · ${s.custom ? 'Custom Session' : (s.ageGroup || '')} · ${sportLabel(s.sport || 'soccer')}</div>
+          <div class="pc-hist-date">${escapeHTML(s.date)} · ${s.custom ? 'Custom Session' : escapeHTML(s.ageGroup || '')} · ${escapeHTML(sportLabel(s.sport || 'soccer'))}</div>
           <div class="pc-hist-meta">${completion} · ${s.minutesDone ?? s.minutes ?? 0}m</div>
         </div>
         <div class="pc-hist-badge">${s.minutesDone ?? s.minutes ?? 0}m</div>
       </div>
-      ${doneNames.length ? `<div class="pc-hist-drills">${doneNames.join(' · ')}</div>` : ''}
-      ${skipped.length ? `<div style="font-size:11px;color:var(--muted);margin-top:3px;font-style:italic">Skipped: ${skipped.join(', ')}</div>` : ''}
+      ${doneNames.length ? `<div class="pc-hist-drills">${doneNames.map(escapeHTML).join(' · ')}</div>` : ''}
+      ${skipped.length ? `<div style="font-size:11px;color:var(--muted);margin-top:3px;font-style:italic">Skipped: ${skipped.map(escapeHTML).join(', ')}</div>` : ''}
     </div>`;
   }).join('');
 }
@@ -2303,7 +2458,6 @@ function onboardingAgeHTML() {
 
 function choosePersona(persona) {
   activePersona = persona;
-  writeStored(PERSONA_SET_KEY, 'true');
   persistSessionPrefs();
   renderPersonaBadge();
   renderSessionFilterChips();
@@ -2344,6 +2498,8 @@ function launchFirstSessionFromWizard() {
 
 function finishFirstSessionLaunch() {
   pendingFirstSessionLaunch = false;
+  writeStored(PERSONA_SET_KEY, 'true');
+  writeStored(ONBOARDING_COMPLETE_KEY, 'true');
   renderPersonaBadge();
   renderSportChips();
   renderSessionFilterChips();
