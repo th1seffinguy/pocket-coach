@@ -271,7 +271,8 @@
   .b-dot{width:7px;height:7px;border-radius:50%;background:var(--border);transition:all .2s;}
   .b-dot.done{background:var(--green);}
   .b-dot.active{background:var(--amber);width:20px;border-radius:4px;}
-  .b-pause-btn{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.06);
+  .b-timer-actions{display:flex;align-items:center;gap:8px;}
+  .b-pause-btn{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.06);
     border:1px solid var(--border);color:var(--muted);display:flex;align-items:center;
     justify-content:center;cursor:pointer;transition:all .15s;}
   .b-pause-btn:active{transform:scale(.88);}
@@ -299,10 +300,10 @@
     width:100%;transition:width 1s linear;}
   .b-bar-ball{position:absolute;top:50%;transform:translate(-50%,-50%);font-size:15px;line-height:1;
     transition:left 1s linear;pointer-events:none;filter:drop-shadow(0 1px 3px rgba(0,0,0,.5));}
-  .b-end-session{min-height:44px;margin:0 0 10px;border-radius:999px;border:1px solid rgba(217,80,43,.55);
-    background:var(--coral);color:white;font-family:var(--sans);font-size:16px;font-weight:800;
-    display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;
-    box-shadow:0 8px 18px rgba(217,80,43,.18);}
+  .b-end-session{min-height:44px;border-radius:12px;border:1px solid rgba(217,80,43,.55);
+    background:rgba(217,80,43,.14);color:#F2A086;font-family:var(--sans);font-size:13px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;padding:0 12px;
+    white-space:nowrap;}
   .b-end-session:active{transform:scale(.98);}
   .b-cue-block{background:rgba(219,165,20,.08);border:1px solid rgba(219,165,20,.2);
     border-radius:16px;padding:16px 18px;margin-top:16px;}
@@ -674,9 +675,12 @@
         <div class="b-timer-block">
           <div class="b-timer-top">
             <div class="b-progress-dots" id="progressDots"></div>
-            <button class="b-pause-btn" id="playBtn" onclick="toggleTimer()">
-              <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="13" height="13"><path d="M6 4 L20 12 L6 20 Z"/></svg>
-            </button>
+            <div class="b-timer-actions">
+              <button class="b-end-session" id="globalEndSessionBtn" onclick="openEndModal('manual')">⏹ End</button>
+              <button class="b-pause-btn" id="playBtn" onclick="toggleTimer()">
+                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="13" height="13"><path d="M6 4 L20 12 L6 20 Z"/></svg>
+              </button>
+            </div>
           </div>
           <div class="b-timer-row">
             <div>
@@ -691,7 +695,6 @@
           <div class="b-bar"><div class="b-bar-fill" id="drillFill" style="width:100%"></div><span class="b-bar-ball" id="drillBall" style="left:100%">⚽</span></div>
         </div>
         <div class="b-media" id="bMedia"></div>
-        <button class="b-end-session" id="globalEndSessionBtn" onclick="openEndModal('manual')">⏹ End Session</button>
         <div class="b-drill-card">
           <div class="b-now-tag"><div class="b-pulse"></div> NOW PLAYING</div>
           <div class="b-drill-name" id="bDrillName">—</div>
@@ -837,7 +840,7 @@
       </button>
     </div>
     <div style="text-align:center;padding:20px 0;font-family:var(--mono);font-size:12px;color:var(--muted-2);letter-spacing:.05em">
-      JUKIT · Youth Coaching · <span id="versionLabel">v0.7.0</span>
+      JUKIT · Youth Coaching · <span id="versionLabel">v0.7.1</span>
     </div>
   </div>
 </div>
@@ -928,7 +931,7 @@
 </div>
 
 <script>
-const VERSION = 'v0.7.0';
+const VERSION = 'v0.7.1';
 
 // ─── SVG ICONS ────────────────────────────────────────────────────────────────
 const ICONS = {
