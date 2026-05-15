@@ -805,7 +805,7 @@
       </button>
     </div>
     <div style="text-align:center;padding:20px 0;font-family:var(--mono);font-size:12px;color:var(--muted-2);letter-spacing:.05em">
-      JUKIT · Youth Coaching · <span id="versionLabel">v0.9.20</span>
+      JUKIT · Youth Coaching · <span id="versionLabel">v0.9.21</span>
     </div>
   </div>
 </div>
@@ -897,7 +897,7 @@
 </div>
 
 <script>
-const VERSION = 'v0.9.20';
+const VERSION = 'v0.9.21';
 
 // ─── SVG ICONS ────────────────────────────────────────────────────────────────
 const ICONS = {
@@ -1186,6 +1186,7 @@ let footerTipTimer = null;
 let audioCtx = null;
 let drillWarned30 = false;
 let drillWarned10 = false;
+let drillCountdownTicks = new Set();
 let sessionFinished = false;
 let state = loadState();
 
@@ -1383,7 +1384,7 @@ function ensureAudioContext() {
   return audioCtx;
 }
 
-function playTone(freq, durationMs, delayMs = 0, gainValue = 0.1, type = 'sine') {
+function playTone(freq, durationMs, delayMs = 0, gainValue = 0.16, type = 'sine') {
   const ctx = ensureAudioContext();
   if (!ctx) return;
   const start = ctx.currentTime + delayMs / 1000;
@@ -1410,24 +1411,31 @@ function pulseTimer(kind) {
 }
 
 function playDrillWarning() {
-  playTone(350, 90, 0, 0.075);
-  playTone(350, 90, 185, 0.075);
+  playTone(350, 100, 0, 0.11, 'square');
+  playTone(350, 100, 200, 0.11, 'square');
   pulseTimer('drill');
 }
 
-function playDrillTenSecondDing() {
-  playTone(880, 140, 0, 0.12, 'triangle');
+function playDrillTenSecondStart() {
+  playTone(660, 130, 0, 0.14, 'triangle');
+  playTone(880, 170, 170, 0.16, 'triangle');
+  pulseTimer('drill');
+}
+
+function playDrillCountdownTick() {
+  playTone(720, 115, 0, 0.16, 'square');
   pulseTimer('drill');
 }
 
 function playDrillTransition() {
-  playTone(440, 340, 0, 0.12);
+  playTone(392, 220, 0, 0.16, 'square');
+  playTone(523, 420, 235, 0.18, 'sine');
   pulseTimer('drill');
 }
 
 function playSessionEndChime() {
-  playTone(523, 270, 0, 0.14);
-  playTone(659, 300, 320, 0.14);
+  playTone(523, 300, 0, 0.18);
+  playTone(659, 330, 330, 0.18);
   pulseTimer('session');
 }
 
@@ -1554,6 +1562,7 @@ function generateSession() {
   drillSec = 0;
   drillWarned30 = false;
   drillWarned10 = false;
+  drillCountdownTicks = new Set();
   sessionFinished = false;
   queueOpen = false;
   detailOpen = false;
@@ -1593,6 +1602,7 @@ function generateSession() {
   drillSec = session[0] ? session[0].duration * 60 : 0;
   drillWarned30 = false;
   drillWarned10 = false;
+  drillCountdownTicks = new Set();
   updateDrillDisplay();
   document.getElementById('drillCountSub').textContent = `${session.length} drill${session.length !== 1 ? 's' : ''} planned`;
   renderActiveConfigStrip();
@@ -1866,6 +1876,7 @@ function advanceDrill() {
     drillSec = session[activeIdx] ? session[activeIdx].duration * 60 : 0;
     drillWarned30 = false;
     drillWarned10 = false;
+    drillCountdownTicks = new Set();
     if (ticking) startDrillTimer();
   } else {
     drillSec = 0;
@@ -1903,6 +1914,7 @@ function doSwap(id) {
       drillSec = nd ? nd.duration * 60 : 0;
       drillWarned30 = false;
       drillWarned10 = false;
+      drillCountdownTicks = new Set();
       updateDrillDisplay();
       if (ticking) startDrillTimer();
     }
@@ -2090,7 +2102,11 @@ function startDrillTimer() {
     }
     if (!drillWarned10 && drillSec === 10) {
       drillWarned10 = true;
-      playDrillTenSecondDing();
+      playDrillTenSecondStart();
+    }
+    if (drillSec <= 3 && drillSec > 0 && !drillCountdownTicks.has(drillSec)) {
+      drillCountdownTicks.add(drillSec);
+      playDrillCountdownTick();
     }
     if (drillSec <= 0) {
       drillSec = 0;
@@ -2233,6 +2249,7 @@ function startCustomSession() {
   drillSec = session[0].duration * 60;
   drillWarned30 = false;
   drillWarned10 = false;
+  drillCountdownTicks = new Set();
   sessionFinished = false;
   shownQuips = new Set();
   clearQuip();
