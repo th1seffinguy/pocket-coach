@@ -11,7 +11,7 @@
 
 Notion is the single source of truth for all drill content.
 
-- Notion Drills database ID: `dacc5ce2-1878-4e94-8a24-555754413363`
+- Notion Drills database ID: `dd33ca29-26cb-442b-a9ba-3e0782a25e7f`
 - The app reads drills from `/api/drills` (Vercel serverless function that fetches from Notion)
 - `drills.json` is a fallback cache only. It is NOT the source of truth.
 - Never add or edit drills in `drills.json` without also updating Notion.
@@ -24,6 +24,8 @@ ANY time a drill is added, edited, or removed:
 2. The app pulls from `/api/drills` which reads from Notion automatically
 3. Only update `drills.json` if the API is down and a hotfix is needed. Document this if it happens.
 4. After any drill change, verify the live app at https://jukit.vercel.app reflects the update
+
+After editing any drill in Notion, trigger a Vercel redeploy to bust the 1-hour CDN cache. Vercel Dashboard → jukit → Deployments → Redeploy latest. Changes will not appear in the live app until the cache clears or a redeploy runs.
 
 ### Drill Schema
 
@@ -131,7 +133,7 @@ git push origin v0.X.0
 
 | Database | ID | Purpose |
 |---|---|---|
-| Drills | `dacc5ce2-1878-4e94-8a24-555754413363` | Source of truth for all drill content |
+| Drills | `dd33ca29-26cb-442b-a9ba-3e0782a25e7f` | Source of truth for all drill content |
 | Build Ideas | `b48e5474-3cd8-49c3-8ee2-a747fe01da43` | Feature backlog |
 | Drill Feedback | `a41a9500-bbe4-446c-8adc-9cf172255bd0` | Content refinement requests |
 
