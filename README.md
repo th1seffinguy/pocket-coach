@@ -2,6 +2,8 @@
 
 A mobile-first youth coaching app for parent-led backyard sessions. Open `index.html` in any browser — no install, no build step, no server required.
 
+See CONTRIBUTING.md for drill catalog rules, schema reference, and session wrap-up checklist.
+
 ---
 
 ## What the app does
