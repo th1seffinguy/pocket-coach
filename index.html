@@ -300,11 +300,12 @@
     width:100%;transition:width 1s linear;}
   .b-bar-ball{position:absolute;top:50%;transform:translate(-50%,-50%);font-size:15px;line-height:1;
     transition:left 1s linear;pointer-events:none;filter:drop-shadow(0 1px 3px rgba(0,0,0,.5));}
-  .b-end-session{min-height:44px;border-radius:12px;border:1px solid rgba(217,80,43,.55);
-    background:rgba(217,80,43,.14);color:#F2A086;font-family:var(--sans);font-size:13px;font-weight:800;
-    display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;padding:0 12px;
+  .b-end-session{min-height:44px;border-radius:14px;border:1px solid rgba(217,80,43,.26);
+    background:rgba(217,80,43,.18);color:#F3A58F;font-family:var(--sans);font-size:13px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;gap:7px;cursor:pointer;padding:0 14px;
     white-space:nowrap;}
   .b-end-session:active{transform:scale(.98);}
+  .b-stop-icon{width:10px;height:10px;border-radius:2.5px;background:currentColor;display:block;opacity:.9;}
   .b-cue-block{background:rgba(219,165,20,.08);border:1px solid rgba(219,165,20,.2);
     border-radius:16px;padding:16px 18px;margin-top:16px;}
   .b-drill-card .b-cue-block{background:transparent;border:0;border-radius:0;padding:0;margin-top:0;}
@@ -676,7 +677,7 @@
           <div class="b-timer-top">
             <div class="b-progress-dots" id="progressDots"></div>
             <div class="b-timer-actions">
-              <button class="b-end-session" id="globalEndSessionBtn" onclick="openEndModal('manual')">⏹ End</button>
+              <button class="b-end-session" id="globalEndSessionBtn" onclick="openEndModal('manual')"><span class="b-stop-icon" aria-hidden="true"></span><span>End</span></button>
               <button class="b-pause-btn" id="playBtn" onclick="toggleTimer()">
                 <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="13" height="13"><path d="M6 4 L20 12 L6 20 Z"/></svg>
               </button>
@@ -840,7 +841,7 @@
       </button>
     </div>
     <div style="text-align:center;padding:20px 0;font-family:var(--mono);font-size:12px;color:var(--muted-2);letter-spacing:.05em">
-      JUKIT · Youth Coaching · <span id="versionLabel">v0.7.1</span>
+      JUKIT · Youth Coaching · <span id="versionLabel">v0.7.2</span>
     </div>
   </div>
 </div>
@@ -931,7 +932,7 @@
 </div>
 
 <script>
-const VERSION = 'v0.7.1';
+const VERSION = 'v0.7.2';
 
 // ─── SVG ICONS ────────────────────────────────────────────────────────────────
 const ICONS = {
