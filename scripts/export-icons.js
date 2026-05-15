@@ -19,13 +19,13 @@ const outputs = [
 ];
 
 function medallionSvg(size) {
-  const padding = size * 0.1;
+  const padding = size * 0.04;
   const markSize = size - padding * 2;
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="${size}" height="${size}" fill="${COLORS.background}"/>
-  <svg x="${padding}" y="${padding}" width="${markSize}" height="${markSize}" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg x="${padding}" y="${padding}" width="${markSize}" height="${markSize}" viewBox="2 2 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M 32 4 Q 54 4 60 16 Q 60 32 60 32 Q 60 48 54 56 Q 32 60 32 60 Q 10 60 8 52 Q 4 32 4 32 Q 4 14 12 8 Q 32 4 32 4 Z" fill="${COLORS.fill}"/>
     <path d="M 8 50 L 56 14" stroke="${COLORS.detail}" stroke-width="3.4" stroke-linecap="round" opacity="0.18"/>
     <path d="M 14 54 L 60 22" stroke="${COLORS.detail}" stroke-width="2" stroke-linecap="round" opacity="0.12"/>
