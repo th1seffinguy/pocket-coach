@@ -287,7 +287,7 @@
   .b-dot{width:7px;height:7px;border-radius:50%;background:var(--border);transition:all .2s;}
   .b-dot.done{background:var(--green);}
   .b-dot.active{background:var(--amber);width:20px;border-radius:4px;}
-  .b-body{flex:1;display:flex;flex-direction:column;padding:10px 20px calc(116px + env(safe-area-inset-bottom));}
+  .b-body{flex:1;display:flex;flex-direction:column;padding:10px 20px calc(140px + env(safe-area-inset-bottom));}
   .b-media{height:82px;background:var(--surface);border:1px solid var(--border);
     border-radius:16px;overflow:hidden;margin-bottom:10px;display:flex;align-items:center;justify-content:center;}
   .b-media svg{display:block;width:100%;height:100%;}
@@ -341,28 +341,31 @@
   .b-quip{font-size:12px;font-family:var(--mono);color:var(--amber);font-style:italic;
     padding:8px 0 0;min-height:14px;opacity:0;transition:opacity .4s;}
   .b-quip.show{opacity:1;}
-  .b-footer{position:fixed;left:0;right:0;bottom:0;z-index:200;min-height:80px;
-    padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:#1D2129;
-    border-top:1px solid #262C36;display:flex;align-items:center;gap:12px;
+  .b-footer{position:fixed;left:0;right:0;bottom:0;z-index:200;height:calc(92px + env(safe-area-inset-bottom));min-height:108px;
+    padding:8px 12px max(8px, env(safe-area-inset-bottom));background:#1D2129;
+    border-top:1px solid #262C36;display:flex;align-items:flex-end;gap:12px;
     box-shadow:0 -12px 26px rgba(0,0,0,.32);}
-  .b-footer-timers{display:flex;flex-direction:column;gap:5px;min-width:92px;flex:1;}
-  .b-footer-timer{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
+  .b-footer-timers{display:flex;flex-direction:column;gap:6px;min-width:118px;flex:1 1 auto;}
+  .b-footer-timer{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;
+    min-height:39px;padding:5px 9px;border:1px solid rgba(255,255,255,.06);
+    border-radius:12px;background:rgba(15,17,21,.28);}
   .b-footer-label{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--muted);
     text-transform:uppercase;font-weight:800;white-space:nowrap;}
-  .b-footer-value{font-family:var(--bebas);font-size:22px;line-height:1;letter-spacing:.03em;
+  .b-footer-value{font-family:var(--bebas);font-size:30px;line-height:.92;letter-spacing:.03em;
     font-variant-numeric:tabular-nums;color:var(--green);white-space:nowrap;}
   .b-footer-value.drill{color:var(--amber);}
-  .b-footer-actions{display:flex;align-items:center;gap:7px;position:relative;padding-top:13px;}
-  .b-footer-btn{width:44px;height:44px;border-radius:13px;border:1px solid var(--border);
+  .b-footer-actions{display:flex;align-items:flex-end;gap:8px;position:relative;padding-top:26px;flex:0 0 auto;}
+  .b-footer-btn{width:46px;height:46px;border-radius:14px;border:1px solid var(--border);
     background:var(--surface);color:var(--text);display:flex;align-items:center;justify-content:center;
     cursor:pointer;padding:0;}
   .b-footer-btn:active{transform:scale(.94);}
-  .b-footer-btn svg{width:17px;height:17px;}
+  .b-footer-btn svg{width:18px;height:18px;}
   .b-footer-end{border-color:rgba(217,80,43,.28);background:rgba(217,80,43,.16);color:#F3A58F;}
   .b-stop-icon{width:12px;height:12px;border-radius:3px;background:currentColor;display:block;opacity:.92;}
-  .b-mute-btn{position:absolute;right:0;top:-13px;width:30px;height:26px;border-radius:9px;
+  .b-mute-btn{position:absolute;right:0;top:0;width:34px;height:30px;border-radius:10px;
     border:1px solid var(--border);background:rgba(15,17,21,.5);color:var(--muted);
     display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;}
+  body.session-active .toast{bottom:calc(118px + env(safe-area-inset-bottom));}
 
   /* ── EMPTY STATE ────────────────────────────────────────────── */
   .pc-empty{text-align:center;padding:40px 16px;}
@@ -799,7 +802,7 @@
       </button>
     </div>
     <div style="text-align:center;padding:20px 0;font-family:var(--mono);font-size:12px;color:var(--muted-2);letter-spacing:.05em">
-      JUKIT · Youth Coaching · <span id="versionLabel">v0.9.0</span>
+      JUKIT · Youth Coaching · <span id="versionLabel">v0.9.1</span>
     </div>
   </div>
 </div>
@@ -891,7 +894,7 @@
 </div>
 
 <script>
-const VERSION = 'v0.9.0';
+const VERSION = 'v0.9.1';
 
 // ─── SVG ICONS ────────────────────────────────────────────────────────────────
 const ICONS = {
