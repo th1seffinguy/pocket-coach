@@ -803,7 +803,7 @@
       </button>
     </div>
     <div style="text-align:center;padding:20px 0;font-family:var(--mono);font-size:12px;color:var(--muted-2);letter-spacing:.05em">
-      JUKIT · Youth Coaching · <span id="versionLabel">v0.9.4</span>
+      JUKIT · Youth Coaching · <span id="versionLabel">v0.9.5</span>
     </div>
   </div>
 </div>
@@ -895,7 +895,7 @@
 </div>
 
 <script>
-const VERSION = 'v0.9.4';
+const VERSION = 'v0.9.5';
 
 // ─── SVG ICONS ────────────────────────────────────────────────────────────────
 const ICONS = {
@@ -1316,13 +1316,13 @@ function setSessionActiveUI(active) {
 }
 
 function revealActiveCardAboveFooter() {
-  requestAnimationFrame(() => {
+  setTimeout(() => {
     const footer = document.querySelector('.b-footer');
-    const target = document.getElementById('timerQuip') || document.querySelector('.b-card-done');
+    const target = document.querySelector('.b-card-done');
     if (!document.body.classList.contains('session-active') || !footer || !target) return;
     const overlap = target.getBoundingClientRect().bottom - footer.getBoundingClientRect().top + 18;
-    if (overlap > 0) window.scrollBy({ top: overlap, behavior: 'smooth' });
-  });
+    if (overlap > 0) window.scrollBy({ top: overlap, behavior: 'auto' });
+  }, 120);
 }
 
 function renderAudioButton() {
