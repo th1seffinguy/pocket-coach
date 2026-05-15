@@ -149,6 +149,7 @@ After every Claude Code or Codex session, complete the following before closing:
 - [ ] Log any new bugs or issues to Notion Drill Feedback
 - [ ] If any drills were added or edited, confirm they exist in Notion with all fields populated
 - [ ] If a new feature shipped, update the VERSION constant and create a git tag
+- [ ] Update the VERSION constant at the top of index.html before every push. Use semantic versioning: patch bump (0.3.0 → 0.3.1) for bug fixes, minor bump (0.3.0 → 0.4.0) for new features. Never push to main without updating the version.
 
 ---
 
