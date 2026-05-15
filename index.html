@@ -299,6 +299,11 @@
     width:100%;transition:width 1s linear;}
   .b-bar-ball{position:absolute;top:50%;transform:translate(-50%,-50%);font-size:15px;line-height:1;
     transition:left 1s linear;pointer-events:none;filter:drop-shadow(0 1px 3px rgba(0,0,0,.5));}
+  .b-end-session{min-height:44px;margin:0 0 10px;border-radius:999px;border:1px solid rgba(217,80,43,.55);
+    background:var(--coral);color:white;font-family:var(--sans);font-size:16px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;
+    box-shadow:0 8px 18px rgba(217,80,43,.18);}
+  .b-end-session:active{transform:scale(.98);}
   .b-cue-block{background:rgba(219,165,20,.08);border:1px solid rgba(219,165,20,.2);
     border-radius:16px;padding:16px 18px;margin-top:16px;}
   .b-drill-card .b-cue-block{background:transparent;border:0;border-radius:0;padding:0;margin-top:0;}
@@ -483,6 +488,16 @@
     display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;
     transition:transform .2s;}
   .modal-save:active{transform:scale(.97);}
+  .session-summary{display:flex;flex-direction:column;gap:12px;}
+  .summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
+  .summary-stat{background:var(--elev);border:1px solid var(--border);border-radius:12px;padding:12px;}
+  .summary-label{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:5px;}
+  .summary-value{font-family:var(--bebas);font-size:30px;line-height:1;color:var(--text);}
+  .summary-list{background:var(--elev);border:1px solid var(--border);border-radius:12px;padding:12px;}
+  .summary-drills{font-size:15px;line-height:1.45;color:var(--text);}
+  .summary-xp{display:flex;gap:6px;flex-wrap:wrap;}
+  .summary-xp-chip{font-family:var(--mono);font-size:11px;font-weight:700;border:1px solid rgba(219,165,20,.35);
+    background:rgba(219,165,20,.08);color:var(--amber);border-radius:999px;padding:5px 8px;}
   .editor-section{margin-bottom:16px;}
   .editor-label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted);
     text-transform:uppercase;margin-bottom:8px;}
@@ -676,6 +691,7 @@
           <div class="b-bar"><div class="b-bar-fill" id="drillFill" style="width:100%"></div><span class="b-bar-ball" id="drillBall" style="left:100%">⚽</span></div>
         </div>
         <div class="b-media" id="bMedia"></div>
+        <button class="b-end-session" id="globalEndSessionBtn" onclick="openEndModal('manual')">⏹ End Session</button>
         <div class="b-drill-card">
           <div class="b-now-tag"><div class="b-pulse"></div> NOW PLAYING</div>
           <div class="b-drill-name" id="bDrillName">—</div>
@@ -847,13 +863,24 @@
 <div class="overlay" id="endOverlay">
   <div class="modal">
     <div class="modal-handle"></div>
-    <div class="modal-title">Save Session</div>
-    <div class="modal-sub">Record your progress or discard this session?</div>
+    <div class="modal-title">End Session?</div>
+    <div class="modal-sub" id="endModalSub">Your progress will be saved.</div>
     <button class="modal-save" onclick="confirmEndSave()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M5 12 L10 17 L19 7"/></svg>
-      Save and Close
+      Confirm
     </button>
-    <button class="modal-cancel" onclick="confirmEndDiscard()">Discard and Close</button>
+    <button class="modal-cancel" onclick="closeEndModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- Post Session Summary Modal -->
+<div class="overlay" id="summaryOverlay">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Session Summary</div>
+    <div class="modal-sub">Nice work. Your progress was saved.</div>
+    <div class="session-summary" id="sessionSummaryBody"></div>
+    <button class="modal-save" onclick="closeSummaryAndReturnHome()">Done</button>
   </div>
 </div>
 
@@ -1097,6 +1124,7 @@ const SPORTS = [
   { id:'basketball', label:'Basketball', emoji:'🏀' },
   { id:'baseball',   label:'Baseball',   emoji:'⚾' },
 ];
+const ATTRIBUTE_KEYS = ['agility','coordination','balance','speed','strength','technique','vision','endurance'];
 const DAD_JOKES = {
   soccer:[{pct:1.00,text:"Look who's practicing now! ⚽"},{pct:.75,text:"Still going? My back hurts just watching. Keep it up!"},{pct:.50,text:"Halfway through already? Time flies when you're having fun!"},{pct:.25,text:"Almost done! Or as the ref says — 'soccer close to full time.'"},{pct:.10,text:"Last few minutes! Champions are made right here in the backyard."},{pct:.00,text:"Full time! You out-coached yourself today. 🏆"}],
   basketball:[{pct:1.00,text:"Look who's practicing now! 🏀"},{pct:.75,text:"Still going? My back hurts just watching. Keep it up!"},{pct:.50,text:"Halfway through already? Time flies when you're having fun!"},{pct:.25,text:"Almost done! Nothing but net — you're in the home stretch!"},{pct:.10,text:"Last few minutes! Champions are made right here in the driveway."},{pct:.00,text:"Buzzer beater! You out-coached yourself today. 🏆"}],
@@ -1602,12 +1630,18 @@ function closeModal() { document.getElementById('overlay').classList.remove('ope
 function maybeClose(e) { if (e.target === document.getElementById('overlay')) closeModal(); }
 
 // ─── END SESSION MODAL ────────────────────────────────────────────────────────
-function openEndModal()  { stopTimer(); document.getElementById('endOverlay').classList.add('open'); }
+function openEndModal()  {
+  stopTimer();
+  stopDrillTimer();
+  const sub = document.getElementById('endModalSub');
+  if (sub) sub.textContent = 'End session? Your progress will be saved.';
+  document.getElementById('endOverlay').classList.add('open');
+}
 function closeEndModal() { document.getElementById('endOverlay').classList.remove('open'); }
 function confirmEndSave() {
   closeEndModal();
-  endSession();
-  generateSession();
+  const summary = endSession();
+  showSessionSummary(summary);
 }
 function confirmEndDiscard() {
   closeEndModal();
@@ -1615,8 +1649,30 @@ function confirmEndDiscard() {
 }
 
 // ─── RECORD SESSION ───────────────────────────────────────────────────────────
+function calculateSessionXP(doneIds) {
+  const xp = Object.fromEntries(ATTRIBUTE_KEYS.map(k => [k, 0]));
+  doneIds.forEach(id => {
+    const d = getDrill(id);
+    if (!d) return;
+    const attrs = d.attributes || {};
+    ATTRIBUTE_KEYS.forEach(k => {
+      xp[k] += (attrs[k] || 0) * (d.duration || 0) * 10;
+    });
+  });
+  return xp;
+}
+
+function formatXPChips(xp) {
+  const entries = ATTRIBUTE_KEYS
+    .filter(k => xp[k] > 0)
+    .sort((a, b) => xp[b] - xp[a]);
+  if (!entries.length) return '<span class="summary-xp-chip">No XP yet</span>';
+  return entries.map(k => `<span class="summary-xp-chip">${k} +${xp[k]}</span>`).join('');
+}
+
 function endSession() {
   stopTimer();
+  stopDrillTimer();
   const doneIds = [...done].map(i => session[i]?.id).filter(Boolean);
   const totalIds = session.map(d => d.id);
   const todayStr = new Date().toDateString();
@@ -1629,11 +1685,49 @@ function endSession() {
   const today = new Date().toLocaleDateString('en-US', { month:'short', day:'numeric' });
   const minsDone = isOpenMode ? Math.round(timerSec / 60) : doneIds.reduce((a, id) => a + (getDrill(id)?.duration || 0), 0);
   const totalMins = isOpenMode ? Math.round(timerSec / 60) : session.reduce((a,d)=>a+d.duration,0);
-  state.sessions.push({ id:Date.now(), date:today, sport:activeSport, custom:isCustomActiveSession, ageGroup:curGroup().label, ageIdx, drillsDone:doneIds, drillsTotal:totalIds, minutes:totalMins, minutesDone:minsDone });
+  const xpEarned = calculateSessionXP(doneIds);
+  const sessionRecord = { id:Date.now(), date:today, sport:activeSport, custom:isCustomActiveSession, ageGroup:curGroup().label, ageIdx, drillsDone:doneIds, drillsTotal:totalIds, minutes:totalMins, minutesDone:minsDone, xpEarned };
+  state.sessions.push(sessionRecord);
   state.totalDrills += doneIds.length;
   state.totalMinutes += minsDone;
   persistState();
   showToast(`Session saved · ${minsDone}m · ${doneIds.length} drill${doneIds.length !== 1 ? 's' : ''} ✓`);
+  return {
+    ...sessionRecord,
+    drillNames: doneIds.map(id => getDrill(id)?.name || id),
+  };
+}
+
+function showSessionSummary(summary) {
+  const body = document.getElementById('sessionSummaryBody');
+  if (!body) return;
+  const names = summary.drillNames.length ? summary.drillNames.join(' · ') : 'No completed drills yet';
+  body.innerHTML = `
+    <div class="summary-grid">
+      <div class="summary-stat">
+        <div class="summary-label">Completed</div>
+        <div class="summary-value">${summary.drillsDone.length}</div>
+      </div>
+      <div class="summary-stat">
+        <div class="summary-label">Minutes</div>
+        <div class="summary-value">${summary.minutesDone}</div>
+      </div>
+    </div>
+    <div class="summary-list">
+      <div class="summary-label">Drills Completed</div>
+      <div class="summary-drills">${names}</div>
+    </div>
+    <div class="summary-list">
+      <div class="summary-label">XP Earned</div>
+      <div class="summary-xp">${formatXPChips(summary.xpEarned)}</div>
+    </div>
+  `;
+  document.getElementById('summaryOverlay').classList.add('open');
+}
+
+function closeSummaryAndReturnHome() {
+  document.getElementById('summaryOverlay').classList.remove('open');
+  returnToSetup();
 }
 
 // ─── TIMER ────────────────────────────────────────────────────────────────────
