@@ -265,6 +265,21 @@
   .b-config-action{height:34px;border-radius:10px;border:1px solid rgba(30,140,232,.45);
     background:rgba(30,140,232,.1);color:#8FC3F0;font-family:var(--mono);font-size:11px;
     letter-spacing:.05em;text-transform:uppercase;padding:0 12px;cursor:pointer;flex-shrink:0;font-weight:700;}
+  .pc-session-filters{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:10px 16px 0;}
+  .pc-session-filters--active{padding-top:8px;}
+  .pc-filter-control{min-height:44px;border-radius:14px;border:1px solid var(--border);
+    background:var(--surface);color:var(--text);font-family:var(--mono);font-size:12px;font-weight:800;
+    letter-spacing:.04em;display:inline-flex;align-items:center;justify-content:center;gap:7px;
+    padding:0 13px;cursor:pointer;text-transform:uppercase;white-space:nowrap;}
+  .pc-filter-control:active{transform:scale(.96);}
+  .pc-filter-control.is-active{border-color:rgba(30,140,232,.5);background:rgba(30,140,232,.12);color:#8FC3F0;}
+  .pc-player-stepper{width:100%;display:flex;align-items:center;gap:8px;background:var(--surface);
+    border:1px solid var(--border);border-radius:14px;padding:8px 10px;}
+  .pc-player-label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted);font-weight:800;margin-right:auto;}
+  .pc-player-btn{width:44px;height:44px;border-radius:12px;border:1px solid var(--border);background:var(--elev);
+    color:var(--text);font-size:20px;font-weight:800;cursor:pointer;}
+  .pc-player-count{min-width:38px;text-align:center;font-family:var(--bebas);font-size:30px;line-height:1;color:var(--text);}
   .b-header{display:none;}
   .b-timer-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
   .b-progress-dots{display:flex;gap:5px;align-items:center;}
@@ -316,6 +331,13 @@
   .b-how-lbl{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--muted);
     text-transform:uppercase;margin-bottom:6px;font-weight:700;}
   .b-how-txt{font-size:16px;line-height:1.42;color:rgba(232,234,240,.82);}
+  .b-swap-prompt{display:none;margin-top:12px;border:1px solid rgba(217,80,43,.35);
+    background:rgba(217,80,43,.1);border-radius:14px;padding:12px;align-items:center;gap:10px;}
+  .b-swap-prompt.show{display:flex;}
+  .b-swap-copy{flex:1;color:#F3A58F;font-size:15px;font-weight:700;line-height:1.35;}
+  .b-swap-btn{min-height:44px;border-radius:12px;border:1px solid rgba(217,80,43,.35);
+    background:rgba(217,80,43,.18);color:#F3A58F;font-family:var(--mono);font-size:12px;
+    font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:0 12px;cursor:pointer;}
   .b-insights{display:none;margin-top:8px;background:rgba(240,238,232,.08);border:1px solid rgba(219,165,20,.3);
     border-radius:12px;overflow:hidden;}
   .b-insights.open{display:block;}
@@ -532,41 +554,26 @@
   .pc-sport-sel.active{background:var(--blue);border-color:var(--blue);color:white;}
   .pc-sport-sel:active{transform:scale(.92);}
   /* ── ONBOARDING ── */
-  #onboarding{position:fixed;inset:0;background:#0F1115;z-index:1000;display:flex;flex-direction:column;overflow:hidden;}
-  .ob-dots-row{display:flex;justify-content:center;gap:7px;padding:20px 16px 0;flex-shrink:0;}
-  .ob-dot{width:7px;height:7px;border-radius:50%;background:rgba(219,165,20,.2);transition:background .25s,width .25s,border-radius .25s;}
-  .ob-dot.active{background:#DBA514;width:20px;border-radius:4px;}
-  .ob-body{flex:1;position:relative;overflow:hidden;}
-  .ob-screen{position:absolute;inset:0;padding:28px 20px 24px;display:flex;flex-direction:column;transform:translateX(105%);opacity:0;transition:transform .42s cubic-bezier(.34,1.56,.64,1),opacity .28s ease;}
-  .ob-screen.ob-active{transform:translateX(0);opacity:1;}
-  .ob-screen.ob-exit{transform:translateX(-105%);opacity:0;}
-  .ob-hd{font-family:var(--bebas);font-size:34px;letter-spacing:.04em;color:#fff;margin-bottom:6px;flex-shrink:0;}
-  .ob-sub{font-size:15px;color:var(--muted);margin-bottom:24px;line-height:1.4;flex-shrink:0;}
-  .ob-card{display:flex;align-items:center;gap:16px;padding:18px 16px;background:var(--surface);border:1.5px solid var(--border);border-radius:16px;margin-bottom:10px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color .15s,background .15s,transform .12s cubic-bezier(.34,1.56,.64,1);flex-shrink:0;}
-  .ob-card:active{transform:scale(.97);}
-  .ob-card.ob-sel{border-color:var(--blue);background:rgba(30,140,232,.1);}
-  .ob-card-icon{font-size:28px;flex-shrink:0;width:44px;text-align:center;line-height:1;}
-  .ob-card-title{font-family:var(--bebas);font-size:22px;letter-spacing:.03em;line-height:1.1;}
-  .ob-card-desc{font-size:13px;color:var(--muted);margin-top:3px;}
-  .ob-continue{margin-top:auto;padding-top:16px;flex-shrink:0;}
-  .ob-btn{width:100%;padding:16px;border-radius:14px;font-family:var(--bebas);font-size:22px;letter-spacing:.06em;cursor:pointer;border:none;-webkit-tap-highlight-color:transparent;transition:opacity .15s;}
-  .ob-btn-primary{background:var(--blue);color:#fff;}
-  .ob-btn-ghost{background:transparent;border:1.5px solid var(--border);color:var(--muted);font-size:18px;margin-top:10px;}
-  .ob-loc-toggle{display:flex;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:3px;margin-top:14px;flex-shrink:0;}
-  .ob-loc-btn{flex:1;padding:10px;border-radius:9px;border:none;background:transparent;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted);cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;}
-  .ob-loc-btn.ob-loc-active{background:var(--blue);color:#fff;}
-  .ob-stepper{display:flex;align-items:center;gap:20px;padding:24px 0;flex-shrink:0;}
-  .ob-step-btn{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--border);background:var(--surface);color:var(--text);font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent;}
-  .ob-step-val{font-family:var(--bebas);font-size:56px;color:#fff;flex:1;text-align:center;}
-  .ob-count-chips{display:flex;gap:10px;flex-shrink:0;}
-  .ob-count-chip{flex:1;padding:20px 0;border-radius:14px;border:1.5px solid var(--border);background:var(--surface);font-family:var(--bebas);font-size:32px;text-align:center;cursor:pointer;color:var(--muted);-webkit-tap-highlight-color:transparent;transition:all .15s cubic-bezier(.34,1.56,.64,1);}
-  .ob-count-chip:active{transform:scale(.95);}
-  .ob-count-chip.ob-sel{border-color:var(--blue);background:rgba(30,140,232,.1);color:#fff;}
-  .ob-finish-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
-  .ob-medallion{width:80px;height:80px;border-radius:50%;background:rgba(219,165,20,.12);border:2px solid #DBA514;display:flex;align-items:center;justify-content:center;margin-bottom:24px;filter:drop-shadow(0 0 20px rgba(219,165,20,.35));}
-  .ob-finish-title{font-family:var(--bebas);font-size:36px;letter-spacing:.08em;color:#fff;margin-bottom:8px;}
-  .ob-finish-sub{font-size:15px;color:var(--muted);margin-bottom:40px;}
-  .ob-btn-col{display:flex;flex-direction:column;width:100%;}
+  #onboarding{position:fixed;inset:0;background:#0F1115;z-index:1000;display:none;overflow:auto;}
+  .ob-shell{width:100%;min-height:100svh;padding:42px 20px max(28px,env(safe-area-inset-bottom));
+    display:flex;flex-direction:column;align-items:center;justify-content:flex-start;}
+  .ob-mark{width:80px;height:80px;align-self:center;flex-shrink:0;margin-bottom:30px;filter:drop-shadow(0 0 22px rgba(219,165,20,.3));}
+  .ob-panel{width:100%;max-width:430px;display:flex;flex-direction:column;gap:12px;}
+  .ob-hd{font-family:var(--bebas);font-size:32px;letter-spacing:.05em;color:#fff;text-align:center;line-height:1;
+    margin-bottom:6px;}
+  .ob-hd-sm{font-size:28px;}
+  .ob-card{width:100%;min-height:82px;display:flex;align-items:center;gap:16px;padding:16px;
+    background:var(--surface);border:1px solid var(--border);border-radius:16px;color:var(--text);
+    cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent;transition:transform .12s,border-color .15s,background .15s;}
+  .ob-card:active{transform:scale(.98);border-color:rgba(30,140,232,.55);background:rgba(30,140,232,.1);}
+  .ob-card-icon{width:48px;flex-shrink:0;text-align:center;font-size:30px;line-height:1;}
+  .ob-card-title{display:block;font-family:var(--bebas);font-size:24px;letter-spacing:.03em;line-height:1;color:#fff;}
+  .ob-card-desc{display:block;font-size:15px;color:var(--muted);margin-top:3px;}
+  .ob-back{align-self:flex-start;margin:0 0 10px;background:transparent;border:0;color:var(--muted);
+    font-family:var(--mono);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    min-height:44px;padding:0;cursor:pointer;}
+  .ob-transition{min-height:58svh;display:flex;align-items:center;justify-content:center;text-align:center;
+    font-family:var(--bebas);font-size:30px;letter-spacing:.05em;color:#DBA514;}
 </style>
   <script>
     window.va = window.va || function () {
@@ -597,7 +604,7 @@
     </div>
     <div class="pc-mode-chip">
       <span class="dot"></span>
-      <span>Parent</span>
+      <span id="personaBadgeText">Parent</span>
     </div>
   </div>
 </div>
@@ -613,22 +620,6 @@
   <!-- ─── SETUP PANEL ──────────────────────────────────────────── -->
   <div id="setupPanel">
 
-    <!-- Filter chips -->
-    <div class="pc-chips">
-      <span class="pc-chip is-active">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19 H19 L13 4 H11 Z"/><path d="M7 14 H17"/></svg>
-        Minimal Kit
-      </span>
-      <span class="pc-chip is-active">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg>
-        Outdoor
-      </span>
-      <span class="pc-chip" style="cursor:pointer">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5 H21 L14 13 V20 L10 18 V13 Z"/></svg>
-        Filters
-      </span>
-    </div>
-
     <!-- Big age selector -->
     <div class="pc-setup-section">
       <div class="pc-setup-lbl">Age Group</div>
@@ -642,6 +633,8 @@
         <button class="pc-setup-arrow" id="ageRight" onclick="shiftAge(1)">&#8250;</button>
       </div>
     </div>
+
+    <div class="pc-session-filters" id="setupFilterChips"></div>
 
     <!-- Session length -->
     <div class="pc-setup-section">
@@ -663,6 +656,7 @@
       <div class="b-config-main" id="activeConfigStrip"></div>
       <button class="b-config-action" onclick="openSessionEditor(event)">Edit</button>
     </div>
+    <div class="pc-session-filters pc-session-filters--active" id="activeFilterChips"></div>
     <div class="b-shell">
 
       <!-- Header: logo + progress dots + pause -->
@@ -699,6 +693,7 @@
         <div class="b-drill-card">
           <div class="b-now-tag"><div class="b-pulse"></div> NOW PLAYING</div>
           <div class="b-drill-name" id="bDrillName">—</div>
+          <div class="b-swap-prompt" id="bSwapPrompt"></div>
           <div class="b-how-block" id="bHowBlock">
             <div class="b-how-lbl">How To</div>
             <div class="b-how-txt" id="bHowTxt"></div>
@@ -812,32 +807,9 @@
   <div style="padding:20px 16px 0">
     <div style="font-family:var(--bebas);font-size:22px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:16px">App Settings</div>
     <div style="background:var(--elev);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:10px">
-      <div style="font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:10px;font-weight:700">Mode</div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(30,140,232,.08);border:1px solid var(--blue);border-radius:12px">
-          <div style="width:36px;height:36px;border-radius:10px;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="8" r="4"/><path d="M4 21 Q4 14 12 14 Q20 14 20 21"/></svg>
-          </div>
-          <div><div style="font-family:var(--bebas);font-size:24px;letter-spacing:.025em">Parent / Coach</div><div style="font-size:15px;color:var(--muted);margin-top:2px">Running practice with a player</div></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--surface);border:1px solid var(--border);border-radius:12px;opacity:.6">
-          <div style="width:36px;height:36px;border-radius:10px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="13" cy="5" r="2"/><path d="M9 11 L13 9 L17 11 L19 17 M13 9 L11 14 L8 21 M13 9 L15 14 L13 21"/></svg>
-          </div>
-          <div><div style="font-family:var(--bebas);font-size:24px;letter-spacing:.025em">Solo Athlete</div><div style="font-size:15px;color:var(--muted);margin-top:2px">Training on your own — coming soon</div></div>
-        </div>
-      </div>
-    </div>
-    <div style="background:var(--elev);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:10px">
-      <div style="font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:10px;font-weight:700">Data</div>
-      <button onclick="if(confirm('Clear all session history?')){state={sessions:[],totalDrills:0,totalMinutes:0,streak:0,lastDate:null};persistState();showToast('History cleared');}" style="width:100%;padding:14px;background:transparent;border:1px solid rgba(217,80,43,.4);border-radius:12px;color:var(--coral);font-family:var(--sans);font-size:16px;font-weight:700;cursor:pointer;text-align:left">
-        Clear Session History
-      </button>
-    </div>
-    <div style="background:var(--elev);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:10px">
-      <div style="font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:10px;font-weight:700">Setup</div>
-      <button onclick="showOnboarding()" style="width:100%;padding:14px;background:transparent;border:1px solid var(--border);border-radius:12px;color:var(--text);font-family:var(--sans);font-size:16px;font-weight:700;cursor:pointer;text-align:left">
-        Reconfigure Setup
+      <div style="font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:10px;font-weight:700">Persona</div>
+      <button onclick="changePersona()" style="width:100%;padding:14px;background:transparent;border:1px solid var(--border);border-radius:12px;color:var(--text);font-family:var(--sans);font-size:16px;font-weight:700;cursor:pointer;text-align:left">
+        Change Persona
       </button>
     </div>
     <div style="text-align:center;padding:20px 0;font-family:var(--mono);font-size:12px;color:var(--muted-2);letter-spacing:.05em">
@@ -848,8 +820,9 @@
 
 <!-- ONBOARDING WIZARD -->
 <div id="onboarding" style="display:none">
-  <div class="ob-dots-row" id="obDots"></div>
-  <div class="ob-body" id="obBody"></div>
+  <div class="ob-shell">
+    <div id="obBody" class="ob-panel"></div>
+  </div>
 </div>
 
 <!-- Swap Drill Modal -->
@@ -1137,17 +1110,41 @@ const DAD_JOKES = {
 
 // ─── PERSISTENCE ──────────────────────────────────────────────────────────────
 const STORAGE_KEY = 'jukit_v1';
+const PERSONA_SET_KEY = 'jukit_persona_set';
+const VALID_PERSONAS = ['parent','coach','athlete'];
+const VALID_LOCATIONS = ['outdoor','indoor'];
 function loadState() {
   try { const r = localStorage.getItem(STORAGE_KEY); if (r) return JSON.parse(r); } catch(e) {}
   return { sessions:[], totalDrills:0, totalMinutes:0, streak:0, lastDate:null };
 }
 function persistState() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {} }
+function readStored(key, fallback) {
+  try {
+    const value = localStorage.getItem(key);
+    return value === null ? fallback : value;
+  } catch(e) { return fallback; }
+}
+function readStoredInt(key, fallback, min, max) {
+  const value = Number.parseInt(readStored(key, ''), 10);
+  if (Number.isNaN(value)) return fallback;
+  return Math.max(min, Math.min(max, value));
+}
+function writeStored(key, value) {
+  try { localStorage.setItem(key, String(value)); } catch(e) {}
+}
+function removeStored(key) {
+  try { localStorage.removeItem(key); } catch(e) {}
+}
 
 // ─── APP STATE ────────────────────────────────────────────────────────────────
 const DURATION_OPTIONS = [10, 15, 20, 25, 30, 40, 45, 60];
-let activeSport = 'soccer';
-let ageIdx = 1;
-let sessionMins = AGE_GROUPS['soccer'][1].defaultMins;
+let activePersona = VALID_PERSONAS.includes(readStored('activePersona', 'parent')) ? readStored('activePersona', 'parent') : 'parent';
+let activeSport = SPORTS.some(s => s.id === readStored('activeSport', 'soccer')) ? readStored('activeSport', 'soccer') : 'soccer';
+let ageIdx = readStoredInt('activeAgeGroup', activePersona === 'athlete' ? 2 : 1, 0, AGE_GROUPS[activeSport].length - 1);
+let activeEquipment = readStoredInt('activeEquipment', 2, 1, 3);
+let activeLocation = VALID_LOCATIONS.includes(readStored('activeLocation', 'outdoor')) ? readStored('activeLocation', 'outdoor') : 'outdoor';
+let playerCount = readStoredInt('playerCount', 8, 2, 20);
+let sessionMins = AGE_GROUPS[activeSport][ageIdx].defaultMins;
 let session = [], done = new Set(), swapIdx = null;
 // Session timer
 let timerSec = sessionMins * 60, totalSec = sessionMins * 60, ticking = false, interval = null;
@@ -1174,6 +1171,123 @@ const icon = (id, size=54) => `<svg viewBox="0 0 ${size} ${size}">${(ICONS[id]||
 const themeVar = key => ({ amber:'var(--amber)', green:'var(--green)', blue:'var(--blue)', coral:'var(--coral)' }[key] || 'var(--blue)');
 const sportLabel = id => SPORTS.find(s => s.id === id)?.label || id;
 const durationBucket = d => d.duration < 3 ? 'under3' : d.duration <= 4 ? '3to4' : '5plus';
+const isPersonaSet = () => readStored(PERSONA_SET_KEY, null) !== null;
+const isActiveSessionVisible = () => {
+  const panel = document.getElementById('activePanel');
+  return Boolean(panel && panel.style.display !== 'none');
+};
+
+function persistSessionPrefs() {
+  writeStored('activePersona', activePersona);
+  writeStored('activeSport', activeSport);
+  writeStored('activeAgeGroup', ageIdx);
+  writeStored('activeEquipment', activeEquipment);
+  writeStored('activeLocation', activeLocation);
+  writeStored('playerCount', playerCount);
+}
+
+function renderPersonaBadge() {
+  const el = document.getElementById('personaBadgeText');
+  if (!el) return;
+  el.textContent = ({ parent:'Parent', coach:'Coach', athlete:'Athlete' })[activePersona] || 'Parent';
+}
+
+function equipmentMeta() {
+  return {
+    1:{ icon:'⚽', label:'Ball Only' },
+    2:{ icon:'⚽🥅', label:'Ball + Goal' },
+    3:{ icon:'⚽🥅🔶', label:'Full Kit' },
+  }[activeEquipment] || { icon:'⚽🥅', label:'Ball + Goal' };
+}
+
+function renderSessionFilterChips() {
+  const meta = equipmentMeta();
+  const locationIcon = activeLocation === 'indoor' ? '🏠' : '☀️';
+  const locationLabel = activeLocation === 'indoor' ? 'Indoor' : 'Outdoor';
+  const playerStepper = activePersona === 'coach' ? `
+    <div class="pc-player-stepper">
+      <span class="pc-player-label">Players:</span>
+      <button class="pc-player-btn" onclick="adjustPlayerCount(-1)" aria-label="Decrease player count">−</button>
+      <span class="pc-player-count">${playerCount}</span>
+      <button class="pc-player-btn" onclick="adjustPlayerCount(1)" aria-label="Increase player count">+</button>
+    </div>` : '';
+  const html = `
+    <button class="pc-filter-control is-active" onclick="cycleEquipment()" aria-label="Change equipment">${meta.icon} ${meta.label}</button>
+    <button class="pc-filter-control is-active" onclick="toggleLocation()" aria-label="Change location">${locationIcon} ${locationLabel}</button>
+    ${playerStepper}
+  `;
+  ['setupFilterChips','activeFilterChips'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = html;
+  });
+}
+
+function cycleEquipment() {
+  activeEquipment = activeEquipment >= 3 ? 1 : activeEquipment + 1;
+  handleSessionFilterChange();
+}
+
+function toggleLocation() {
+  activeLocation = activeLocation === 'outdoor' ? 'indoor' : 'outdoor';
+  handleSessionFilterChange();
+}
+
+function adjustPlayerCount(delta) {
+  playerCount = Math.max(2, Math.min(20, playerCount + delta));
+  persistSessionPrefs();
+  renderSessionFilterChips();
+}
+
+function handleSessionFilterChange() {
+  persistSessionPrefs();
+  renderSessionFilterChips();
+  renderActiveConfigStrip();
+  if (isActiveSessionVisible()) {
+    renderNowPlaying();
+    if (session.some(d => !drillMatchesActiveFilters(d))) showToast('Some drills need your new setup');
+  } else {
+    generateSession();
+  }
+}
+
+function inferEquipmentTier(d) {
+  if (!d) return 1;
+  if (Number.isFinite(Number(d.equipmentTier))) return Math.max(1, Math.min(3, Number(d.equipmentTier)));
+  const text = `${d.name || ''} ${d.setup || ''} ${d.how || ''} ${(d.tags || []).join(' ')}`.toLowerCase();
+  if (/(cone|cones|disc|ladder|square|grid|gate|marker|mark |marked|shoes|zig-zag|zig zag|t shape|5-10-5)/.test(text)) return 3;
+  if (/(goal|net|target|basket|hoop|tee|bucket|bat|glove|shooting|finish|finishing)/.test(text)) return 2;
+  return 1;
+}
+
+function drillMatchesActiveFilters(d) {
+  if (!d) return false;
+  const loc = (d.location || 'both').toLowerCase();
+  if (activeLocation === 'indoor' && loc === 'outdoor') return false;
+  return inferEquipmentTier(d) <= activeEquipment;
+}
+
+function filterPromptForDrill(d) {
+  if (!d) return '';
+  if (inferEquipmentTier(d) > activeEquipment) return 'This drill needs a goal. Swap it?';
+  if (activeLocation === 'indoor' && (d.location || '').toLowerCase() === 'outdoor') return 'This drill needs outdoor space. Swap it?';
+  return '';
+}
+
+function eligibleGroupDrills(includeFreestyle = true) {
+  const g = curGroup();
+  if (!g) return [];
+  const freeId = g.freestyleId || 'freestyle';
+  return g.drills
+    .filter(id => includeFreestyle || id !== freeId)
+    .map(getDrill)
+    .filter(d => d && drillMatchesActiveFilters(d));
+}
+
+function changePersona() {
+  removeStored(PERSONA_SET_KEY);
+  removeStored('activePersona');
+  window.location.reload();
+}
 
 // ─── ICON HELPERS ─────────────────────────────────────────────────────────────
 const SVG = {
@@ -1250,13 +1364,16 @@ function renderSportChips() {
     `<div class="pc-sport-sel ${s.id === activeSport ? 'active' : ''}" onclick="selectSport('${s.id}')">${s.emoji} ${s.label}</div>`
   ).join('');
   const hsl = document.getElementById('headerSportLabel'); if (hsl) hsl.textContent = SPORTS.find(s => s.id === activeSport)?.label || 'Soccer';
+  renderPersonaBadge();
   renderBuilder();
+  renderSessionFilterChips();
   renderActiveConfigStrip();
 }
 function selectSport(id) {
   activeSport = id;
   ageIdx = Math.min(ageIdx, AGE_GROUPS[id].length - 1);
   libraryFilters = { ageMode:'age', category:'all' };
+  persistSessionPrefs();
   renderSportChips();
   renderFilterChips();
   updateAgeUI();
@@ -1288,12 +1405,14 @@ function updateAgeUI() {
   updateSessionBadge();
   totalSec = timerSec = sessionMins * 60;
   updateTimerDisplay();
+  renderSessionFilterChips();
   renderActiveConfigStrip();
 }
 function shiftAge(dir) {
   const next = ageIdx + dir;
   if (next < 0 || next >= AGE_GROUPS[activeSport].length) return;
   ageIdx = next;
+  persistSessionPrefs();
   updateAgeUI();
   generateSession();
 }
@@ -1317,10 +1436,10 @@ function generateSession() {
   updateTimerDisplay();
 
   const recent = state.sessions.filter(s => s.ageIdx === ageIdx && (s.sport || 'soccer') === activeSport).slice(-5);
-  const pool = g.drills.filter(id => id !== freeId).map(getDrill).filter(Boolean);
+  const pool = eligibleGroupDrills(false);
   const penalties = [60, 40, 25, 15, 10];
   const scored = pool.map(d => {
-    let score = (4 - d.priority) * 100;
+    let score = (4 - (d.priority || 3)) * 100;
     recent.forEach((s, idx) => {
       const w = penalties[recent.length - 1 - idx] || 10;
       if ((s.drillsDone || []).includes(d.id)) score -= w;
@@ -1329,18 +1448,19 @@ function generateSession() {
     return { ...d, score };
   });
   scored.sort((a, b) => b.score - a.score);
-  const freeDrill = getDrill(freeId);
+  const freeDrillRaw = getDrill(freeId);
+  const freeDrill = freeDrillRaw && drillMatchesActiveFilters(freeDrillRaw) ? freeDrillRaw : null;
   const budget = sessionMins - (freeDrill?.duration || 3);
   const picked = [];
   let time = 0;
   for (const d of scored) {
     if (time + d.duration <= budget + 1) { picked.push(d); time += d.duration; if (time >= budget) break; }
   }
-  picked.sort((a, b) => a.priority !== b.priority ? a.priority - b.priority : b.score - a.score);
+  picked.sort((a, b) => (a.priority || 3) !== (b.priority || 3) ? (a.priority || 3) - (b.priority || 3) : b.score - a.score);
   session = freeDrill ? [...picked, freeDrill] : picked;
   drillSec = session[0] ? session[0].duration * 60 : 0;
   updateDrillDisplay();
-  document.getElementById('drillCountSub').textContent = `${session.length} drills planned`;
+  document.getElementById('drillCountSub').textContent = `${session.length} drill${session.length !== 1 ? 's' : ''} planned`;
   renderActiveConfigStrip();
   renderNowPlaying();
 }
@@ -1450,6 +1570,7 @@ function applySessionEditor() {
   const draft = { ...sessionEditorDraft };
   activeSport = draft.sport;
   ageIdx = draft.age;
+  persistSessionPrefs();
   closeSessionEditor();
   renderSportChips();
   updateAgeUI();
@@ -1475,8 +1596,9 @@ function randomizeAll() {
   if (isOpenMode) { timerSec = 0; totalSec = 0; } else { timerSec = totalSec = sessionMins * 60; }
   updateTimerDisplay();
   const _freeId = g.freestyleId || 'freestyle';
-  const shuffled = g.drills.filter(id => id !== _freeId).map(getDrill).filter(Boolean).sort(() => Math.random() - .5);
-  const _freeDrill = getDrill(_freeId);
+  const shuffled = eligibleGroupDrills(false).sort(() => Math.random() - .5);
+  const _freeRaw = getDrill(_freeId);
+  const _freeDrill = _freeRaw && drillMatchesActiveFilters(_freeRaw) ? _freeRaw : null;
   const budget = sessionMins - (_freeDrill?.duration || 3);
   const picked = [];
   let time = 0;
@@ -1486,7 +1608,7 @@ function randomizeAll() {
   session = _freeDrill ? [...picked, _freeDrill] : picked;
   drillSec = session[0] ? session[0].duration * 60 : 0;
   updateDrillDisplay();
-  document.getElementById('drillCountSub').textContent = `${session.length} drills planned`;
+  document.getElementById('drillCountSub').textContent = `${session.length} drill${session.length !== 1 ? 's' : ''} planned`;
   renderNowPlaying();
 }
 
@@ -1500,11 +1622,13 @@ function renderNowPlaying() {
   const mediaEl = document.getElementById('bMedia');
   const insightsEl = document.getElementById('bInsights');
   const insightsRow = document.getElementById('bInsightsRow');
+  const swapPrompt = document.getElementById('bSwapPrompt');
   if (!d) {
     if (nameEl) nameEl.textContent = '—';
     if (cueEl) cueEl.textContent = '';
     if (howEl) howEl.textContent = '';
     if (mediaEl) mediaEl.innerHTML = '';
+    if (swapPrompt) { swapPrompt.classList.remove('show'); swapPrompt.innerHTML = ''; }
     if (insightsEl) insightsEl.classList.remove('open');
     renderProgressDots();
     return;
@@ -1514,6 +1638,11 @@ function renderNowPlaying() {
   if (howEl) howEl.textContent = d.how || '';
   if (howBlock) howBlock.style.display = d.how ? '' : 'none';
   if (mediaEl) mediaEl.innerHTML = getNowPlayingMedia(d);
+  if (swapPrompt) {
+    const prompt = filterPromptForDrill(d);
+    swapPrompt.classList.toggle('show', Boolean(prompt));
+    swapPrompt.innerHTML = prompt ? `<div class="b-swap-copy">${prompt}</div><button class="b-swap-btn" onclick="openSwap(activeIdx)">Swap</button>` : '';
+  }
   if (insightsEl && insightsRow) {
     const insights = Array.isArray(d.insights) ? d.insights.filter(Boolean) : [];
     insightsEl.classList.toggle('open', insights.length > 0);
@@ -1593,8 +1722,7 @@ function advanceDrill() {
 function openSwap(i) {
   swapIdx = i;
   const cur = session[i];
-  const g = curGroup();
-  const opts = g.drills.filter(id => id !== cur.id && !session.find(s => s.id === id)).map(getDrill).filter(Boolean);
+  const opts = eligibleGroupDrills(true).filter(d => d.id !== cur?.id && !session.find(s => s.id === d.id));
   document.getElementById('swapList').innerHTML = opts.map(d => `
     <div class="pc-opt" onclick="doSwap('${d.id}')">
       <div class="pc-opt-icon">${icon(d.id)}</div>
@@ -1622,9 +1750,7 @@ function doSwap(id) {
 }
 function shuffleDrill() {
   const cur = session[activeIdx];
-  const g = curGroup();
-  if (!g) return;
-  const opts = g.drills.filter(id => id !== cur?.id && !session.find(s => s.id === id)).map(getDrill).filter(Boolean);
+  const opts = eligibleGroupDrills(true).filter(d => d.id !== cur?.id && !session.find(s => s.id === d.id));
   if (!opts.length) { showToast('No other drills to shuffle in'); return; }
   const pick = opts[Math.floor(Math.random() * opts.length)];
   swapIdx = activeIdx;
@@ -2049,178 +2175,136 @@ function renderProgress() {
   }).join('');
 }
 
-// ─── ONBOARDING WIZARD ────────────────────────────────────────────────────────
-const OB_KEY = 'jukit_onboarding_complete';
-let _obStep = 0;
-const _obAns = { persona: 'parent', playerCount: 1, equipmentTier: 1, location: 'outdoor', sport: 'soccer', ageGroup: 1 };
+// ─── ONBOARDING HYBRID ────────────────────────────────────────────────────────
+let onboardingStep = 'persona';
+let pendingFirstSessionLaunch = false;
+let drillsReady = false;
 
-function _obScreens() {
-  if (_obAns.persona === 'athlete') return [1, 3, 4, 6];
-  return [1, 2, 3, 4, 5, 6];
+function jukitMark() {
+  return `<svg class="ob-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 32 4 Q 54 4 60 16 Q 60 32 60 32 Q 60 48 54 56 Q 32 60 32 60 Q 10 60 8 52 Q 4 32 4 32 Q 4 14 12 8 Q 32 4 32 4 Z" fill="#DBA514"/>
+    <path d="M 8 50 L 56 14" stroke="#0F1115" stroke-width="3.4" stroke-linecap="round" opacity="0.18"/>
+    <path d="M 14 54 L 60 22" stroke="#0F1115" stroke-width="2" stroke-linecap="round" opacity="0.12"/>
+    <rect x="22" y="14" width="22" height="6.5" rx="3.25" fill="#0F1115"/>
+    <rect x="34.75" y="14" width="6.5" height="28" rx="3.25" fill="#0F1115"/>
+    <path d="M 38 38 Q 38 50 28 50 Q 18 50 18 40 L 24.5 40 Q 24.5 44 28 44 Q 31.5 44 31.5 38 Z" fill="#0F1115"/>
+    <circle cx="48" cy="14" r="3" fill="#0F1115"/>
+  </svg>`;
 }
 
-function showOnboarding() {
-  _obStep = 0;
-  _obAns.persona = 'parent'; _obAns.playerCount = 1; _obAns.equipmentTier = 1;
-  _obAns.location = 'outdoor'; _obAns.sport = 'soccer'; _obAns.ageGroup = 1;
+function showOnboarding(step = 'persona') {
+  onboardingStep = step;
   const el = document.getElementById('onboarding');
-  el.style.display = 'flex';
-  document.getElementById('obBody').innerHTML = '';
-  _obRender();
+  if (el) el.style.display = 'block';
+  renderOnboarding();
 }
 
-function _obRender() {
-  const screens = _obScreens();
-  const screenNum = screens[_obStep];
-  const dots = document.getElementById('obDots');
-  dots.innerHTML = screens.map((_, i) =>
-    `<div class="ob-dot${i === _obStep ? ' active' : ''}"></div>`
-  ).join('');
+function hideOnboarding() {
+  const el = document.getElementById('onboarding');
+  if (el) el.style.display = 'none';
+}
+
+function renderOnboarding() {
   const body = document.getElementById('obBody');
-  const html = _obHTML(screenNum);
-  if (!body.querySelector('.ob-screen')) {
-    body.innerHTML = `<div class="ob-screen ob-active">${html}</div>`;
+  if (!body) return;
+  if (onboardingStep === 'persona') body.innerHTML = onboardingPersonaHTML();
+  if (onboardingStep === 'sport') body.innerHTML = onboardingSportHTML();
+  if (onboardingStep === 'age') body.innerHTML = onboardingAgeHTML();
+  if (onboardingStep === 'building') body.innerHTML = `${jukitMark()}<div class="ob-transition">Building your first session...</div>`;
+}
+
+function onboardingPersonaHTML() {
+  const cards = [
+    { id:'parent', icon:'👨‍👧', title:'Parent / Guardian', desc:'I practice with my child' },
+    { id:'coach', icon:'📋', title:'Coach', desc:'I run sessions for a group' },
+    { id:'athlete', icon:'🏃', title:'Athlete', desc:'I train on my own' },
+  ];
+  return `${jukitMark()}
+    <div class="ob-hd">WHO'S USING JUKIT?</div>
+    ${cards.map(c => `<button class="ob-card" onclick="choosePersona('${c.id}')">
+      <span class="ob-card-icon">${c.icon}</span>
+      <span><span class="ob-card-title">${c.title}</span><span class="ob-card-desc">${c.desc}</span></span>
+    </button>`).join('')}`;
+}
+
+function onboardingSportHTML() {
+  return `${jukitMark()}
+    <button class="ob-back" onclick="showOnboarding('persona')">Back</button>
+    <div class="ob-hd ob-hd-sm">WHAT ARE YOU TRAINING?</div>
+    ${SPORTS.map(s => `<button class="ob-card" onclick="chooseFirstSport('${s.id}')">
+      <span class="ob-card-icon">${s.emoji}</span>
+      <span><span class="ob-card-title">${s.label}</span></span>
+    </button>`).join('')}`;
+}
+
+function onboardingAgeHTML() {
+  const ages = [
+    { id:0, title:'Ages 3-5' },
+    { id:1, title:'Ages 5-7' },
+    { id:2, title:'Ages 7-9' },
+    { id:3, title:'Ages 9-11' },
+  ];
+  return `${jukitMark()}
+    <button class="ob-back" onclick="showOnboarding('sport')">Back</button>
+    <div class="ob-hd ob-hd-sm">HOW OLD IS YOUR PLAYER?</div>
+    ${ages.map(a => `<button class="ob-card" onclick="chooseFirstAge(${a.id})">
+      <span><span class="ob-card-title">${a.title}</span></span>
+    </button>`).join('')}`;
+}
+
+function choosePersona(persona) {
+  activePersona = persona;
+  writeStored(PERSONA_SET_KEY, 'true');
+  persistSessionPrefs();
+  renderPersonaBadge();
+  renderSessionFilterChips();
+  showOnboarding('sport');
+}
+
+function chooseFirstSport(sport) {
+  activeSport = sport;
+  ageIdx = Math.min(ageIdx, AGE_GROUPS[activeSport].length - 1);
+  if (activePersona === 'athlete') ageIdx = Math.min(2, AGE_GROUPS[activeSport].length - 1);
+  persistSessionPrefs();
+  renderSportChips();
+  updateAgeUI();
+  if (activePersona === 'athlete') {
+    launchFirstSessionFromWizard();
     return;
   }
-  const old = body.querySelector('.ob-screen.ob-active');
-  const next = document.createElement('div');
-  next.className = 'ob-screen';
-  next.innerHTML = html;
-  body.appendChild(next);
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    if (old) old.classList.replace('ob-active', 'ob-exit');
-    next.classList.add('ob-active');
-  }));
-  setTimeout(() => { if (old && old.parentNode) old.remove(); }, 500);
+  showOnboarding('age');
 }
 
-function _obHTML(n) {
-  if (n === 1) return `
-    <div class="ob-hd">Who are you?</div>
-    <div class="ob-sub">Choose the option that describes you.</div>
-    ${[{id:'parent',icon:'👨‍👧',t:'Parent / Guardian',d:'I practice with my child'},
-       {id:'coach',icon:'📋',t:'Coach',d:'I run sessions for a group'},
-       {id:'athlete',icon:'🏃',t:'Athlete',d:'I train on my own'}].map(c =>
-      `<div class="ob-card${_obAns.persona===c.id?' ob-sel':''}" onclick="_obPersona('${c.id}')">
-        <div class="ob-card-icon">${c.icon}</div>
-        <div><div class="ob-card-title">${c.t}</div><div class="ob-card-desc">${c.d}</div></div>
-      </div>`).join('')}`;
-
-  if (n === 2 && _obAns.persona === 'coach') return `
-    <div class="ob-hd">How many players?</div>
-    <div class="ob-sub">Set your group size.</div>
-    <div class="ob-stepper">
-      <button class="ob-step-btn" onclick="_obAdjCount(-1)">−</button>
-      <div class="ob-step-val" id="obCountVal">${Math.max(2, _obAns.playerCount)}</div>
-      <button class="ob-step-btn" onclick="_obAdjCount(1)">+</button>
-    </div>
-    <div class="ob-continue"><button class="ob-btn ob-btn-primary" onclick="_obNext()">Continue</button></div>`;
-
-  if (n === 2) return `
-    <div class="ob-hd">How many players?</div>
-    <div class="ob-sub">Who are you practicing with?</div>
-    <div class="ob-count-chips">
-      ${[1,2,3].map(v => `<div class="ob-count-chip${_obAns.playerCount===v?' ob-sel':''}" onclick="_obCount(${v})">${v === 3 ? '3+' : v}</div>`).join('')}
-    </div>`;
-
-  if (n === 3) return `
-    <div class="ob-hd">What's your setup?</div>
-    <div class="ob-sub">We'll tailor drills to what you have.</div>
-    ${[{t:1,icon:'⚽',tt:'Ball Only',d:'Just a ball, no goal or cones'},
-       {t:2,icon:'⚽🥅',tt:'Ball + Goal',d:'Ball and a small portable goal'},
-       {t:3,icon:'⚽🥅🔶',tt:'Full Kit',d:'Ball, goal, and cones'}].map(c =>
-      `<div class="ob-card${_obAns.equipmentTier===c.t?' ob-sel':''}" onclick="_obTier(${c.t})">
-        <div class="ob-card-icon">${c.icon}</div>
-        <div><div class="ob-card-title">${c.tt}</div><div class="ob-card-desc">${c.d}</div></div>
-      </div>`).join('')}
-    <div class="ob-loc-toggle">
-      <button class="ob-loc-btn${_obAns.location==='outdoor'?' ob-loc-active':''}" onclick="_obLoc('outdoor')">🌤 Outdoor</button>
-      <button class="ob-loc-btn${_obAns.location==='indoor'?' ob-loc-active':''}" onclick="_obLoc('indoor')">🏠 Indoor</button>
-    </div>
-    <div class="ob-continue"><button class="ob-btn ob-btn-primary" onclick="_obNext()">Continue</button></div>`;
-
-  if (n === 4) return `
-    <div class="ob-hd">Pick your sport</div>
-    <div class="ob-sub">Select one to start. You can switch anytime.</div>
-    ${[{id:'soccer',icon:'⚽',t:'Soccer'},{id:'basketball',icon:'🏀',t:'Basketball'},{id:'baseball',icon:'⚾',t:'Baseball'}].map(c =>
-      `<div class="ob-card${_obAns.sport===c.id?' ob-sel':''}" onclick="_obSport('${c.id}')">
-        <div class="ob-card-icon">${c.icon}</div>
-        <div><div class="ob-card-title">${c.t}</div></div>
-      </div>`).join('')}
-    <div class="ob-continue"><button class="ob-btn ob-btn-primary" onclick="_obNext()">Continue</button></div>`;
-
-  if (n === 5) return `
-    <div class="ob-hd">How old is your player?</div>
-    <div class="ob-sub">Pick the closest age group.</div>
-    ${[{i:0,l:'Ages 3-5',d:'U4/U6 · Discovery & Fun'},
-       {i:1,l:'Ages 5-7',d:'U6/U8 · Ball Mastery'},
-       {i:2,l:'Ages 7-9',d:'U8/U10 · Technical Foundation'},
-       {i:3,l:'Ages 9-11',d:'U10/U12 · Skill Under Pressure'}].map(c =>
-      `<div class="ob-card${_obAns.ageGroup===c.i?' ob-sel':''}" onclick="_obAge(${c.i})">
-        <div><div class="ob-card-title">${c.l}</div><div class="ob-card-desc">${c.d}</div></div>
-      </div>`).join('')}`;
-
-  if (n === 6) return `
-    <div class="ob-finish-wrap">
-      <div class="ob-medallion"><span style="font-family:var(--bebas);font-size:52px;color:#DBA514;letter-spacing:-.02em">J</span></div>
-      <div class="ob-finish-title">LET'S GET TO WORK.</div>
-      <div class="ob-finish-sub">Your first session is ready.</div>
-      <div class="ob-btn-col">
-        <button class="ob-btn ob-btn-primary" onclick="_obDone(true)">Start First Session</button>
-        <button class="ob-btn ob-btn-ghost" onclick="_obDone(false)">Explore the App</button>
-      </div>
-    </div>`;
-
-  return '';
-}
-
-function _obPersona(p) { _obAns.persona = p; _obNext(); }
-
-function _obCount(n) { _obAns.playerCount = n; _obNext(); }
-
-function _obAdjCount(d) {
-  _obAns.playerCount = Math.max(2, Math.min(20, (_obAns.playerCount < 2 ? 2 : _obAns.playerCount) + d));
-  const el = document.getElementById('obCountVal');
-  if (el) el.textContent = _obAns.playerCount;
-}
-
-function _obTier(t) {
-  _obAns.equipmentTier = t;
-  document.querySelectorAll('#obBody .ob-card').forEach((c, i) => c.classList.toggle('ob-sel', i + 1 === t));
-}
-
-function _obLoc(l) {
-  _obAns.location = l;
-  document.querySelectorAll('#obBody .ob-loc-btn').forEach(b => b.classList.toggle('ob-loc-active', b.dataset.loc === l || (l === 'outdoor' && b.textContent.includes('Outdoor')) || (l === 'indoor' && b.textContent.includes('Indoor'))));
-}
-
-function _obSport(s) {
-  _obAns.sport = s;
-  document.querySelectorAll('#obBody .ob-card').forEach(c => c.classList.toggle('ob-sel', c.querySelector('.ob-card-title')?.textContent.toLowerCase() === s));
-}
-
-function _obAge(a) { _obAns.ageGroup = a; _obNext(); }
-
-function _obNext() {
-  const screens = _obScreens();
-  if (_obStep < screens.length - 1) { _obStep++; _obRender(); }
-}
-
-function _obDone(startSession) {
-  localStorage.setItem(OB_KEY, '1');
-  activeSport = _obAns.sport;
-  ageIdx = _obAns.ageGroup;
-  state.persona = _obAns.persona;
-  state.playerCount = _obAns.playerCount;
-  state.equipmentTier = _obAns.equipmentTier;
-  state.activeLocation = _obAns.location;
-  persistState();
+function chooseFirstAge(ageGroup) {
+  ageIdx = Math.max(0, Math.min(AGE_GROUPS[activeSport].length - 1, ageGroup));
+  persistSessionPrefs();
   updateAgeUI();
+  launchFirstSessionFromWizard();
+}
+
+function launchFirstSessionFromWizard() {
+  showOnboarding('building');
+  setTimeout(() => {
+    if (!drillsReady) {
+      pendingFirstSessionLaunch = true;
+      return;
+    }
+    finishFirstSessionLaunch();
+  }, 500);
+}
+
+function finishFirstSessionLaunch() {
+  pendingFirstSessionLaunch = false;
+  renderPersonaBadge();
   renderSportChips();
+  renderSessionFilterChips();
+  updateAgeUI();
   generateSession();
-  document.getElementById('onboarding').style.display = 'none';
-  const target = startSession ? 'session' : 'session';
-  switchView(target, document.getElementById('tab-' + target));
+  hideOnboarding();
+  switchView('session', document.getElementById('tab-session'));
+  document.getElementById('setupPanel').style.display = 'none';
+  document.getElementById('activePanel').style.display = '';
+  if (!ticking) toggleTimer();
 }
 
 // ─── VIEW SWITCH ──────────────────────────────────────────────────────────────
@@ -2234,8 +2318,11 @@ function switchView(name, el) {
 }
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
+if (!isPersonaSet()) showOnboarding();
+renderPersonaBadge();
 updateAgeUI();   // also calls renderDurChips + updateSessionBadge
 renderSportChips();
+renderSessionFilterChips();
 renderFilterChips();
 const _loadingEl = document.getElementById('drillsLoading');
 fetch('/api/drills')
@@ -2243,9 +2330,10 @@ fetch('/api/drills')
   .catch(() => fetch('drills.json').then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }))
   .then(arr => {
     ALL_DRILLS = Object.fromEntries(arr.map(d => [d.id, d]));
+    drillsReady = true;
     if (_loadingEl) _loadingEl.remove();
-    generateSession();
-    if (!localStorage.getItem(OB_KEY)) showOnboarding();
+    if (pendingFirstSessionLaunch) finishFirstSessionLaunch();
+    else if (isPersonaSet()) generateSession();
   })
   .catch(() => {
     if (_loadingEl) _loadingEl.textContent = 'Could not load drills. Please refresh.';
