@@ -805,7 +805,7 @@
       </button>
     </div>
     <div style="text-align:center;padding:20px 0;font-family:var(--mono);font-size:12px;color:var(--muted-2);letter-spacing:.05em">
-      JUKIT · Youth Coaching · <span id="versionLabel">v0.9.19</span>
+      JUKIT · Youth Coaching · <span id="versionLabel">v0.9.20</span>
     </div>
   </div>
 </div>
@@ -897,7 +897,7 @@
 </div>
 
 <script>
-const VERSION = 'v0.9.19';
+const VERSION = 'v0.9.20';
 
 // ─── SVG ICONS ────────────────────────────────────────────────────────────────
 const ICONS = {
@@ -1185,6 +1185,7 @@ let audioMuted = readStored('jukit_audio_muted', 'false') === 'true';
 let footerTipTimer = null;
 let audioCtx = null;
 let drillWarned30 = false;
+let drillWarned10 = false;
 let sessionFinished = false;
 let state = loadState();
 
@@ -1382,14 +1383,14 @@ function ensureAudioContext() {
   return audioCtx;
 }
 
-function playTone(freq, durationMs, delayMs = 0, gainValue = 0.08) {
+function playTone(freq, durationMs, delayMs = 0, gainValue = 0.1, type = 'sine') {
   const ctx = ensureAudioContext();
   if (!ctx) return;
   const start = ctx.currentTime + delayMs / 1000;
   const end = start + durationMs / 1000;
   const osc = ctx.createOscillator();
   const gain = ctx.createGain();
-  osc.type = 'sine';
+  osc.type = type;
   osc.frequency.setValueAtTime(freq, start);
   gain.gain.setValueAtTime(gainValue, start);
   gain.gain.setValueAtTime(gainValue, Math.max(start, end - 0.1));
@@ -1409,19 +1410,24 @@ function pulseTimer(kind) {
 }
 
 function playDrillWarning() {
-  playTone(350, 80, 0, 0.045);
-  playTone(350, 80, 180, 0.045);
+  playTone(350, 90, 0, 0.075);
+  playTone(350, 90, 185, 0.075);
+  pulseTimer('drill');
+}
+
+function playDrillTenSecondDing() {
+  playTone(880, 140, 0, 0.12, 'triangle');
   pulseTimer('drill');
 }
 
 function playDrillTransition() {
-  playTone(400, 300, 0, 0.07);
+  playTone(440, 340, 0, 0.12);
   pulseTimer('drill');
 }
 
 function playSessionEndChime() {
-  playTone(523, 250, 0, 0.095);
-  playTone(659, 250, 310, 0.095);
+  playTone(523, 270, 0, 0.14);
+  playTone(659, 300, 320, 0.14);
   pulseTimer('session');
 }
 
@@ -1547,6 +1553,7 @@ function generateSession() {
   activeIdx = 0;
   drillSec = 0;
   drillWarned30 = false;
+  drillWarned10 = false;
   sessionFinished = false;
   queueOpen = false;
   detailOpen = false;
@@ -1585,6 +1592,7 @@ function generateSession() {
   session = freeDrill ? [...picked, freeDrill] : picked;
   drillSec = session[0] ? session[0].duration * 60 : 0;
   drillWarned30 = false;
+  drillWarned10 = false;
   updateDrillDisplay();
   document.getElementById('drillCountSub').textContent = `${session.length} drill${session.length !== 1 ? 's' : ''} planned`;
   renderActiveConfigStrip();
@@ -1857,6 +1865,7 @@ function advanceDrill() {
     activeIdx++;
     drillSec = session[activeIdx] ? session[activeIdx].duration * 60 : 0;
     drillWarned30 = false;
+    drillWarned10 = false;
     if (ticking) startDrillTimer();
   } else {
     drillSec = 0;
@@ -1892,6 +1901,8 @@ function doSwap(id) {
       stopDrillTimer();
       const nd = getDrill(id);
       drillSec = nd ? nd.duration * 60 : 0;
+      drillWarned30 = false;
+      drillWarned10 = false;
       updateDrillDisplay();
       if (ticking) startDrillTimer();
     }
@@ -2077,6 +2088,10 @@ function startDrillTimer() {
       drillWarned30 = true;
       playDrillWarning();
     }
+    if (!drillWarned10 && drillSec === 10) {
+      drillWarned10 = true;
+      playDrillTenSecondDing();
+    }
     if (drillSec <= 0) {
       drillSec = 0;
       updateDrillDisplay();
@@ -2217,6 +2232,7 @@ function startCustomSession() {
   timerSec = totalSec = session.reduce((sum, d) => sum + d.duration, 0) * 60;
   drillSec = session[0].duration * 60;
   drillWarned30 = false;
+  drillWarned10 = false;
   sessionFinished = false;
   shownQuips = new Set();
   clearQuip();
