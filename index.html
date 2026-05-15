@@ -514,6 +514,42 @@
     transition:all .15s cubic-bezier(.34,1.56,.64,1);}
   .pc-sport-sel.active{background:var(--blue);border-color:var(--blue);color:white;}
   .pc-sport-sel:active{transform:scale(.92);}
+  /* ── ONBOARDING ── */
+  #onboarding{position:fixed;inset:0;background:#0F1115;z-index:1000;display:flex;flex-direction:column;overflow:hidden;}
+  .ob-dots-row{display:flex;justify-content:center;gap:7px;padding:20px 16px 0;flex-shrink:0;}
+  .ob-dot{width:7px;height:7px;border-radius:50%;background:rgba(219,165,20,.2);transition:background .25s,width .25s,border-radius .25s;}
+  .ob-dot.active{background:#DBA514;width:20px;border-radius:4px;}
+  .ob-body{flex:1;position:relative;overflow:hidden;}
+  .ob-screen{position:absolute;inset:0;padding:28px 20px 24px;display:flex;flex-direction:column;transform:translateX(105%);opacity:0;transition:transform .42s cubic-bezier(.34,1.56,.64,1),opacity .28s ease;}
+  .ob-screen.ob-active{transform:translateX(0);opacity:1;}
+  .ob-screen.ob-exit{transform:translateX(-105%);opacity:0;}
+  .ob-hd{font-family:var(--bebas);font-size:34px;letter-spacing:.04em;color:#fff;margin-bottom:6px;flex-shrink:0;}
+  .ob-sub{font-size:15px;color:var(--muted);margin-bottom:24px;line-height:1.4;flex-shrink:0;}
+  .ob-card{display:flex;align-items:center;gap:16px;padding:18px 16px;background:var(--surface);border:1.5px solid var(--border);border-radius:16px;margin-bottom:10px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color .15s,background .15s,transform .12s cubic-bezier(.34,1.56,.64,1);flex-shrink:0;}
+  .ob-card:active{transform:scale(.97);}
+  .ob-card.ob-sel{border-color:var(--blue);background:rgba(30,140,232,.1);}
+  .ob-card-icon{font-size:28px;flex-shrink:0;width:44px;text-align:center;line-height:1;}
+  .ob-card-title{font-family:var(--bebas);font-size:22px;letter-spacing:.03em;line-height:1.1;}
+  .ob-card-desc{font-size:13px;color:var(--muted);margin-top:3px;}
+  .ob-continue{margin-top:auto;padding-top:16px;flex-shrink:0;}
+  .ob-btn{width:100%;padding:16px;border-radius:14px;font-family:var(--bebas);font-size:22px;letter-spacing:.06em;cursor:pointer;border:none;-webkit-tap-highlight-color:transparent;transition:opacity .15s;}
+  .ob-btn-primary{background:var(--blue);color:#fff;}
+  .ob-btn-ghost{background:transparent;border:1.5px solid var(--border);color:var(--muted);font-size:18px;margin-top:10px;}
+  .ob-loc-toggle{display:flex;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:3px;margin-top:14px;flex-shrink:0;}
+  .ob-loc-btn{flex:1;padding:10px;border-radius:9px;border:none;background:transparent;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted);cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;}
+  .ob-loc-btn.ob-loc-active{background:var(--blue);color:#fff;}
+  .ob-stepper{display:flex;align-items:center;gap:20px;padding:24px 0;flex-shrink:0;}
+  .ob-step-btn{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--border);background:var(--surface);color:var(--text);font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent;}
+  .ob-step-val{font-family:var(--bebas);font-size:56px;color:#fff;flex:1;text-align:center;}
+  .ob-count-chips{display:flex;gap:10px;flex-shrink:0;}
+  .ob-count-chip{flex:1;padding:20px 0;border-radius:14px;border:1.5px solid var(--border);background:var(--surface);font-family:var(--bebas);font-size:32px;text-align:center;cursor:pointer;color:var(--muted);-webkit-tap-highlight-color:transparent;transition:all .15s cubic-bezier(.34,1.56,.64,1);}
+  .ob-count-chip:active{transform:scale(.95);}
+  .ob-count-chip.ob-sel{border-color:var(--blue);background:rgba(30,140,232,.1);color:#fff;}
+  .ob-finish-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+  .ob-medallion{width:80px;height:80px;border-radius:50%;background:rgba(219,165,20,.12);border:2px solid #DBA514;display:flex;align-items:center;justify-content:center;margin-bottom:24px;filter:drop-shadow(0 0 20px rgba(219,165,20,.35));}
+  .ob-finish-title{font-family:var(--bebas);font-size:36px;letter-spacing:.08em;color:#fff;margin-bottom:8px;}
+  .ob-finish-sub{font-size:15px;color:var(--muted);margin-bottom:40px;}
+  .ob-btn-col{display:flex;flex-direction:column;width:100%;}
 </style>
   <script>
     window.va = window.va || function () {
@@ -778,10 +814,22 @@
         Clear Session History
       </button>
     </div>
+    <div style="background:var(--elev);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:10px">
+      <div style="font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:10px;font-weight:700">Setup</div>
+      <button onclick="showOnboarding()" style="width:100%;padding:14px;background:transparent;border:1px solid var(--border);border-radius:12px;color:var(--text);font-family:var(--sans);font-size:16px;font-weight:700;cursor:pointer;text-align:left">
+        Reconfigure Setup
+      </button>
+    </div>
     <div style="text-align:center;padding:20px 0;font-family:var(--mono);font-size:12px;color:var(--muted-2);letter-spacing:.05em">
-      JUKIT · Youth Coaching · <span id="versionLabel">v0.3.1</span>
+      JUKIT · Youth Coaching · <span id="versionLabel">v0.6.0</span>
     </div>
   </div>
+</div>
+
+<!-- ONBOARDING WIZARD -->
+<div id="onboarding" style="display:none">
+  <div class="ob-dots-row" id="obDots"></div>
+  <div class="ob-body" id="obBody"></div>
 </div>
 
 <!-- Swap Drill Modal -->
@@ -853,7 +901,7 @@
 </div>
 
 <script>
-const VERSION = 'v0.3.1';
+const VERSION = 'v0.6.0';
 
 // ─── SVG ICONS ────────────────────────────────────────────────────────────────
 const ICONS = {
@@ -1903,6 +1951,180 @@ function renderProgress() {
   }).join('');
 }
 
+// ─── ONBOARDING WIZARD ────────────────────────────────────────────────────────
+const OB_KEY = 'jukit_onboarding_complete';
+let _obStep = 0;
+const _obAns = { persona: 'parent', playerCount: 1, equipmentTier: 1, location: 'outdoor', sport: 'soccer', ageGroup: 1 };
+
+function _obScreens() {
+  if (_obAns.persona === 'athlete') return [1, 3, 4, 6];
+  return [1, 2, 3, 4, 5, 6];
+}
+
+function showOnboarding() {
+  _obStep = 0;
+  _obAns.persona = 'parent'; _obAns.playerCount = 1; _obAns.equipmentTier = 1;
+  _obAns.location = 'outdoor'; _obAns.sport = 'soccer'; _obAns.ageGroup = 1;
+  const el = document.getElementById('onboarding');
+  el.style.display = 'flex';
+  document.getElementById('obBody').innerHTML = '';
+  _obRender();
+}
+
+function _obRender() {
+  const screens = _obScreens();
+  const screenNum = screens[_obStep];
+  const dots = document.getElementById('obDots');
+  dots.innerHTML = screens.map((_, i) =>
+    `<div class="ob-dot${i === _obStep ? ' active' : ''}"></div>`
+  ).join('');
+  const body = document.getElementById('obBody');
+  const html = _obHTML(screenNum);
+  if (!body.querySelector('.ob-screen')) {
+    body.innerHTML = `<div class="ob-screen ob-active">${html}</div>`;
+    return;
+  }
+  const old = body.querySelector('.ob-screen.ob-active');
+  const next = document.createElement('div');
+  next.className = 'ob-screen';
+  next.innerHTML = html;
+  body.appendChild(next);
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    if (old) old.classList.replace('ob-active', 'ob-exit');
+    next.classList.add('ob-active');
+  }));
+  setTimeout(() => { if (old && old.parentNode) old.remove(); }, 500);
+}
+
+function _obHTML(n) {
+  if (n === 1) return `
+    <div class="ob-hd">Who are you?</div>
+    <div class="ob-sub">Choose the option that describes you.</div>
+    ${[{id:'parent',icon:'👨‍👧',t:'Parent / Guardian',d:'I practice with my child'},
+       {id:'coach',icon:'📋',t:'Coach',d:'I run sessions for a group'},
+       {id:'athlete',icon:'🏃',t:'Athlete',d:'I train on my own'}].map(c =>
+      `<div class="ob-card${_obAns.persona===c.id?' ob-sel':''}" onclick="_obPersona('${c.id}')">
+        <div class="ob-card-icon">${c.icon}</div>
+        <div><div class="ob-card-title">${c.t}</div><div class="ob-card-desc">${c.d}</div></div>
+      </div>`).join('')}`;
+
+  if (n === 2 && _obAns.persona === 'coach') return `
+    <div class="ob-hd">How many players?</div>
+    <div class="ob-sub">Set your group size.</div>
+    <div class="ob-stepper">
+      <button class="ob-step-btn" onclick="_obAdjCount(-1)">−</button>
+      <div class="ob-step-val" id="obCountVal">${Math.max(2, _obAns.playerCount)}</div>
+      <button class="ob-step-btn" onclick="_obAdjCount(1)">+</button>
+    </div>
+    <div class="ob-continue"><button class="ob-btn ob-btn-primary" onclick="_obNext()">Continue</button></div>`;
+
+  if (n === 2) return `
+    <div class="ob-hd">How many players?</div>
+    <div class="ob-sub">Who are you practicing with?</div>
+    <div class="ob-count-chips">
+      ${[1,2,3].map(v => `<div class="ob-count-chip${_obAns.playerCount===v?' ob-sel':''}" onclick="_obCount(${v})">${v === 3 ? '3+' : v}</div>`).join('')}
+    </div>`;
+
+  if (n === 3) return `
+    <div class="ob-hd">What's your setup?</div>
+    <div class="ob-sub">We'll tailor drills to what you have.</div>
+    ${[{t:1,icon:'⚽',tt:'Ball Only',d:'Just a ball, no goal or cones'},
+       {t:2,icon:'⚽🥅',tt:'Ball + Goal',d:'Ball and a small portable goal'},
+       {t:3,icon:'⚽🥅🔶',tt:'Full Kit',d:'Ball, goal, and cones'}].map(c =>
+      `<div class="ob-card${_obAns.equipmentTier===c.t?' ob-sel':''}" onclick="_obTier(${c.t})">
+        <div class="ob-card-icon">${c.icon}</div>
+        <div><div class="ob-card-title">${c.tt}</div><div class="ob-card-desc">${c.d}</div></div>
+      </div>`).join('')}
+    <div class="ob-loc-toggle">
+      <button class="ob-loc-btn${_obAns.location==='outdoor'?' ob-loc-active':''}" onclick="_obLoc('outdoor')">🌤 Outdoor</button>
+      <button class="ob-loc-btn${_obAns.location==='indoor'?' ob-loc-active':''}" onclick="_obLoc('indoor')">🏠 Indoor</button>
+    </div>
+    <div class="ob-continue"><button class="ob-btn ob-btn-primary" onclick="_obNext()">Continue</button></div>`;
+
+  if (n === 4) return `
+    <div class="ob-hd">Pick your sport</div>
+    <div class="ob-sub">Select one to start. You can switch anytime.</div>
+    ${[{id:'soccer',icon:'⚽',t:'Soccer'},{id:'basketball',icon:'🏀',t:'Basketball'},{id:'baseball',icon:'⚾',t:'Baseball'}].map(c =>
+      `<div class="ob-card${_obAns.sport===c.id?' ob-sel':''}" onclick="_obSport('${c.id}')">
+        <div class="ob-card-icon">${c.icon}</div>
+        <div><div class="ob-card-title">${c.t}</div></div>
+      </div>`).join('')}
+    <div class="ob-continue"><button class="ob-btn ob-btn-primary" onclick="_obNext()">Continue</button></div>`;
+
+  if (n === 5) return `
+    <div class="ob-hd">How old is your player?</div>
+    <div class="ob-sub">Pick the closest age group.</div>
+    ${[{i:0,l:'Ages 3-5',d:'U4/U6 · Discovery & Fun'},
+       {i:1,l:'Ages 5-7',d:'U6/U8 · Ball Mastery'},
+       {i:2,l:'Ages 7-9',d:'U8/U10 · Technical Foundation'},
+       {i:3,l:'Ages 9-11',d:'U10/U12 · Skill Under Pressure'}].map(c =>
+      `<div class="ob-card${_obAns.ageGroup===c.i?' ob-sel':''}" onclick="_obAge(${c.i})">
+        <div><div class="ob-card-title">${c.l}</div><div class="ob-card-desc">${c.d}</div></div>
+      </div>`).join('')}`;
+
+  if (n === 6) return `
+    <div class="ob-finish-wrap">
+      <div class="ob-medallion"><span style="font-family:var(--bebas);font-size:52px;color:#DBA514;letter-spacing:-.02em">J</span></div>
+      <div class="ob-finish-title">LET'S GET TO WORK.</div>
+      <div class="ob-finish-sub">Your first session is ready.</div>
+      <div class="ob-btn-col">
+        <button class="ob-btn ob-btn-primary" onclick="_obDone(true)">Start First Session</button>
+        <button class="ob-btn ob-btn-ghost" onclick="_obDone(false)">Explore the App</button>
+      </div>
+    </div>`;
+
+  return '';
+}
+
+function _obPersona(p) { _obAns.persona = p; _obNext(); }
+
+function _obCount(n) { _obAns.playerCount = n; _obNext(); }
+
+function _obAdjCount(d) {
+  _obAns.playerCount = Math.max(2, Math.min(20, (_obAns.playerCount < 2 ? 2 : _obAns.playerCount) + d));
+  const el = document.getElementById('obCountVal');
+  if (el) el.textContent = _obAns.playerCount;
+}
+
+function _obTier(t) {
+  _obAns.equipmentTier = t;
+  document.querySelectorAll('#obBody .ob-card').forEach((c, i) => c.classList.toggle('ob-sel', i + 1 === t));
+}
+
+function _obLoc(l) {
+  _obAns.location = l;
+  document.querySelectorAll('#obBody .ob-loc-btn').forEach(b => b.classList.toggle('ob-loc-active', b.dataset.loc === l || (l === 'outdoor' && b.textContent.includes('Outdoor')) || (l === 'indoor' && b.textContent.includes('Indoor'))));
+}
+
+function _obSport(s) {
+  _obAns.sport = s;
+  document.querySelectorAll('#obBody .ob-card').forEach(c => c.classList.toggle('ob-sel', c.querySelector('.ob-card-title')?.textContent.toLowerCase() === s));
+}
+
+function _obAge(a) { _obAns.ageGroup = a; _obNext(); }
+
+function _obNext() {
+  const screens = _obScreens();
+  if (_obStep < screens.length - 1) { _obStep++; _obRender(); }
+}
+
+function _obDone(startSession) {
+  localStorage.setItem(OB_KEY, '1');
+  activeSport = _obAns.sport;
+  ageIdx = _obAns.ageGroup;
+  state.persona = _obAns.persona;
+  state.playerCount = _obAns.playerCount;
+  state.equipmentTier = _obAns.equipmentTier;
+  state.activeLocation = _obAns.location;
+  persistState();
+  updateAgeUI();
+  renderSportChips();
+  generateSession();
+  document.getElementById('onboarding').style.display = 'none';
+  const target = startSession ? 'session' : 'session';
+  switchView(target, document.getElementById('tab-' + target));
+}
+
 // ─── VIEW SWITCH ──────────────────────────────────────────────────────────────
 function switchView(name, el) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -1925,6 +2147,7 @@ fetch('/api/drills')
     ALL_DRILLS = Object.fromEntries(arr.map(d => [d.id, d]));
     if (_loadingEl) _loadingEl.remove();
     generateSession();
+    if (!localStorage.getItem(OB_KEY)) showOnboarding();
   })
   .catch(() => {
     if (_loadingEl) _loadingEl.textContent = 'Could not load drills. Please refresh.';
