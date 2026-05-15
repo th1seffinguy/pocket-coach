@@ -803,7 +803,7 @@
       </button>
     </div>
     <div style="text-align:center;padding:20px 0;font-family:var(--mono);font-size:12px;color:var(--muted-2);letter-spacing:.05em">
-      JUKIT · Youth Coaching · <span id="versionLabel">v0.9.6</span>
+      JUKIT · Youth Coaching · <span id="versionLabel">v0.9.7</span>
     </div>
   </div>
 </div>
@@ -895,7 +895,7 @@
 </div>
 
 <script>
-const VERSION = 'v0.9.6';
+const VERSION = 'v0.9.7';
 
 // ─── SVG ICONS ────────────────────────────────────────────────────────────────
 const ICONS = {
@@ -1710,6 +1710,7 @@ function renderNowPlaying() {
   renderActiveConfigStrip();
   renderProgressDots();
   updateDrillDisplay();
+  revealActiveCardAboveFooter();
 }
 
 function renderActiveConfigStrip() {
